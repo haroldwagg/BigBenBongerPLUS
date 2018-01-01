@@ -1,0 +1,1385 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+    <!--  +++BIG BEN PLUS+++ This is a wide open CSP declaration. To lock this down for production, see below. -->
+    <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *" />
+
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
+
+    <title>Big Ben Bonger</title>
+</head>                                        
+
+<body>
+
+  <div id="cvas" style="width: 310px; height: 321px; position: absolute; top: 0; left: 0;">
+      <canvas id="myCanvas" width="310" height="321" style="border: none; position:absolute; left: 0; top: 0;">
+      </canvas>
+  </div>
+                
+                <div id="setupButtonDiv" style="float: right; ">
+                <input type="button" class="rounderCorners" id="setup_but" onClick="doSetUp()" style="margin-right: 12px; border: solid 5px #0000aa; z-index: 100;position:relative" />
+ 
+<img src="img/bb_minute_hand.png" id="mh" style="display:none" /> 
+<img src="img/bb_hour_hand.png" id="hh" style="display:none" /> 
+
+                </div>
+                <div id="setupPanel" style="background-color: rgba(230, 230, 255, 0.95);  margin-left: 8px; z-index: 100;position:absolute; left: 10; top: 10;">         
+                
+                <table id="setupTable" style="border: none; float: left; font-size: 12px; margin: 8px;">
+                  <tr><td align="left" nowrap="nowrap">
+                     BONG:&nbsp;<select name="clocker" id="clocker" onChange="changeClock()" style="font-size: 1.1em;"></select>
+          
+                  <br /><span style="color: #0000bb"><hr /></span>
+                  <input type="checkbox" class="checkers" name="no_phone_mute" id="no_phone_mute" onClick="doPhoneMute()"><div id="bongDuringCall" style="margin: 0; padding: 0; display: inline-block"></div>
+                  <br /><br />
+                 
+                  
+                  
+                  <input type="checkbox" class="checkers" name="quart" id="Quarter"  onClick="do1545Option()"><div id="15_45_Label" style="margin: 0; padding: 0; display: inline-block"></div><br />
+                  <input type="checkbox" class="checkers" name="half" id="Half"  onClick="doHalfHourOption()"><div id="Half_Label" style="margin: 0; padding: 0; display: inline-block"></div><br />
+                  <input type="checkbox" class="checkers" name="hhourr" id="Hour-strikes" onClick="doHourStrikeOption()"><div id="Hour_Label" style="margin: 0; padding: 0; display: inline-block"></div>
+                  <br /><br /><img  src="img/juk.png" id="spkr" style="margin: 0; padding: 0; height: 20px; width: 20px; margin-right: 0.8em; margin-top: 0px; margin-bottom: -3px;"  /><input type="button" value="   -   " style="font-size: 1em;  border: 1px solid black; margin: 0; padding: 0; margin-right: 8px; margin-top: 0px; padding-top: 4px; padding-bottom: 3px;" onClick="changeVolume('-')" /><progress id="prog" name="prog" value="0.4" max="1.0">
+                  </progress><input type="button" value="  +  " style="font-size: 1em;  border: 1px solid black; margin: 0; padding: 0; margin-left: 0.8em; padding-top: 4px; margin-right: 1.5em; padding-bottom: 3px;" onClick="changeVolume('+')" />
+                  
+                  <br /><span style="color: #0000bb"><hr /></span>
+                  
+                  <input type="checkbox" class="checkers" name="useQT" id="useQT" onClick="doQuietTimeOption()"><div id="useQTLabel" style="margin: 0; padding: 0; display: inline-block"></div><br />         
+                  <div id="startSelectDiv" style="width: 125px; display: inline"></div><div id="endSelectDiv" style="display: inline; width: 125px;"></div>
+                  <br />
+                  <div id="SstartLabel" style="color: black; margin-left: 41px; text-transform: none; width: 200px; display: inline"></div><div id="EendLabel" style="color: black; margin-left: 63px; text-transform: none; display: inline"></div>
+
+    
+                  </td></tr>
+                  </table>
+
+                </div>
+
+
+                <div id="muteIcon" style="position: absolute; left: 3px; top: 435px;">
+                  <img id="mutePic" src="img/quiettime.gif" width="233" height="37" style="visibility: hidden;" />
+                </div>
+
+             
+                <div id="bottomNavBar" style="background-color: black; margin: 0; padding: 0; height: 54px; position: fixed; bottom: 0%; width: 100%; overflow:visible;">
+                  <img src="img/help.png" width="30" height="30" id="helpIcon" onClick="doHelp()" style="margin-left: 8px; margin-top: 5px;" />
+                  <img id="ximage" name="ximage" src="x.png" width="45" height="45" style="float: right; border: none;  padding: 0; margin-top: 5px; margin-right: 8px;" onClick="doExit()" />
+                  <img id="minimage" name="minimage" src="img/min.png" width="45" height="45" style="float: right; border: none; margin-top: 5px;" onClick="doGoToBG()" />
+                  <div id="clearr" style=" clear: both;"></div>
+                </div>
+    </div>
+
+    <script type="text/javascript" src="cordova.js"></script>
+     
+    <script type="text/javascript" src="js/index.js"></script>
+        
+    
+    <script type="text/javascript" src="js/pluginUtils.js"></script>
+    <script type="text/javascript">
+      var src;
+      var MASTER_MUTE = false;
+      var QUARTER_MUTE = false;
+      var HALF_MUTE = false;
+      var THREE_QUARTER_MUTE = false;
+      var DO_STRIKES = true;  
+      var MASTER_VOLUME = 0.4;
+      var CURRENT_VOLUME = 0.4; 
+      var loopDelay;
+      var loopThread;
+      var QUARTER_HOUR_SYNC = false;
+      var ORIENT;
+      var SIZE;
+      var lastVolumePush = "Neither";
+      var my_media_TEST = "NOT_RUNNING";
+      var my_media_WHICH = "NOT_RUNNING";
+      var my_media2;
+      var my_media;      
+      
+      var QUARTER_DING       = "bb_quarter.mp3";
+      var HALF_DING          = "bb_half.mp3";
+      var THREE_QUARTER_DING = "bb_three-quarter.mp3";
+      var HOUR_DING          = "bb_hour.mp3";
+      var DING_SELECTION;
+      var do24Hr = false;
+      var myLang;
+      
+      var Timeouter;
+      var delayRelease;
+      
+      var MAGIC_NUMBER = 0;
+      var DUP_EXIT = false;
+      var startTimeArray = [];
+      var nextUp = 0;
+      
+      var dingThread;
+      var ctx;
+      var lang;
+      var XStr;
+      var setupIsDisplayed = false;
+      var helpText, helpTextTitle, mantleClockText, grandfatherClockText, helpDismissText, quitConfirmText, backgroundNotificationText, optionsInText, optionsOutText;
+      
+      var p = window.location.pathname;
+      this.root = p.substring(0, p.lastIndexOf('/')) + "/";
+      
+      var body = document.getElementsByTagName('body')[0];
+      
+      var canvas;
+      var ctx;
+      var minuteHand;
+      var hourHand; 
+      var xcounter = 0; 
+      
+      var HOUR_HAND_CORRECTION_FACTOR = 0;                                                                                             
+      
+      function init()   {
+        var d = new Date();
+        var mins = d.getMinutes();        
+        var n = d.getHours();
+        var delimiter = ":";
+              
+        if (do24Hr)   {
+          if (localStorage["language"] == "de")   {
+            delimiter = ".";
+            if (n < 10)   {
+              n = "&nbsp;&nbsp;" + n;
+            }
+          }
+          else   {
+            if (n < 10)   {
+              n = "0" + n;
+            }
+          }
+        }
+        else   {                    
+          if (n == 0)   {
+            n = 12;
+          }
+          if (n > 12)   {
+            n -= 12;
+          } 
+          
+          if (n < 10)   {
+            n = "&nbsp;&nbsp;" + n;
+          }
+        }
+          
+        if (mins < 10)   {
+          mins = "0" + mins;
+        } 
+//        document.getElementById("clock").innerHTML = "&nbsp;" + n + delimiter + mins + "&nbsp;";
+             
+        var secs = d.getSeconds();
+        loopDelay = (60 - secs) * 1000;
+        
+// Fix loop creep (I hope)
+        loopDelay += 1000;   
+        
+        doTimeDisplay(d.getHours(), mins);    
+        
+        
+//        if (cordova.plugins.backgroundMode.isActive())   {
+          cordova.plugins.backgroundMode.configure({ text: backgroundNotificationText, resume: true  });
+//        } 
+       
+        var dud = isQuietTime();
+       
+        clearTimeout(loopThread);
+        loopThread = setTimeout(doMainLoop, loopDelay);
+      }
+      
+      function doMainLoop()   {
+        var d = new Date();
+        var mins = d.getMinutes();        
+        var n = d.getHours();
+        var delimiter = ":"; 
+              
+        if (do24Hr)   {
+          if (localStorage["language"] == "de")   {
+            delimiter = ".";
+            if (n < 10)   {
+              n = "&nbsp;&nbsp;" + n;
+            }
+          }
+          else   {
+            if (n < 10)   {
+              n = "0" + n;
+            }
+          }
+        }
+        else   {    
+          if (n == 0)   {
+            n = 12;
+          }
+          if (n > 12)   {
+            n -= 12;
+          } 
+          
+          if (n < 10)   {
+            n = "&nbsp;&nbsp;" + n;
+          }
+        }
+          
+        if (mins < 10)   {
+          mins = "0" + mins;
+        } 
+        
+//        document.getElementById("clock").innerHTML = "&nbsp;" + n + delimiter + mins + "&nbsp;";
+        
+        var dud = isQuietTime();
+                 
+        if ((mins == 15) || (mins == 30) || (mins == 45))   {
+          playBen(mins);
+          init();        
+        }
+        else if (mins == 59)   {
+          if (localStorage["ding_selection"] == "bb")   {
+            dingThread = setTimeout(function() {
+              playBen(0);
+              init();
+            }, 43000);
+          }
+          else   {
+            dingThread = setTimeout(function() {
+              playBen(0);
+              init();
+            }, 60000);
+          }
+          
+          doTimeDisplay(d.getHours(), mins); 
+          loopDelay = 60000;
+          clearTimeout(loopThread);
+          loopThread = setTimeout(doMainLoop, loopDelay);      
+        }
+        else   {
+          doTimeDisplay(d.getHours(), mins);
+          loopDelay = 60000;
+          clearTimeout(loopThread);
+          loopThread = setTimeout(doMainLoop, loopDelay); 
+        }     
+      } 
+
+      function playBen(x)   {
+        var phoneAdjustmentsHaveBeenMade = false;
+      
+        if (typeof(my_media) == "object")   {
+          my_media.stop();
+          my_media.release();
+        }
+        
+        if (isQuietTime())   {
+          return;
+        }
+        
+        if (MASTER_MUTE)   {
+          if (document.getElementById("no_phone_mute").checked == true)   {
+            MASTER_MUTE = false;
+            CURRENT_VOLUME = 0.1; 
+            phoneAdjustmentsHaveBeenMade = true;            
+          }
+        }
+                    
+        src = "";
+        
+        if ((x == "15") && (! QUARTER_MUTE) && (! MASTER_MUTE))   {
+          src = this.root + "audio/" + QUARTER_DING;
+        }
+        else if ((x == "30") && (! HALF_MUTE) && (! MASTER_MUTE))   {
+          src = this.root + "audio/" + HALF_DING;
+        }
+        else if ((x == "45") && (! THREE_QUARTER_MUTE) && (! MASTER_MUTE))   {
+          src = this.root + "audio/" + THREE_QUARTER_DING;
+        }   
+        else if ((x == "00") && (! MASTER_MUTE))   {
+          src = this.root + "audio/" + HOUR_DING;
+          
+          if (DO_STRIKES)   {
+            if (typeof(my_media2) == "object")   {
+              my_media2.stop();
+              my_media2.release();
+            }
+            
+            var deela;          
+            if (DING_SELECTION == "bb")   {
+              deela = 15800;
+            }
+            else if (DING_SELECTION == "gf")   {
+              deela = 16000;
+            }
+            else   {
+              deela = 13000;
+            }
+ 
+            setTimeout(function()   { 
+              var d = new Date();
+              var n = d.getHours();
+              var mins = d.getMinutes();
+
+//  Big Ben starts at XX:59:44.  It is  not impossible that we get here just before the hour change (e.g., XX:59:59.88)
+//  This is just a double check that the time has rolled over to the new hour.
+//  If not rolled over yet, increment the hour.
+              
+              if (mins == 59)   {
+                n++;
+                if (n == 24)   {
+                  n = 0;
+                }
+              } 
+              
+              if (n == 0)   {
+                n = 12;
+              }
+              if (n > 12)   {
+                n -= 12;
+              }
+              
+              var inserter;
+                            
+              inserter = localStorage["ding_selection"] + "_";
+              
+              var dingerFile = this.root + "audio/" + inserter + n + ".mp3";
+              my_media2 = new Media(dingerFile,
+                function () { console.log("playAudio():Audio Success"); },
+                ignoreError()
+              );
+            
+              my_media2.play({ playAudioWhenScreenIsLocked : true }); 
+              my_media2.setVolume(CURRENT_VOLUME);
+              
+              if (phoneAdjustmentsHaveBeenMade)   {
+                phoneAdjustmentsHaveBeenMade = false;
+                CURRENT_VOLUME = MASTER_VOLUME;
+                MASTER_MUTE = true;
+              }     
+            }, deela);      
+          }   
+        }     
+        
+        if (src != "")   {
+          my_media = new Media(src,
+            function () { console.log("playAudio():Audio Success"); },
+            ignoreError()
+          );
+          
+          my_media.play({ playAudioWhenScreenIsLocked : true });         
+          my_media.setVolume(CURRENT_VOLUME); 
+        }
+        
+        if ((phoneAdjustmentsHaveBeenMade && x != "00") || (phoneAdjustmentsHaveBeenMade && ! DO_STRIKES && x == "00"))   {
+          phoneAdjustmentsHaveBeenMade = false;
+          CURRENT_VOLUME = MASTER_VOLUME;
+          MASTER_MUTE = true;
+        }
+      }
+      
+      function initializeCanvas()   {
+        canvas = document.getElementById("myCanvas");
+        
+//        if (! canvas.getContext)   {
+//          alert ('Put in static pic');
+//          return;
+//        } 
+
+        ctx = canvas.getContext('2d');  
+        
+        if (SIZE == "small")   {    
+          ctx.translate(116, 127);
+          minuteHand = document.getElementById("mh");
+          hourHand = document.getElementById("hh"); 
+        }
+        else   {
+          var d2 = new Date();
+          var min2 = d2.getMinutes();        
+          var hr2 = d2.getHours();
+
+          ctx.translate(116, 127); 
+          minuteHand = new Image();
+          minuteHand.onload = function() {
+            doTimeDisplay(hr2, min2);
+          };          
+          minuteHand.src = 'img/bigMinuteHand.png';
+          
+          hourHand = new Image();
+          hourHand.onload = function() {
+            doTimeDisplay(hr2, min2);
+          };
+          hourHand.src = 'img/bigHourHand.png';
+        }
+      }
+      
+      function doTimeDisplay(hrs, minte)   {
+        var handPosition;
+        var m = parseInt(minte);
+        var hourHandPosition;
+        
+        if (SIZE == "small")   { 
+          ctx.clearRect(-116, -127, canvas.width, canvas.height);
+        }
+        else   {
+          ctx.clearRect(-116, -127, canvas.width, canvas.height);
+        }
+
+        handPosition = m * 6 * Math.PI / 180;
+         
+        ctx.rotate(handPosition);  
+        
+        if (SIZE == "small")   {      
+          ctx.drawImage(minuteHand, -13,  -182);
+        }
+        else   {
+          ctx.drawImage(minuteHand, -14,  -177);
+        }
+        
+        ctx.rotate(handPosition * -1);
+        
+        hrs %= 12;
+       
+        hourHandPosition = ((hrs * 6 * 5) * Math.PI / 180) + (((m + HOUR_HAND_CORRECTION_FACTOR) * 6 * Math.PI / 180) / 12);
+        ctx.rotate(hourHandPosition); 
+        
+        if (SIZE == "small")   {          
+          ctx.drawImage(hourHand, -16, -100); 
+        }
+        else   {  
+          ctx.drawImage(hourHand, -17, -94); 
+        }
+          
+        ctx.rotate(hourHandPosition * -1);  
+        
+
+  
+//        ctx.drawImage(minuteHand, -9, -150, 21, 188);
+        
+//        handPosition = 5 * 6 * Math.PI / 180;
+//        ctx.rotate(handPosition);       
+//        ctx.drawImage(minuteHand, 67, -70);  
+
+      }
+      
+      function doSetUp()   {     
+        var panelStyle = document.getElementById("setupPanel").style;
+        var theCheckboxes = document.getElementsByClassName("checkers");
+    
+        if (! setupIsDisplayed)   {
+          setupIsDisplayed = true;
+          document.getElementById("setup_but").value = optionsOutText;
+          
+          var ratio = window.devicePixelRatio || 1;
+          var h = screen.height;
+
+          if (h / ratio > 780)   {
+            if (localStorage["language"] == "fr")   {
+              panelStyle.width = '395px';
+            }
+            else if (localStorage["language"] == "pt")   {
+              panelStyle.width = '480px';
+            }
+            else if (localStorage["language"] == "de")   {
+              panelStyle.width = '460px';
+            }
+            else   {
+              panelStyle.width = '400px';
+            }
+
+
+
+
+  
+            panelStyle.height = '365px';
+            document.getElementById("Quarter").style.marginTop = "10px";
+            document.getElementById("Half").style.marginTop = "8px";
+            document.getElementById("Hour-strikes").style.marginTop = "8px";
+            document.getElementById("spkr").style.width = "40px";
+            document.getElementById("spkr").style.height = "40px";
+            document.getElementById("sprk").style.marginBottom = "-8px";            
+          }
+          else   {
+            if (localStorage["language"] == "fr")   {
+              panelStyle.width = '250px';
+            }
+            else if (localStorage["language"] == "pt")   {
+              panelStyle.width = '290px';
+            }
+            else if (localStorage["language"] == "de")   {
+              panelStyle.width = '257px';
+            }
+            else   {
+              panelStyle.width = '255px';
+            }
+              
+            panelStyle.height = '400px';
+            document.getElementById("spkr").style.width = "22px";
+            document.getElementById("spkr").style.height = "22px";
+          }          
+        } 
+        else   {
+          setupIsDisplayed = false;
+          document.getElementById("setup_but").value = optionsInText;
+          panelStyle.width = '0px';          
+        }
+        
+        clearTimeout(loopThread);
+        init();      
+      }
+      
+      function selectBB()   {
+        DING_SELECTION     = "bb";
+        localStorage["ding_selection"] = "bb";
+        var dingerFile = this.root + "audio/" + "bb_quarter.mp3";
+               
+        if(my_media_WHICH != "NOT_RUNNING")   {
+          clearTimeout(Timeouter);
+          my_media_WHICH.stop();
+          my_media_WHICH.release();
+          my_media_WHICH = "NOT_RUNNING";
+        }
+        
+        if(my_media_TEST != "NOT_RUNNING")   {
+          clearTimeout(delayRelease);
+          my_media_TEST.stop();
+          my_media_TEST.release();
+          my_media_TEST = "NOT_RUNNING";
+        }
+          
+        my_media_WHICH = new Media(dingerFile,
+           function () { console.log("playAudio():Audio Success"); },
+           ignoreError()
+        );
+        
+        my_media_WHICH.play();
+        my_media_WHICH.setVolume(MASTER_VOLUME);
+                         
+        Timeouter = setTimeout(function()   {
+            my_media_WHICH.stop(); 
+            my_media_WHICH.release();
+            my_media_WHICH = "NOT_RUNNING";
+          }, 15000);
+      }
+      
+      function selectBG()   {
+        DING_SELECTION     = "bg";
+        localStorage["ding_selection"] = "bg";
+        var dingerFile = this.root + "audio/" + "bg_quarter.mp3";
+               
+        if(my_media_WHICH != "NOT_RUNNING")   {
+          clearTimeout(Timeouter);
+          my_media_WHICH.stop();
+          my_media_WHICH.release();
+          my_media_WHICH = "NOT_RUNNING";
+        }
+        
+        if(my_media_TEST != "NOT_RUNNING")   {
+          clearTimeout(delayRelease);
+          my_media_TEST.stop();
+          my_media_TEST.release();
+          my_media_TEST = "NOT_RUNNING";
+        }        
+          
+        my_media_WHICH = new Media(dingerFile,
+           function () { console.log("playAudio():Audio Success"); },
+           ignoreError()
+        );
+        
+        my_media_WHICH.play();
+        my_media_WHICH.setVolume(MASTER_VOLUME);
+        
+        Timeouter = setTimeout(function()   { 
+            my_media_WHICH.release();
+            my_media_WHICH = "NOT_RUNNING";
+          }, 20000);        
+      }
+      
+      function selectGF()   {
+        DING_SELECTION     = "gf";
+        localStorage["ding_selection"] = "gf";
+        var dingerFile = this.root + "audio/" + "gf_quarter.mp3";
+               
+        if(my_media_WHICH != "NOT_RUNNING")   {
+          clearTimeout(Timeouter);
+          my_media_WHICH.stop();
+          my_media_WHICH.release();
+          my_media_WHICH = "NOT_RUNNING";
+        }
+        
+        if(my_media_TEST != "NOT_RUNNING")   {
+          clearTimeout(delayRelease);
+          my_media_TEST.stop();
+          my_media_TEST.release();
+          my_media_TEST = "NOT_RUNNING";
+        }        
+          
+        my_media_WHICH = new Media(dingerFile,
+           function () { console.log("playAudio():Audio Success"); },
+           ignoreError()
+        );
+        
+        my_media_WHICH.play();
+        my_media_WHICH.setVolume(MASTER_VOLUME);
+
+        Timeouter = setTimeout(function()   { 
+            my_media_WHICH.release();
+            my_media_WHICH = "NOT_RUNNING";
+          }, 20000);        
+      }
+      
+
+      
+
+      function doHourStrikeOption()   {
+        if (DO_STRIKES)   {
+          DO_STRIKES = false;
+          document.getElementById("Hour-strikes").checked = false;
+          localStorage["hour-strikes"] = "no";
+        }
+        else   {
+          DO_STRIKES = true;
+          document.getElementById("Hour-strikes").checked = true;
+          localStorage["hour-strikes"] = "checked";
+        }
+      }     
+      
+      function do1545Option()   {
+        if (QUARTER_MUTE)   {
+          QUARTER_MUTE = false;
+          THREE_QUARTER_MUTE = false;
+          document.getElementById("Quarter").checked = true;
+          localStorage["quarter"] = "checked";
+        }
+        else   {
+          QUARTER_MUTE = true;
+          THREE_QUARTER_MUTE = true;
+          document.getElementById("Quarter").checked = false;
+          localStorage["quarter"] = "no";
+        }
+      }
+      
+      function doQuietTimeOption()   {
+        if (document.getElementById("useQT").checked == true)   {
+          localStorage["useqt"] = "checked";
+        }
+        else   {
+          localStorage["useqt"] = "no";
+        }
+        
+        var dud = isQuietTime();
+      }    
+
+      function doHalfHourOption()   {
+        if (HALF_MUTE)   {
+          HALF_MUTE = false;
+          document.getElementById("Half").checked = true;
+          localStorage["half"] = "checked";
+        }
+        else   {
+          HALF_MUTE = true;
+          document.getElementById("Half").checked = false;
+          localStorage["half"] = "no";
+        }
+      } 
+      
+      function doOnOrientationChange()   {
+        var ratio = window.devicePixelRatio || 1;
+        var h = screen.height;
+        
+        if (h / ratio > 780)   {
+          body.style.fontSize = "22px";
+          SIZE = "big";
+        }
+        else   {
+          body.style.fontSize = "12px";
+          SIZE = "small";
+        }
+         
+        if (screen.height > screen.width) {   
+          if (SIZE == "small")   {
+            body.style.backgroundImage = 'url(img/bg_pt_sm.jpg)';
+            document.getElementById("setupButtonDiv").style.position = "fixed";
+            document.getElementById("setupButtonDiv").style.top = "286px";
+            document.getElementById("setupButtonDiv").style.right = "0px";
+          }
+          else   {             
+            body.style.backgroundImage = 'url(img/bg_pt_lg.jpg)';
+            document.getElementById("setupButtonDiv").style.position = "relative";
+            document.getElementById("setupButtonDiv").style.marginTop = "600px";
+          }
+
+          document.getElementById("setup_but").style.marginRight = "10px";
+          document.getElementById("setup_but").style.backgroundColor = "#e8e8ff";
+          
+
+          ORIENT = 'portrait';
+        }
+        else   {
+          if (SIZE == "small")   {
+            body.style.backgroundImage = 'url(img/bg_lscape_sm.jpg)';
+            document.getElementById("setupButtonDiv").style.position = "fixed";
+            document.getElementById("setupButtonDiv").style.top = "230px";
+            document.getElementById("setupButtonDiv").style.right = "0px";   
+          }
+          else   {             
+            body.style.backgroundImage = 'url(img/bg_lscape_lg.jpg)';
+            document.getElementById("setupButtonDiv").style.position = "relative";
+            document.getElementById("setupButtonDiv").style.marginTop = "530px";
+          }
+        
+          document.getElementById("setup_but").style.marginRight = "20px";
+          document.getElementById("setup_but").style.backgroundColor = "#e8e8ff";
+                  
+          
+          ORIENT = 'landscape';
+        }
+      }
+      
+      window.addEventListener('orientationchange', doOnOrientationChange);
+
+      document.addEventListener("deviceready", starter, false);
+      
+//     window.onload = setTimeout(function() {starter();}, 2000);
+
+
+//////////////////////////////////////////////////////
+///  STARTER  ////////////////////////////////////////
+//////////////////////////////////////////////////////
+
+      function starter()   { 
+        
+        var body = document.getElementsByTagName('body')[0];
+        var ratio = window.devicePixelRatio || 1;
+        var h = screen.height;
+        
+        if (h / ratio > 780)   {
+          body.style.fontSize = "22px";
+          SIZE = "big";
+          document.getElementById("myCanvas").style.width = "620px";
+          document.getElementById("myCanvas").style.height = "642px";          
+        }
+        else   {
+          body.style.fontSize = "12px";
+          SIZE = "small";
+        }
+
+
+        if (SIZE == "big")   {
+          document.getElementById("ximage").style.width = "65px";
+          document.getElementById("ximage").style.height = "65px";
+          document.getElementById("minimage").style.width = "60px";
+          document.getElementById("minimage").style.height = "60px";
+          document.getElementById("helpIcon").style.width = "65px";
+          document.getElementById("helpIcon").style.height = "65px";
+          document.getElementById("no_phone_mute").style.width = "35px";
+          document.getElementById("no_phone_mute").style.height = "35px";
+          document.getElementById("Quarter").style.width = "35px";
+          document.getElementById("Quarter").style.height = "35px";
+          document.getElementById("Half").style.width = "35px";
+          document.getElementById("Half").style.height = "35px";
+          document.getElementById("Hour-strikes").style.width = "35px";
+          document.getElementById("Hour-strikes").style.height = "35px";
+          document.getElementById("bottomNavBar").style.height = "75px";
+          document.getElementById("minimage").style.marginRight = "120px";
+          document.getElementById("setup_but").style.fontSize = "1.2em";
+          document.getElementById("setupTable").style.fontSize = "20px";
+          
+          if (screen.height <= screen.width) { 
+            body.style.backgroundImage = 'url(img/bg_lscape_lg.jpg)';  
+            document.getElementById("setupButtonDiv").style.position = "relative";
+            document.getElementById("setupButtonDiv").style.marginTop = "530px";
+          }
+          else   {
+            body.style.backgroundImage = 'url(img/bg_pt_lg.jpg)';
+            document.getElementById("setupButtonDiv").style.position = "relative";
+            document.getElementById("setupButtonDiv").style.marginTop = "600px";
+          }
+        }
+        else   {
+          document.getElementById("ximage").style.width = "45px";
+          document.getElementById("ximage").style.height = "45px";
+          document.getElementById("minimage").style.width = "42px";
+          document.getElementById("minimage").style.height = "42px";
+          document.getElementById("minimage").style.marginTop = "5px";
+          document.getElementById("minimage").style.marginRight = "100px";
+          document.getElementById("helpIcon").style.width = "45px";
+          document.getElementById("helpIcon").style.height = "45px"; 
+          
+          if (screen.height <= screen.width) { 
+            body.style.backgroundImage = 'url(img/bg_lscape_sm.jpg)';  
+            document.getElementById("setupButtonDiv").style.position = "fixed";
+            document.getElementById("setupButtonDiv").style.top = "230px";
+            document.getElementById("setupButtonDiv").style.right = "0px";   
+          }
+          else   {
+            body.style.backgroundImage = 'url(img/bg_pt_sm.jpg)';
+//            document.getElementById("setupButtonDiv").style.position = "relative";
+//            document.getElementById("setupButtonDiv").style.marginTop = "368px";
+            document.getElementById("setupButtonDiv").style.position = "fixed";
+            document.getElementById("setupButtonDiv").style.top = "286px";
+            document.getElementById("setupButtonDiv").style.right = "0px";
+          }           
+        }  
+        
+        setLanguage();
+        
+        processSavedSettings(); 
+
+        window.plugins.insomnia.keepAwake();
+        
+        cordova.plugins.backgroundMode.setEnabled(true);
+      
+        cordova.plugins.backgroundMode.on('activate', function() {
+          cordova.plugins.backgroundMode.disableWebViewOptimizations(); 
+        });
+
+        cordova.plugins.backgroundMode.setDefaults({
+          title: "Big Ben Bonger Background",
+          text: backgroundNotificationText,
+          resume: true,
+          hidden: false
+        });
+                        
+        PhoneCallTrap.onCall(function(state) {
+          switch (state) {
+            case "RINGING":
+                MASTER_MUTE = true;
+                break;
+            case "OFFHOOK":
+                MASTER_MUTE = true;
+                break;
+            case "IDLE":
+                MASTER_MUTE = false;
+                break;
+          }
+        });
+        
+        document.addEventListener("backbutton", function (e) {               // Disable Back Button
+            e.preventDefault();
+            var q = confirm(quitConfirmText);
+            if (q == true)   {
+              doExit();
+            } 
+            else   {
+              ;
+            }       
+          }, 
+        false );
+
+
+      }
+      
+      document.addEventListener("resume", onResume, false);
+      
+      function onResume()   {
+        cordova.plugins.backgroundMode.moveToForeground();
+        window.plugins.insomnia.keepAwake();
+        clearTimeout(loopThread);
+        init();
+      }
+      
+      function doExit()   {
+        clearTimeout(loopThread);
+        if (! DUP_EXIT)   {
+          localStorage["locker"] = 0;
+        }
+        window.plugins.insomnia.allowSleepAgain();
+        navigator.app.exitApp();
+      }
+      
+      window.addEventListener("beforeunload", function (event) {
+//      event.preventDefault();
+        if (! DUP_EXIT)   {
+          localStorage["locker"] = 0;
+        }
+      });
+      
+      function changeVolume(dir)   {
+        if(my_media_WHICH != "NOT_RUNNING")   {
+          clearTimeout(Timeouter);
+          my_media_WHICH.stop();
+          my_media_WHICH.release();
+          my_media_WHICH = "NOT_RUNNING";
+        }
+              
+        var pBar = document.getElementById("prog");
+        
+        if(my_media_TEST == "NOT_RUNNING")   {
+          var dingerFile = this.root + "audio/" + THREE_QUARTER_DING;
+          my_media_TEST = new Media(dingerFile,
+                function () { console.log("playAudio():Audio Success"); },
+                ignoreError()
+          );
+
+          my_media_TEST.play();
+          
+          var delay;          
+          if (DING_SELECTION == "bb")   {
+            delay = 20000;
+          }
+          else   {
+            delay = 20000;
+          }
+          
+          delayRelease = setTimeout(function()   { 
+            my_media_TEST.stop();
+            my_media_TEST.release();
+            my_media_TEST = "NOT_RUNNING";
+          }, delay);
+        } 
+        
+        if (dir == "+")   {            
+          if (MASTER_VOLUME < 1.0)   {
+            MASTER_VOLUME =  MASTER_VOLUME + 0.1;
+          }
+        }
+        else   {
+          if (MASTER_VOLUME > 0.0)   {
+            MASTER_VOLUME = MASTER_VOLUME - 0.1;
+          }                    
+        }
+        
+        pBar.value = MASTER_VOLUME;
+        my_media_TEST.setVolume(MASTER_VOLUME);
+        
+        localStorage["volume"] = MASTER_VOLUME.toString();
+//        alert (MASTER_VOLUME);
+        CURRENT_VOLUME = MASTER_VOLUME;          
+      }
+      
+      function doGoToBG()   { 
+        window.plugins.insomnia.allowSleepAgain();
+        cordova.plugins.backgroundMode.moveToBackground();      
+      }
+      
+      function doHelp()   {
+        navigator.notification.alert(
+          helpText,  
+          "",         
+          helpTextTitle,           
+          helpDismissText                 
+        );      
+      }
+            
+      function showScreenSize()   {
+        var ratio = window.devicePixelRatio || 1;
+        var h = screen.height;
+        var w = screen.width;
+        
+//        alert("SCREEN = " + w + " x " + h + "\n RATIO = " + ratio + "\n\nMAGIC_NUMBER =\n" + MAGIC_NUMBER + "  [" + localStorage["locker"] + "]");
+      }
+      
+      function processSavedSettings()   {
+//
+//  Clock Selection
+//      
+        if ((localStorage["ding_selection"] == "") || (localStorage["ding_selection"] == null))   {
+          localStorage["ding_selection"] = "bb";
+        }
+        
+        if ((localStorage["ding_selection"] != "bb") && (localStorage["ding_selection"] != "bg") && (localStorage["ding_selection"] != "gf"))   {
+          localStorage["ding_selection"] = "bb";
+        } 
+        
+        QUARTER_DING = localStorage["ding_selection"] + "_quarter.mp3";
+        HALF_DING  = localStorage["ding_selection"] + "_half.mp3";
+        THREE_QUARTER_DING = localStorage["ding_selection"] + "_three-quarter.mp3";
+        HOUR_DING = localStorage["ding_selection"] + "_hour.mp3";
+        DING_SELECTION = localStorage["ding_selection"];
+
+//
+//  Mute during Phonecalls
+//        
+        if ((localStorage["no_phone_mute"] != "checked") && (localStorage["no_phone_mute"] != "no"))   {
+          localStorage["no_phone_mute"] = "no";
+        }
+
+        if (localStorage["no_phone_mute"] == "checked")   {
+          document.getElementById("no_phone_mute").checked = true;
+        } 
+        else   {
+          document.getElementById("no_phone_mute").checked = false;
+        }
+        
+//        alert ("DING: " + localStorage["ding_selection"] + "\n\nMUTE: " + localStorage["no_phone_mute"]);
+
+//
+//  15 & 45 Chimes
+//
+        if ((localStorage["quarter"] != "checked") && (localStorage["quarter"] != "no"))   {
+          localStorage["quarter"] = "checked";
+        }
+        
+        if (localStorage["quarter"] == "checked")   {
+          QUARTER_MUTE = false;
+          THREE_QUARTER_MUTE = false;
+          document.getElementById("Quarter").checked = true;
+        }
+        else   {
+          QUARTER_MUTE = true;
+          THREE_QUARTER_MUTE = true;
+          document.getElementById("Quarter").checked = false;       
+        }
+  
+//
+//  Half-hour Chimes
+//
+        if ((localStorage["half"] != "checked") && (localStorage["half"] != "no"))   {
+          localStorage["half"] = "checked";
+        }
+        
+        if (localStorage["half"] == "checked")   {
+          HALF_MUTE = false;
+          document.getElementById("Half").checked = true;
+       }
+        else   {
+          HALF_MUTE = true;
+          document.getElementById("Half").checked = false;
+        }
+
+//
+//  On-the-hour Strikes
+//
+        if ((localStorage["hour-strikes"] != "checked") && (localStorage["hour-strikes"] != "no"))   {
+          localStorage["hour-strikes"] = "checked";
+        }
+        
+        if (localStorage["hour-strikes"] == "checked")   {
+          DO_STRIKES = true;
+          document.getElementById("Hour-strikes").checked = true;
+       }
+        else   {
+          DO_STRIKES = false;
+          document.getElementById("Hour-strikes").checked = false;
+        }        
+
+//
+//  Volume
+//
+        if ((localStorage["volume"] == "undefined") || (localStorage["volume"] == "") || (localStorage["volume"] == null))   {
+          localStorage["volume"] = "0.3";
+        }
+        
+        if (parseFloat(localStorage["volume"]) < 0.1)   {
+          localStorage["volume"] = "0.1";
+        }
+        else if (parseFloat(localStorage["volume"]) > 1.0)   {
+          localStorage["volume"] = "1.0";
+        }
+        
+        MASTER_VOLUME = parseFloat(localStorage["volume"]);
+        CURRENT_VOLUME = MASTER_VOLUME;
+        document.getElementById("prog").value = CURRENT_VOLUME;     
+      }
+      
+      function doPhoneMute()   {
+        if (document.getElementById("no_phone_mute").checked == true)   {
+          localStorage["no_phone_mute"] = "checked";
+        } 
+        else   {
+          localStorage["no_phone_mute"] = "no";
+        }       
+      }
+
+      function makeTimeSelect(name, stylestr, preselect)   {
+        var outStr = "";
+        var tmp = "";
+        var displayMin = "";
+        var displayHr = "";
+        outStr += '<select name="' + name + '" id="' + name + '"';
+        
+        if (stylestr == "" || stylestr == null || stylestr == "undefined")   {
+          outStr += ' onChange="isQuietTime()">\n';
+        }
+        else   {
+          outStr += ' style="' + stylestr + '" onChange="isQuietTime()">\n';
+        }  
+        
+        for (var hr = 0; hr < 24; ++hr)   {
+          for (var min = 0; min < 60; min += 15)   {
+            tmp = (parseInt(hr) * 100) + parseInt(min);
+            
+            if (min < 15)   {
+              displayMin = "0" + min;
+            }
+            else   {
+              displayMin = min;
+            }
+
+            if (do24Hr)   {
+              if (hr < 10)   {
+                displayHr = "0" + hr;
+              }
+              else   {
+                displayHr = hr;
+              }
+              
+              outStr += '<option value="' + tmp + '">' + displayHr + ":" + displayMin + "</option>\n";
+            }
+            else   {
+              var ampm = "AM";
+              
+              if (hr == 0)   {
+                displayHr = "12";
+              }
+              else if (hr < 12)   {
+                displayHr = hr;
+              }
+              else if (hr == 12)   {
+                displayHr = hr;
+                ampm = "PM";
+              }
+              else   {
+                displayHr = hr - 12;
+                ampm = "PM";
+              }
+                
+              outStr += '<option value="' + tmp + '">' + displayHr + ":" + displayMin + ampm + "</option>\n";        
+            }       
+          }
+        }
+        outStr += "</select>\n";
+        return outStr;
+      }
+      
+      function isQuietTime()   {     
+        if (document.getElementById("useQT").checked == false)   {
+          document.getElementById("mutePic").style.visibility = "hidden";
+          return false;
+        }
+  
+        var start_int = parseInt(document.getElementById("sstart").value);
+        var end_int = parseInt(document.getElementById("eend").value);
+        
+//        alert ("Start Time: " + start_int + "\nEnd Time: " + end_int + "\n");
+        
+        var today = new Date();
+        var h = today.getHours();
+        var m = today.getMinutes();
+        var current_int = (h * 100) + m;
+        
+        if (start_int < end_int)   {
+          if ((current_int > start_int) && (current_int < end_int))   {
+            document.getElementById("mutePic").style.visibility = "visible";
+            return true;
+          }
+        }
+        else   {         
+          if ((current_int > start_int) || (current_int < end_int))   {
+            document.getElementById("mutePic").style.visibility = "visible";
+            return true;
+          }
+        }
+        
+        document.getElementById("mutePic").style.visibility = "hidden";
+        return false;
+      }
+      
+      function timeToInt(time_char)   {
+        var temp = time_char.split(":");
+        var result = (parseInt(temp[0]) * 100) + parseInt(temp[1]);
+        return result;
+      } 
+                
+      function setLanguage()   {
+        
+        localStorage["language"] = ""; 
+      
+        navigator.globalization.getPreferredLanguage( function (language)   {
+          myLang = language.value.substring(0, 2);
+          localStorage["language"] = myLang;
+                     
+          if (localStorage["language"] == "pt")   { 
+            do24Hr = true;         
+            document.getElementById("setup_but").value = " OPÇÕES >"; 
+            mantleClockText = "RELÓGIO MANTEL";
+            grandfatherClockText = "RELÓGIO AVÔ";
+            document.getElementById("bongDuringCall").innerHTML = "&nbsp;BONG DURANTE O CHAMADO DE TELEFONE";
+            document.getElementById("15_45_Label").innerHTML = "&nbsp;:15 e :45 CHIMES";
+            document.getElementById("Half_Label").innerHTML = "&nbsp;MEIA HORA";
+            document.getElementById("Hour_Label").innerHTML = "&nbsp;CHIMES HORAIS";
+            helpText = "Deixe o Big Ben V1.3 ajudá-lo quando você não quer perder o tempo - perfeito ao ler, trabalhar, estudar ou mesmo fazer compras - um lembrete sutil a cada 15 minutos.\n\n";
+            helpText += "Toque no botão [<OPÇÕES] para ajustar as configurações. Suas configurações são sempre salvas. Quando terminar, toque o botão [OPÇÕES>] novamente. Você pode deixar Ben assim e ele irá exibir o tempo e o bongo para você o dia todo.\n\n";
+            helpText += "Mas provavelmente você quer fazer outras coisas com seu telefone ou tablet. Você pode minimizar o Big Ben tocando no ícone Minimizar azul quadrado na parte inferior da tela. Big Ben continuará a bong até você sair do aplicativo.\n\n";
+            helpText += "Para voltar a maximizar o Bonger, toque o ícone Big Ben. Você pode então sair do aplicativo usando o ícone vermelho \"X\" no canto inferior direito. Obrigado por escolher o Big Ben Bonger.\n\n";
+            helpText += "Deus salve a rainha.\n\n\numikeapps@outlook.com";
+            helpTextTitle = "Bem-vindo ao Big Ben Bonger"; 
+            helpDismissText = "DISPENSAR";
+            quitConfirmText = "Você quer sair do Big Ben Bonger?";
+            backgroundNotificationText = "Toque no ícone Big Ben para restaurar"; 
+            optionsInText = "OPÇÕES >";
+            optionsOutText = "< OPÇÕES";
+          }
+          else if (localStorage["language"] == "fr")   {
+            do24Hr = true;
+            document.getElementById("setup_but").value = "OPTIONS >";
+            mantleClockText = "HORLOGE MANTELLE";
+            grandfatherClockText = "HORLOGE GRAND-PÈRE";
+            document.getElementById("bongDuringCall").innerHTML = " BONG DURANT LE TÉLÉPHONE"; 
+            document.getElementById("15_45_Label").innerHTML = "&nbsp;:15 &amp; :45 CHIMES";
+            document.getElementById("Half_Label").innerHTML = "&nbsp;DEMI-PASSÉ";
+            document.getElementById("Hour_Label").innerHTML = "&nbsp;CHIMES HORAIRES";
+            helpText = "Laissez Big Ben V1.3 vous aider lorsque vous ne voulez pas perdre la trace du temps -- parfait lors de la lecture, du travail, des études ou même des achats -- un rappel subtil toutes les 15 minutes.\n\n";                    
+            helpText += "Appuyez sur le bouton [< OPTIONS] pour ajuster les paramètres. Vos paramètres sont toujours sauvegardés. Une fois terminé, appuyez de nouveau sur le bouton [OPTIONS >]. Vous pouvez laisser Ben comme ça et il vous montrera le temps et le bong pour vous toute la journée.\n\n";       
+            helpText += "Mais vous voudrez probablement faire d'autres choses avec votre téléphone ou votre tablette. Vous pouvez minimiser Big Ben en appuyant sur l'icône Minimiser bleu carré en bas de l'écran. Big Ben continuera à bong jusqu'à ce que vous quittez l'application.\n\n";       
+            helpText += "Pour re-maximiser le Bonger, appuyez sur l'icône Big Ben. Vous pouvez ensuite quitter l'application à l'aide de l'icône rouge \"X\" dans le coin inférieur droit. Merci d'avoir choisi le Big Ben Bonger.\n\n";       
+            helpText += "Dieu sauve la reine.\n\n\numikeapps@outlook.com";
+            helpTextTitle = "Bienvenue au Big Ben Bonger";
+            helpDismissText ="RENVOYER";
+            quitConfirmText = "Voulez-vous quitter Big Ben Bonger?";
+            backgroundNotificationText = "Appuyez sur l'icône Big Ben pour restaurer";
+            optionsInText = "OPTIONS >";
+            optionsOutText = "< OPTIONS";
+          }          
+          else if (localStorage["language"] == "de")   {
+            do24Hr = true;
+            document.getElementById("setup_but").value = "OPTIONEN >";
+            mantleClockText = "UHR MANTEL";
+            grandfatherClockText = "UHR GROßVATER";
+            document.getElementById("bongDuringCall").innerHTML = " BONG WÄHREND DER TELEFONATE"; 
+            document.getElementById("15_45_Label").innerHTML = "&nbsp;:15 &amp; :45 GLOCKENSPIEL";
+            document.getElementById("Half_Label").innerHTML = "&nbsp;HALBE STUNDE GLOCKENSPIEL";
+            document.getElementById("Hour_Label").innerHTML = "&nbsp;STÜNDLICH GLOCKENSPIEL";
+            helpText = "Lassen Sie Big Ben V1.3 Ihnen helfen, wenn Sie nicht wollen, Zeit zu verlieren - ideal zum Lesen, Arbeiten, Studieren oder sogar beim Einkaufen - Eine subtile Erinnerung alle 15 Minuten.\n\n";                    
+            helpText += "Tippen Sie auf die Schaltfläche [<OPTIONS], um die Einstellungen anzupassen. Ihre Einstellungen werden immer gespeichert. Wenn Sie fertig sind, tippen Sie erneut auf die Schaltfläche [OPTIONEN>]. Du kannst Ben so verlassen und er wird die Zeit und die Bong für dich den ganzen Tag zeigen.\n\n";       
+            helpText += "Aber am ehesten wirst du andere Dinge mit deinem Handy oder Tablet machen wollen. Sie können Big Ben minimieren, indem Sie auf das quadratische blaue Minimize Icon am unteren Rand des Bildschirms klopfen. Big Ben wird weiter bong, bis du die App beendest.\n\n";       
+            helpText += "Um den Bonger neu zu maximieren, tippe das Big Ben Symbol. Sie können dann die App mit dem roten \"X\" Icon in der rechten unteren Ecke verlassen. Vielen Dank für die Wahl der Big Ben Bonger.\n\n";       
+            helpText += "Gott schütze die Königin.\n\n\numikeapps@outlook.com";
+            helpTextTitle = "Willkommen bei den Big Ben Bonger";
+            helpDismissText ="SCHLIEßEB";
+            quitConfirmText = "Willst du Big Ben Bonger verlassen?";
+            backgroundNotificationText = "Tippen Sie auf das Big Ben Icon, um es wiederherzustellen";
+            optionsInText = "OPTIONEN >";
+            optionsOutText = "< OPTIONEN";
+          }         
+          else if (localStorage["language"] == "es")   {
+            do24Hr = false;
+            document.getElementById("setup_but").value = "OPCIONES >";
+            mantleClockText = "RELOJ ANTIGUO";
+            grandfatherClockText = "RELOJ DE ABUELO";
+            document.getElementById("bongDuringCall").innerHTML = " BONG DURANTE PHONECALLS"; 
+            document.getElementById("15_45_Label").innerHTML = "&nbsp;:15 &amp; :45 CHIMES";
+            document.getElementById("Half_Label").innerHTML = "&nbsp;CHIMES DE LA MEDIA HORA";
+            document.getElementById("Hour_Label").innerHTML = "&nbsp;CADA HORA CHIMES";
+            helpText = "Deje que Big Ben V1.3 le ayude cuando no quiera perder la noción del tiempo. Perfecto para leer, trabajar, estudiar o incluso ir de compras. Un sutil recordatorio cada 15 minutos.\n\n";                    
+            helpText += "Pulse el botón [< OPTIONS] para ajustar la configuración. Su configuración siempre se guarda. Cuando termine, vuelva a pulsar el botón [OPTIONS >]. Puede dejar a Ben así y mostrará el tiempo y el bong para usted todo el día.\n\n";       
+            helpText += "Pero lo más probable es que usted desee hacer otras cosas con su teléfono o tableta. Usted puede minimizar Big Ben pulsando en el icono del cuadrado azul de minimizar en la parte inferior de la pantalla. Big Ben continuará haciendo bong hasta que usted salga de la aplicación.\n\n";       
+            helpText += "Para volver a maximizar el Bonger, pulse en el icono Big Ben. Entonces usted puede salir de la aplicación usando la \"X\" del icono rojo en la esquina inferior derecha. Gracias por elegir Big Ben Bonger.\n\n";       
+            helpText += "Dios salve a la reina.\n\n\numikeapps@outlook.com";
+            helpTextTitle = "Bienvenido al Big Ben Bonger";
+            helpDismissText ="DESPEDIR";
+            quitConfirmText = "¿Quieres salir de Big Ben Bonger?";
+            backgroundNotificationText = "Toque el icono de Big Ben para restaurar";
+            optionsInText = "OPCIONES >";
+            optionsOutText = "< OPCIONES";
+          }         
+          else   {               
+            document.getElementById("setup_but").value = "OPTIONS >";
+            mantleClockText = "MANTLE CLOCK";
+            grandfatherClockText = "GRANDFATHER CLOCK";
+            document.getElementById("bongDuringCall").innerHTML = "&nbsp;BONG DURING PHONECALLS";
+            document.getElementById("15_45_Label").innerHTML = "&nbsp;:15 &amp; :45 CHIMES";
+            document.getElementById("Half_Label").innerHTML = "&nbsp;HALF HOUR CHIMES";
+            document.getElementById("Hour_Label").innerHTML = "&nbsp;ON-THE-HOUR STRIKES";             
+            helpText = "Let Big Ben V1.3 help you when you don't want to lose track of time -- perfect when reading, working, studying or even shopping -- a subtle reminder every 15 minutes.\n\n";
+            helpText += "Tap the [< OPTIONS] button to adjust settings. Your settings are always saved.  When finished, tap the [OPTIONS >] button again.  You can leave Ben like this and he'll display the time and bong for you all day.\n\n";
+            helpText += "But most likely you'll want to do other things with your phone or tablet. You can minimize Big Ben by tapping the square blue Minimize Icon at the bottom of the screen. Big Ben will continue to bong until you exit the app.\n\n";
+            helpText += "To re-maximize the Bonger, tap the Big Ben icon. You can then exit the app using the red \"X\" Icon in the bottom right corner. Thank you for choosing the Big Ben Bonger.\n\n";
+            helpText += "God Save The Queen.\n\n\numikeapps@outlook.com";
+            helpTextTitle = "Welcome to the Big Ben Bonger"; 
+            helpDismissText = "DISMISS";
+            quitConfirmText = "Do you want to exit Big Ben Bonger?";
+            backgroundNotificationText = "[Tap the Big Ben Icon to Restore]";
+            optionsInText = "OPTIONS >";
+            optionsOutText = "< OPTIONS";
+            document.getElementById("useQTLabel").innerHTML = "&nbsp;Use QUIET TIME";
+            document.getElementById("SstartLabel").innerHTML = "Last Bong";
+            document.getElementById("EendLabel").innerHTML = "First Bong";
+            document.getElementById("startSelectDiv").innerHTML = makeTimeSelect("sstart", "margin-left: 32px; margin-top: 4px;", "");
+            document.getElementById("endSelectDiv").innerHTML = makeTimeSelect("eend", "margin-left: 40px;", "");
+          }                                     
+
+//
+//  Add Select options
+//          
+          var x = document.getElementById("clocker");
+          
+          var b = document.createElement("option");
+          b.text = "BIG BEN";
+          b.value = "bb";
+          
+          if ((localStorage["ding_selection"] != "bg") && (localStorage["ding_selection"] != "gf"))  {
+            b.selected = true;
+          }
+
+          x.options.add(b, 0);
+          
+          var c = document.createElement("option");
+          c.text = mantleClockText;
+          c.value = "bg";
+          
+          if (localStorage["ding_selection"] == "bg")   {
+            c.selected = true;
+          }
+          
+          x.options.add(c, 1);
+
+          var d = document.createElement("option");
+          d.text = grandfatherClockText;
+          d.value = "gf";
+          
+          if (localStorage["ding_selection"] == "gf")   {
+            d.selected = true;
+          }
+          
+          x.options.add(d, 2);
+          
+          initializeCanvas();
+          init();
+        },        
+        ignoreError2() ); 
+
+      } 
+      
+      function changeClock()   {
+        var xx = document.getElementById("clocker");
+        var theValue = xx.options[xx.selectedIndex].value;
+        localStorage["ding_selection"] = theValue;
+        
+//        alert("The value of your clock is " + theValue);
+
+        if (theValue == "bb")   {
+          selectBB();
+        }
+        else if (theValue == "bg")   {
+          selectBG();
+        }
+        else   {
+          selectGF();
+        }
+        
+        QUARTER_DING = localStorage["ding_selection"] + "_quarter.mp3";
+        HALF_DING  = localStorage["ding_selection"] + "_half.mp3";
+        THREE_QUARTER_DING = localStorage["ding_selection"] + "_three-quarter.mp3";
+        HOUR_DING = localStorage["ding_selection"] + "_hour.mp3";
+        DING_SELECTION = localStorage["ding_selection"];
+
+      
+      }              
+      
+                      
+
+      function ignoreError(err){
+        ;
+      }
+ 
+      function ignoreError2(){
+        ;
+      }
+     
+            
+      
+
+    </script>
+  
+  </body>
+
+</html>
