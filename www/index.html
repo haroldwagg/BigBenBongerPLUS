@@ -52,7 +52,7 @@
                   <div id="startSelectDiv" style="width: 125px; display: inline"></div><div id="endSelectDiv" style="display: inline; width: 125px;"></div>
                   <br />
                   <div id="SstartLabel" style="color: black; margin-left: 41px; text-transform: none; width: 200px; display: inline"></div><div id="EendLabel" style="color: black; margin-left: 63px; text-transform: none; display: inline"></div>
-
+                  <br /><span style="color: #0000bb"><hr /></span>
     
                   </td></tr>
                   </table>
@@ -1112,6 +1112,14 @@
                 displayHr = hr;
               }
               
+              if (min == 0)   {
+                if (hr == 0)   {
+                  hr = 24;
+                }
+                --hr;
+                tmp = (parseInt(hr) * 100) + 59;             
+              }
+              
               outStr += '<option value="' + tmp + '">' + displayHr + ":" + displayMin + "</option>\n";
             }
             else   {
@@ -1131,7 +1139,15 @@
                 displayHr = hr - 12;
                 ampm = "PM";
               }
-                
+
+              if (min == 0)   {
+                if (hr == 0)   {
+                  hr = 24;
+                }
+                --hr;
+                tmp = (parseInt(hr) * 100) + 59;             
+              }
+              
               outStr += '<option value="' + tmp + '">' + displayHr + ":" + displayMin + ampm + "</option>\n";        
             }       
           }
