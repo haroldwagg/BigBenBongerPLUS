@@ -659,9 +659,14 @@
       function doQuietTimeOption()   {
         if (document.getElementById("useQT").checked == true)   {
           localStorage["useqt"] = "checked";
+          document.getElementById("sstart").disabled = false;
+          document.getElementById("eend").disabled = false;
+          
         }
         else   {
           localStorage["useqt"] = "no";
+          document.getElementById("sstart").disabled = true;
+          document.getElementById("eend").disabled = true;
         }
         
         var dud = isQuietTime();
@@ -822,7 +827,7 @@
         setLanguage();
         
         processSavedSettings(); 
-
+        
         window.plugins.insomnia.keepAwake();
         
         cordova.plugins.backgroundMode.setEnabled(true);
@@ -1067,7 +1072,28 @@
         
         MASTER_VOLUME = parseFloat(localStorage["volume"]);
         CURRENT_VOLUME = MASTER_VOLUME;
-        document.getElementById("prog").value = CURRENT_VOLUME;     
+        document.getElementById("prog").value = CURRENT_VOLUME;  
+        
+//
+//  Quiet Time
+//
+        if ((localStorage["useqt"] != "checked") && (localStorage["useqt"] != "no"))   {
+          localStorage["useqt"] = "no";
+        }
+
+        if (localStorage["useqt"] == "checked")   {
+          document.getElementById("useQT").checked = true;         
+          document.getElementById("sstart").disabled = false;
+          document.getElementById("eend").disabled = false;
+        } 
+        else   {
+          document.getElementById("useQT").checked = false;          
+          document.getElementById("sstart").disabled = true;
+          document.getElementById("eend").disabled = true;          
+        }
+        
+        doQuietTimeOption();
+
       }
       
       function doPhoneMute()   {
@@ -1084,14 +1110,14 @@
         var tmp = "";
         var displayMin = "";
         var displayHr = "";
-        outStr += '<select name="' + name + '" id="' + name + '"';
+        outStr += '<select name="' + name + '" id="' + name + '"';      
         
         if (stylestr == "" || stylestr == null || stylestr == "undefined")   {
           outStr += ' onChange="isQuietTime()">\n';
         }
         else   {
           outStr += ' style="' + stylestr + '" onChange="isQuietTime()">\n';
-        }  
+        }         
         
         for (var hr = 0; hr < 24; ++hr)   {
           for (var min = 0; min < 60; min += 15)   {
@@ -1112,18 +1138,31 @@
                 displayHr = hr;
               }
               
-              if (min == 0)   {
-                var xhr = hr;
-                if (xhr == 0)   {
-                  xhr = 24;
+              if (name == "eend")   {
+                var xhr = hr;                
+                if (min == 0)   {
+                  if (xhr == 0)   {
+                    xhr = 24;
+                  }
+                
+                  --xhr;
+                  tmp = (parseInt(xhr) * 100) + 59;
                 }
-                --xhr;
-                tmp = (parseInt(xhr) * 100) + 59;             
+                else   {
+                  var xmins = mins;
+                  --xmins;
+                  tmp = (parseInt(xhr) * 100) + xmins;
+                }             
+              }
+              else   {
+                var xmin = min;
+                ++xmin;
+                tmp = (hr * 100) + xmin;
               }
               
               outStr += '<option value="' + tmp + '">' + displayHr + ":" + displayMin + "</option>\n";
             }
-            else   {
+            else   {             
               var ampm = "AM";
               
               if (hr == 0)   {
@@ -1140,14 +1179,28 @@
                 displayHr = hr - 12;
                 ampm = "PM";
               }
-
-              if (min == 0)   {
+ 
+              if (name == "eend")   {               
                 var xhr = hr;
-                if (xhr == 0)   {
-                  xhr = 24;
+                
+                if (min == 0)   {
+                  if (xhr == 0)   {
+                    xhr = 24;
+                  }
+                
+                  --xhr;
+                  tmp = (parseInt(xhr) * 100) + 59;                 
                 }
-                --xhr;
-                tmp = (parseInt(xhr) * 100) + 59;             
+                else   {                                
+                  var xmins = min;                   
+                  --xmins;               
+                  tmp = (parseInt(xhr) * 100) + xmins;                  
+                }             
+              }
+              else   {
+                var xmin = min;
+                ++xmin;
+                tmp = (hr * 100) + xmin;
               }
               
               outStr += '<option value="' + tmp + '">' + displayHr + ":" + displayMin + ampm + "</option>\n";        
@@ -1155,6 +1208,7 @@
           }
         }
         outStr += "</select>\n";
+//        alert(outStr);        
         return outStr;
       }
       
@@ -1311,8 +1365,8 @@
             document.getElementById("useQTLabel").innerHTML = "&nbsp;Use QUIET TIME";
             document.getElementById("SstartLabel").innerHTML = "Last Bong";
             document.getElementById("EendLabel").innerHTML = "First Bong";
-            document.getElementById("startSelectDiv").innerHTML = makeTimeSelect("sstart", "margin-left: 32px; margin-top: 4px;", "");
-            document.getElementById("endSelectDiv").innerHTML = makeTimeSelect("eend", "margin-left: 40px;", "");
+            document.getElementById("startSelectDiv").innerHTML = makeTimeSelect("sstart", "margin-left: 32px; margin-top: 4px;", "");            
+            document.getElementById("endSelectDiv").innerHTML = makeTimeSelect("eend", "margin-left: 40px;", "");         
           }                                     
 
 //
