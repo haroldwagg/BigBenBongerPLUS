@@ -1113,11 +1113,12 @@
               }
               
               if (min == 0)   {
-                if (hr == 0)   {
-                  hr = 24;
+                var xhr = hr;
+                if (xhr == 0)   {
+                  xhr = 24;
                 }
-                --hr;
-                tmp = (parseInt(hr) * 100) + 59;             
+                --xhr;
+                tmp = (parseInt(xhr) * 100) + 59;             
               }
               
               outStr += '<option value="' + tmp + '">' + displayHr + ":" + displayMin + "</option>\n";
@@ -1141,11 +1142,12 @@
               }
 
               if (min == 0)   {
-                if (hr == 0)   {
-                  hr = 24;
+                var xhr = hr;
+                if (xhr == 0)   {
+                  xhr = 24;
                 }
-                --hr;
-                tmp = (parseInt(hr) * 100) + 59;             
+                --xhr;
+                tmp = (parseInt(xhr) * 100) + 59;             
               }
               
               outStr += '<option value="' + tmp + '">' + displayHr + ":" + displayMin + ampm + "</option>\n";        
