@@ -12,8 +12,8 @@
     <preference name="DisallowOverscroll" value="true" />
     <preference name="AndroidLaunchMode" value="singleInstance" />
     <preference name="android-minSdkVersion" value="14" />
-    <preference name='phonegap-version' value='cli-6.5.0' />
-    <preference name='pgb-builder-version' value='2' />
+    <preference name='phonegap-version' value='cli-7.0.1' />
+    <preference name='pgb-builder-version' value='1' />
     <plugin name="cordova-plugin-dialogs" source="npm" spec="~1.2.0" /> 
     <plugin name="cordova-plugin-media" source="npm" spec="~2.2.0" />
     <plugin name="cordova-plugin-insomnia" version="4.1.0" source="npm" />
