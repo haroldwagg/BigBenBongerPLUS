@@ -831,6 +831,8 @@
         window.plugins.insomnia.keepAwake();
         
         cordova.plugins.backgroundMode.setEnabled(true);
+        
+        alert("BGMode: " + cordova.plugins.backgroundMode + "\nInsomia: " +  window.plugins.insomnia);
       
         cordova.plugins.backgroundMode.on('activate', function() {
           cordova.plugins.backgroundMode.disableWebViewOptimizations(); 
