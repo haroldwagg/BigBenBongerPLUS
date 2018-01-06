@@ -4,7 +4,7 @@
     <description>
         Does the Big Ben chimes and strikes. You'll think you're in London.  Also other clock choices.  Built on Big Ben Bonger original.
     </description>
-    <author email="umikeapps@outlook.com" href="">
+    <author email="umikeapps@outlook.com" href="http://BigBenBonger.com">
         Uncle Mike
     </author>
     <content src="index.html" />
@@ -32,6 +32,9 @@
 -->      
     </platform>
     <platform name="android">
+      <feature name="Insomnia">
+        <param name="android-package" value="nl.xservices.plugins.Insomnia" />
+      </feature>
 <!--
       <preference name="SplashScreen" value="splash" />
       <preference name="SplashScreenDelay" value="4000" />
