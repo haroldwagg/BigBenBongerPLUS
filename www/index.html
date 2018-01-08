@@ -489,7 +489,7 @@
 
 
   
-            panelStyle.height = '425px';
+            panelStyle.height = '600px';
             document.getElementById("Quarter").style.marginTop = "10px";
             document.getElementById("Half").style.marginTop = "8px";
             document.getElementById("Hour-strikes").style.marginTop = "8px";
@@ -783,10 +783,14 @@
           document.getElementById("Half").style.height = "35px";
           document.getElementById("Hour-strikes").style.width = "35px";
           document.getElementById("Hour-strikes").style.height = "35px";
+          document.getElementById("useQT").style.width = "35px";
+          document.getElementById("useQT").style.height = "35px";
+
           document.getElementById("bottomNavBar").style.height = "75px";
           document.getElementById("minimage").style.marginRight = "120px";
           document.getElementById("setup_but").style.fontSize = "1.2em";
           document.getElementById("setupTable").style.fontSize = "20px";
+          
           
           if (screen.height <= screen.width) { 
             body.style.backgroundImage = 'url(img/bg_lscape_lg.jpg)';  
@@ -828,16 +832,18 @@
         setLanguage();
         
         processSavedSettings(); 
-        
-//        window.plugins.insomnia.keepAwake();
+
+        if (SIZE == "big")   {        
+          document.getElementById("sstart").style.fontSize = "22px";
+          document.getElementById("eend").style.fontSize = "22px";
+        }
+
         
         cordova.plugins.backgroundMode.setEnabled(true);
         
 //        alert("backgroundMode");
 //        alert("BGMode: " + cordova.plugins.backgroundMode);
-//        
-//        alert("Insomnia");
-//        alert("Insomia: " +  window.plugins.insomnia);
+
       
         cordova.plugins.backgroundMode.on('activate', function() {
           cordova.plugins.backgroundMode.disableWebViewOptimizations(); 
