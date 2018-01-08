@@ -829,15 +829,15 @@
         
         processSavedSettings(); 
         
-        window.plugins.insomnia.keepAwake();
+//        window.plugins.insomnia.keepAwake();
         
-        cordova.plugins.backgroundMode.setEnabled(true);
+//        cordova.plugins.backgroundMode.setEnabled(true);
         
         alert("backgroundMode");
-        alert("BGMode: " + cordova.plugins.backgroundMode);
-        
-        alert("Insomnia");
-        alert("Insomia: " +  window.plugins.insomnia);
+//        alert("BGMode: " + cordova.plugins.backgroundMode);
+//        
+//        alert("Insomnia");
+//        alert("Insomia: " +  window.plugins.insomnia);
       
         cordova.plugins.backgroundMode.on('activate', function() {
           cordova.plugins.backgroundMode.disableWebViewOptimizations(); 
