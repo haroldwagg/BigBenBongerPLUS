@@ -463,6 +463,12 @@
       function doSetUp()   {     
         var panelStyle = document.getElementById("setupPanel").style;
         var theCheckboxes = document.getElementsByClassName("checkers");
+        
+        if (SIZE == "big")   {        
+          document.getElementById("sstart").style.fontSize = "22px";
+          document.getElementById("eend").style.fontSize = "22px";
+        }
+
     
         if (! setupIsDisplayed)   {
           setupIsDisplayed = true;
@@ -833,10 +839,6 @@
         
         processSavedSettings(); 
 
-        if (SIZE == "big")   {        
-          document.getElementById("sstart").style.fontSize = "22px";
-          document.getElementById("eend").style.fontSize = "22px";
-        }
 
         
         cordova.plugins.backgroundMode.setEnabled(true);
@@ -881,6 +883,11 @@
             }       
           }, 
         false );
+
+        if (SIZE == "big")   {        
+          document.getElementById("sstart").style.fontSize = "22px";
+          document.getElementById("eend").style.fontSize = "22px";
+        }
 
 
       }
