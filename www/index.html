@@ -1385,7 +1385,14 @@
             document.getElementById("useQTLabel").innerHTML = "&nbsp;Use QUIET TIME";
             document.getElementById("SstartLabel").innerHTML = "Last Bong";
             document.getElementById("EendLabel").innerHTML = "First Bong";
-            document.getElementById("startSelectDiv").innerHTML = makeTimeSelect("sstart", "margin-left: 32px; margin-top: 4px;", "");            
+            
+            if (SIZE == "big")   {
+              document.getElementById("startSelectDiv").innerHTML = makeTimeSelect("sstart", "margin-left: 55px; margin-top: 4px;", ""); 
+            }
+            else   {
+              document.getElementById("startSelectDiv").innerHTML = makeTimeSelect("sstart", "margin-left: 32px; margin-top: 4px;", "");
+            }
+                         
             document.getElementById("endSelectDiv").innerHTML = makeTimeSelect("eend", "margin-left: 40px;", "");         
           }                                     
 
