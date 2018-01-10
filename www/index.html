@@ -55,7 +55,7 @@
                   <span style="color: #0000bb"><hr /></span>
                   <input type="checkbox" class="checkers" name="no_phone_mute" id="no_phone_mute" onClick="doPhoneMute()"><div id="bongDuringCall" style="margin: 0; padding: 0; display: inline-block"></div>
                   <br />
-                  <span style="color: #0000bb"><hr /></span>
+                  
                   <input type="checkbox" class="checkers" name="autostart" id="autostart" onClick="doAutoStart()"><div id="autoStartTextDiv" style="margin: 0; padding: 0; display: inline-block"></div>
                   <br />
     
@@ -811,7 +811,7 @@
             body.style.backgroundImage = 'url(img/bg_lscape_lg.jpg)';  
             document.getElementById("setupButtonDiv").style.position = "relative";
             document.getElementById("setupButtonDiv").style.marginTop = "530px";
-            document.getElementById("muteIcon").style.left = "641px";
+            document.getElementById("muteIcon").style.left = "0px";                        // DOODEE
             document.getElementById("muteIcon").style.top = "260px";
 
             document.getElementById("mutePic").style.width = "278px";
@@ -1154,10 +1154,10 @@
         outStr += '<select name="' + name + '" id="' + name + '"';      
         
         if (stylestr == "" || stylestr == null || stylestr == "undefined")   {
-          outStr += ' onChange="isQuietTime()">\n';
+          outStr += ' onChange="isQuietTime()" disabled>\n';
         }
         else   {
-          outStr += ' style="' + stylestr + '" onChange="isQuietTime()">\n';
+          outStr += ' style="' + stylestr + '" onChange="isQuietTime()" disabled>\n';
         }         
         
         for (var hr = 0; hr < 24; ++hr)   {
