@@ -34,9 +34,7 @@
                   <tr><td align="left" nowrap="nowrap">
                      BONG:&nbsp;<select name="clocker" id="clocker" onChange="changeClock()" style="font-size: 1.1em;"></select>
           
-                  <br /><span style="color: #0000bb"><hr /></span>
-                  <input type="checkbox" class="checkers" name="no_phone_mute" id="no_phone_mute" onClick="doPhoneMute()"><div id="bongDuringCall" style="margin: 0; padding: 0; display: inline-block"></div>
-                  <br /><br />
+                  <br />
                  
                   
                   
@@ -53,6 +51,13 @@
                   <br />
                   <div id="SstartLabel" style="color: black; margin-left: 41px; text-transform: none; width: 200px; display: inline"></div><div id="EendLabel" style="color: black; margin-left: 63px; text-transform: none; display: inline"></div>
                   <br /><span style="color: #0000bb"><hr /></span>
+                  <br />
+                  <span style="color: #0000bb"><hr /></span>
+                  <input type="checkbox" class="checkers" name="no_phone_mute" id="no_phone_mute" onClick="doPhoneMute()"><div id="bongDuringCall" style="margin: 0; padding: 0; display: inline-block"></div>
+                  <br />
+                  <span style="color: #0000bb"><hr /></span>
+                  <input type="checkbox" class="checkers" name="autostart" id="autostart" onClick="doAutoStart()"><div id="autoStartTextDiv" style="margin: 0; padding: 0; display: inline-block"></div>
+                  <br />
     
                   </td></tr>
                   </table>
@@ -789,6 +794,8 @@
           document.getElementById("Half").style.height = "35px";
           document.getElementById("Hour-strikes").style.width = "35px";
           document.getElementById("Hour-strikes").style.height = "35px";
+          document.getElementById("autostart").style.width = "35px";
+          document.getElementById("autostart").style.height = "35px";          
           document.getElementById("useQT").style.width = "35px";
           document.getElementById("useQT").style.height = "35px";
 
@@ -796,6 +803,7 @@
           document.getElementById("minimage").style.marginRight = "120px";
           document.getElementById("setup_but").style.fontSize = "1.2em";
           document.getElementById("setupTable").style.fontSize = "20px";
+          document.getElementById("SstartLabel").style.marginLeft = "70px";
           
           
           
@@ -1230,11 +1238,11 @@
                   tmp = (parseInt(xhr) * 100) + xmins;                  
                 }             
               }
-              else   {
-                var xmin = min;
-                ++xmin;
-                tmp = (hr * 100) + xmin;
-              }
+//              else   {
+//                var xmin = min;
+//                ++xmin;
+//                tmp = (hr * 100) + xmin;
+//              }
               
               outStr += '<option value="' + tmp + '">' + displayHr + ":" + displayMin + ampm + "</option>\n";        
             }       
@@ -1406,7 +1414,9 @@
               document.getElementById("startSelectDiv").innerHTML = makeTimeSelect("sstart", "margin-left: 32px; margin-top: 4px;", "");
             }
                          
-            document.getElementById("endSelectDiv").innerHTML = makeTimeSelect("eend", "margin-left: 40px;", "");         
+            document.getElementById("endSelectDiv").innerHTML = makeTimeSelect("eend", "margin-left: 40px;", "");  
+            document.getElementById("autoStartTextDiv").innerHTML = "AUTO-START WHEN PHONE STARTS";
+            autoStartTextDiv       
           }                                     
 
 //
@@ -1476,7 +1486,11 @@
 
       
       }              
-      
+
+
+      function doAutoStart()   {
+        ;
+      }      
                       
 
       function ignoreError(err){
