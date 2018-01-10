@@ -740,6 +740,9 @@
             body.style.backgroundImage = 'url(img/bg_lscape_lg.jpg)';
             document.getElementById("setupButtonDiv").style.position = "relative";
             document.getElementById("setupButtonDiv").style.marginTop = "530px";
+            document.getElementById("muteIcon").style.left = "640px";                        
+            document.getElementById("muteIcon").style.top = "245px";
+
           }
         
           document.getElementById("setup_but").style.marginRight = "20px";
@@ -811,8 +814,8 @@
             body.style.backgroundImage = 'url(img/bg_lscape_lg.jpg)';  
             document.getElementById("setupButtonDiv").style.position = "relative";
             document.getElementById("setupButtonDiv").style.marginTop = "530px";
-            document.getElementById("muteIcon").style.left = "0px";                        // DOODEE
-            document.getElementById("muteIcon").style.top = "260px";
+            document.getElementById("muteIcon").style.left = "640px";                        
+            document.getElementById("muteIcon").style.top = "245px";
 
             document.getElementById("mutePic").style.width = "278px";
             document.getElementById("mutePic").style.height = "55px";
@@ -1151,6 +1154,9 @@
         var tmp = "";
         var displayMin = "";
         var displayHr = "";
+        
+        preselect = parseInt(preselect);
+        
         outStr += '<select name="' + name + '" id="' + name + '"';      
         
         if (stylestr == "" || stylestr == null || stylestr == "undefined")   {
@@ -1201,7 +1207,13 @@
 //                tmp = (hr * 100) + xmin;
 //              }
               
-              outStr += '<option value="' + tmp + '">' + displayHr + ":" + displayMin + "</option>\n";
+              outStr += '<option value="' + tmp + '"';
+              
+              if (preselect == tmp)   {
+                outStr += " selected";
+              }
+              
+              outStr += ">" + displayHr + ":" + displayMin + "</option>\n";
             }
             else   {             
               var ampm = "AM";
@@ -1244,7 +1256,13 @@
 //                tmp = (hr * 100) + xmin;
 //              }
               
-              outStr += '<option value="' + tmp + '">' + displayHr + ":" + displayMin + ampm + "</option>\n";        
+              outStr += '<option value="' + tmp + '"';
+              
+              if (preselect == tmp)   {
+                outStr += " selected";
+              }
+
+              outStr += ">" + displayHr + ":" + displayMin + ampm + "</option>\n";        
             }       
           }
         }
@@ -1261,6 +1279,9 @@
   
         var start_int = parseInt(document.getElementById("sstart").value);
         var end_int = parseInt(document.getElementById("eend").value);
+        
+        localStorage["sstart"] = start_int;
+        localStorage["eend"] = end_int;
         
 //        alert ("Start Time: " + start_int + "\nEnd Time: " + end_int + "\n");
         
@@ -1408,16 +1429,17 @@
             document.getElementById("EendLabel").innerHTML = "First Bong";
             
             if (SIZE == "big")   {
-              document.getElementById("startSelectDiv").innerHTML = makeTimeSelect("sstart", "margin-left: 55px; margin-top: 4px;", ""); 
+              document.getElementById("startSelectDiv").innerHTML = makeTimeSelect("sstart", "margin-left: 55px; margin-top: 4px;", localStorage["sstart"]); 
             }
             else   {
-              document.getElementById("startSelectDiv").innerHTML = makeTimeSelect("sstart", "margin-left: 32px; margin-top: 4px;", "");
+              document.getElementById("startSelectDiv").innerHTML = makeTimeSelect("sstart", "margin-left: 32px; margin-top: 4px;", localStorage["sstart"]);
             }
                          
-            document.getElementById("endSelectDiv").innerHTML = makeTimeSelect("eend", "margin-left: 40px;", "");  
+            document.getElementById("endSelectDiv").innerHTML = makeTimeSelect("eend", "margin-left: 40px;", localStorage["eend"]);  
             document.getElementById("autoStartTextDiv").innerHTML = "AUTO-START WHEN PHONE STARTS";
             autoStartTextDiv       
-          }                                     
+          }  
+                                   
 
 //
 //  Add Select options
