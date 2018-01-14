@@ -215,3 +215,7 @@ div.clear {
     clear:both;
 }
 
+#statusPanel {
+  position: absolute;
+  text-align: center;
+}
