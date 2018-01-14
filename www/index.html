@@ -22,6 +22,7 @@
   </div>
                 
                 <div id="setupButtonDiv" style="float: right; ">
+                <img src="img/muter2.png" id="FPMuteButton" width="78" height="50" onClick="doFPMuteButton()" style="margin-bottom: 12px;" /><br />
                 <input type="button" class="rounderCorners" id="setup_but" onClick="doSetUp()" style="margin-right: 12px; border: solid 5px #0000aa; z-index: 100;position:relative" />
  
 <img src="img/bb_minute_hand.png" id="mh" style="display:none" /> 
@@ -104,7 +105,7 @@
       var my_media_WHICH = "NOT_RUNNING";
       var my_media2;
       var my_media;  
-      var FRONT_PANEL_MUTE = false;    
+      var FRONT_PANEL_MUTE = true;    
       
       var QUARTER_DING       = "bb_quarter.mp3";
       var HALF_DING          = "bb_half.mp3";
@@ -128,7 +129,7 @@
       var XStr;
       var setupIsDisplayed = false;
       var helpText, helpTextTitle, mantleClockText, grandfatherClockText, helpDismissText, quitConfirmText, backgroundNotificationText, optionsInText, optionsOutText;
-      var quietTimeText1, quietTimeText2;
+      var quietTimeText1, quietTimeText2, muteText1, muteText2;
       
       var p = window.location.pathname;
       this.root = p.substring(0, p.lastIndexOf('/')) + "/";
@@ -742,8 +743,8 @@
         else   {
           if (SIZE == "small")   {
             body.style.backgroundImage = 'url(img/bg_lscape_sm.jpg)';
-            document.getElementById("setupButtonDiv").style.position = "fixed";
-            document.getElementById("setupButtonDiv").style.top = "230px";
+            document.getElementById("setupButtonDiv").style.position = "absolute";
+            document.getElementById("setupButtonDiv").style.top = "160px";
             document.getElementById("setupButtonDiv").style.right = "0px";   
           }
           else   {             
@@ -1438,8 +1439,10 @@
             backgroundNotificationText = "[Tap the Big Ben Icon to Restore]";
             optionsInText = "OPTIONS >";
             optionsOutText = "< OPTIONS";
-            quietTimeText1 = "Quiet Time";
-            quietTimeText2 = "Quiet<br />Time";
+            quietTimeText1 = "QUIET TIME";
+            quietTimeText2 = "QUIET<br />TIME";
+            muteText1 = "MUTE ON";
+            muteText2 = "MUTE<br />ON";
             
             document.getElementById("useQTLabel").innerHTML = "&nbsp;Use QUIET TIME";
             document.getElementById("SstartLabel").innerHTML = "Last Bong";
@@ -1533,6 +1536,11 @@
       function displayStatusPanel()   {
         var sPanel = document.getElementById("statusPanel");
         
+        if ((! FRONT_PANEL_MUTE) && (! isQuietTime()))   {
+          sPanel.style.visibility = "hidden";
+          return;
+        }
+        
         if (screen.height > screen.width)   {
           ORIENT = "portrait";
         }
@@ -1540,11 +1548,20 @@
           ORIENT = "landscape";
         }
       
-//        doOnOrientationChange();
         
         if (FRONT_PANEL_MUTE)   {
-          sPanel.style.backgroundColor = "red";
+          sPanel.style.backgroundColor = "#ffeedd";
           sPanel.style.visibility = "visible";
+          sPanel.style.fontWeight = "bolder";
+          sPanel.style.border = "5px solid #ff3333";
+
+          if (ORIENT == "portrait")   {
+            sPanel.innerHTML = muteText1.fontcolor("#ff3333");              
+          }
+          else   {
+            sPanel.innerHTML = muteText2.fontcolor("#ff3333");
+          } 
+          
         }
         else if (isQuietTime())   {
           sPanel.style.backgroundColor = "#ddeeff";          
@@ -1557,63 +1574,65 @@
           }
           else   {
             sPanel.innerHTML = quietTimeText2.fontcolor("#8888cc");
-          } 
+          }
+        } 
           
-          if (SIZE == "small")   {
+        if (SIZE == "small")   {
 //
 //   Small Portrait
 //
-            if (ORIENT == "portrait")   {
-              sPanel.style.left = "6px";
-              sPanel.style.top = "437px";
-              sPanel.style.width = "218px";
-              sPanel.style.height = "27px";
-              sPanel.style.fontSize = "24px";
-            }
+          if (ORIENT == "portrait")   {
+            sPanel.style.left = "6px";
+            sPanel.style.top = "437px";
+            sPanel.style.width = "218px";
+            sPanel.style.height = "27px";
+            sPanel.style.fontSize = "24px";
+          }
 //
 //   Small Landscape
 //
-            else   {
-              sPanel.style.left = "320px";
-              sPanel.style.top = "130px";
-              sPanel.style.width = "135px";
-              sPanel.style.height = "56px";
-              sPanel.style.fontSize = "24px";
-            }
-          }
           else   {
+            sPanel.style.left = "320px";
+            sPanel.style.top = "130px";
+            sPanel.style.width = "135px";
+            sPanel.style.height = "56px";
+            sPanel.style.fontSize = "24px";
+          }
+        }
+        else   {
 //
 //   Large Portrait
 //
-            if (ORIENT == "portrait")   {
-              sPanel.style.left = "15px";
-              sPanel.style.top = "878px";
-              sPanel.style.width = "372px";
-              sPanel.style.height = "52px";
-              sPanel.style.fontSize = "46px";
-            }
+          if (ORIENT == "portrait")   {
+            sPanel.style.left = "15px";
+            sPanel.style.top = "878px";
+            sPanel.style.width = "372px";
+            sPanel.style.height = "52px";
+            sPanel.style.fontSize = "46px";
+          }
 //
 //   Large Landscape
 //
-            else   {
-              sPanel.style.left = "650px";
-              sPanel.style.top = "260px";
-              sPanel.style.width = "277px";
-              sPanel.style.height = "103px";
-              sPanel.style.fontSize = "46px";
-            }          
-          }
-
-          
+          else   {
+            sPanel.style.left = "650px";
+            sPanel.style.top = "260px";
+            sPanel.style.width = "267px";
+            sPanel.style.height = "103px";
+            sPanel.style.fontSize = "46px";
+          }          
+        }
+      } 
+      
+      function doFPMuteButton()   {
+        if (FRONT_PANEL_MUTE)   {
+          FRONT_PANEL_MUTE = false;
         }
         else   {
-          sPanel.style.visibility = "hidden";
-          return;
+          FRONT_PANEL_MUTE = true;
         }
-        
-        
-     
-      }             
+      
+        displayStatusPanel()
+      }            
 
       function ignoreError(err){
         ;
