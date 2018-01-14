@@ -195,6 +195,7 @@
         } 
        
         var dud = isQuietTime();
+        doQuietTimeOption();
        
         clearTimeout(loopThread);
         loopThread = setTimeout(doMainLoop, loopDelay);
@@ -239,6 +240,7 @@
 //        document.getElementById("clock").innerHTML = "&nbsp;" + n + delimiter + mins + "&nbsp;";
         
         var dud = isQuietTime();
+        doQuietTimeOption();
                  
         if ((mins == 15) || (mins == 30) || (mins == 45))   {
           playBen(mins);
