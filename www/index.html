@@ -281,6 +281,10 @@
           return;
         }
         
+        if (FRONT_PANEL_MUTE)   {
+          return;
+        }
+        
         if (MASTER_MUTE)   {
           if (document.getElementById("no_phone_mute").checked == true)   {
             MASTER_MUTE = false;
@@ -1610,6 +1614,26 @@
       function doFPMuteButton()   {
         if (FRONT_PANEL_MUTE)   {
           FRONT_PANEL_MUTE = false;
+          
+          if (typeof(my_media2) == "object")   {
+            my_media2.stop();
+            my_media2.release();
+          }
+          
+          if (typeof(my_media) == "object")   {
+            my_media.stop();
+            my_media.release();
+          }
+          
+          if (my_media_TEST != "NOT_RUNNING")   {
+            my_media_TEST.stop();
+            my_media_TEST.release();
+          }
+          
+          if (my_media_WHICH != "NOT_RUNNING")   {
+            my_media_WHICH.stop();
+            my_media_WHICH.release();
+          }          
         }
         else   {
           FRONT_PANEL_MUTE = true;
