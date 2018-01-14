@@ -1529,6 +1529,12 @@
          
       function displayStatusPanel()   {
         var sPanel = document.getElementById("statusPanel");
+        
+        if (screen.height > screen.width)   {
+          ORIENT = "portrait";
+        else   {
+          ORIENT = "landscape";
+        }
       
 //        doOnOrientationChange();
         
@@ -1589,7 +1595,7 @@
               sPanel.style.left = "650px";
               sPanel.style.top = "260px";
               sPanel.style.width = "277px";
-              sPanel.style.height = "95px";
+              sPanel.style.height = "103px";
               sPanel.style.fontSize = "46px";
             }          
           }
