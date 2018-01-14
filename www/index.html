@@ -686,6 +686,7 @@
         
         var dud = isQuietTime();
         displayStatusPanel();
+        
       }    
 
       function doHalfHourOption()   {
@@ -1171,10 +1172,10 @@
         outStr += '<select name="' + name + '" id="' + name + '"';      
         
         if (stylestr == "" || stylestr == null || stylestr == "undefined")   {
-          outStr += ' onChange="isQuietTime()" disabled>\n';
+          outStr += ' onChange="doQuietTimeOption()" disabled>\n';
         }
         else   {
-          outStr += ' style="' + stylestr + '" onChange="isQuietTime()" disabled>\n';
+          outStr += ' style="' + stylestr + '" onChange="doQuietTimeOption()" disabled>\n';
         }         
         
         for (var hr = 0; hr < 24; ++hr)   {
