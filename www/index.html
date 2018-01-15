@@ -1163,10 +1163,10 @@
         outStr += '<select name="' + name + '" id="' + name + '"';      
         
         if (stylestr == "" || stylestr == null || stylestr == "undefined")   {
-          outStr += ' onChange="doQuietTimeOption()" disabled>\n';
+          outStr += ' onChange="doQuietTimeOption()">\n';
         }
         else   {
-          outStr += ' style="' + stylestr + '" onChange="doQuietTimeOption()" disabled>\n';
+          outStr += ' style="' + stylestr + '" onChange="doQuietTimeOption()">\n';
         }         
         
         for (var hr = 0; hr < 24; ++hr)   {
@@ -1614,6 +1614,9 @@
       function doFPMuteButton()   {
         if (FRONT_PANEL_MUTE)   {
           FRONT_PANEL_MUTE = false;
+        }
+        else   {
+          FRONT_PANEL_MUTE = true;
           
           if (typeof(my_media2) == "object")   {
             my_media2.stop();
@@ -1633,10 +1636,7 @@
           if (my_media_WHICH != "NOT_RUNNING")   {
             my_media_WHICH.stop();
             my_media_WHICH.release();
-          }          
-        }
-        else   {
-          FRONT_PANEL_MUTE = true;
+          }                    
         }
       
         displayStatusPanel()
