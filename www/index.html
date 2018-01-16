@@ -33,10 +33,11 @@
                 
                 <table id="setupTable" style="border: none; float: left; font-size: 12px; margin: 8px;">
                   <tr><td align="left" nowrap="nowrap">
-                     BONG:&nbsp;<select name="clocker" id="clocker" onChange="changeClock()" style="font-size: 1.1em;"></select>
+                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>CLOCK:</b>&nbsp;<select name="clocker" id="clocker" onChange="changeClock()" style="font-size: 1.1em; margin-bottom: 5px;"></select>
           
                   <br />
                  
+ 
                   
                   
                   <input type="checkbox" class="checkers" name="quart" id="Quarter"  onClick="do1545Option()"><div id="15_45_Label" style="margin: 0; padding: 0; display: inline-block"></div><br />
@@ -52,7 +53,14 @@
                   <br />
                   <div id="SstartLabel" style="color: black; margin-left: 41px; text-transform: none; width: 200px; display: inline"></div><div id="EendLabel" style="color: black; margin-left: 63px; text-transform: none; display: inline"></div>
                   <br /><span style="color: #0000bb"><hr /></span>
-                  <br />
+                  
+                  <input type="checkbox" class="checkers" name="usePendulum" id="usePendulum" onClick="startPendulum()"><div id="usePendulumLabel" style="margin: 0; padding: 0; display: inline-block"></div><br />
+                  <img  src="img/pendIcon.png" id="pend" style="margin: 0; padding: 0; height: 25px; width: 25px; margin-right: 0.8em; margin-top: 5px; margin-bottom: -8px; margin-left: 15px;"  /><input type="button" value="  &mdash;  " style="background-color: #e5c799; font-size: 1em;  border: 1px solid black; margin: 0; padding: 0; margin-right: 8px; margin-top: 0px; padding-top: 4px; padding-bottom: 3px;" onClick="changeVolume('-')" /><progress id="pendVol" name="pendVol" value="0.4" max="1.0" style="background-color: green;">
+                  </progress><input type="button" value="   +   " style="background-color: #e5c799; font-size: 1em;  border: 1px solid black; margin: 0; padding: 0; margin-left: 0.8em; margin-bottom: 5px; padding-top: 4px; margin-right: 1.5em; padding-bottom: 3px;" onClick="changeVolume('+')" />
+
+
+
+                  
                   <span style="color: #0000bb"><hr /></span>
                   <input type="checkbox" class="checkers" name="no_phone_mute" id="no_phone_mute" onClick="doPhoneMute()"><div id="bongDuringCall" style="margin: 0; padding: 0; display: inline-block"></div>
                   <br />
@@ -100,7 +108,10 @@
       var my_media_WHICH = "NOT_RUNNING";
       var my_media2;
       var my_media;  
-      var FRONT_PANEL_MUTE = false;    
+      var media_PEND;
+      var FRONT_PANEL_MUTE = false;
+      var PEND_VOLUME = 0.4; 
+      var PEND_STATUS = "RUNNING";   
       
       var QUARTER_DING       = "bb_quarter.mp3";
       var HALF_DING          = "bb_half.mp3";
@@ -947,6 +958,46 @@
           localStorage["locker"] = 0;
         }
       });
+
+      
+      function doPendulum()   {
+        if (document.getElementById("usePendulum").checked == true)  {
+          PEND_STATUS = "RUNNING";
+        }
+        else   {
+          PEND_STATUS = "STOPPED"
+        }
+
+
+        if (PEND_STATUS == "RUNNING")   {
+          startPendulum();
+        }
+        else   {
+          stopPendulum();
+        }
+      
+      }
+      
+      function startPendulum()   {
+        PEND_STATUS = "RUNNING";
+        
+        var pendSoundFile = this.root + "audio/" + "Pendulum5mins.mp3";
+        media_PEND = new Media(pendSoundFile,
+            function () { console.log("playAudio():Audio Success"); },
+            ignoreError()
+          );
+
+        media_PEND.play();
+        media_PEND.setVolume(PEND_VOLUME);      
+      }
+      
+      function stopPendulum()   {
+        if (PEND_STATUS == "RUNNING")   {
+          PEND_STATUS = "STOPPED";
+          media_PEND.stop();
+          media_PEND.release();
+        }
+      }
       
       function changeVolume(dir)   {
         if(my_media_WHICH != "NOT_RUNNING")   {
@@ -1439,6 +1490,8 @@
             document.getElementById("useQTLabel").innerHTML = "&nbsp;Use QUIET TIME";
             document.getElementById("SstartLabel").innerHTML = "Last Bong";
             document.getElementById("EendLabel").innerHTML = "First Bong";
+            document.getElementById("usePendulumLabel").innerHTML = "&nbsp;Use PENDULUM";
+            
             
             if (SIZE == "big")   {
               document.getElementById("startSelectDiv").innerHTML = makeTimeSelect("sstart", "margin-left: 55px; margin-top: 4px;", localStorage["sstart"]); 
@@ -1643,8 +1696,13 @@
           }                    
         }
       
-        displayStatusPanel()
-      }            
+        displayStatusPanel();
+      } 
+      
+      function doPendulum()   {
+        ;
+      
+      }           
 
       function ignoreError(err){
         ;
