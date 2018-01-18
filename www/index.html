@@ -33,7 +33,7 @@
                 
                 <table id="setupTable" style="border: none; float: left; font-size: 12px; margin: 8px;">
                   <tr><td align="left" nowrap="nowrap">
-                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>CLOCK:</b>&nbsp;<select name="clocker" id="clocker" onChange="changeClock()" style="font-size: 1.1em; margin-bottom: 5px;"></select>
+                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>BONG:</b>&nbsp;&nbsp;<select name="clocker" id="clocker" onChange="changeClock()" style="font-size: 1.1em; margin-bottom: 5px;"></select>
           
                   <br />
                  
@@ -54,9 +54,9 @@
                   <div id="SstartLabel" style="color: black; margin-left: 41px; text-transform: none; width: 200px; display: inline"></div><div id="EendLabel" style="color: black; margin-left: 63px; text-transform: none; display: inline"></div>
                   <br /><span style="color: #0000bb"><hr /></span>
                   
-                  <input type="checkbox" class="checkers" name="usePendulum" id="usePendulum" onClick="startPendulum()"><div id="usePendulumLabel" style="margin: 0; padding: 0; display: inline-block"></div><br />
-                  <img  src="img/pendIcon.png" id="pend" style="margin: 0; padding: 0; height: 25px; width: 25px; margin-right: 0.8em; margin-top: 5px; margin-bottom: -8px; margin-left: 15px;"  /><input type="button" value="  &mdash;  " style="background-color: #e5c799; font-size: 1em;  border: 1px solid black; margin: 0; padding: 0; margin-right: 8px; margin-top: 0px; padding-top: 4px; padding-bottom: 3px;" onClick="changeVolume('-')" /><progress id="pendVol" name="pendVol" value="0.4" max="1.0" style="background-color: green;">
-                  </progress><input type="button" value="   +   " style="background-color: #e5c799; font-size: 1em;  border: 1px solid black; margin: 0; padding: 0; margin-left: 0.8em; margin-bottom: 5px; padding-top: 4px; margin-right: 1.5em; padding-bottom: 3px;" onClick="changeVolume('+')" />
+                  <div id="usePendulumLabel" style="margin: 0; padding: 0; display: inline-block"></div><input type="radio" name="whichbuttons" onClick="startPendulum()" id="pend_but_on" style="vertical-align: text-bottom">ON&nbsp;&nbsp;&nbsp;<input type="radio" name="whichbuttons" id="pend_but_off" onClick="stopPendulum()" style="vertical-align: text-bottom">OFF<br />
+                  <img  src="img/pendIcon.png" id="pend" style="margin: 0; padding: 0; height: 25px; width: 25px; margin-right: 0.8em; margin-top: 5px; margin-bottom: -8px; margin-left: 35px;"  /><input type="button" value="  &mdash;  " style="background-color: #e5c799; font-size: 1em;  border: 1px solid black; margin: 0; padding: 0; margin-right: 8px; margin-top: 0px; padding-top: 4px; padding-bottom: 3px;" onClick="changePendVolume('-')" /><progress id="pendVol" name="pendVol" value="0.4" max="1.0" style="color: white; height: 5px; width: 90px;">
+                  </progress><input type="button" value="   +   " style="background-color: #e5c799; font-size: 1em;  border: 1px solid black; margin: 0; padding: 0; margin-left: 0.8em; margin-bottom: 5px; padding-top: 4px; margin-right: 1.5em; padding-bottom: 3px;" onClick="changePendVolume('+')" />
 
 
 
@@ -765,9 +765,6 @@
             body.style.backgroundImage = 'url(img/bg_lscape_lg.jpg)';
             document.getElementById("setupButtonDiv").style.position = "relative";
             document.getElementById("setupButtonDiv").style.marginTop = "420px";
-//            document.getElementById("muteIcon").style.left = "640px";                        
-//            document.getElementById("muteIcon").style.top = "245px";
-
           }
         
           document.getElementById("setup_but").style.marginRight = "20px";
@@ -958,28 +955,15 @@
           localStorage["locker"] = 0;
         }
       });
-
-      
-      function doPendulum()   {
-        if (document.getElementById("usePendulum").checked == true)  {
-          PEND_STATUS = "RUNNING";
-        }
-        else   {
-          PEND_STATUS = "STOPPED"
-        }
-
-
-        if (PEND_STATUS == "RUNNING")   {
-          startPendulum();
-        }
-        else   {
-          stopPendulum();
-        }
-      
-      }
       
       function startPendulum()   {
+        if (typeof(media_PEND) == "object")   {
+          media_PEND.stop();
+          media_PEND.release();
+        }
+        
         PEND_STATUS = "RUNNING";
+        localStorage["pend_status"] = "checked";
         
         var pendSoundFile = this.root + "audio/" + "Pendulum5mins.mp3";
         media_PEND = new Media(pendSoundFile,
@@ -992,12 +976,42 @@
       }
       
       function stopPendulum()   {
-        if (PEND_STATUS == "RUNNING")   {
-          PEND_STATUS = "STOPPED";
-          media_PEND.stop();
-          media_PEND.release();
-        }
+        PEND_STATUS = "STOPPED";
+        localStorage["pend_status"] = "no";
+        
+        media_PEND.stop();
+        media_PEND.release();
       }
+      
+      function changePendVolume(dir)   {        
+        if (dir == "+")   {            
+          if (PEND_VOLUME < 1.0)   {
+            PEND_VOLUME += 0.1;
+          }
+        }
+        else   {
+          if (PEND_VOLUME > 0.0)   {
+            PEND_VOLUME -= 0.1;
+          }                    
+        }
+        
+        pendVol.value = PEND_VOLUME;
+        media_PEND.setVolume(PEND_VOLUME);  
+        
+        localStorage["pend_vol"] = PEND_VOLUME.toString();
+      }
+
+      
+      
+       
+      
+      
+      
+      
+      
+      
+      
+      
       
       function changeVolume(dir)   {
         if(my_media_WHICH != "NOT_RUNNING")   {
@@ -1195,8 +1209,42 @@
         }
         
         doQuietTimeOption();
+        
+//
+//  Pendulum Volume
+//
+        if ((localStorage["pend_status"] != "checked") && (localStorage["pend_status"] != "no"))   {
+          localStorage["pend_status"] = "no";
+        }
+        
+        if (localStorage["pend_status"] == "checked")   {
+          document.getElementById("pend_but_on").checked = true;
+       }
+        else   {
+          document.getElementById("pend_but_off").checked = true;
+        }        
+
+
+        if ((localStorage["pend_vol"] == "undefined") || (localStorage["pend_vol"] == "") || (localStorage["pend_vol"] == null))   {
+          localStorage["pend_vol"] = "0.4";
+        }
+        
+        if (parseFloat(localStorage["pend_vol"]) < 0.1)   {
+          localStorage["pend_vol"] = "0.1";
+        }
+        else if (parseFloat(localStorage["pend_vol"]) > 1.0)   {
+          localStorage["PEND_VOLUME"] = "1.0";
+        }
+        
+        PEND_VOLUME = parseFloat(localStorage["PEND_VOLUME"]);
+        
+        if (document.getElementById("pend_but_on").checked == true)   {
+          startPendulum();
+        }        
 
       }
+      
+      
       
       function doPhoneMute()   {
         if (document.getElementById("no_phone_mute").checked == true)   {
@@ -1487,10 +1535,10 @@
             muteText1 = "MUTE ON";
             muteText2 = "MUTE<br />ON";
             
-            document.getElementById("useQTLabel").innerHTML = "&nbsp;Use QUIET TIME";
+            document.getElementById("useQTLabel").innerHTML = "<b>&nbsp;Use QUIET TIME</b>";
             document.getElementById("SstartLabel").innerHTML = "Last Bong";
             document.getElementById("EendLabel").innerHTML = "First Bong";
-            document.getElementById("usePendulumLabel").innerHTML = "&nbsp;Use PENDULUM";
+            document.getElementById("usePendulumLabel").innerHTML = "<b>&nbsp;PENDULUM:&nbsp;&nbsp;</b>";
             
             
             if (SIZE == "big")   {
@@ -1674,6 +1722,8 @@
         }
         else   {
           FRONT_PANEL_MUTE = true;
+          
+          stopPendulum();
           
           if (typeof(my_media2) == "object")   {
             my_media2.stop();
