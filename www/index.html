@@ -201,13 +201,12 @@
           window.plugins.insomnia.keepAwake();
         } 
        
-        var dud = isQuietTime();
-        doQuietTimeOption();
+       
        
         clearTimeout(loopThread);
         loopThread = setTimeout(doMainLoop, loopDelay);
       }
-      
+                                                                                         
       function doMainLoop()   {
         var d = new Date();
         var mins = d.getMinutes();        
@@ -232,7 +231,7 @@
             n = 12;
           }
           if (n > 12)   {
-            n -= 12;
+            n -= 12;                                                                                                                            
           } 
           
           if (n < 10)   {
@@ -246,7 +245,6 @@
         
 //        document.getElementById("clock").innerHTML = "&nbsp;" + n + delimiter + mins + "&nbsp;";
         
-        var dud = isQuietTime();
         doQuietTimeOption();
                  
         if ((mins == 15) || (mins == 30) || (mins == 45))   {
@@ -693,15 +691,14 @@
           localStorage["useqt"] = "checked";
           document.getElementById("sstart").disabled = false;
           document.getElementById("eend").disabled = false;
-          
         }
+
         else   {
           localStorage["useqt"] = "no";
           document.getElementById("sstart").disabled = true;
           document.getElementById("eend").disabled = true;
         }
         
-        var dud = isQuietTime();
         displayStatusPanel();
         
       }    
@@ -926,7 +923,7 @@
           document.getElementById("eend").style.fontSize = "22px";
         }
         
-        doQuietTimeOption();
+       
 
 
       }
@@ -1208,7 +1205,7 @@
           document.getElementById("eend").disabled = true;          
         }
         
-        doQuietTimeOption();
+       
         
 //
 //  Pendulum Volume
@@ -1219,9 +1216,11 @@
         
         if (localStorage["pend_status"] == "checked")   {
           document.getElementById("pend_but_on").checked = true;
-       }
+          PEND_STATUS = "RUNNING";
+        }
         else   {
           document.getElementById("pend_but_off").checked = true;
+          PEND_STATUS = "STOPPED";
         }        
 
 
