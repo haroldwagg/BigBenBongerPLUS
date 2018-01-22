@@ -691,12 +691,19 @@
           localStorage["useqt"] = "checked";
           document.getElementById("sstart").disabled = false;
           document.getElementById("eend").disabled = false;
+          
+          if (PEND_STATUS == "RUNNING")   {
+            startPendulum();
+          }
         }
-
         else   {
           localStorage["useqt"] = "no";
           document.getElementById("sstart").disabled = true;
           document.getElementById("eend").disabled = true;
+          
+          if (PEND_STATUS == "RUNNING")   {
+            stopPendulum();
+          }
         }
         
         displayStatusPanel();
@@ -877,6 +884,8 @@
         
         doQuietTimeOption();
         
+        document.getElementById("pendVol").value = parseFloat(localStorage["PEND_VOLUME"])
+        
         cordova.plugins.backgroundMode.setEnabled(true);
         
 //        alert("backgroundMode");
@@ -956,6 +965,10 @@
       });
       
       function startPendulum()   {
+        if (isQuietTime())   {
+          return;
+        }      
+      
         if (typeof(media_PEND) == "object")   {
           media_PEND.stop();
           media_PEND.release();
@@ -1238,6 +1251,8 @@
         }
         
         PEND_VOLUME = parseFloat(localStorage["PEND_VOLUME"]);
+        document.getElementById("pendVol").value = PEND_VOLUME;  
+        
         
         if (document.getElementById("pend_but_on").checked == true)   {
           startPendulum();
@@ -1720,6 +1735,9 @@
       function doFPMuteButton()   {
         if (FRONT_PANEL_MUTE)   {
           FRONT_PANEL_MUTE = false;
+          if (document.getElementById("pend_but_on").checked == true)   {
+            startPendulum();
+          }      
         }
         else   {
           FRONT_PANEL_MUTE = true;
