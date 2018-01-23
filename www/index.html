@@ -1665,21 +1665,17 @@
       function doQuietTimeOption()   {
         if (document.getElementById("useQT").checked == true)   {
           localStorage["useqt"] = "checked";
-          document.getElementById("sstart").disabled = false;
-          document.getElementById("eend").disabled = false;
           
-          if (PEND_STATUS == "RUNNING")   {
-            startPendulum();
-          }
+//          if (PEND_STATUS == "RUNNING")   {
+//            startPendulum();
+//          }
         }
         else   {
           localStorage["useqt"] = "no";
-          document.getElementById("sstart").disabled = true;
-          document.getElementById("eend").disabled = true;
           
-          if (PEND_STATUS == "RUNNING")   {
-            stopPendulum();
-          }
+//          if (PEND_STATUS == "STOPPED")   {
+//            stopPendulum();
+//          }
         }
         
         displayStatusPanel();
