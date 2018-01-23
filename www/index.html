@@ -201,7 +201,7 @@
           window.plugins.insomnia.keepAwake();
         } 
        
-       
+        displayStatusPanel();
        
         clearTimeout(loopThread);
         loopThread = setTimeout(doMainLoop, loopDelay);
@@ -686,29 +686,6 @@
         }
       }
       
-      function doQuietTimeOption()   {
-        if (document.getElementById("useQT").checked == true)   {
-          localStorage["useqt"] = "checked";
-          document.getElementById("sstart").disabled = false;
-          document.getElementById("eend").disabled = false;
-          
-          if (PEND_STATUS == "RUNNING")   {
-            startPendulum();
-          }
-        }
-        else   {
-          localStorage["useqt"] = "no";
-          document.getElementById("sstart").disabled = true;
-          document.getElementById("eend").disabled = true;
-          
-          if (PEND_STATUS == "RUNNING")   {
-            stopPendulum();
-          }
-        }
-        
-        displayStatusPanel();
-        
-      }    
 
       function doHalfHourOption()   {
         if (HALF_MUTE)   {
@@ -875,6 +852,9 @@
             document.getElementById("setupButtonDiv").style.right = "0px";
           }           
         }  
+
+
+        
         
         setLanguage();
         
@@ -964,66 +944,7 @@
         }
       });
       
-      function startPendulum()   {
-        if (isQuietTime())   {
-          return;
-        }      
-      
-        if (typeof(media_PEND) == "object")   {
-          media_PEND.stop();
-          media_PEND.release();
-        }
-        
-        PEND_STATUS = "RUNNING";
-        localStorage["pend_status"] = "checked";
-        
-        var pendSoundFile = this.root + "audio/" + "Pendulum5mins.mp3";
-        media_PEND = new Media(pendSoundFile,
-            function () { console.log("playAudio():Audio Success"); },
-            ignoreError()
-          );
-
-        media_PEND.play();
-        media_PEND.setVolume(PEND_VOLUME);      
-      }
-      
-      function stopPendulum()   {
-        PEND_STATUS = "STOPPED";
-        localStorage["pend_status"] = "no";
-        
-        media_PEND.stop();
-        media_PEND.release();
-      }
-      
-      function changePendVolume(dir)   {        
-        if (dir == "+")   {            
-          if (PEND_VOLUME < 1.0)   {
-            PEND_VOLUME += 0.1;
-          }
-        }
-        else   {
-          if (PEND_VOLUME > 0.0)   {
-            PEND_VOLUME -= 0.1;
-          }                    
-        }
-        
-        pendVol.value = PEND_VOLUME;
-        media_PEND.setVolume(PEND_VOLUME);  
-        
-        localStorage["pend_vol"] = PEND_VOLUME.toString();
-      }
-
-      
-      
-       
-      
-      
-      
-      
-      
-      
-      
-      
+ 
       
       function changeVolume(dir)   {
         if(my_media_WHICH != "NOT_RUNNING")   {
@@ -1393,41 +1314,6 @@
         return outStr;
       }
       
-      function isQuietTime()   {     
-        if (document.getElementById("useQT").checked == false)   {
-//          document.getElementById("mutePic").style.visibility = "hidden";
-          return false;
-        }
-  
-        var start_int = parseInt(document.getElementById("sstart").value);
-        var end_int = parseInt(document.getElementById("eend").value);
-        
-        localStorage["sstart"] = start_int;
-        localStorage["eend"] = end_int;
-        
-//        alert ("Start Time: " + start_int + "\nEnd Time: " + end_int + "\n");
-        
-        var today = new Date();
-        var h = today.getHours();
-        var m = today.getMinutes();
-        var current_int = (h * 100) + m;
-        
-        if (start_int < end_int)   {
-          if ((current_int > start_int) && (current_int < end_int))   {
-//            document.getElementById("mutePic").style.visibility = "visible";
-            return true;
-          }
-        }
-        else   {         
-          if ((current_int > start_int) || (current_int < end_int))   {
-//            document.getElementById("mutePic").style.visibility = "visible";
-            return true;
-          }
-        }
-        
-//        document.getElementById("mutePic").style.visibility = "hidden";
-        return false;
-      }
       
       function timeToInt(time_char)   {
         var temp = time_char.split(":");
@@ -1642,6 +1528,13 @@
         ;
       }      
          
+         
+         
+         
+         
+         
+         
+         
       function displayStatusPanel()   {
         var sPanel = document.getElementById("statusPanel");
         
@@ -1771,7 +1664,120 @@
       function doPendulum()   {
         ;
       
-      }           
+      }  
+      
+      function doQuietTimeOption()   {
+        if (document.getElementById("useQT").checked == true)   {
+          localStorage["useqt"] = "checked";
+          document.getElementById("sstart").disabled = false;
+          document.getElementById("eend").disabled = false;
+          
+          if (PEND_STATUS == "RUNNING")   {
+            startPendulum();
+          }
+        }
+        else   {
+          localStorage["useqt"] = "no";
+          document.getElementById("sstart").disabled = true;
+          document.getElementById("eend").disabled = true;
+          
+          if (PEND_STATUS == "RUNNING")   {
+            stopPendulum();
+          }
+        }
+        
+        displayStatusPanel();
+        
+      }    
+      
+      function isQuietTime()   {     
+        if (document.getElementById("useQT").checked == false)   {
+//          document.getElementById("mutePic").style.visibility = "hidden";
+          return false;
+        }
+  
+        var start_int = parseInt(document.getElementById("sstart").value);
+        var end_int = parseInt(document.getElementById("eend").value);
+        
+        localStorage["sstart"] = start_int;
+        localStorage["eend"] = end_int;
+        
+//        alert ("Start Time: " + start_int + "\nEnd Time: " + end_int + "\n");
+        
+        var today = new Date();
+        var h = today.getHours();
+        var m = today.getMinutes();
+        var current_int = (h * 100) + m;
+        
+        if (start_int < end_int)   {
+          if ((current_int > start_int) && (current_int < end_int))   {
+//            document.getElementById("mutePic").style.visibility = "visible";
+            return true;
+          }
+        }
+        else   {         
+          if ((current_int > start_int) || (current_int < end_int))   {
+//            document.getElementById("mutePic").style.visibility = "visible";
+            return true;
+          }
+        }
+        
+//        document.getElementById("mutePic").style.visibility = "hidden";
+        return false;
+      }
+      
+       function startPendulum()   {
+        if (isQuietTime())   {
+          return;
+        }      
+      
+        if (typeof(media_PEND) == "object")   {
+          media_PEND.stop();
+          media_PEND.release();
+        }
+        
+        PEND_STATUS = "RUNNING";
+        localStorage["pend_status"] = "checked";
+        
+        var pendSoundFile = this.root + "audio/" + "Pendulum5mins.mp3";
+        media_PEND = new Media(pendSoundFile,
+            function () { console.log("playAudio():Audio Success"); },
+            ignoreError()
+          );
+
+        media_PEND.play();
+        media_PEND.setVolume(PEND_VOLUME);      
+      }
+      
+      function stopPendulum()   {
+        PEND_STATUS = "STOPPED";
+        localStorage["pend_status"] = "no";
+        
+        media_PEND.stop();
+        media_PEND.release();
+      }
+      
+      function changePendVolume(dir)   {        
+        if (dir == "+")   {            
+          if (PEND_VOLUME < 1.0)   {
+            PEND_VOLUME += 0.1;
+          }
+        }
+        else   {
+          if (PEND_VOLUME > 0.0)   {
+            PEND_VOLUME -= 0.1;
+          }                    
+        }
+        
+        pendVol.value = PEND_VOLUME;
+        media_PEND.setVolume(PEND_VOLUME);  
+        
+        localStorage["pend_vol"] = PEND_VOLUME.toString();
+      }
+
+
+
+              
 
       function ignoreError(err){
         ;
