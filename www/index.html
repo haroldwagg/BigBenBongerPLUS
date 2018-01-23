@@ -1168,13 +1168,10 @@
         
         PEND_VOLUME = parseFloat(localStorage["pend_vol"]);
         document.getElementById("pendVol").value = PEND_VOLUME;  
-        
                 
-        
-        
-//        if (document.getElementById("pend_but_on").checked == true)   {
-//          startPendulum();
-//        }        
+        if (PEND_STATUS == "RUNNING")   {
+          startPendulum();
+        }        
 
       }
       
