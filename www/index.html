@@ -1129,36 +1129,45 @@
         if ((localStorage["useqt"] != "checked") && (localStorage["useqt"] != "no"))   {
           localStorage["useqt"] = "no";
         }
+        
+                
 
         if (localStorage["useqt"] == "checked")   {
           document.getElementById("useQT").checked = true;         
-          document.getElementById("sstart").disabled = false;
-          document.getElementById("eend").disabled = false;
+//          document.getElementById("sstart").disabled = false;
+//          document.getElementById("eend").disabled = false;
         } 
         else   {
           document.getElementById("useQT").checked = false;          
-          document.getElementById("sstart").disabled = true;
-          document.getElementById("eend").disabled = true;          
+//          document.getElementById("sstart").disabled = true;
+//          document.getElementById("eend").disabled = true;          
         }
         
-       
+        
         
 //
 //  Pendulum Volume
 //
+
+        
+
         if ((localStorage["pend_status"] != "checked") && (localStorage["pend_status"] != "no"))   {
           localStorage["pend_status"] = "no";
         }
         
+        
+        
+        
         if (localStorage["pend_status"] == "checked")   {
           document.getElementById("pend_but_on").checked = true;
+          document.getElementById("pend_but_off").checked = false;
           PEND_STATUS = "RUNNING";
         }
         else   {
           document.getElementById("pend_but_off").checked = true;
+          document.getElementById("pend_but_on").checked = false;
           PEND_STATUS = "STOPPED";
         }        
-
 
         if ((localStorage["pend_vol"] == "undefined") || (localStorage["pend_vol"] == "") || (localStorage["pend_vol"] == null))   {
           localStorage["pend_vol"] = "0.4";
@@ -1171,13 +1180,15 @@
           localStorage["PEND_VOLUME"] = "1.0";
         }
         
-        PEND_VOLUME = parseFloat(localStorage["PEND_VOLUME"]);
+        PEND_VOLUME = parseFloat(localStorage["pend_vol"]);
         document.getElementById("pendVol").value = PEND_VOLUME;  
         
+                
         
-        if (document.getElementById("pend_but_on").checked == true)   {
-          startPendulum();
-        }        
+        
+//        if (document.getElementById("pend_but_on").checked == true)   {
+//          startPendulum();
+//        }        
 
       }
       
