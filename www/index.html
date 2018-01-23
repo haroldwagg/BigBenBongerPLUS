@@ -48,13 +48,13 @@
                   
                   <br /><span style="color: #0000bb"><hr /></span>
                   
-                  <input type="checkbox" class="checkers" name="useQT" id="useQT" onClick="doQuietTimeOption()"><div id="useQTLabel" style="margin: 0; padding: 0; display: inline-block"></div><br />         
+                  <input type="checkbox" class="checkers" name="useQT" id="useQT" onClick="doQuietTimeOption()"><div id="useQTLabel" style="margin: 0; padding: 0; display: inline-block; margin-bottom: 3px;"></div><br />         
                   <div id="startSelectDiv" style="width: 125px; display: inline"></div><div id="endSelectDiv" style="display: inline; width: 125px;"></div>
                   <br />
-                  <div id="SstartLabel" style="color: black; margin-left: 41px; text-transform: none; width: 200px; display: inline"></div><div id="EendLabel" style="color: black; margin-left: 63px; text-transform: none; display: inline"></div>
+                  <div id="SstartLabel" style="color: black; margin-left: 41px; text-transform: none; width: 200px; display: inline;"></div><div id="EendLabel" style="color: black; margin-left: 63px; text-transform: none; display: inline"></div>
                   <br /><span style="color: #0000bb"><hr /></span>
                   
-                  <div id="usePendulumLabel" style="margin: 0; padding: 0; display: inline-block"></div><input type="radio" name="whichbuttons" onClick="startPendulum()" id="pend_but_on" style="vertical-align: text-bottom">ON&nbsp;&nbsp;&nbsp;<input type="radio" name="whichbuttons" id="pend_but_off" onClick="stopPendulum()" style="vertical-align: text-bottom">OFF<br />
+                  <div id="usePendulumLabel" style="margin: 0; padding: 0; display: inline-block; margin-bottom: 3px;"></div><input type="radio" name="whichbuttons" onClick="startPendulum()" id="pend_but_on" style="vertical-align: text-bottom">ON&nbsp;&nbsp;&nbsp;<input type="radio" name="whichbuttons" id="pend_but_off" onClick="stopPendulum()" style="vertical-align: text-bottom">OFF<br />
                   <img  src="img/pendIcon.png" id="pend" style="margin: 0; padding: 0; height: 25px; width: 25px; margin-right: 0.8em; margin-top: 5px; margin-bottom: -8px; margin-left: 35px;"  /><input type="button" value="  &mdash;  " style="background-color: #e5c799; font-size: 1em;  border: 1px solid black; margin: 0; padding: 0; margin-right: 8px; margin-top: 0px; padding-top: 4px; padding-bottom: 3px;" onClick="changePendVolume('-')" /><progress id="pendVol" name="pendVol" value="0.4" max="1.0" style="color: white; height: 5px; width: 90px;">
                   </progress><input type="button" value="   +   " style="background-color: #e5c799; font-size: 1em;  border: 1px solid black; margin: 0; padding: 0; margin-left: 0.8em; margin-bottom: 5px; padding-top: 4px; margin-right: 1.5em; padding-bottom: 3px;" onClick="changePendVolume('+')" />
 
@@ -1129,35 +1129,21 @@
         if ((localStorage["useqt"] != "checked") && (localStorage["useqt"] != "no"))   {
           localStorage["useqt"] = "no";
         }
-        
-                
 
         if (localStorage["useqt"] == "checked")   {
           document.getElementById("useQT").checked = true;         
-//          document.getElementById("sstart").disabled = false;
-//          document.getElementById("eend").disabled = false;
         } 
         else   {
           document.getElementById("useQT").checked = false;          
-//          document.getElementById("sstart").disabled = true;
-//          document.getElementById("eend").disabled = true;          
         }
-        
-        
         
 //
 //  Pendulum Volume
 //
-
-        
-
         if ((localStorage["pend_status"] != "checked") && (localStorage["pend_status"] != "no"))   {
           localStorage["pend_status"] = "no";
         }
-        
-        
-        
-        
+
         if (localStorage["pend_status"] == "checked")   {
           document.getElementById("pend_but_on").checked = true;
           document.getElementById("pend_but_off").checked = false;
