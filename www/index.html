@@ -1155,8 +1155,6 @@
           PEND_STATUS = "STOPPED";
         }        
 
-        alert ("ONE");
-
         if ((localStorage["pend_vol"] == "undefined") || (localStorage["pend_vol"] == "") || (localStorage["pend_vol"] == null))   {
           localStorage["pend_vol"] = "0.4";
         }
@@ -1167,11 +1165,10 @@
         else if (parseFloat(localStorage["pend_vol"]) > 1.0)   {
           localStorage["PEND_VOLUME"] = "1.0";
         }
-        alert ("TWO");
         
         PEND_VOLUME = parseFloat(localStorage["pend_vol"]);
         document.getElementById("pendVol").value = PEND_VOLUME;  
-        alert ("THREE");        
+       
         if (PEND_STATUS == "RUNNING")   {
           startPendulum();
         }        
