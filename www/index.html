@@ -864,7 +864,11 @@
         
         doQuietTimeOption();
         
-        document.getElementById("pendVol").value = parseFloat(localStorage["PEND_VOLUME"])
+        document.getElementById("pendVol").value = parseFloat(localStorage["pend_vol"]);
+        
+        if (localStorage["pend_status"] == "checked")   {
+          startPendulum();
+        }
         
         cordova.plugins.backgroundMode.setEnabled(true);
         
