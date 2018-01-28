@@ -866,9 +866,9 @@
         
         document.getElementById("pendVol").value = parseFloat(localStorage["pend_vol"]);
         
-        if (localStorage["pend_status"] == "checked")   {
-          startPendulum();
-        }
+//        if (localStorage["pend_status"] == "checked")   {
+//          startPendulum();
+//        }
         
         cordova.plugins.backgroundMode.setEnabled(true);
         
@@ -1628,14 +1628,17 @@
       
         if (FRONT_PANEL_MUTE)   {
           FRONT_PANEL_MUTE = false;
-//          if (document.getElementById("pend_but_on").checked == true)   {
-//            startPendulum();
-//          }      
+          
+          if (localStorage["pend_status"] == "checked")   {
+            startPendulum();
+          }
         }
         else   {
           FRONT_PANEL_MUTE = true;
           
-//          stopPendulum();
+          if (localStorage["pend_status"] == "checked")   {
+            stopPendulum();
+          }
           
           if (typeof(my_media2) == "object")   {
             my_media2.stop();
@@ -1670,16 +1673,18 @@
         if (document.getElementById("useQT").checked == true)   {
           localStorage["useqt"] = "checked";
           
-//          if (PEND_STATUS == "RUNNING")   {
-//            startPendulum();
-//          }
+          if (isQuietTime())   {
+            if (localStorage["pend_status"] == "checked")   {
+              stopPendulum();
+            }
+          }
         }
         else   {
           localStorage["useqt"] = "no";
           
-//          if (PEND_STATUS == "STOPPED")   {
-//            stopPendulum();
-//          }
+          if (localStorage["pend_status"] == "checked")   {
+            startPendulum();
+          }
         }
         
         displayStatusPanel();
