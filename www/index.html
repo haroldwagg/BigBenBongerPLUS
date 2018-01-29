@@ -1681,12 +1681,17 @@
               pendulumRunning = false;
             }
           }
+          else if (! FRONT_PANEL_MUTE)   {
+            startPendulum();
+            pendulumRunning = true;
+          }
         }
         else   {
           localStorage["useqt"] = "no";
           
           if ((localStorage["pend_status"] == "checked") && (! isQuietTime()) && (! FRONT_PANEL_MUTE))   {
             startPendulum();
+            pendulumRunning = true;
           }
         }
         
