@@ -1759,6 +1759,9 @@
       }
       
       function pendulumQuickStart()   {
+        media_PEND.stop();
+        media_PEND.release();
+
         var pendSoundFile = this.root + "audio/" + "Pendulum5mins.mp3";
         media_PEND = new Media(pendSoundFile,
             function () { console.log("playAudio():Audio Success"); },
