@@ -1630,14 +1630,14 @@
           FRONT_PANEL_MUTE = false;
           
           if (localStorage["pend_status"] == "checked")   {
-            startPendulum();
+            unmutePendulum();
           }
         }
         else   {
           FRONT_PANEL_MUTE = true;
           
           if (localStorage["pend_status"] == "checked")   {
-            stopPendulum();
+            mutePendulum();
           }
           
           if (typeof(my_media2) == "object")   {
@@ -1758,7 +1758,22 @@
         media_PEND.release();
       }
       
-      function changePendVolume(dir)   {        
+      function mutePendulum()   {      
+        if (typeof(media_PEND) == "object")   {
+          media_PEND.setVolume(0.0);
+        }
+      }
+
+      function unmutePendulum()   {      
+        if (typeof(media_PEND) == "object")   {
+          media_PEND.setVolume(PEND_VOLUME); 
+        }
+      }
+
+      
+      function changePendVolume(dir)   { 
+        unmutePendulum();
+             
         if (dir == "+")   {            
           if (PEND_VOLUME < 1.0)   {
             PEND_VOLUME += 0.1;
