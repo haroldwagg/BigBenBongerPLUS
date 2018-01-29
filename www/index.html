@@ -1670,19 +1670,22 @@
       }  
       
       function doQuietTimeOption()   {
+        var pendulumRunning;
+        
         if (document.getElementById("useQT").checked == true)   {
           localStorage["useqt"] = "checked";
           
           if (isQuietTime())   {
             if (localStorage["pend_status"] == "checked")   {
               stopPendulum();
+              pendulumRunning = false;
             }
           }
         }
         else   {
           localStorage["useqt"] = "no";
           
-          if (localStorage["pend_status"] == "checked")   {
+          if ((localStorage["pend_status"] == "checked") && (! isQuietTime()) && (! FRONT_PANEL_MUTE))   {
             startPendulum();
           }
         }
