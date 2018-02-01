@@ -201,7 +201,7 @@
           window.plugins.insomnia.keepAwake();
         } 
        
-        displayStatusPanel();
+        doQuietTimeOption();
        
         clearTimeout(loopThread);
         loopThread = setTimeout(doMainLoop, loopDelay);
