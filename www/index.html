@@ -111,7 +111,10 @@
       var media_PEND;
       var FRONT_PANEL_MUTE = false;
       var PEND_VOLUME = 0.4; 
-      var PEND_STATUS = "RUNNING";   
+      var PEND_STATUS = "RUNNING"; 
+      var pendulumID;
+      var pendSoundFile; 
+      var pendulumRunning = false; 
       
       var QUARTER_DING       = "bb_quarter.mp3";
       var HALF_DING          = "bb_half.mp3";
@@ -1669,28 +1672,31 @@
       
       }  
       
-      function doQuietTimeOption()   {
-        var pendulumRunning;
-        
-        if (localStorage["useqt"] == "checked")   {
-          
+      function doQuietTimeOption()   {        
+        if (localStorage["useqt"] == "checked")   {       
           if (isQuietTime())   {
             if (localStorage["pend_status"] == "checked")   {
-              stopPendulum();
-              pendulumRunning = false;
+              if (pendulumRunning)   {
+                stopPendulum();
+                pendulumRunning = false;
+              }
             }
           }
-          else if (localStorage["pend_status"] == "checked")   {
-            pendulumQuickStart();
-            pendulumRunning = true;
+          else   {
+            if (localStorage["pend_status"] == "checked")   {
+              if (! pendulumRunning)   {
+                startPendulum();
+                pendulumRunning = true;
+              )
+            }
           }
         }
         else   {
-          localStorage["useqt"] = "no";
-          
-          if ((localStorage["pend_status"] == "checked") && (! isQuietTime()) && (! FRONT_PANEL_MUTE))   {
-            pendulumQuickStart();
-            pendulumRunning = true;
+          if ((localStorage["pend_status"] == "checked") && (! isQuietTime()))   {
+            if (! pendulumRunning)   {
+              startPendulum();
+              pendulumRunning = true;
+            }
           }
         }
         
@@ -1747,7 +1753,15 @@
         PEND_STATUS = "RUNNING";
         localStorage["pend_status"] = "checked";
         
-        var pendSoundFile = this.root + "audio/" + "Pendulum5mins.mp3";
+        pendSoundFile = this.root + "audio/" + "Pendulum5mins.mp3";
+        
+        pendulumID = setInterval(pundulumLooper();, 30000);
+      }
+      
+      function pendulumLooper()   {
+        media_PEND.stop();
+        media_PEND.release();
+
         media_PEND = new Media(pendSoundFile,
             function () { console.log("playAudio():Audio Success"); },
             ignoreError()
@@ -1756,27 +1770,16 @@
         media_PEND.play();
         media_PEND.setVolume(PEND_VOLUME);      
       }
-      
-      function pendulumQuickStart()   {
-        media_PEND.stop();
-        media_PEND.release();
-
-        var pendSoundFile = this.root + "audio/" + "Pendulum5mins.mp3";
-        media_PEND = new Media(pendSoundFile,
-            function () { console.log("playAudio():Audio Success"); },
-            ignoreError()
-          );
-
-        media_PEND.play();
-        media_PEND.setVolume(PEND_VOLUME);                  
-      }
-      
+            
       function stopPendulum()   {
         PEND_STATUS = "STOPPED";
         localStorage["pend_status"] = "no";
         
+        clearInterval(pendulumID);
+        
         media_PEND.stop();
         media_PEND.release();
+        media_PEND = null;
       }
       
       function mutePendulum()   {      
