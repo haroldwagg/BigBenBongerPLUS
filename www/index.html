@@ -1757,6 +1757,7 @@
         
         PEND_STATUS = "RUNNING";
         localStorage["pend_status"] = "checked";
+        pendulumRunning = true;
         
         pendSoundFile = this.root + "audio/" + "Pendulum5mins.mp3";
         media_PEND = new Media(pendSoundFile,
@@ -1788,6 +1789,7 @@
       function stopPendulum()   {
         PEND_STATUS = "STOPPED";
         localStorage["pend_status"] = "no";
+        pendulumRunning = false;
         
         clearInterval(pendulumID);
         
