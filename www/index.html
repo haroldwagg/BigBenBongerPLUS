@@ -55,7 +55,7 @@
                   <br /><span style="color: #0000bb"><hr /></span>
                   
                   <div id="usePendulumLabel" style="margin: 0; padding: 0; display: inline-block; margin-bottom: 3px;"></div><input type="radio" name="whichbuttons" onClick="startPendulum()" id="pend_but_on" style="vertical-align: text-bottom">ON&nbsp;&nbsp;&nbsp;<input type="radio" name="whichbuttons" id="pend_but_off" onClick="stopPendulum()" style="vertical-align: text-bottom">OFF<br />
-                  <img  src="img/pendIcon.png" id="pend" style="margin: 0; padding: 0; height: 25px; width: 25px; margin-right: 0.8em; margin-top: 5px; margin-bottom: -8px; margin-left: 35px;"  /><input type="button" value="  &mdash;  " style="background-color: #e5c799; font-size: 1em;  border: 1px solid black; margin: 0; padding: 0; margin-right: 8px; margin-top: 0px; padding-top: 4px; padding-bottom: 3px;" onClick="changePendVolume('-')" /><progress id="pendVol" name="pendVol" value="0.4" max="1.0" style="color: white; height: 5px; width: 90px;">
+                  <img  src="img/pendIcon.png" id="pend" style="margin: 0; padding: 0; height: 25px; width: 25px; margin-right: 0.8em; margin-top: 5px; margin-bottom: -8px; margin-left: 35px;"  /><input type="button" value="  &mdash;  " style="background-color: #e5c799; font-size: 1em;  border: 1px solid black; margin: 0; padding: 0; margin-right: 8px; margin-top: 0px; margin-bottom: 9px; padding-top: 4px; padding-bottom: 3px;" onClick="changePendVolume('-')" /><progress id="pendVol" name="pendVol" value="0.4" max="1.0" style="color: white; height: 5px; width: 90px;">
                   </progress><input type="button" value="   +   " style="background-color: #e5c799; font-size: 1em;  border: 1px solid black; margin: 0; padding: 0; margin-left: 0.8em; margin-bottom: 5px; padding-top: 4px; margin-right: 1.5em; padding-bottom: 3px;" onClick="changePendVolume('+')" />
 
 
@@ -283,12 +283,7 @@
 
       function playBen(x)   {
         var phoneAdjustmentsHaveBeenMade = false;
-      
-        if (typeof(my_media) == "object")   {
-          my_media.stop();
-          my_media.release();
-        }
-        
+
         if (isQuietTime())   {
           return;
         }
@@ -296,7 +291,12 @@
         if (FRONT_PANEL_MUTE)   {
           return;
         }
-        
+      
+        if (typeof(my_media) == "object")   {
+          my_media.stop();
+          my_media.release();
+        }
+                
         if (MASTER_MUTE)   {
           if (document.getElementById("no_phone_mute").checked == true)   {
             MASTER_MUTE = false;
@@ -809,6 +809,11 @@
           document.getElementById("autostart").style.height = "35px";          
           document.getElementById("useQT").style.width = "35px";
           document.getElementById("useQT").style.height = "35px";
+          document.getElementById("pend_but_on").style.width = "35px";
+          document.getElementById("pend_but_on").style.height = "35px";          
+          document.getElementById("pend_but_off").style.width = "35px";
+          document.getElementById("pend_but_off").style.height = "35px";          
+
 
           document.getElementById("bottomNavBar").style.height = "75px";
           document.getElementById("minimage").style.marginRight = "120px";
@@ -1170,7 +1175,7 @@
           localStorage["pend_vol"] = "0.1";
         }
         else if (parseFloat(localStorage["pend_vol"]) > 1.0)   {
-          localStorage["PEND_VOLUME"] = "1.0";
+          localStorage["pend_vol"] = "1.0";
         }
         
         PEND_VOLUME = parseFloat(localStorage["pend_vol"]);
@@ -1569,13 +1574,13 @@
           sPanel.style.backgroundColor = "#ddeeff";          
           sPanel.style.visibility = "visible";
           sPanel.style.fontWeight = "bolder";
-          sPanel.style.border = "5px solid #6666aa";
+          sPanel.style.border = "5px solid #3333aa";
 
           if (ORIENT == "portrait")   {
-            sPanel.innerHTML = quietTimeText1.fontcolor("#8888cc");              
+            sPanel.innerHTML = quietTimeText1.fontcolor("#3333aa");              
           }
           else   {
-            sPanel.innerHTML = quietTimeText2.fontcolor("#8888cc");
+            sPanel.innerHTML = quietTimeText2.fontcolor("#3333aa");
           }
         } 
           
@@ -1686,7 +1691,7 @@
               if (! pendulumRunning)   {
                 startPendulum();
                 pendulumRunning = true;
-              )
+              }
             }
           }
         }
@@ -1747,14 +1752,22 @@
         if (typeof(media_PEND) == "object")   {
           media_PEND.stop();
           media_PEND.release();
+          clearInterval(pendulumID);
         }
         
         PEND_STATUS = "RUNNING";
         localStorage["pend_status"] = "checked";
         
         pendSoundFile = this.root + "audio/" + "Pendulum5mins.mp3";
-        
-        pendulumID = setInterval(pendulumLooper, 30000);
+        media_PEND = new Media(pendSoundFile,
+            function () { console.log("playAudio():Audio Success"); },
+            ignoreError()
+          );
+
+        media_PEND.play();
+        media_PEND.setVolume(PEND_VOLUME);      
+                
+        pendulumLooper();
       }
       
       function pendulumLooper()   {
@@ -1767,7 +1780,9 @@
           );
 
         media_PEND.play();
-        media_PEND.setVolume(PEND_VOLUME);      
+        media_PEND.setVolume(PEND_VOLUME); 
+        
+        pendulumID = setInterval(pendulumLooper, 300000);     
       }
             
       function stopPendulum()   {
@@ -1808,7 +1823,7 @@
           }                    
         }
         
-        pendVol.value = PEND_VOLUME;
+        document.getElementById("pendVol").value = PEND_VOLUME;
         media_PEND.setVolume(PEND_VOLUME);  
         
         localStorage["pend_vol"] = PEND_VOLUME.toString();
