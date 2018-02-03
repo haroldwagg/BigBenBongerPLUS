@@ -1143,10 +1143,12 @@
         }
 
         if (localStorage["useqt"] == "checked")   {
-          document.getElementById("useQT").checked = true;         
+          document.getElementById("useQT").checked = true; 
+alert ("QT: true");                  
         } 
         else   {
-          document.getElementById("useQT").checked = false;          
+          document.getElementById("useQT").checked = false; 
+alert ("QT: false");                   
         }
         
 //
@@ -1680,27 +1682,27 @@
         if (localStorage["useqt"] == "checked")   {       
           if (isQuietTime())   {
             if (localStorage["pend_status"] == "checked")   {
-//              if (pendulumRunning)   {
+              if (pendulumRunning)   {
                 stopPendulum();
                 pendulumRunning = false;
-//              }
+              }
             }
           }
           else   {
             if (localStorage["pend_status"] == "checked")   {
-//              if (! pendulumRunning)   {
+              if (! pendulumRunning)   {
                 startPendulum();
                 pendulumRunning = true;
-//              }
+              }
             }
           }
         }
         else   {
           if ((localStorage["pend_status"] == "checked") && (! isQuietTime()))   {
-//            if (! pendulumRunning)   {
+            if (! pendulumRunning)   {
               startPendulum();
               pendulumRunning = true;
-//            }
+            }
           }
         }
         
