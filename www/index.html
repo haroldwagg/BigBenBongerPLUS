@@ -1745,16 +1745,20 @@
       }
       
        function startPendulum()   {
-        if (isQuietTime())   {
-          return;
-        }      
-      
         if (typeof(media_PEND) == "object")   {
           media_PEND.stop();
           media_PEND.release();
           clearInterval(pendulumID);
+          PEND_STATUS = "STOPPED";
+          localStorage["pend_status"] = "no";
+          pendulumRunning = false;
+          media_PEND = null;
         }
-        
+       
+        if (isQuietTime())   {
+          return;
+        }      
+              
         PEND_STATUS = "RUNNING";
         localStorage["pend_status"] = "checked";
         pendulumRunning = true;
