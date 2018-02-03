@@ -1680,27 +1680,27 @@
         if (localStorage["useqt"] == "checked")   {       
           if (isQuietTime())   {
             if (localStorage["pend_status"] == "checked")   {
-              if (pendulumRunning)   {
+//              if (pendulumRunning)   {
                 stopPendulum();
                 pendulumRunning = false;
-              }
+//              }
             }
           }
           else   {
             if (localStorage["pend_status"] == "checked")   {
-              if (! pendulumRunning)   {
+//              if (! pendulumRunning)   {
                 startPendulum();
                 pendulumRunning = true;
-              }
+//              }
             }
           }
         }
         else   {
           if ((localStorage["pend_status"] == "checked") && (! isQuietTime()))   {
-            if (! pendulumRunning)   {
+//            if (! pendulumRunning)   {
               startPendulum();
               pendulumRunning = true;
-            }
+//            }
           }
         }
         
