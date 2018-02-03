@@ -1144,11 +1144,11 @@
 
         if (localStorage["useqt"] == "checked")   {
           document.getElementById("useQT").checked = true; 
-alert ("QT: true");                  
+//        alert ("QT: true");                  
         } 
         else   {
           document.getElementById("useQT").checked = false; 
-alert ("QT: false");                   
+//        alert ("QT: false");                   
         }
         
 //
@@ -1674,12 +1674,15 @@ alert ("QT: false");
       } 
       
       function doPendulum()   {
-        ;
-      
+        ;      
       }  
-      
+
+      // VVV
+
       function doQuietTimeOption()   {        
-        if (localStorage["useqt"] == "checked")   {       
+        if (localStorage["useqt"] == "checked")   {
+          document.getElementById("useQT").checked = true;
+                 
           if (isQuietTime())   {
             if (localStorage["pend_status"] == "checked")   {
               if (pendulumRunning)   {
@@ -1698,6 +1701,8 @@ alert ("QT: false");
           }
         }
         else   {
+          document.getElementById("useQT").checked = false;
+        
           if ((localStorage["pend_status"] == "checked") && (! isQuietTime()))   {
             if (! pendulumRunning)   {
               startPendulum();
