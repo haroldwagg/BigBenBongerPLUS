@@ -1679,7 +1679,7 @@
 
       function doQuietTimeOption()   {        
         if (document.getElementById("useQT").checked == true)   {
-          localStorage["useqt"] == "checked";
+          localStorage["useqt"] = "checked";
                  
           if (isQuietTime())   {
             if (localStorage["pend_status"] == "checked")   {
@@ -1699,7 +1699,7 @@
           }
         }
         else   {
-          localStorage["useqt"] == "no";
+          localStorage["useqt"] = "no";
         
           if ((localStorage["pend_status"] == "checked") && (! isQuietTime()))   {
             if (! pendulumRunning)   {
