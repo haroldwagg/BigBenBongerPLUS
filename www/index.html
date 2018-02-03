@@ -1181,7 +1181,7 @@
         PEND_VOLUME = parseFloat(localStorage["pend_vol"]);
         document.getElementById("pendVol").value = PEND_VOLUME;  
        
-        if (PEND_STATUS == "RUNNING")   {
+        if ((PEND_STATUS == "RUNNING") && (! isQuietTime()))   {
           startPendulum();
         }        
 
