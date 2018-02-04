@@ -1751,13 +1751,7 @@
       
        function startPendulum()   {
         if (typeof(media_PEND) == "object")   {
-          media_PEND.stop();
-          media_PEND.release();
-          clearInterval(pendulumID);
-          PEND_STATUS = "STOPPED";
-          localStorage["pend_status"] = "no";
-          pendulumRunning = false;
-          media_PEND = null;
+          stopPendulum()     
         }
        
         if (isQuietTime())   {
@@ -1769,13 +1763,6 @@
         pendulumRunning = true;
         
         pendSoundFile = this.root + "audio/" + "Pendulum5mins.mp3";
-        media_PEND = new Media(pendSoundFile,
-            function () { console.log("playAudio():Audio Success"); },
-            ignoreError()
-          );
-
-        media_PEND.play();
-        media_PEND.setVolume(PEND_VOLUME);      
                 
         pendulumLooper();
       }
@@ -1792,7 +1779,7 @@
         media_PEND.play();
         media_PEND.setVolume(PEND_VOLUME); 
         
-        pendulumID = setInterval(pendulumLooper, 300000);     
+        pendulumID = setTimeout(pendulumLooper, 300000);     
       }
             
       function stopPendulum()   {
