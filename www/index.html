@@ -1757,6 +1757,8 @@
         if (isQuietTime())   {
           return;
         }      
+
+alert("Start");
               
         PEND_STATUS = "RUNNING";
         localStorage["pend_status"] = "checked";
@@ -1773,6 +1775,8 @@
           media_PEND.release();
         }
         
+alert("Looper");        
+        
         media_PEND = new Media(pendSoundFile,
             function () { console.log("playAudio():Audio Success"); },
             ignoreError()
@@ -1788,6 +1792,8 @@
         PEND_STATUS = "STOPPED";
         localStorage["pend_status"] = "no";
         pendulumRunning = false;
+
+alert("Stop");   
         
         clearInterval(pendulumID);
         
