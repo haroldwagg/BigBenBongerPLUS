@@ -1749,16 +1749,18 @@
         return false;
       }
       
-       function startPendulum()   {
-        if (typeof(media_PEND) == "object")   {
-          stopPendulum()     
+      function startPendulum()   {  
+        if (pendulumRunning)   {
+          return;
         }
-       
+              
+//        if (typeof(media_PEND) == "object")   {
+//          stopPendulum()     
+//        }
+        
         if (isQuietTime())   {
           return;
         }      
-
-alert("Start");
               
         PEND_STATUS = "RUNNING";
         localStorage["pend_status"] = "checked";
@@ -1770,12 +1772,10 @@ alert("Start");
       }
       
       function pendulumLooper()   {
-        if (typeof(media_PEND) == "object")   {
-          media_PEND.stop();
-          media_PEND.release();
-        }
-        
-alert("Looper");        
+//        if (typeof(media_PEND) == "object")   {
+//          media_PEND.stop();
+//          media_PEND.release();
+//        }     
         
         media_PEND = new Media(pendSoundFile,
             function () { console.log("playAudio():Audio Success"); },
@@ -1793,8 +1793,6 @@ alert("Looper");
         localStorage["pend_status"] = "no";
         pendulumRunning = false;
 
-alert("Stop");   
-        
         clearInterval(pendulumID);
         
         if (typeof(media_PEND) == "object")   {
@@ -1802,7 +1800,7 @@ alert("Stop");
           media_PEND.release();
         }
         
-        media_PEND = null;
+        media_PEND = null;      
       }
       
       function mutePendulum()   {      
