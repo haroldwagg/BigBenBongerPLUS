@@ -1791,8 +1791,11 @@
         
         clearInterval(pendulumID);
         
-        media_PEND.stop();
-        media_PEND.release();
+        if (typeof(media_PEND) == "object")   {
+          media_PEND.stop();
+          media_PEND.release();
+        }
+        
         media_PEND = null;
       }
       
