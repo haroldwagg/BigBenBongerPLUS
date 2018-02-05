@@ -90,6 +90,7 @@
     
     <script type="text/javascript" src="js/pluginUtils.js"></script>
     <script type="text/javascript">
+    
       var src;
       var MASTER_MUTE = false;
       var QUARTER_MUTE = false;
@@ -1677,20 +1678,31 @@
         ;      
       }  
 
-      function doQuietTimeOption()   {        
+      function doQuietTimeOption()   { 
+      
+// alert("Entry: Start doQuietTime()\nCheckboxChecked = " + document.getElementById("useQT").checked + "\nlocalStorage[useqt] = " + localStorage["useqt"] + "\nisQuietTime = " + isQuietTime() + "\nlocalStorage[pend_status] = " + localStorage["pend_status"] + "\npendulumRunning = " + pendulumRunning);      
+             
         if (document.getElementById("useQT").checked == true)   {
           localStorage["useqt"] = "checked";
                  
           if (isQuietTime())   {
-            if (localStorage["pend_status"] == "checked")   {
+            if (localStorage["pend_status"] == "checked")   {            
               if (pendulumRunning)   {
-                stopPendulum();
                 pendulumRunning = false;
+        
+                clearInterval(pendulumID);
+                
+                if (typeof(media_PEND) == "object")   {
+                  media_PEND.stop();
+                  media_PEND.release();
+                }
+                
+                media_PEND = null;      
               }
             }
           }
           else   {
-            if (localStorage["pend_status"] == "checked")   {
+            if (localStorage["pend_status"] == "checked")   {            
               if (! pendulumRunning)   {
                 startPendulum();
                 pendulumRunning = true;
@@ -1699,15 +1711,18 @@
           }
         }
         else   {
-          localStorage["useqt"] = "no";
         
-          if ((localStorage["pend_status"] == "checked") && (! isQuietTime()))   {
-            if (! pendulumRunning)   {
+          localStorage["useqt"] = "no";       
+          if ((localStorage["pend_status"] == "checked") && (! isQuietTime()))   {         
+            if (! pendulumRunning)   {            
               startPendulum();
               pendulumRunning = true;
             }
           }
         }
+
+
+// alert("Entry: Leave doQuietTime()\nCheckboxChecked = " + document.getElementById("useQT").checked + "\nlocalStorage[useqt] = " + localStorage["useqt"] + "\nisQuietTime = " + isQuietTime() + "\nlocalStorage[pend_status] = " + localStorage["pend_status"] + "\npendulumRunning = " + pendulumRunning);      
         
         displayStatusPanel();
         
