@@ -139,7 +139,7 @@
       var XStr;
       var setupIsDisplayed = false;
       var helpText, helpTextTitle, mantleClockText, grandfatherClockText, helpDismissText, quitConfirmText, backgroundNotificationText, optionsInText, optionsOutText;
-      var quietTimeText1, quietTimeText2, muteText1, muteText2;
+      var quietTimeText1, quietTimeText2, muteText1, muteText2, noPendulumAdjustText;
       
       var p = window.location.pathname;
       this.root = p.substring(0, p.lastIndexOf('/')) + "/";
@@ -875,9 +875,8 @@
         
         document.getElementById("pendVol").value = parseFloat(localStorage["pend_vol"]);
         
-//        if (localStorage["pend_status"] == "checked")   {
-//          startPendulum();
-//        }
+        document.getElementById("pend_but_on").disabled = false;
+        document.getElementById("pend_but_off").disabled = false;                      
         
         cordova.plugins.backgroundMode.setEnabled(true);
         
@@ -1445,6 +1444,7 @@
             quietTimeText2 = "QUIET<br />TIME";
             muteText1 = "MUTE ON";
             muteText2 = "MUTE<br />ON";
+            noPendulumAdjustText = "You cannot turn the Pendulum on or off during Quiet Time.\n\nTo make adjustments to the Pendulum, simply turn off Quiet Time and try again.";
             
             document.getElementById("useQTLabel").innerHTML = "<b>&nbsp;Use QUIET TIME</b>";
             document.getElementById("SstartLabel").innerHTML = "Last Bong";
@@ -1686,6 +1686,9 @@
           localStorage["useqt"] = "checked";
                  
           if (isQuietTime())   {
+            document.getElementById("pend_but_on").disabled = true;
+            document.getElementById("pend_but_off").disabled = true;                      
+
             if (localStorage["pend_status"] == "checked")   {            
               if (pendulumRunning)   {
                 pendulumRunning = false;
@@ -1696,12 +1699,15 @@
                   media_PEND.stop();
                   media_PEND.release();
                 }
-                
-                media_PEND = null;      
+
+                media_PEND = null;
               }
             }
           }
           else   {
+            document.getElementById("pend_but_on").disabled = false;
+            document.getElementById("pend_but_off").disabled = false;                      
+            
             if (localStorage["pend_status"] == "checked")   {            
               if (! pendulumRunning)   {
                 startPendulum();
@@ -1711,6 +1717,8 @@
           }
         }
         else   {
+          document.getElementById("pend_but_on").disabled = false;
+          document.getElementById("pend_but_off").disabled = false;                      
         
           localStorage["useqt"] = "no";       
           if ((localStorage["pend_status"] == "checked") && (! isQuietTime()))   {         
@@ -1730,7 +1738,6 @@
       
       function isQuietTime()   {     
         if (document.getElementById("useQT").checked == false)   {
-//          document.getElementById("mutePic").style.visibility = "hidden";
           return false;
         }
   
@@ -1749,34 +1756,24 @@
         
         if (start_int < end_int)   {
           if ((current_int > start_int) && (current_int < end_int))   {
-//            document.getElementById("mutePic").style.visibility = "visible";
             return true;
           }
         }
         else   {         
           if ((current_int > start_int) || (current_int < end_int))   {
-//            document.getElementById("mutePic").style.visibility = "visible";
             return true;
           }
         }
-        
-//        document.getElementById("mutePic").style.visibility = "hidden";
+
         return false;
       }
       
       function startPendulum()   {  
+
         if (pendulumRunning)   {
           return;
         }
-              
-//        if (typeof(media_PEND) == "object")   {
-//          stopPendulum()     
-//        }
-        
-        if (isQuietTime())   {
-          return;
-        }      
-              
+                            
         PEND_STATUS = "RUNNING";
         localStorage["pend_status"] = "checked";
         pendulumRunning = true;
@@ -1803,7 +1800,7 @@
         pendulumID = setTimeout(pendulumLooper, 300000);     
       }
             
-      function stopPendulum()   {
+      function stopPendulum()   {      
         PEND_STATUS = "STOPPED";
         localStorage["pend_status"] = "no";
         pendulumRunning = false;
@@ -1830,6 +1827,14 @@
         }
       }
 
+      function displayNoPendulumMessage()   {
+        navigator.notification.alert(
+          noPendulumAdjustText,  
+          "",         
+          "",           
+          helpDismissText                 
+        );            
+      }
       
       function changePendVolume(dir)   { 
         unmutePendulum();
