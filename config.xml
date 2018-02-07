@@ -18,6 +18,7 @@
     <plugin name="cordova-plugin-background-mode" source="npm" />
     <plugin name="io.gvox.plugin.phonecalltrap" source="npm" />
     <plugin name="cordova-plugin-globalization" source="npm" spec="~1.0.3" />
+    <gap:plugin platform="android" name="cordova-plugin-autostart" version="2.1.0" source="npm"/>
     <platform name="browser">
 <!--    
       <preference name="SplashScreen" value="splash" />
