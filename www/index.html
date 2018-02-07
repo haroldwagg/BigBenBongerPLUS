@@ -1189,6 +1189,21 @@
           startPendulum();
         }        
 
+//
+//  AutoStart
+//
+        if ((localStorage["autostart"] != "checked") && (localStorage["autostart"] != "no"))   {
+          localStorage["autostart"] = "no";
+        }
+        
+        if (localStorage["autostart"] == "checked")   {
+          document.getElementById("autostart").checked = true;
+          cordova.plugins.autoStart.enable();
+        }
+        else   {
+          document.getElementById("autostart").checked = false;
+          cordova.plugins.autoStart.disable();
+        }
       }
       
       
@@ -1858,7 +1873,16 @@
         localStorage["pend_vol"] = PEND_VOLUME.toString();
       }
 
-
+      function doAutoStart()   {
+        if (document.getElementById("autostart").checked)   {
+          cordova.plugins.autoStart.enable();  
+          localStorage["autostart"] = "checked";      
+        }
+        else   {
+          cordova.plugins.autoStart.disable();
+          localStorage["autostart"] = "no";
+        }      
+      }
 
               
 
