@@ -140,6 +140,7 @@
       var setupIsDisplayed = false;
       var helpText, helpTextTitle, mantleClockText, grandfatherClockText, helpDismissText, quitConfirmText, backgroundNotificationText, optionsInText, optionsOutText;
       var quietTimeText1, quietTimeText2, muteText1, muteText2, noPendulumAdjustText;
+      var mySavedStates = false;
       
       var p = window.location.pathname;
       this.root = p.substring(0, p.lastIndexOf('/')) + "/";
@@ -895,16 +896,28 @@
           hidden: false
         });
                         
-        PhoneCallTrap.onCall(function(state) {
+        PhoneCallTrap.onCall(function(state) {          
           switch (state) {
             case "RINGING":
                 MASTER_MUTE = true;
+                if (pendulumRunning)   {
+                  stopPendulum();
+                  mySavedStates = true;
+                }
                 break;
             case "OFFHOOK":
                 MASTER_MUTE = true;
+                if (pendulumRunning)   {
+                  stopPendulum();
+                  mySavedStates = true;
+                }                
                 break;
             case "IDLE":
                 MASTER_MUTE = false;
+                if (mySavedStates)   {
+                  startPendulum();
+                  mySavedStates = false;
+                }
                 break;
           }
         });
@@ -1162,11 +1175,13 @@
           document.getElementById("pend_but_on").checked = true;
           document.getElementById("pend_but_off").checked = false;
           PEND_STATUS = "RUNNING";
+          pendulumRunning = true;
         }
         else   {
           document.getElementById("pend_but_off").checked = true;
           document.getElementById("pend_but_on").checked = false;
           PEND_STATUS = "STOPPED";
+          pendulumRunning = false;
         }        
 
         if ((localStorage["pend_vol"] == "undefined") || (localStorage["pend_vol"] == "") || (localStorage["pend_vol"] == null))   {
@@ -1546,18 +1561,6 @@
 
       
       }              
-
-
-      function doAutoStart()   {
-        ;
-      }      
-         
-         
-         
-         
-         
-         
-         
          
       function displayStatusPanel()   {
         var sPanel = document.getElementById("statusPanel");
@@ -1708,7 +1711,7 @@
               if (pendulumRunning)   {
                 pendulumRunning = false;
         
-                clearInterval(pendulumID);
+                clearTimeout(pendulumID);
                 
                 if (typeof(media_PEND) == "object")   {
                   media_PEND.stop();
@@ -1794,21 +1797,15 @@
         pendulumRunning = true;
         
         pendSoundFile = this.root + "audio/" + "Pendulum5mins.mp3";
+        media_PEND = new Media(pendSoundFile,
+            function () { console.log("playAudio():Audio Success"); },
+            ignoreError()
+          );        
                 
         pendulumLooper();
       }
       
       function pendulumLooper()   {
-//        if (typeof(media_PEND) == "object")   {
-//          media_PEND.stop();
-//          media_PEND.release();
-//        }     
-        
-        media_PEND = new Media(pendSoundFile,
-            function () { console.log("playAudio():Audio Success"); },
-            ignoreError()
-          );
-
         media_PEND.play();
         media_PEND.setVolume(PEND_VOLUME); 
         
@@ -1820,7 +1817,7 @@
         localStorage["pend_status"] = "no";
         pendulumRunning = false;
 
-        clearInterval(pendulumID);
+        clearTimeout(pendulumID);
         
         if (typeof(media_PEND) == "object")   {
           media_PEND.stop();
