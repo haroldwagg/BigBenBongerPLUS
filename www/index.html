@@ -901,23 +901,18 @@
             case "RINGING":
                 MASTER_MUTE = true;
                 if (pendulumRunning)   {
-                  stopPendulum();
-                  mySavedStates = true;
+                  mutePendulum();
                 }
                 break;
             case "OFFHOOK":
                 MASTER_MUTE = true;
                 if (pendulumRunning)   {
-                  stopPendulum();
-                  mySavedStates = true;
+                  mutePendulum();
                 }                
                 break;
             case "IDLE":
                 MASTER_MUTE = false;
-                if (mySavedStates)   {
-                  startPendulum();
-                  mySavedStates = false;
-                }
+                unmutePendulum();
                 break;
           }
         });
