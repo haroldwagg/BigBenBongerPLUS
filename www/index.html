@@ -200,7 +200,7 @@
         
         doTimeDisplay(d.getHours(), mins);    
 
-        cordova.plugins.backgroundMode.configure({ text: backgroundNotificationText, resume: true  });
+        cordova.plugins.backgroundMode.configure({ text: backgroundNotificationText, resume: false  });
         
         if (! cordova.plugins.backgroundMode.isActive())   {
           window.plugins.insomnia.keepAwake();
@@ -892,7 +892,7 @@
         cordova.plugins.backgroundMode.setDefaults({
           title: "Big Ben Bonger PLUS Background",
           text: backgroundNotificationText,
-          resume: true,
+          resume: false,
           hidden: false
         });
                         
