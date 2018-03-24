@@ -33,10 +33,11 @@
 -->      
     </platform>
     <platform name="android">
+<!--    
       <feature name="Insomnia">
         <param name="android-package" value="nl.xservices.plugins.Insomnia" />
       </feature>
-<!--
+
       <preference name="SplashScreen" value="splash" />
       <preference name="SplashScreenDelay" value="4000" />
       <preference name="FadeSplashScreenDuration" value="1000"/>
