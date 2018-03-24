@@ -560,10 +560,12 @@
         init();      
       }
       
-      function selectBB()   {
-        DING_SELECTION     = "bb";
-        localStorage["ding_selection"] = "bb";
-        var dingerFile = this.root + "audio/" + "bb_quarter.mp3";
+      function selectClock(dinger)   {
+        var timeoutDelay;
+        
+        DING_SELECTION     = dinger;
+        localStorage["ding_selection"] = dinger;
+        var dingerFile = this.root + "audio/" + dinger + "_quarter.mp3";
                
         if(my_media_WHICH != "NOT_RUNNING")   {
           clearTimeout(Timeouter);
@@ -586,78 +588,20 @@
         
         my_media_WHICH.play();
         my_media_WHICH.setVolume(MASTER_VOLUME);
+        
+        switch (dinger)   {
+          case "bb":  timeoutDelay = 15000;
+                      break;
+          case "cc":  timeoutDelay = 2500;
+                      break;
+          default:    timeoutDelay = 20000;        
+        }
                          
         Timeouter = setTimeout(function()   {
             my_media_WHICH.stop(); 
             my_media_WHICH.release();
             my_media_WHICH = "NOT_RUNNING";
-          }, 15000);
-      }
-      
-      function selectBG()   {
-        DING_SELECTION     = "bg";
-        localStorage["ding_selection"] = "bg";
-        var dingerFile = this.root + "audio/" + "bg_quarter.mp3";
-               
-        if(my_media_WHICH != "NOT_RUNNING")   {
-          clearTimeout(Timeouter);
-          my_media_WHICH.stop();
-          my_media_WHICH.release();
-          my_media_WHICH = "NOT_RUNNING";
-        }
-        
-        if(my_media_TEST != "NOT_RUNNING")   {
-          clearTimeout(delayRelease);
-          my_media_TEST.stop();
-          my_media_TEST.release();
-          my_media_TEST = "NOT_RUNNING";
-        }        
-          
-        my_media_WHICH = new Media(dingerFile,
-           function () { console.log("playAudio():Audio Success"); },
-           ignoreError()
-        );
-        
-        my_media_WHICH.play();
-        my_media_WHICH.setVolume(MASTER_VOLUME);
-        
-        Timeouter = setTimeout(function()   { 
-            my_media_WHICH.release();
-            my_media_WHICH = "NOT_RUNNING";
-          }, 20000);        
-      }
-      
-      function selectGF()   {
-        DING_SELECTION     = "gf";
-        localStorage["ding_selection"] = "gf";
-        var dingerFile = this.root + "audio/" + "gf_quarter.mp3";
-               
-        if(my_media_WHICH != "NOT_RUNNING")   {
-          clearTimeout(Timeouter);
-          my_media_WHICH.stop();
-          my_media_WHICH.release();
-          my_media_WHICH = "NOT_RUNNING";
-        }
-        
-        if(my_media_TEST != "NOT_RUNNING")   {
-          clearTimeout(delayRelease);
-          my_media_TEST.stop();
-          my_media_TEST.release();
-          my_media_TEST = "NOT_RUNNING";
-        }        
-          
-        my_media_WHICH = new Media(dingerFile,
-           function () { console.log("playAudio():Audio Success"); },
-           ignoreError()
-        );
-        
-        my_media_WHICH.play();
-        my_media_WHICH.setVolume(MASTER_VOLUME);
-
-        Timeouter = setTimeout(function()   { 
-            my_media_WHICH.release();
-            my_media_WHICH = "NOT_RUNNING";
-          }, 20000);        
+          }, timeoutDelay);
       }
       
 
@@ -967,6 +911,8 @@
  
       
       function changeVolume(dir)   {
+        var dingerFile;
+        
         if(my_media_WHICH != "NOT_RUNNING")   {
           clearTimeout(Timeouter);
           my_media_WHICH.stop();
@@ -977,7 +923,12 @@
         var pBar = document.getElementById("prog");
         
         if(my_media_TEST == "NOT_RUNNING")   {
-          var dingerFile = this.root + "audio/" + THREE_QUARTER_DING;
+          dingerFile = this.root + "audio/" + THREE_QUARTER_DING;
+          
+          if (DING_SELECTION == "cc")   {
+            dingerFile = this.root + "audio/" + "cc_4.mp3";        
+          }
+          
           my_media_TEST = new Media(dingerFile,
                 function () { console.log("playAudio():Audio Success"); },
                 ignoreError()
@@ -988,6 +939,9 @@
           var delay;          
           if (DING_SELECTION == "bb")   {
             delay = 20000;
+          }
+          else if (DING_SELECTION == "cc")   {
+            delay = 5000;
           }
           else   {
             delay = 20000;
@@ -1468,6 +1422,9 @@
             muteText1 = "MUTE ON";
             muteText2 = "MUTE<br />ON";
             noPendulumAdjustText = "You cannot turn the Pendulum on or off during Quiet Time.\n\nTo make adjustments to the Pendulum, simply turn off Quiet Time and try again.";
+            cuckooClockText = "CUCKOO CLOCK";
+            electronicClockText = "ELECTRONIC CLOCK";
+            shipBellsClockText = "SHIP BELLS";
             
             document.getElementById("useQTLabel").innerHTML = "<b>&nbsp;Use QUIET TIME</b>";
             document.getElementById("SstartLabel").innerHTML = "Last Bong";
@@ -1521,6 +1478,36 @@
           }
           
           x.options.add(d, 2);
+
+          var e = document.createElement("option");
+          e.text = cuckooClockText;
+          e.value = "cc";
+          
+          if (localStorage["ding_selection"] == "cc")   {
+            e.selected = true;
+          }
+          
+          x.options.add(e, 3);
+                
+          var f = document.createElement("option");
+          f.text = electronicClockText;
+          f.value = "el";
+          
+          if (localStorage["ding_selection"] == "el")   {
+            f.selected = true;
+          }
+          
+          x.options.add(f, 4);
+                    
+          var g = document.createElement("option");
+          g.text = shipBellsClockText;
+          g.value = "sb";
+          
+          if (localStorage["ding_selection"] == "sb")   {
+            g.selected = true;
+          }
+          
+          x.options.add(g, 5);
           
           initializeCanvas();
           init();
@@ -1536,15 +1523,7 @@
         
 //        alert("The value of your clock is " + theValue);
 
-        if (theValue == "bb")   {
-          selectBB();
-        }
-        else if (theValue == "bg")   {
-          selectBG();
-        }
-        else   {
-          selectGF();
-        }
+        selectClock(theValue);
         
         QUARTER_DING = localStorage["ding_selection"] + "_quarter.mp3";
         HALF_DING  = localStorage["ding_selection"] + "_half.mp3";
