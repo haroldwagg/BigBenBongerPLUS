@@ -337,6 +337,9 @@
             else if (DING_SELECTION == "cc")   {
               deela = 800;
             }
+            else if (DING_SELECTION == "tr")   {
+              deela = 14000;
+            }
             else   {
               deela = 13000;
             }
@@ -1002,7 +1005,7 @@
           localStorage["ding_selection"] = "bb";
         }
         
-        if ((localStorage["ding_selection"] != "bb") && (localStorage["ding_selection"] != "bg") && (localStorage["ding_selection"] != "sb") && (localStorage["ding_selection"] != "cc") && (localStorage["ding_selection"] != "gf"))   {
+        if ((localStorage["ding_selection"] != "bb") && (localStorage["ding_selection"] != "bg") && (localStorage["ding_selection"] != "tr") && (localStorage["ding_selection"] != "cc") && (localStorage["ding_selection"] != "gf"))   {
           localStorage["ding_selection"] = "bb";
         } 
         
@@ -1424,6 +1427,7 @@
             cuckooClockText = "CUCKOO CLOCK";
             electronicClockText = "ELECTRONIC CLOCK";
             shipBellsClockText = "SHIP BELLS";
+            trinityText = "TRINITY CHIMES";
             
             document.getElementById("useQTLabel").innerHTML = "<b>&nbsp;Use QUIET TIME</b>";
             document.getElementById("SstartLabel").innerHTML = "Last Bong";
@@ -1489,10 +1493,10 @@
           x.options.add(e, 3);
                 
           var f = document.createElement("option");
-          f.text = electronicClockText;
-          f.value = "el";
+          f.text = trinityText;
+          f.value = "tr";
           
-          if (localStorage["ding_selection"] == "el")   {
+          if (localStorage["ding_selection"] == "tr")   {
             f.selected = true;
           }
           
