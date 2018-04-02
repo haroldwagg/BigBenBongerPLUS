@@ -78,7 +78,7 @@
                 <div id="bottomNavBar" style="background-color: black; margin: 0; padding: 0; height: 54px; position: fixed; bottom: 0%; width: 100%; overflow:visible;">
                   <img src="img/help.png" width="30" height="30" id="helpIcon" onClick="doHelp()" style="margin-left: 8px; margin-top: 5px;" />
                   <img id="ximage" name="ximage" src="x.png" width="45" height="45" style="float: right; border: none;  padding: 0; margin-top: 5px; margin-right: 8px;" onClick="doExit()" />
-                  <img id="minimage" name="minimage" src="img/min.png" width="45" height="45" style="float: right; border: none; margin-top: 5px;" onClick="doGoToBG()" />
+                  <img id="minimage" name="minimage" src="img/min.png" width="45" height="45" style="float: right; border: none; margin-top: 5px;" onClick="goToBackground()" />
                   <div id="clearr" style=" clear: both;"></div>
                 </div>
     </div>
@@ -200,11 +200,12 @@
         
         doTimeDisplay(d.getHours(), mins);    
 
-        cordova.plugins.backgroundMode.configure({ text: backgroundNotificationText, resume: false  });
+//      cordova.plugins.backgroundMode.configure({ text: backgroundNotificationText, resume: false  });
+        cordova.plugins.backgroundMode.configure({ text: backgroundNotificationText, resume: true  });
         
-        if (! cordova.plugins.backgroundMode.isActive())   {
-          window.plugins.insomnia.keepAwake();
-        } 
+//        if (! cordova.plugins.backgroundMode.isActive())   {
+//          window.plugins.insomnia.keepAwake();
+//        } 
        
         doQuietTimeOption();
        
@@ -825,7 +826,7 @@
         document.getElementById("pend_but_on").disabled = false;
         document.getElementById("pend_but_off").disabled = false;                      
         
-        cordova.plugins.backgroundMode.setEnabled(true);
+//       cordova.plugins.backgroundMode.setEnabled(true);
         
 //        alert("backgroundMode");
 //        alert("BGMode: " + cordova.plugins.backgroundMode);
@@ -838,7 +839,7 @@
         cordova.plugins.backgroundMode.setDefaults({
           title: "Big Ben Bonger PLUS Background",
           text: backgroundNotificationText,
-          resume: false,
+          resume: true,
           hidden: false
         });
                         
@@ -888,26 +889,22 @@
       document.addEventListener("resume", onResume, false);
       
       function onResume()   {
-        cordova.plugins.backgroundMode.moveToForeground();
-        window.plugins.insomnia.keepAwake();
+//        cordova.plugins.backgroundMode.moveToForeground();
+//
+        goToForeground();
+//        window.plugins.insomnia.keepAwake();
         clearTimeout(loopThread);
         init();
       }
       
       function doExit()   {
         clearTimeout(loopThread);
-        if (! DUP_EXIT)   {
-          localStorage["locker"] = 0;
-        }
         window.plugins.insomnia.allowSleepAgain();
         navigator.app.exitApp();
       }
       
       window.addEventListener("beforeunload", function (event) {
 //      event.preventDefault();
-        if (! DUP_EXIT)   {
-          localStorage["locker"] = 0;
-        }
       });
       
  
@@ -1416,10 +1413,13 @@
             helpText += "But most likely you'll want to do other things with your phone or tablet. You can minimize Big Ben by tapping the square blue Minimize Icon at the bottom of the screen. Big Ben will continue to bong until you exit the app.\n\n";
             helpText += "To re-maximize the Bonger, tap the Big Ben icon. You can then exit the app using the red \"X\" Icon in the bottom right corner. Thank you for choosing the Big Ben Bonger.\n\n";
             helpText += "God Save The Queen.\n\n\numikeapps@outlook.com";
-            helpTextTitle = "Welcome to the Big Ben Bonger"; 
+            helpTextTitle = "Big Ben Bonger PLUS"; 
             helpDismissText = "DISMISS";
             quitConfirmText = "Do you want to exit Big Ben Bonger?";
-            backgroundNotificationText = "[Tap the Big Ben Icon to Restore]";
+
+//          backgroundNotificationText = "[Tap the Big Ben Icon to Restore]";
+            backgroundNotificationText = "[Tap here to Restore]";
+            
             optionsInText = "OPTIONS >";
             optionsOutText = "< OPTIONS";
             quietTimeText1 = "QUIET TIME";
@@ -1857,6 +1857,17 @@
         }      
       }
 
+      function goToBackground()   {
+        window.plugins.insomnia.allowSleepAgain();
+        cordova.plugins.backgroundMode.setEnabled(true);
+        cordova.plugins.backgroundMode.moveToBackground();
+      }
+      
+      function goToForeground()   {
+        cordova.plugins.backgroundMode.moveToForeground();
+        cordova.plugins.backgroundMode.setEnabled(false);
+        window.plugins.insomnia.keepAwake()      
+      }
               
 
       function ignoreError(err){
