@@ -200,8 +200,8 @@
         
         doTimeDisplay(d.getHours(), mins);    
 
-//      cordova.plugins.backgroundMode.configure({ text: backgroundNotificationText, resume: false  });
-        cordova.plugins.backgroundMode.configure({ text: backgroundNotificationText, resume: true  });
+        cordova.plugins.backgroundMode.configure({ text: backgroundNotificationText, resume: false  });
+//      cordova.plugins.backgroundMode.configure({ text: backgroundNotificationText, resume: true  });
         
 //        if (! cordova.plugins.backgroundMode.isActive())   {
 //          window.plugins.insomnia.keepAwake();
@@ -839,7 +839,7 @@
         cordova.plugins.backgroundMode.setDefaults({
           title: "Big Ben Bonger PLUS Background",
           text: backgroundNotificationText,
-          resume: true,
+          resume: false,
           hidden: false
         });
                         
@@ -1417,8 +1417,8 @@
             helpDismissText = "DISMISS";
             quitConfirmText = "Do you want to exit Big Ben Bonger?";
 
-//          backgroundNotificationText = "[Tap the Big Ben Icon to Restore]";
-            backgroundNotificationText = "[Tap here to Restore]";
+            backgroundNotificationText = "[Tap the Big Ben Icon to Restore]";
+//          backgroundNotificationText = "[Tap here to Restore]";
             
             optionsInText = "OPTIONS >";
             optionsOutText = "< OPTIONS";
@@ -1861,6 +1861,7 @@
         window.plugins.insomnia.allowSleepAgain();
         cordova.plugins.backgroundMode.setEnabled(true);
         cordova.plugins.backgroundMode.moveToBackground();
+        cordova.plugins.backgroundMode.configure({ text: backgroundNotificationText, resume: false  });
       }
       
       function goToForeground()   {
