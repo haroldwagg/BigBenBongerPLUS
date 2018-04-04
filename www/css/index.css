@@ -170,22 +170,26 @@ h1 {
   margin-top: -20px;
 }
 
-#setupPanel {
+#panel2 {
+  margin-top: 0;
+  height: 300px;  
+}
+
+#panel1 {
+  margin-top: 25px;
+  height: 300px;
+}
+
+#panel1, #panel2 {
   text-align: right; 
-  margin-top: 25px; 
   width: 0px;   
-  border-radius: 9px;
- 
+  border-radius: 15px; 
   transition:           width 1500ms;
   -webkit-transition:   width 1500ms;
-
-
-  transition-timing-function: linear;  
-  
+  transition-timing-function: linear;    
   overflow: hidden;
   display: block;  
   white-space: nowrap;
-  height: 600px;
 }
 
 #helpDiv {

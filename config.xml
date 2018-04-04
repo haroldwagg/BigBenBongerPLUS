@@ -19,19 +19,6 @@
     <plugin name="io.gvox.plugin.phonecalltrap" source="npm" />
     <plugin name="cordova-plugin-globalization" source="npm" spec="~1.0.3" />
     <gap:plugin platform="android" name="cordova-plugin-autostart" version="2.1.0" source="npm"/>
-    <gap:plugin name="cordova-plugin-splashscreen" source="npm" />
-    
-    <preference name="SplashMaintainAspectRatio" value="true" />
-    <preference name="SplashShowOnlyFirstTime" value="true" />
-    <preference name="SplashScreen" value="screen" />
-    <preference name="SplashScreenDelay" value="5000" />
-
-    <gap:splash src="splash.png" />
-    
-    
-    
-    
-    
     <platform name="browser">
 <!--    
       <preference name="SplashScreen" value="splash" />

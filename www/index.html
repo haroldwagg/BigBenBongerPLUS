@@ -20,57 +20,62 @@
       <canvas id="myCanvas" width="310" height="321" style="border: none; position:absolute; left: 0; top: 0;">
       </canvas>
   </div>
+                <div style="position: absolute; top: 0; right: 2px;"><img src="img/muter3.png" id="FPMuteButton" width="60" height="60" onClick="doFPMuteButton()" style="position: absolute; top: 0; right: 2px;" /></div>
                 
-                <div id="setupButtonDiv" style="float: right; ">
-                <img src="img/muter3.png" id="FPMuteButton" width="60" height="60" onClick="doFPMuteButton()" style="margin-bottom: 8px; margin-left: 20px;" /><br />
-                <input type="button" class="rounderCorners" id="setup_but" onClick="doSetUp()" style="margin-right: 12px; border: solid 5px #0000aa; z-index: 100;position:relative" />
+                <div id="setupButtonDiv" style="position: absolute; top: 180px; right: 2px; ">
+
+                <input type="button" class="rounderCorners" id="setup_but" onClick="doSetUp()" style="border: solid 5px #0000aa; z-index: 100; position: absolute; top: 0px; right: 2px;" />
  
 <img src="img/bb_minute_hand.png" id="mh" style="display:none" /> 
 <img src="img/bb_hour_hand.png" id="hh" style="display:none" /> 
 
                 </div>
-                <div id="setupPanel" style="background-color: rgba(230, 230, 255, 0.95);  margin-left: 8px; z-index: 100;position:absolute; left: 10; top: 10;">         
                 
-                <table id="setupTable" style="border: none; float: left; font-size: 12px; margin: 8px;">
-                  <tr><td align="left" nowrap="nowrap">
-                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>BONG:</b>&nbsp;&nbsp;<select name="clocker" id="clocker" onChange="changeClock()" style="font-size: 1.1em; margin-bottom: 5px;"></select>
-          
-                  <br />
-                 
- 
-                  
-                  
-                  <input type="checkbox" class="checkers" name="quart" id="Quarter"  onClick="do1545Option()"><div id="15_45_Label" style="margin: 0; padding: 0; display: inline-block"></div><br />
-                  <input type="checkbox" class="checkers" name="half" id="Half"  onClick="doHalfHourOption()"><div id="Half_Label" style="margin: 0; padding: 0; display: inline-block"></div><br />
-                  <input type="checkbox" class="checkers" name="hhourr" id="Hour-strikes" onClick="doHourStrikeOption()"><div id="Hour_Label" style="margin: 0; padding: 0; display: inline-block"></div>
-                  <br /><br /><img  src="img/juk.png" id="spkr" style="margin: 0; padding: 0; height: 20px; width: 20px; margin-right: 0.8em; margin-top: 0px; margin-bottom: -3px;"  /><input type="button" value="  &mdash;  " style="font-size: 1em;  border: 1px solid black; margin: 0; padding: 0; margin-right: 8px; margin-top: 0px; padding-top: 4px; padding-bottom: 3px;" onClick="changeVolume('-')" /><progress id="prog" name="prog" value="0.4" max="1.0">
-                  </progress><input type="button" value="   +   " style="font-size: 1em;  border: 1px solid black; margin: 0; padding: 0; margin-left: 0.8em; padding-top: 4px; margin-right: 1.5em; padding-bottom: 3px;" onClick="changeVolume('+')" />
-                  
-                  <br /><span style="color: #0000bb"><hr /></span>
-                  
-                  <input type="checkbox" class="checkers" name="useQT" id="useQT" onClick="doQuietTimeOption()"><div id="useQTLabel" style="margin: 0; padding: 0; display: inline-block; margin-bottom: 3px;"></div><br />         
-                  <div id="startSelectDiv" style="width: 125px; display: inline"></div><div id="endSelectDiv" style="display: inline; width: 125px;"></div>
-                  <br />
-                  <div id="SstartLabel" style="color: black; margin-left: 41px; text-transform: none; width: 200px; display: inline;"></div><div id="EendLabel" style="color: black; margin-left: 63px; text-transform: none; display: inline"></div>
-                  <br /><span style="color: #0000bb"><hr /></span>
-                  
-                  <div id="usePendulumLabel" style="margin: 0; padding: 0; display: inline-block; margin-bottom: 3px;"></div><input type="radio" name="whichbuttons" onClick="startPendulum()" id="pend_but_on" style="vertical-align: text-bottom">ON&nbsp;&nbsp;&nbsp;<input type="radio" name="whichbuttons" id="pend_but_off" onClick="stopPendulum()" style="vertical-align: text-bottom">OFF<br />
-                  <img  src="img/pendIcon.png" id="pend" style="margin: 0; padding: 0; height: 25px; width: 25px; margin-right: 0.8em; margin-top: 5px; margin-bottom: -8px; margin-left: 35px;"  /><input type="button" value="  &mdash;  " style="background-color: #e5c799; font-size: 1em;  border: 1px solid black; margin: 0; padding: 0; margin-right: 8px; margin-top: 0px; margin-bottom: 9px; padding-top: 4px; padding-bottom: 3px;" onClick="changePendVolume('-')" /><progress id="pendVol" name="pendVol" value="0.4" max="1.0" style="color: white; height: 5px; width: 90px;">
-                  </progress><input type="button" value="   +   " style="background-color: #e5c799; font-size: 1em;  border: 1px solid black; margin: 0; padding: 0; margin-left: 0.8em; margin-bottom: 5px; padding-top: 4px; margin-right: 1.5em; padding-bottom: 3px;" onClick="changePendVolume('+')" />
-
-
-
-                  
-                  <span style="color: #0000bb"><hr /></span>
-                  <input type="checkbox" class="checkers" name="no_phone_mute" id="no_phone_mute" onClick="doPhoneMute()"><div id="bongDuringCall" style="margin: 0; padding: 0; display: inline-block"></div>
-                  <br />
-                  
-                  <input type="checkbox" class="checkers" name="autostart" id="autostart" onClick="doAutoStart()"><div id="autoStartTextDiv" style="margin: 0; padding: 0; display: inline-block"></div>
-                  <br />
-    
-                  </td></tr>
+                <div id="panel1" style="background-color: rgba(230, 230, 255, 0.95);  margin-left: 8px; z-index: 100;position:absolute; left: 10px; top: 0px;">                     
+                  <table id="panel1Table" style="border: none; float: left; font-size: 12px; margin: 8px;">
+                    <tr><td align="left" nowrap="nowrap">
+                       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>BONG:</b>&nbsp;&nbsp;<select name="clocker" id="clocker" onChange="changeClock()" style="font-size: 1.1em; margin-bottom: 5px;"></select>
+            
+                      <br />
+                      <input type="checkbox" class="checkers" name="quart" id="Quarter"  onClick="do1545Option()"><div id="15_45_Label" style="margin: 0; padding: 0; display: inline-block"></div><br />
+                      <input type="checkbox" class="checkers" name="half" id="Half"  onClick="doHalfHourOption()"><div id="Half_Label" style="margin: 0; padding: 0; display: inline-block"></div><br />
+                      <input type="checkbox" class="checkers" name="hhourr" id="Hour-strikes" onClick="doHourStrikeOption()"><div id="Hour_Label" style="margin: 0; padding: 0; display: inline-block"></div>
+                      <br /><br /><img  src="img/juk.png" id="spkr" style="margin: 0; padding: 0; height: 20px; width: 20px; margin-right: 0.8em; margin-top: 0px; margin-bottom: -3px;"  /><input type="button" value="  &mdash;  " style="font-size: 1em;  border: 1px solid black; margin: 0; padding: 0; margin-right: 8px; margin-top: 0px; padding-top: 4px; padding-bottom: 3px;" onClick="changeVolume('-')" /><progress id="prog" name="prog" value="0.4" max="1.0">
+                      </progress><input type="button" value="   +   " style="font-size: 1em;  border: 1px solid black; margin: 0; padding: 0; margin-left: 0.8em; padding-top: 4px; margin-right: 1.5em; padding-bottom: 3px;" onClick="changeVolume('+')" />
+                      
+                      <br /><span style="color: #0000bb"><hr /></span>
+                      
+                      <div id="usePendulumLabel" style="margin: 0; padding: 0; display: inline-block; margin-bottom: 3px;"></div><input type="radio" name="whichbuttons" onClick="startPendulum()" id="pend_but_on" style="vertical-align: text-bottom">ON&nbsp;&nbsp;&nbsp;<input type="radio" name="whichbuttons" id="pend_but_off" onClick="stopPendulum()" style="vertical-align: text-bottom">OFF<br />
+                      <img  src="img/pendIcon.png" id="pend" style="margin: 0; padding: 0; height: 25px; width: 25px; margin-right: 0.8em; margin-top: 5px; margin-bottom: -8px; margin-left: 35px;"  /><input type="button" value="  &mdash;  " style="background-color: #e5c799; font-size: 1em;  border: 1px solid black; margin: 0; padding: 0; margin-right: 8px; margin-top: 0px; margin-bottom: 9px; padding-top: 4px; padding-bottom: 3px;" onClick="changePendVolume('-')" /><progress id="pendVol" name="pendVol" value="0.4" max="1.0" style="color: white; height: 5px; width: 90px;">
+                      </progress><input type="button" value="   +   " style="background-color: #e5c799; font-size: 1em;  border: 1px solid black; margin: 0; padding: 0; margin-left: 0.8em; margin-bottom: 5px; padding-top: 4px; margin-right: 1.5em; padding-bottom: 3px;" onClick="changePendVolume('+')" />
+                     </td></tr>
                   </table>
+                </div>
 
+                <div id="panel2" style="background-color: rgba(230, 230, 255, 0.95);  margin-top:0; padding-top:0; margin-left: 8px; z-index: 100; position:absolute; left: 10px; top: 246px;">         
+                  <table id="panel2Table" style="border: none; float: left; font-size: 12px; margin: 8px; margin-top: 0;">
+                    <tr><td align="left" nowrap="nowrap">
+                    
+                      <span style="color: #0000bb" id="t2id"><hr /></span>
+  
+                      <input type="checkbox" class="checkers" name="useQT" id="useQT" onClick="doQuietTimeOption()"><div id="useQTLabel" style="margin: 0; padding: 0; display: inline-block; margin-bottom: 3px;"></div><br />         
+                      <div id="startSelectDiv" style="width: 125px; display: inline"></div><div id="endSelectDiv" style="display: inline; width: 125px;"></div>
+                      <br />
+                      <div id="SstartLabel" style="color: black; margin-left: 41px; text-transform: none; width: 200px; display: inline;"></div><div id="EendLabel" style="color: black; margin-left: 63px; text-transform: none; display: inline"></div>
+                      
+    
+                      
+                      <span style="color: #0000bb"><hr /></span>
+                      <input type="checkbox" class="checkers" name="no_phone_mute" id="no_phone_mute" onClick="doPhoneMute()"><div id="bongDuringCall" style="margin: 0; padding: 0; display: inline-block"></div>
+                      <br />
+                      
+                      <input type="checkbox" class="checkers" name="autostart" id="autostart" onClick="doAutoStart()"><div id="autoStartTextDiv" style="margin: 0; padding: 0; display: inline-block"></div>
+                      <span style="color: #0000bb"><hr /></span>
+                      <div id="themeLabel" style="margin: 0; padding: 0; display: inline-block; margin-bottom: 3px;"></div><br><input type="radio" name="themebuttons" onClick="bigBenTheme()" id="big_ben_but" style="margin-left: 35px; vertical-align: text-bottom">BIG BEN&nbsp;&nbsp;&nbsp;<input type="radio" name="themebuttons" id="london_but" onClick="londonTheme()" style="vertical-align: text-bottom">LONDON<br />
+
+      
+                    </td></tr>
+                  </table>
                 </div>
 
                 <div id="statusPanel"></div>
@@ -81,7 +86,7 @@
                   <img id="minimage" name="minimage" src="img/min.png" width="45" height="45" style="float: right; border: none; margin-top: 5px;" onClick="goToBackground()" />
                   <div id="clearr" style=" clear: both;"></div>
                 </div>
-    </div>
+
 
     <script type="text/javascript" src="cordova.js"></script>
      
@@ -496,7 +501,9 @@
       }
       
       function doSetUp()   {     
-        var panelStyle = document.getElementById("setupPanel").style;
+        var panelStyle = document.getElementById("panel1").style;
+        var panel2Style = document.getElementById("panel2").style;
+        
         var theCheckboxes = document.getElementsByClassName("checkers");
         
         if (SIZE == "big")   {        
@@ -515,18 +522,23 @@
           if (h / ratio > 780)   {
             if (localStorage["language"] == "fr")   {
               panelStyle.width = '405px';
+              panel2Style.width = '405px';
             }
             else if (localStorage["language"] == "pt")   {
               panelStyle.width = '490px';
+              panel2Style.width = '490px';
             }
             else if (localStorage["language"] == "de")   {
               panelStyle.width = '470px';
+              panel2Style.width = '470px';
             }
             else   {
               panelStyle.width = '410px';
+              panel2Style.width = '410px';
             }
   
-            panelStyle.height = '630px';
+            panelStyle.height = '300px';
+            panel2Style.height = '300px';
             document.getElementById("Quarter").style.marginTop = "10px";
             document.getElementById("Half").style.marginTop = "8px";
             document.getElementById("Hour-strikes").style.marginTop = "8px";
@@ -537,18 +549,24 @@
           else   {
             if (localStorage["language"] == "fr")   {
               panelStyle.width = '260px';
+              panel2Style.width = '260px';
             }
             else if (localStorage["language"] == "pt")   {
               panelStyle.width = '300px';
+              panel2Style.width = '300px';
             }
             else if (localStorage["language"] == "de")   {
               panelStyle.width = '267px';
+              panel2Style.width = '267px';
             }
             else   {
               panelStyle.width = '265px';
+              panel2Style.width = '265px';
             }
               
-            panelStyle.height = '400px';
+            panelStyle.height = '230px';
+            panel2Style.height = '230px';
+            
             document.getElementById("spkr").style.width = "22px";
             document.getElementById("spkr").style.height = "22px";
           }          
@@ -556,7 +574,8 @@
         else   {
           setupIsDisplayed = false;
           document.getElementById("setup_but").value = optionsInText;
-          panelStyle.width = '0px';          
+          panelStyle.width = '0px'; 
+          panel2Style.width = '0px';          
         }
         
         clearTimeout(loopThread);
@@ -664,21 +683,26 @@
           body.style.fontSize = "12px";
           SIZE = "small";
         }
+        
+        document.getElementById("t2id").style.display = "inline";
+        document.getElementById("useQT").style.marginTop = "0";
+
          
         if (screen.height > screen.width) {   
           if (SIZE == "small")   {
             body.style.backgroundImage = 'url(img/bg_pt_sm.jpg)';
-            document.getElementById("setupButtonDiv").style.position = "fixed";
-            document.getElementById("setupButtonDiv").style.top = "286px";
-            document.getElementById("setupButtonDiv").style.right = "0px";
+            document.getElementById("setupButtonDiv").style.top = "290px";
+            document.getElementById("setupButtonDiv").style.right = "0";
+            document.getElementById("panel1").style.top = "10px";
+            
+            document.getElementById("panel2").style.left =  "10px"; 
+            document.getElementById("panel2").style.top = "255px";
+
           }
           else   {             
             body.style.backgroundImage = 'url(img/bg_pt_lg.jpg)';
-            document.getElementById("setupButtonDiv").style.position = "relative";
-            document.getElementById("setupButtonDiv").style.marginTop = "660px";
-//            document.getElementById("muteIcon").style.left = "15px";
-//            document.getElementById("muteIcon").style.top = "873px";
-
+            document.getElementById("setupButtonDiv").style.top = "200px";
+            document.getElementById("setupButtonDiv").style.right = "2px";
           }
 
           document.getElementById("setup_but").style.marginRight = "10px";
@@ -688,19 +712,27 @@
           ORIENT = 'portrait';
         }
         else   {
+           document.getElementById("t2id").style.display = "none";      
+           document.getElementById("useQT").style.marginTop = "15px";
+           
+        
           if (SIZE == "small")   {
+          
             body.style.backgroundImage = 'url(img/bg_lscape_sm.jpg)';
-            document.getElementById("setupButtonDiv").style.position = "absolute";
-            document.getElementById("setupButtonDiv").style.top = "160px";
-            document.getElementById("setupButtonDiv").style.right = "0px";   
+            
+            document.getElementById("panel2").style.left = "270px"; 
+            document.getElementById("panel2").style.top = "25px";
+            document.getElementById("panel1").style.top = "0";
+            
+
+            document.getElementById("setupButtonDiv").style.top = "220px";
+            document.getElementById("setupButtonDiv").style.right = "0";   
           }
           else   {             
             body.style.backgroundImage = 'url(img/bg_lscape_lg.jpg)';
-            document.getElementById("setupButtonDiv").style.position = "relative";
-            document.getElementById("setupButtonDiv").style.marginTop = "420px";
           }
         
-          document.getElementById("setup_but").style.marginRight = "20px";
+          document.getElementById("setup_but").style.marginRight = "2px";
           document.getElementById("setup_but").style.backgroundColor = "#e8e8ff";
                   
           
@@ -767,7 +799,8 @@
           document.getElementById("bottomNavBar").style.height = "75px";
           document.getElementById("minimage").style.marginRight = "120px";
           document.getElementById("setup_but").style.fontSize = "1.2em";
-          document.getElementById("setupTable").style.fontSize = "20px";
+          document.getElementById("panel1Table").style.fontSize = "20px";
+          document.getElementById("panel2Table").style.fontSize = "20px";
           document.getElementById("SstartLabel").style.marginLeft = "70px";
           document.getElementById("FPMuteButton").style.width = "100px";
           document.getElementById("FPMuteButton").style.height = "100px";
@@ -793,6 +826,9 @@
           document.getElementById("minimage").style.marginRight = "100px";
           document.getElementById("helpIcon").style.width = "45px";
           document.getElementById("helpIcon").style.height = "45px"; 
+          
+          document.getElementById("FPMuteButton").style.right = "2px";
+          document.getElementById("FPMuteButton").style.top = "0";
           
           if (screen.height <= screen.width) { 
             body.style.backgroundImage = 'url(img/bg_lscape_sm.jpg)';  
@@ -1433,6 +1469,7 @@
             trinityText = "TRINITY CHIMES";
             
             document.getElementById("useQTLabel").innerHTML = "<b>&nbsp;Use QUIET TIME</b>";
+            document.getElementById("themeLabel").innerHTML = "<b>&nbsp;THEME:</b>";
             document.getElementById("SstartLabel").innerHTML = "Last Bong";
             document.getElementById("EendLabel").innerHTML = "First Bong";
             document.getElementById("usePendulumLabel").innerHTML = "<b>&nbsp;PENDULUM:&nbsp;&nbsp;</b>";
