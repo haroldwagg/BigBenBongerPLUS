@@ -8,7 +8,7 @@
     <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
     <link rel="stylesheet" type="text/css" href="css/index.css" />
 
-    <title>Big Ben Bonger</title>
+    <title>Big Ben Bonger PLUS</title>
 </head>
 
 <body>
@@ -68,7 +68,7 @@
 
                       <input type="checkbox" class="checkers" name="autostart" id="autostart" onClick="doAutoStart()"><div id="autoStartTextDiv" style="margin: 0; padding: 0; display: inline-block"></div>
                       <span style="color: #0000bb"><hr /></span>
-                      <div id="themeLabel" style="margin: 0; padding: 0; display: inline-block; margin-bottom: 3px;"></div><br><input type="radio" name="themebuttons" onClick="bigBenTheme()" id="big_ben_but" style="margin-left: 35px; vertical-align: text-bottom">BIG BEN&nbsp;&nbsp;&nbsp;<input type="radio" name="themebuttons" id="london_but" onClick="londonTheme()" style="vertical-align: text-bottom">LONDON<br />
+                      <div id="themeLabel" style="margin: 0; padding: 0; display: inline-block; margin-bottom: 3px;"></div><br><input type="radio" name="themebuttons" onClick="doBigBenTheme()" id="big_ben_but" style="margin-left: 35px; vertical-align: text-bottom">BIG BEN&nbsp;&nbsp;&nbsp;<input type="radio" name="themebuttons" id="london_but" onClick="doLondonTheme()" style="vertical-align: text-bottom">LONDON<br />
 
 
                     </td></tr>
@@ -77,10 +77,12 @@
 
                 <div id="statusPanel"></div>
 
+                <div id="clock" style="color: '#999900';  position: absolute; display: none"></div>
+
                 <div id="bottomNavBar" style="background-color: black; margin: 0; padding: 0; height: 54px; position: fixed; bottom: 0%; width: 100%; overflow:visible;">
                   <img src="img/help.png" width="30" height="30" id="helpIcon" onClick="doHelp()" style="margin-left: 8px; margin-top: 5px;" />
-                  <img id="ximage" name="ximage" src="x.png" width="45" height="45" style="float: right; border: none;  padding: 0; margin-top: 5px; margin-right: 8px;" onClick="doExit()" />
-                  <img id="minimage" name="minimage" src="img/min.png" width="45" height="45" style="float: right; border: none; margin-top: 5px;" onClick="goToBackground()" />
+                  <img id="ximage" name="ximage" id="ximage" src="x.png" width="45" height="45" style="float: right; border: none;  padding: 0; margin-top: 5px; margin-right: 8px;" onClick="doExit()" />
+                  <img id="minimage" name="minimage" id="minimage" src="img/min.png" width="45" height="45" style="float: right; border: none; margin-top: 5px;" onClick="goToBackground()" />
                   <div id="clearr" style=" clear: both;"></div>
                 </div>
 
@@ -104,8 +106,6 @@
       var loopDelay;
       var loopThread;
       var QUARTER_HOUR_SYNC = false;
-      var ORIENT;
-      var SIZE;
       var lastVolumePush = "Neither";
       var my_media_TEST = "NOT_RUNNING";
       var my_media_WHICH = "NOT_RUNNING";
@@ -118,6 +118,10 @@
       var pendulumID;
       var pendSoundFile;
       var pendulumRunning = false;
+
+      var ORIENT, ORIENTcode;
+      var SIZE, SIZEcode;
+      var D_MyCanvas, D_FPMuteButton, D_setupButtonDiv, D_helpIcon, D_minimage, D_ximage, D_clock;
 
       var QUARTER_DING       = "bb_quarter.mp3";
       var HALF_DING          = "bb_half.mp3";
@@ -192,7 +196,7 @@
         if (mins < 10)   {
           mins = "0" + mins;
         }
-//        document.getElementById("clock").innerHTML = "&nbsp;" + n + delimiter + mins + "&nbsp;";
+        document.getElementById("clock").innerHTML = "&nbsp;" + n + delimiter + mins + "&nbsp;";
 
         var secs = d.getSeconds();
         loopDelay = (60 - secs) * 1000;
@@ -251,7 +255,7 @@
           mins = "0" + mins;
         }
 
-//        document.getElementById("clock").innerHTML = "&nbsp;" + n + delimiter + mins + "&nbsp;";
+        document.getElementById("clock").innerHTML = "&nbsp;" + n + delimiter + mins + "&nbsp;";
 
         doQuietTimeOption();
 
@@ -666,6 +670,90 @@
         }
       }
 
+      function loadGlobals()   {
+        var ratio = window.devicePixelRatio || 1;
+
+// Device Size and Orientation
+        if (screen.height / ratio > 780)   {
+          SIZE = "big";
+          SIZEcode = "B";
+        }
+        else   {
+          SIZE = "small";
+          SIZEcode = "S";
+        }
+
+        if (screen.height > screen.width)   {
+          ORIENT = "portrait";
+          ORIENTcode = "P";
+        }
+        else   {
+          ORIENT = "landscape";
+          ORIENTcode = "L";
+        }
+
+// Displayable Objects
+        D_MyCanvas = document.getElementById("myCanvas");
+        D_FPMuteButton = document.getElementById("FPMuteButton");
+        D_setupButtonDiv = document.getElementById("setupButtonDiv");
+        D_helpIcon = document.getElementById("helpIcon");
+        D_minimage = document.getElementById("minimage");
+        D_ximage = document.getElementById("ximage");
+        D_clock = document.getElementById("clock");
+      }
+
+      function doLondonTheme()   {
+        D_MyCanvas.style.display = "none";
+        D_FPMuteButton.style.display = "none";
+        D_helpIcon.style.display = "none";
+        D_minimage.style.display = "none";
+        D_ximage.style.display = "none";
+
+        D_clock.style.display = "block";
+
+        D_setupButtonDiv.style.marginTop = "-70px";
+
+        body.style.backgroundSize = "cover";
+
+        if (ORIENT == "portrait")   {
+          body.style.backgroundImage = 'url("img/bgLondonP.png")';
+          D_setupButtonDiv.style.marginTop = "-70px";
+          D_clock.style.top = "340px";
+        }
+        else   {
+          body.style.backgroundImage = 'url("img/bgLondonL.png")';
+          D_setupButtonDiv.style.marginTop = "-15px";
+        }
+
+      }
+
+      function doBigBenTheme()   {
+        D_clock.style.display = "none";
+        body.style.backgroundSize = "auto";
+
+        if (ORIENT == "portrait")   {
+          if (SIZE == "small")   {
+            body.style.backgroundImage = 'url("img/bgBenSP.jpg")';
+          }
+          else   {
+            body.style.backgroundImage = 'url("img/bgBenBP.jpg")';
+          }
+        }
+        else   {
+          if (SIZE == "small")   {
+            body.style.backgroundImage = 'url("img/bgBenSL.jpg")';
+          }
+          else   {
+            body.style.backgroundImage = 'url("img/bgBenBL.jpg")';
+          }
+        }
+
+        D_setupButtonDiv.style.marginTop = "0px";
+        D_MyCanvas.style.display = "block";
+
+      }
+
+
       function doOnOrientationChange()   {
         var ratio = window.devicePixelRatio || 1;
         var h = screen.height;
@@ -685,7 +773,7 @@
 
         if (screen.height > screen.width) {
           if (SIZE == "small")   {
-            body.style.backgroundImage = 'url(img/bg_pt_sm.jpg)';
+//            body.style.backgroundImage = 'url(img/bg_pt_sm.jpg)';
             document.getElementById("setupButtonDiv").style.top = "290px";
             document.getElementById("setupButtonDiv").style.right = "0";
             document.getElementById("panel1").style.top = "10px";
@@ -695,7 +783,7 @@
 
           }
           else   {
-            body.style.backgroundImage = 'url(img/bg_pt_lg.jpg)';
+  //          body.style.backgroundImage = 'url(img/bg_pt_lg.jpg)';
             document.getElementById("setupButtonDiv").style.top = "200px";
             document.getElementById("setupButtonDiv").style.right = "2px";
           }
@@ -707,7 +795,7 @@
            document.getElementById("useQT").style.marginTop = "15px";
 
           if (SIZE == "small")   {
-            body.style.backgroundImage = 'url(img/bg_lscape_sm.jpg)';
+  //          body.style.backgroundImage = 'url(img/bg_lscape_sm.jpg)';
 
             document.getElementById("panel2").style.left = "270px";
             document.getElementById("panel2").style.top = "25px";
@@ -718,7 +806,7 @@
             document.getElementById("setupButtonDiv").style.right = "0";
           }
           else   {
-            body.style.backgroundImage = 'url(img/bg_lscape_lg.jpg)';
+  //          body.style.backgroundImage = 'url(img/bg_lscape_lg.jpg)';
           }
 
           ORIENT = 'landscape';
@@ -739,6 +827,9 @@
 //////////////////////////////////////////////////////
 
       function starter()   {
+
+        loadGlobals();
+        doBigBenTheme();
 
         var body = document.getElementsByTagName('body')[0];
         var ratio = window.devicePixelRatio || 1;
@@ -791,12 +882,12 @@
           document.getElementById("FPMuteButton").style.marginLeft = "50px";
 
           if (screen.height <= screen.width) {
-            body.style.backgroundImage = 'url(img/bg_lscape_lg.jpg)';
+//            body.style.backgroundImage = 'url(img/bg_lscape_lg.jpg)';
             document.getElementById("setupButtonDiv").style.position = "relative";
             document.getElementById("setupButtonDiv").style.marginTop = "420px";
           }
           else   {
-            body.style.backgroundImage = 'url(img/bg_pt_lg.jpg)';
+//            body.style.backgroundImage = 'url(img/bg_pt_lg.jpg)';
             document.getElementById("setupButtonDiv").style.position = "relative";
             document.getElementById("setupButtonDiv").style.marginTop = "660px";
           }
@@ -815,13 +906,13 @@
           document.getElementById("FPMuteButton").style.top = "0";
 
           if (screen.height <= screen.width) {
-            body.style.backgroundImage = 'url(img/bg_lscape_sm.jpg)';
+//            body.style.backgroundImage = 'url(img/bg_lscape_sm.jpg)';
             document.getElementById("setupButtonDiv").style.position = "fixed";
             document.getElementById("setupButtonDiv").style.top = "230px";
             document.getElementById("setupButtonDiv").style.right = "0px";
           }
           else   {
-            body.style.backgroundImage = 'url(img/bg_pt_sm.jpg)';
+//            body.style.backgroundImage = 'url(img/bg_pt_sm.jpg)';
 //            document.getElementById("setupButtonDiv").style.position = "relative";
 //            document.getElementById("setupButtonDiv").style.marginTop = "368px";
             document.getElementById("setupButtonDiv").style.position = "fixed";
