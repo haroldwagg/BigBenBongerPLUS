@@ -207,7 +207,7 @@
         doTimeDisplay(d.getHours(), mins);
 
 //        cordova.plugins.backgroundMode.configure({ text: backgroundNotificationText, resume: false  });
-      cordova.plugins.backgroundMode.configure({ text: backgroundNotificationText, resume: true  });
+      cordova.plugins.backgroundMode.configure({ text: backgroundNotificationText, resume: false  });
 
 //        if (! cordova.plugins.backgroundMode.isActive())   {
 //          window.plugins.insomnia.keepAwake();
@@ -673,16 +673,12 @@
       function loadGlobals()   {
         var ratio = window.devicePixelRatio || 1;
 
-// Device Size and Orientation
-        if (screen.height / ratio > 780)   {
-          SIZE = "big";
-          SIZEcode = "B";
-        }
-        else   {
-          SIZE = "small";
-          SIZEcode = "S";
-        }
+// Displayable Objects
 
+        document.getElementById("t2id").style.display = "inline";
+        document.getElementById("useQT").style.marginTop = "0";
+
+// Device Size and Orientation
         if (screen.height > screen.width)   {
           ORIENT = "portrait";
           ORIENTcode = "P";
@@ -690,16 +686,43 @@
         else   {
           ORIENT = "landscape";
           ORIENTcode = "L";
+          document.getElementById("t2id").style.display = "none";
+          document.getElementById("useQT").style.marginTop = "15px";
+
         }
 
-// Displayable Objects
-        D_MyCanvas = document.getElementById("myCanvas");
-        D_FPMuteButton = document.getElementById("FPMuteButton");
-        D_setupButtonDiv = document.getElementById("setupButtonDiv");
-        D_helpIcon = document.getElementById("helpIcon");
-        D_minimage = document.getElementById("minimage");
-        D_ximage = document.getElementById("ximage");
-        D_clock = document.getElementById("clock");
+        if (screen.height / ratio > 780)   {
+          SIZE = "big";
+          SIZEcode = "B";
+          body.style.fontSize = "22px";
+
+          if (ORIENT == "portrait")   {
+            document.getElementById("setupButtonDiv").style.top = "200px";
+            document.getElementById("setupButtonDiv").style.right = "2px";
+          }
+        }
+        else   {
+          SIZE = "small";
+          SIZEcode = "S";
+          body.style.fontSize = "12px";
+
+          if (ORIENT == "portrait")   {
+            document.getElementById("setupButtonDiv").style.top = "280px";
+            document.getElementById("setupButtonDiv").style.right = "0";
+            document.getElementById("panel1").style.top = "10px";
+            document.getElementById("panel2").style.left =  "10px";
+            document.getElementById("panel2").style.top = "255px";
+          }
+          else   {
+            document.getElementById("panel2").style.left = "270px";
+            document.getElementById("panel2").style.top = "25px";
+            document.getElementById("panel1").style.top = "0";
+            document.getElementById("setupButtonDiv").style.top = "220px";
+            document.getElementById("setupButtonDiv").style.right = "0";
+          }
+
+        }
+
       }
 
       function doLondonTheme()   {
@@ -725,6 +748,7 @@
         else   {
           body.style.backgroundImage = 'url("img/bgLondonL.png")';
           D_setupButtonDiv.style.marginTop = "-15px";
+          D_clock.style.top = "101px";
         }
 
       }
@@ -759,61 +783,13 @@
 
 
       function doOnOrientationChange()   {
-        var ratio = window.devicePixelRatio || 1;
-        var h = screen.height;
+        loadGlobals();
 
-        if (h / ratio > 780)   {
-          body.style.fontSize = "22px";
-          SIZE = "big";
+        if (localStorage["theme"] == "BigBen")   {
+          doBigBenTheme();
         }
         else   {
-          body.style.fontSize = "12px";
-          SIZE = "small";
-        }
-
-        document.getElementById("t2id").style.display = "inline";
-        document.getElementById("useQT").style.marginTop = "0";
-
-
-        if (screen.height > screen.width) {
-          if (SIZE == "small")   {
-//            body.style.backgroundImage = 'url(img/bg_pt_sm.jpg)';
-            document.getElementById("setupButtonDiv").style.top = "290px";
-            document.getElementById("setupButtonDiv").style.right = "0";
-            document.getElementById("panel1").style.top = "10px";
-
-            document.getElementById("panel2").style.left =  "10px";
-            document.getElementById("panel2").style.top = "255px";
-
-          }
-          else   {
-  //          body.style.backgroundImage = 'url(img/bg_pt_lg.jpg)';
-            document.getElementById("setupButtonDiv").style.top = "200px";
-            document.getElementById("setupButtonDiv").style.right = "2px";
-          }
-
-          ORIENT = 'portrait';
-        }
-        else   {
-           document.getElementById("t2id").style.display = "none";
-           document.getElementById("useQT").style.marginTop = "15px";
-
-          if (SIZE == "small")   {
-  //          body.style.backgroundImage = 'url(img/bg_lscape_sm.jpg)';
-
-            document.getElementById("panel2").style.left = "270px";
-            document.getElementById("panel2").style.top = "25px";
-            document.getElementById("panel1").style.top = "0";
-
-
-            document.getElementById("setupButtonDiv").style.top = "220px";
-            document.getElementById("setupButtonDiv").style.right = "0";
-          }
-          else   {
-  //          body.style.backgroundImage = 'url(img/bg_lscape_lg.jpg)';
-          }
-
-          ORIENT = 'landscape';
+          doLondonTheme();
         }
 
         displayStatusPanel();
@@ -831,6 +807,15 @@
 //////////////////////////////////////////////////////
 
       function starter()   {
+
+        D_MyCanvas = document.getElementById("myCanvas");
+        D_FPMuteButton = document.getElementById("FPMuteButton");
+        D_setupButtonDiv = document.getElementById("setupButtonDiv");
+        D_helpIcon = document.getElementById("helpIcon");
+        D_minimage = document.getElementById("minimage");
+        D_ximage = document.getElementById("ximage");
+        D_clock = document.getElementById("clock");
+
 
         loadGlobals();
 
@@ -901,7 +886,7 @@
           if (screen.height <= screen.width) {
 //            body.style.backgroundImage = 'url(img/bg_lscape_lg.jpg)';
             document.getElementById("setupButtonDiv").style.position = "relative";
-            document.getElementById("setupButtonDiv").style.marginTop = "420px";
+            document.getElementById("setupButtonDiv").style.marginTop = "400px";
           }
           else   {
 //            body.style.backgroundImage = 'url(img/bg_pt_lg.jpg)';
@@ -925,7 +910,7 @@
           if (screen.height <= screen.width) {
 //            body.style.backgroundImage = 'url(img/bg_lscape_sm.jpg)';
             document.getElementById("setupButtonDiv").style.position = "fixed";
-            document.getElementById("setupButtonDiv").style.top = "230px";
+            document.getElementById("setupButtonDiv").style.top = "220px";
             document.getElementById("setupButtonDiv").style.right = "0px";
           }
           else   {
@@ -966,8 +951,8 @@ cordova.plugins.backgroundMode.disable();
 
         cordova.plugins.backgroundMode.setDefaults({
           title: "Big Ben Bonger PLUS Background",
-          text: "[Tap HERE to Restore]",
-          resume: true,
+          text: "[Tap the Big Ben Bonger PLUS icon to Restore]",
+          resume: false,
           hidden: false
         });
 
@@ -1014,7 +999,7 @@ cordova.plugins.backgroundMode.disable();
 
       }
 
-      document.addEventListener("resume", onResume, false);
+  //    document.addEventListener("resume", onResume, false);
 
       function onResume()   {
         cordova.plugins.backgroundMode.disable();
@@ -1999,32 +1984,13 @@ cordova.plugins.backgroundMode.disable();
         window.plugins.insomnia.allowSleepAgain();
         cordova.plugins.backgroundMode.enable();
         cordova.plugins.backgroundMode.moveToBackground();
-        cordova.plugins.backgroundMode.configure({ text: backgroundNotificationText, resume: true  });
+        cordova.plugins.backgroundMode.configure({ text: backgroundNotificationText, resume: false  });
       }
 
       function goToForeground()   {
         cordova.plugins.backgroundMode.moveToForeground();
         cordova.plugins.backgroundMode.setEnabled(false);
         window.plugins.insomnia.keepAwake()
-      }
-
-
-      function bigBenTheme()   {
-        localStorage["theme"] = "BigBen";
-        setupBigBedTheme();
-      }
-
-      function londonTheme()   {
-        localStorage["theme"] = "London";
-        setupLondonTheme();
-      }
-
-      function setupLondonTheme()   {
-        ;
-      }
-
-      function setupBigBedTheme()   {
-        ;
       }
 
 
