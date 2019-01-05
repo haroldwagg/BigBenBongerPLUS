@@ -21,7 +21,7 @@
 
                 <div id="setupButtonDiv" style="position: absolute; top: 180px; right: 2px; ">
 
-                <img src="img/options.png" height="55" width="55" onClick="doSetUp()" style="border: none; z-index: 200; position: absolute; top: 0px; right: 2px;" />
+                <img src="img/options.png" height="55" width="55" id="setup_butt" onClick="doSetUp()" style="border: none; z-index: 200; position: absolute; top: 0px; right: 2px;" />
 
 <img src="img/bb_minute_hand.png" id="mh" style="display:none" />
 <img src="img/bb_hour_hand.png" id="hh" style="display:none" />
@@ -699,7 +699,7 @@
           if (ORIENT == "portrait")   {
             document.getElementById("setupButtonDiv").style.top = "200px";
             document.getElementById("setupButtonDiv").style.right = "2px";
-            document.getElementById("panel2").style.top = "397px";
+            document.getElementById("panel2").style.top = "395px";
 
           }
         }
@@ -874,8 +874,13 @@
           document.getElementById("pend_but_on").style.height = "35px";
           document.getElementById("pend_but_off").style.width = "35px";
           document.getElementById("pend_but_off").style.height = "35px";
-
-
+          document.getElementById("big_ben_but").style.width = "35px";
+          document.getElementById("big_ben_but").style.height = "35px";
+          document.getElementById("london_but").style.width = "35px";
+          document.getElementById("london_but").style.height = "35px";
+          document.getElementById("setup_butt").style.width = "65px";
+          document.getElementById("setup_butt").style.height = "65px";
+          document.getElementById("setup_butt").style.marginTop = "450px";
           document.getElementById("bottomNavBar").style.height = "75px";
           document.getElementById("minimage").style.marginRight = "120px";
           document.getElementById("panel1Table").style.fontSize = "20px";
