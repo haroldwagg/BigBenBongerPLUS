@@ -519,7 +519,7 @@
           var ratio = window.devicePixelRatio || 1;
           var h = screen.height;
 
-          if (h / ratio > 780)   {
+          if (SIZE == "big")   {
             if (localStorage["language"] == "fr")   {
               panelStyle.width = '405px';
               panel2Style.width = '405px';
@@ -537,8 +537,8 @@
               panel2Style.width = '410px';
             }
 
-            panelStyle.height = '300px';
-            panel2Style.height = '300px';
+            panelStyle.height = '350px';
+            panel2Style.height = '350px';
             document.getElementById("Quarter").style.marginTop = "10px";
             document.getElementById("Half").style.marginTop = "8px";
             document.getElementById("Hour-strikes").style.marginTop = "8px";
@@ -699,6 +699,8 @@
           if (ORIENT == "portrait")   {
             document.getElementById("setupButtonDiv").style.top = "200px";
             document.getElementById("setupButtonDiv").style.right = "2px";
+            document.getElementById("panel2").style.top = "305px";
+
           }
         }
         else   {
