@@ -751,13 +751,24 @@
 
         if (ORIENT == "portrait")   {
           body.style.backgroundImage = 'url("img/bgLondonP.png")';
-          D_setupButtonDiv.style.marginTop = "-70px";
-          D_clock.style.top = "340px";
+
+          if (SIZE == "small")   {
+            D_setupButtonDiv.style.marginTop = "-70px";
+            D_clock.style.top = "340px";
+          }
         }
         else   {
           body.style.backgroundImage = 'url("img/bgLondonL.png")';
-          D_setupButtonDiv.style.marginTop = "-15px";
-          D_clock.style.top = "101px";
+
+          if (SIZE == "small")   {
+            D_setupButtonDiv.style.marginTop = "-15px";
+            D_clock.style.top = "101px";
+          }
+          else   {
+            D_setupButtonDiv.style.marginTop = "-15px";
+            D_clock.style.top = "250px";
+          }
+
         }
 
       }
