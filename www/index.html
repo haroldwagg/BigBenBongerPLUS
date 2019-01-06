@@ -209,9 +209,9 @@
 //        cordova.plugins.backgroundMode.configure({ text: backgroundNotificationText, resume: false  });
       cordova.plugins.backgroundMode.configure({ text: backgroundNotificationText, resume: false  });
 
-//        if (! cordova.plugins.backgroundMode.isActive())   {
-//          window.plugins.insomnia.keepAwake();
-//        }
+        if (! cordova.plugins.backgroundMode.isActive())   {
+          window.plugins.insomnia.keepAwake();
+        }
 
         doQuietTimeOption();
 
