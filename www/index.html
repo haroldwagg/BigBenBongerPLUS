@@ -706,7 +706,7 @@
             document.getElementById("panel2").style.top = "25px";
             document.getElementById("panel1").style.top = "0";
             var panel1w = document.getElementById("panel1").style.width + "px";
-            document.getElementById("panel2").style.left = panel1w;
+            eval('document.getElementById("panel2").style.left = "' + panel1w + '"');
 
           }
         }
