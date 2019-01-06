@@ -288,6 +288,10 @@
           clearTimeout(loopThread);
           loopThread = setTimeout(doMainLoop, loopDelay);
         }
+
+        if (! cordova.plugins.backgroundMode.isActive())   {
+          window.plugins.insomnia.keepAwake();
+        }
       }
 
       function playBen(x)   {
