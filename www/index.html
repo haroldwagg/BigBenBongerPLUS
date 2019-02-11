@@ -1101,7 +1101,7 @@
 //////////////////////////////////////////////////////
 
       function starter()   {
-        START_TIME = new Date().toString();
+        START_TIME = new Date().toString().substring(0, 24);
 
 alert("STARTER\r START_TIME = " + START_TIME + "\rautoStart Object = " + cordova.plugins.autoStart);
 
