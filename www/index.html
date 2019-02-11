@@ -1100,20 +1100,17 @@
 ///  STARTER  ////////////////////////////////////////
 //////////////////////////////////////////////////////
 
-      function getKeys(obj)   {
-        var keys = [];
-        for(var key in obj)   {
-          keys.push(key);
-        }
-        return keys;
-      }
+//      function getKeys(obj)   {
+//        var keys = [];
+//        for(var key in obj)   {
+//          keys.push(key);
+//        }
+//        return keys;
+//      }
 
       function starter()   {
-        START_TIME = new Date().toString().substring(0, 24);
-        asProperties = getKeys(cordova.plugins.autoStart);
-
-alert("STARTER\r START_TIME = " + START_TIME + "\rMAGIC_NUMBER = " + MAGIC_NUMBER);
-++MAGIC_NUMBER;
+//        START_TIME = new Date().toString().substring(0, 24);
+//        asProperties = getKeys(cordova.plugins.autoStart);
 
         D_MyCanvas = document.getElementById("myCanvas");
         D_FPMuteButton = document.getElementById("FPMuteButton");
