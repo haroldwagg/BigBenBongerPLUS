@@ -21,14 +21,14 @@
 
                 <div id="setupButtonDiv" style="position: absolute; top: 180px; right: 2px; ">
 
-                <img src="img/options.png" height="55" width="55" id="setup_butt" onClick="doSetUp()" style="border: none; z-index: 200; position: absolute; top: 0px; right: 2px;" />
+                <img src="img/options.png" height="55" width="55" id="setup_butt" onClick="doSetUp()" style="border: none; position: absolute; top: 0px; right: 2px; z-index: 10000;" />
 
 <img src="img/bb_minute_hand.png" id="mh" style="display:none" />
 <img src="img/bb_hour_hand.png" id="hh" style="display:none" />
 
                 </div>
 
-                <div id="panel1" style="background-color: rgba(230, 230, 255, 0.95);  margin-left: 8px; z-index: 100;position:absolute; left: 10px; top: 0px;">
+                <div id="panel1" style="background-color: rgba(230, 230, 255, 0.95);  margin-left: 8px; position:absolute; left: 10px; top: 0px;">
                   <table id="panel1Table" style="border: none; float: left; font-size: 12px; margin: 8px;">
                     <tr><td align="left" nowrap="nowrap">
                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000aa; font-weight: bold">BONG:</span>&nbsp;&nbsp;<select name="clocker" id="clocker" onChange="changeClock()" style="font-size: 1.1em; margin-bottom: 5px;"></select>
@@ -42,14 +42,14 @@
 
                       <br /><span style="color: #0000bb"><hr /></span>
 
-                      <div id="usePendulumLabel" style="margin: 0; padding: 0; display: inline-block; margin-bottom: 3px;"></div><input type="radio" name="whichbuttons" onClick="startPendulum()" id="pend_but_on" style="vertical-align: text-bottom">ON&nbsp;&nbsp;&nbsp;<input type="radio" name="whichbuttons" id="pend_but_off" onClick="stopPendulum()" style="vertical-align: text-bottom">OFF<br />
+                      <div id="usePendulumLabel" style="margin: 0; padding: 0; display: inline-block; margin-bottom: 3px;"></div><input type="radio" name="whichbuttons" onClick="OkToRestartPend = true; startPendulum()" id="pend_but_on" style="vertical-align: text-bottom">ON&nbsp;&nbsp;&nbsp;<input type="radio" name="whichbuttons" id="pend_but_off" onClick="OkToRestartPend = false; stopPendulum()" style="vertical-align: text-bottom">OFF<br />
                       <img  src="img/pendIcon.png" id="pend" style="margin: 0; padding: 0; height: 25px; width: 25px; margin-right: 0.8em; margin-top: 5px; margin-bottom: -8px; margin-left: 35px;"  /><input type="button" value="  &mdash;  " style="background-color: #e5c799; font-size: 1em;  border: 1px solid black; margin: 0; padding: 0; margin-right: 8px; margin-top: 0px; margin-bottom: 9px; padding-top: 4px; padding-bottom: 3px;" onClick="changePendVolume('-')" /><progress id="pendVol" name="pendVol" value="0.4" max="1.0" style="color: white; height: 5px; width: 90px;">
                       </progress><input type="button" value="   +   " style="background-color: #e5c799; font-size: 1em;  border: 1px solid black; margin: 0; padding: 0; margin-left: 0.8em; margin-bottom: 5px; padding-top: 4px; margin-right: 1.5em; padding-bottom: 3px;" onClick="changePendVolume('+')" />
                      </td></tr>
                   </table>
                 </div>
 
-                <div id="panel2" style="background-color: rgba(230, 230, 255, 0.95);  margin-top:0; padding-top:0; margin-left: 8px; z-index: 100; position:absolute; left: 10px; top: 246px;">
+                <div id="panel2" style="background-color: rgba(230, 230, 255, 0.95);  margin-top:0; padding-top:0; margin-left: 8px; position:absolute; left: 10px; top: 246px;">
                   <table id="panel2Table" style="border: none; float: left; font-size: 12px; margin: 8px; margin-top: 0;">
                     <tr><td align="left" nowrap="nowrap">
 
@@ -66,23 +66,71 @@
                       <input type="checkbox" class="checkers" name="no_phone_mute" id="no_phone_mute" onClick="doPhoneMute()"><div id="bongDuringCall" style="margin: 0; padding: 0; display: inline-block"></div>
                       <br />
 
-                      <input type="checkbox" class="checkers" name="autostart" id="autostart" onClick="doAutoStart()"><div id="autoStartTextDiv" style="margin: 0; padding: 0; display: inline-block"></div>
+                      <input type="checkbox" class="checkers" name="autostart" id="autostart" onClick="doAutoStart()">&nbsp;<div id="autoStartTextDiv" style="margin: 0; padding: 0; display: inline-block"></div>
                       <span style="color: #0000bb"><hr /></span>
                       <div id="themeLabel" style="margin: 0; padding: 0; display: inline-block; margin-bottom: 3px;"></div><br><input type="radio" name="themebuttons" onClick="doBigBenTheme()" id="big_ben_but" style="margin-left: 35px; vertical-align: text-bottom">BIG BEN&nbsp;&nbsp;&nbsp;<input type="radio" name="themebuttons" id="london_but" onClick="doLondonTheme()" style="vertical-align: text-bottom">LONDON<br />
-
-
+                      <div style="height: 20px; width: 100%"><span style="float: right;"><a onClick="doSetUp()">
+                        <svg version="1.1" id="Layer_1" height="20" width="20" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                        	 viewBox="0 0 492 492" style="enable-background:new 0 0 492 492;" xml:space="preserve">
+                        <g>
+                        	<g>
+                        		<path d="M464.344,207.418l0.768,0.168H135.888l103.496-103.724c5.068-5.064,7.848-11.924,7.848-19.124
+                        			c0-7.2-2.78-14.012-7.848-19.088L223.28,49.538c-5.064-5.064-11.812-7.864-19.008-7.864c-7.2,0-13.952,2.78-19.016,7.844
+                        			L7.844,226.914C2.76,231.998-0.02,238.77,0,245.974c-0.02,7.244,2.76,14.02,7.844,19.096l177.412,177.412
+                        			c5.064,5.06,11.812,7.844,19.016,7.844c7.196,0,13.944-2.788,19.008-7.844l16.104-16.112c5.068-5.056,7.848-11.808,7.848-19.008
+                        			c0-7.196-2.78-13.592-7.848-18.652L134.72,284.406h329.992c14.828,0,27.288-12.78,27.288-27.6v-22.788
+                        			C492,219.198,479.172,207.418,464.344,207.418z"/>
+                        	</g>
+                        </g>
+                        <g>
+                        </g>
+                        <g>
+                        </g>
+                        <g>
+                        </g>
+                        <g>
+                        </g>
+                        <g>
+                        </g>
+                        <g>
+                        </g>
+                        <g>
+                        </g>
+                        <g>
+                        </g>
+                        <g>
+                        </g>
+                        <g>
+                        </g>
+                        <g>
+                        </g>
+                        <g>
+                        </g>
+                        <g>
+                        </g>
+                        <g>
+                        </g>
+                        <g>
+                        </g>
+                        </svg>
+                      </a>
+                    </span></div>
                     </td></tr>
                   </table>
                 </div>
 
-                <div id="statusPanel"></div>
+                <div id="statusPanel" style="z-index: -20"></div>
 
-                <div id="clock" style="color: '#999900';  position: absolute; display: none"></div>
+                <div id="clock" style="color: '#999900';  position: absolute; display: none; z-index: -10"></div>
 
                 <div id="bottomNavBar" style="background-color: black; margin: 0; padding: 0; height: 54px; position: fixed; bottom: 0%; width: 100%; overflow:visible;">
-                  <img src="img/help.png" width="30" height="30" id="helpIcon" onClick="doHelp()" style="margin-left: 8px; margin-top: 5px;" />
+
+<!--           <img src="img/help.png" width="30" height="30" id="helpIcon" onClick="doHelp()" style="margin-left: 8px; margin-top: 5px;" />    -->
+
+                  <img src="help.png" onClick="doHelp()" width="30" height="30" id="helpIcon" style="margin-left: 8px; margin-top: 5px;" />
+
                   <img id="ximage" name="ximage" id="ximage" src="x.png" width="45" height="45" style="float: right; border: none;  padding: 0; margin-top: 5px; margin-right: 8px;" onClick="doExit()" />
-                  <img id="minimage" name="minimage" id="minimage" src="img/min.png" width="45" height="45" style="float: right; border: none; margin-top: 5px;" onClick="goToBackground()" />
+                  <img id="minimage" name="minimage" id="minimage" src="img/min.png" width="45" height="45" style="float: right; border: none; margin-top: 5px;" onClick="doGoToBG()" />
                   <div id="clearr" style=" clear: both;"></div>
                 </div>
 
@@ -118,6 +166,9 @@
       var pendulumID;
       var pendSoundFile;
       var pendulumRunning = false;
+      var OkToRestartPend = false;
+      var START_TIME = 0;
+      var firstTimeInBG = true;
 
       var ORIENT, ORIENTcode;
       var SIZE, SIZEcode;
@@ -146,6 +197,7 @@
       var setupIsDisplayed = false;
       var helpText, helpTextTitle, mantleClockText, grandfatherClockText, helpDismissText, quitConfirmText, backgroundNotificationText, optionsInText, optionsOutText;
       var quietTimeText1, quietTimeText2, muteText1, muteText2, noPendulumAdjustText;
+      var notificationPrefixText = "";
       var mySavedStates = false;
 
       var p = window.location.pathname;
@@ -164,39 +216,7 @@
       function init()   {
         var d = new Date();
         var mins = d.getMinutes();
-        var n = d.getHours();
-        var delimiter = ":";
-
-        if (do24Hr)   {
-          if (localStorage["language"] == "de")   {
-            delimiter = ".";
-            if (n < 10)   {
-              n = "&nbsp;&nbsp;" + n;
-            }
-          }
-          else   {
-            if (n < 10)   {
-              n = "0" + n;
-            }
-          }
-        }
-        else   {
-          if (n == 0)   {
-            n = 12;
-          }
-          if (n > 12)   {
-            n -= 12;
-          }
-
-          if (n < 10)   {
-            n = "&nbsp;&nbsp;" + n;
-          }
-        }
-
-        if (mins < 10)   {
-          mins = "0" + mins;
-        }
-        document.getElementById("clock").innerHTML = "&nbsp;" + n + delimiter + mins + "&nbsp;";
+        document.getElementById("clock").innerHTML = "&nbsp;" + makeTimeString() + "&nbsp;";
 
         var secs = d.getSeconds();
         loopDelay = (60 - secs) * 1000;
@@ -206,8 +226,7 @@
 
         doTimeDisplay(d.getHours(), mins);
 
-//        cordova.plugins.backgroundMode.configure({ text: backgroundNotificationText, resume: false  });
-      cordova.plugins.backgroundMode.configure({ text: backgroundNotificationText, resume: false  });
+        cordova.plugins.backgroundMode.configure({ text: notificationPrefixText + backgroundNotificationText, resume: false  });
 
         if (! cordova.plugins.backgroundMode.isActive())   {
           window.plugins.insomnia.keepAwake();
@@ -216,10 +235,11 @@
         doQuietTimeOption();
 
         clearTimeout(loopThread);
+
         loopThread = setTimeout(doMainLoop, loopDelay);
       }
 
-      function doMainLoop()   {
+      function makeTimeString()   {
         var d = new Date();
         var mins = d.getMinutes();
         var n = d.getHours();
@@ -255,7 +275,139 @@
           mins = "0" + mins;
         }
 
-        document.getElementById("clock").innerHTML = "&nbsp;" + n + delimiter + mins + "&nbsp;";
+        return ("" + n + delimiter + mins);
+
+      }
+
+      function makeTimeSelect(name, stylestr, preselect)   {
+        var outStr = "";
+        var tmp = "";
+        var displayMin = "";
+        var displayHr = "";
+
+        preselect = parseInt(preselect);
+
+        outStr += '<select name="' + name + '" id="' + name + '"';
+
+        if (stylestr == "" || stylestr == null || stylestr == "undefined")   {
+          outStr += ' onChange="document.getElementById(\'useQT\').checked=true; doQuietTimeOption();">\n';
+//          outStr += ' onChange="doQuietTimeOption();">\n';
+        }
+        else   {
+          outStr += ' style="' + stylestr + '" onChange="document.getElementById(\'useQT\').checked=true; doQuietTimeOption();">\n';
+//          outStr += ' style="' + stylestr + '" onChange="doQuietTimeOption();">\n';
+        }
+
+        for (var hr = 0; hr < 24; ++hr)   {
+          for (var min = 0; min < 60; min += 15)   {
+            tmp = (parseInt(hr) * 100) + parseInt(min);
+
+            if (min < 10)   {
+              displayMin = "0" + min;
+            }
+            else   {
+              displayMin = min;
+            }
+
+            if (do24Hr)   {
+              if (hr < 10)   {
+                displayHr = "0" + hr;
+              }
+              else   {
+                displayHr = hr;
+              }
+
+              if (name == "eend")   {
+                var xhr = parseInt(hr);
+                if (min == 0)   {
+                  if (xhr == 0)   {
+                    xhr = 24;
+                  }
+
+                  --xhr;
+                  tmp = (parseInt(xhr) * 100) + 59;
+                }
+                else   {
+                  var xmins = parseInt(min);
+                  --xmins;
+                  tmp = (parseInt(xhr) * 100) + xmins;
+                }
+              }
+//              else   {
+//                var xmin = min;
+//                ++xmin;
+//                tmp = (hr * 100) + xmin;
+//              }
+
+              outStr += '<option value="' + tmp + '"';
+
+              if (preselect == tmp)   {
+                outStr += " selected";
+              }
+
+              outStr += ">" + displayHr + ":" + displayMin + "</option>\n";
+            }
+            else   {
+              var ampm = "AM";
+
+              if (hr == 0)   {
+                displayHr = "12";
+              }
+              else if (hr < 12)   {
+                displayHr = hr;
+              }
+              else if (hr == 12)   {
+                displayHr = hr;
+                ampm = "PM";
+              }
+              else   {
+                displayHr = hr - 12;
+                ampm = "PM";
+              }
+
+              if (name == "eend")   {
+                var xhr = hr;
+
+                if (min == 0)   {
+                  if (xhr == 0)   {
+                    xhr = 24;
+                  }
+
+                  --xhr;
+                  tmp = (parseInt(xhr) * 100) + 59;
+                }
+                else   {
+                  var xmins = parseInt(min);
+                  --xmins;
+                  tmp = (parseInt(xhr) * 100) + xmins;
+                }
+              }
+
+              outStr += '<option value="' + tmp + '"';
+
+              if (preselect == tmp)   {
+                outStr += " selected";
+              }
+
+              outStr += ">" + displayHr + ":" + displayMin + ampm + "</option>\n";
+            }
+          }
+        }
+        outStr += "</select>\n";
+//        alert(outStr);
+        return outStr;
+      }
+
+      function doMainLoop()   {
+        var d = new Date();
+        var mins = d.getMinutes();
+
+        if (firstTimeInBG)   {
+          firstTimeInBG = false;
+          cordova.plugins.backgroundMode.configure({ text: notificationPrefixText + backgroundNotificationText, resume: false  });
+        }
+
+        document.getElementById("clock").innerHTML = "&nbsp;" + makeTimeString() + "&nbsp;";
 
         doQuietTimeOption();
 
@@ -289,9 +441,9 @@
           loopThread = setTimeout(doMainLoop, loopDelay);
         }
 
-        if (! cordova.plugins.backgroundMode.isActive())   {
-          window.plugins.insomnia.keepAwake();
-        }
+//        if (! cordova.plugins.backgroundMode.isActive())   {
+//          window.plugins.insomnia.keepAwake();
+//        }
       }
 
       function playBen(x)   {
@@ -309,6 +461,20 @@
           my_media.stop();
           my_media.release();
         }
+
+
+//        if (pendulumRunning)   {
+//          pendulumRunning = false;
+//
+//          clearTimeout(pendulumID);
+//
+//          if (typeof(media_PEND) == "object")   {
+//            media_PEND.stop();
+//            media_PEND.release();
+//          }
+//
+//          media_PEND = null;
+//        }
 
         if (MASTER_MUTE)   {
           if (document.getElementById("no_phone_mute").checked == true)   {
@@ -349,7 +515,7 @@
               deela = 800;
             }
             else if (DING_SELECTION == "tr")   {
-              deela = 15000;
+              deela = 14600;
             }
             else if (DING_SELECTION == "ec")   {
               deela = 18200;
@@ -421,6 +587,11 @@
           CURRENT_VOLUME = MASTER_VOLUME;
           MASTER_MUTE = true;
         }
+
+//        if (pendulumRunning)   {
+//          unmutePendulum();
+//        }
+
       }
 
       function initializeCanvas()   {
@@ -516,6 +687,9 @@
         if (SIZE == "big")   {
           document.getElementById("sstart").style.fontSize = "22px";
           document.getElementById("eend").style.fontSize = "22px";
+          panelStyle.position = "absolute";
+          panelStyle.left = "5px";
+          panelStyle.top = "5px";
         }
 
 
@@ -535,6 +709,10 @@
               panel2Style.width = '490px';
             }
             else if (localStorage["language"] == "de")   {
+              panelStyle.width = '470px';
+              panel2Style.width = '470px';
+            }
+            else if (localStorage["language"] == "it")   {
               panelStyle.width = '470px';
               panel2Style.width = '470px';
             }
@@ -565,6 +743,10 @@
               panelStyle.width = '267px';
               panel2Style.width = '267px';
             }
+            else if (localStorage["language"] == "it")   {
+              panelStyle.width = '300px';
+              panel2Style.width = '300px';
+            }
             else   {
               panelStyle.width = '265px';
               panel2Style.width = '265px';
@@ -587,12 +769,127 @@
         init();
       }
 
-      function selectClock(dinger)   {
-        var timeoutDelay;
+      function isQuietTime()   {
+        if (document.getElementById("useQT").checked == false)   {
+          return false;
+        }
 
-        DING_SELECTION     = dinger;
-        localStorage["ding_selection"] = dinger;
-        var dingerFile = this.root + "audio/" + dinger + "_quarter.mp3";
+        var start_int = parseInt(document.getElementById("sstart").value);
+        var end_int = parseInt(document.getElementById("eend").value);
+
+        localStorage["sstart"] = start_int;
+        localStorage["eend"] = end_int;
+
+  //        alert ("Start Time: " + start_int + "\nEnd Time: " + end_int + "\n");
+
+        var today = new Date();
+        var h = today.getHours();
+        var m = today.getMinutes();
+        var current_int = (h * 100) + m;
+
+        if (start_int < end_int)   {
+          if ((current_int > start_int) && (current_int < end_int))   {
+            return true;
+          }
+        }
+        else   {
+          if ((current_int > start_int) || (current_int < end_int))   {
+            return true;
+          }
+        }
+
+        return false;
+      }
+
+      function startPendulum()   {
+
+        if (pendulumRunning)   {
+          return;
+        }
+
+        PEND_STATUS = "RUNNING";
+        localStorage["pend_status"] = "checked";
+        pendulumRunning = true;
+
+        pendulumLooper();
+      }
+
+      function pendulumLooper()   {
+        if (FRONT_PANEL_MUTE || isQuietTime())   {
+          if (pendulumRunning)   {
+             stopPendulum();
+             return;
+          }
+        }
+
+        pendSoundFile = this.root + "audio/" + "Pendulum5mins.mp3";
+        media_PEND = new Media(pendSoundFile,
+            function () { console.log("playAudio():Audio Success"); },
+            ignoreError()
+          );
+
+        media_PEND.play();
+        media_PEND.setVolume(PEND_VOLUME);
+
+        pendulumID = setTimeout(pendulumLooper, 300800);
+      }
+
+      function stopPendulum()   {
+        PEND_STATUS = "STOPPED";
+        localStorage["pend_status"] = "no";
+        pendulumRunning = false;
+
+
+        clearTimeout(pendulumID);
+
+        if (typeof(media_PEND) == "object")   {
+          media_PEND.stop();
+          media_PEND.release();
+        }
+
+        media_PEND = null;
+      }
+
+      function mutePendulum()   {
+  //        alert("In mutePendulum() Pend is Object? " + (typeof(media_PEND) == "object"));
+        if (typeof(media_PEND) == "object")   {
+  //          alert("Setting Pend Volume to 0");
+          media_PEND.setVolume(0.0);
+        }
+      }
+
+      function unmutePendulum()   {
+        if (typeof(media_PEND) == "object")   {
+          media_PEND.setVolume(PEND_VOLUME);
+        }
+      }
+
+      function changePendVolume(dir)   {
+        unmutePendulum();
+
+        if (dir == "+")   {
+          if (PEND_VOLUME < 1.0)   {
+            PEND_VOLUME += 0.1;
+          }
+        }
+        else   {
+          if (PEND_VOLUME > 0.0)   {
+            PEND_VOLUME -= 0.1;
+          }
+        }
+
+        document.getElementById("pendVol").value = PEND_VOLUME;
+        media_PEND.setVolume(PEND_VOLUME);
+
+        localStorage["pend_vol"] = PEND_VOLUME.toString();
+      }
+
+
+
+        function selectBB()   {
+        DING_SELECTION     = "bb";
+        localStorage["ding_selection"] = "bb";
+        var dingerFile = this.root + "audio/" + "bb_quarter.mp3";
 
         if(my_media_WHICH != "NOT_RUNNING")   {
           clearTimeout(Timeouter);
@@ -616,22 +913,123 @@
         my_media_WHICH.play();
         my_media_WHICH.setVolume(MASTER_VOLUME);
 
-        switch (dinger)   {
-          case "bb":  timeoutDelay = 15000;
-                      break;
-          case "cc":  timeoutDelay = 2500;
-                      break;
-          default:    timeoutDelay = 20000;
-        }
-
         Timeouter = setTimeout(function()   {
             my_media_WHICH.stop();
             my_media_WHICH.release();
             my_media_WHICH = "NOT_RUNNING";
-          }, timeoutDelay);
+          }, 15000);
       }
 
+      function selectBG()   {
+        DING_SELECTION     = "bg";
+        localStorage["ding_selection"] = "bg";
+        var dingerFile = this.root + "audio/" + "bg_quarter.mp3";
 
+        if(my_media_WHICH != "NOT_RUNNING")   {
+          clearTimeout(Timeouter);
+          my_media_WHICH.stop();
+          my_media_WHICH.release();
+          my_media_WHICH = "NOT_RUNNING";
+        }
+
+        if(my_media_TEST != "NOT_RUNNING")   {
+          clearTimeout(delayRelease);
+          my_media_TEST.stop();
+          my_media_TEST.release();
+          my_media_TEST = "NOT_RUNNING";
+        }
+
+        my_media_WHICH = new Media(dingerFile,
+           function () { console.log("playAudio():Audio Success"); },
+           ignoreError()
+        );
+
+        my_media_WHICH.play();
+        my_media_WHICH.setVolume(MASTER_VOLUME);
+
+        Timeouter = setTimeout(function()   {
+            my_media_WHICH.release();
+            my_media_WHICH = "NOT_RUNNING";
+          }, 20000);
+      }
+
+      function selectGF()   {
+        DING_SELECTION     = "gf";
+        localStorage["ding_selection"] = "gf";
+        var dingerFile = this.root + "audio/" + "gf_quarter.mp3";
+
+        if(my_media_WHICH != "NOT_RUNNING")   {
+          clearTimeout(Timeouter);
+          my_media_WHICH.stop();
+          my_media_WHICH.release();
+          my_media_WHICH = "NOT_RUNNING";
+        }
+
+        if(my_media_TEST != "NOT_RUNNING")   {
+          clearTimeout(delayRelease);
+          my_media_TEST.stop();
+          my_media_TEST.release();
+          my_media_TEST = "NOT_RUNNING";
+        }
+
+        my_media_WHICH = new Media(dingerFile,
+           function () { console.log("playAudio():Audio Success"); },
+           ignoreError()
+        );
+
+        my_media_WHICH.play();
+        my_media_WHICH.setVolume(MASTER_VOLUME);
+
+        Timeouter = setTimeout(function()   {
+            my_media_WHICH.release();
+            my_media_WHICH = "NOT_RUNNING";
+          }, 20000);
+      }
+
+      function doFPMuteButton()   {
+//        alert ("Value is " + FRONT_PANEL_MUTE);
+
+        if (FRONT_PANEL_MUTE)   {
+          FRONT_PANEL_MUTE = false;
+
+          changeNotification("Off");
+
+          if (OkToRestartPend)   {
+            startPendulum();
+          }
+        }
+        else   {
+          FRONT_PANEL_MUTE = true;
+
+          changeNotification("Mute On");
+
+          if (OkToRestartPend)   {
+            stopPendulum();
+          }
+
+          if (typeof(my_media2) == "object")   {
+            my_media2.stop();
+            my_media2.release();
+          }
+
+          if (typeof(my_media) == "object")   {
+            my_media.stop();
+            my_media.release();
+          }
+
+          if (my_media_TEST != "NOT_RUNNING")   {
+            my_media_TEST.stop();
+            my_media_TEST.release();
+          }
+
+          if (my_media_WHICH != "NOT_RUNNING")   {
+            my_media_WHICH.stop();
+            my_media_WHICH.release();
+          }
+        }
+
+        displayStatusPanel();
+      }
 
 
       function doHourStrikeOption()   {
@@ -662,7 +1060,6 @@
         }
       }
 
-
       function doHalfHourOption()   {
         if (HALF_MUTE)   {
           HALF_MUTE = false;
@@ -676,158 +1073,20 @@
         }
       }
 
-      function loadGlobals()   {
-        var ratio = window.devicePixelRatio || 1;
 
-// Displayable Objects
+    function doOnOrientationChange()   {
+      loadGlobals();
 
-        document.getElementById("t2id").style.display = "inline";
-        document.getElementById("useQT").style.marginTop = "0";
-
-// Device Size and Orientation
-        if (screen.height > screen.width)   {
-          ORIENT = "portrait";
-          ORIENTcode = "P";
-        }
-        else   {
-          ORIENT = "landscape";
-          ORIENTcode = "L";
-          document.getElementById("t2id").style.display = "none";
-          document.getElementById("useQT").style.marginTop = "15px";
-
-        }
-
-        if (screen.height / ratio > 780)   {
-          SIZE = "big";
-          SIZEcode = "B";
-          body.style.fontSize = "22px";
-
-          if (ORIENT == "portrait")   {
-            document.getElementById("setupButtonDiv").style.top = "200px";
-            document.getElementById("setupButtonDiv").style.right = "2px";
-            document.getElementById("panel2").style.top = "395px";
-            document.getElementById("panel2").style.left = "10px";
-          }
-          else   {
-
-            document.getElementById("panel2").style.top = "25px";
-            document.getElementById("panel1").style.top = "0";
-            var panel1w = document.getElementById("panel1").style.width + "px";
-            document.getElementById("panel2").style.left = "410px";
-
-          }
-        }
-        else   {
-          SIZE = "small";
-          SIZEcode = "S";
-          body.style.fontSize = "12px";
-
-          if (ORIENT == "portrait")   {
-            document.getElementById("setupButtonDiv").style.top = "280px";
-            document.getElementById("setupButtonDiv").style.right = "0";
-            document.getElementById("panel1").style.top = "10px";
-            document.getElementById("panel2").style.left =  "10px";
-            document.getElementById("panel2").style.top = "255px";
-          }
-          else   {
-            document.getElementById("panel2").style.left = "270px";
-            document.getElementById("panel2").style.top = "25px";
-            document.getElementById("panel1").style.top = "0";
-            document.getElementById("setupButtonDiv").style.top = "220px";
-            document.getElementById("setupButtonDiv").style.right = "0";
-          }
-
-        }
-
+      if (localStorage["theme"] == "BigBen")   {
+        doBigBenTheme();
+      }
+      else   {
+        doLondonTheme();
       }
 
-      function doLondonTheme()   {
-        localStorage["theme"] = "London";
+      displayStatusPanel();
+    }
 
-        D_MyCanvas.style.display = "none";
-//        D_FPMuteButton.style.display = "none";
-//        D_helpIcon.style.display = "none";
-//        D_minimage.style.display = "none";
-//        D_ximage.style.display = "none";
-
-        D_clock.style.display = "block";
-
-        D_setupButtonDiv.style.marginTop = "-70px";
-
-        body.style.backgroundSize = "cover";
-
-        if (ORIENT == "portrait")   {
-          body.style.backgroundImage = 'url("img/bgLondonP.png")';
-
-          if (SIZE == "small")   {
-            D_setupButtonDiv.style.marginTop = "-70px";
-            D_clock.style.top = "340px";
-            D_clock.style.marginLeft = "0px";
-          }
-          else   {
-            D_setupButtonDiv.style.marginTop = "-70px";
-            D_clock.style.top = "251px";
-            D_clock.style.marginLeft = "0px";
-          }
-        }
-        else   {
-          body.style.backgroundImage = 'url("img/bgLondonL.png")';
-
-          if (SIZE == "small")   {
-            D_setupButtonDiv.style.marginTop = "-15px";
-            D_clock.style.top = "85px";
-            D_clock.style.marginLeft = "-100px";
-          }
-          else   {
-            D_setupButtonDiv.style.marginTop = "-15px";
-            D_clock.style.top = "250px";
-          }
-
-        }
-
-      }
-
-      function doBigBenTheme()   {
-        localStorage["theme"] = "BigBen";
-
-        D_clock.style.display = "none";
-        body.style.backgroundSize = "auto";
-
-        if (ORIENT == "portrait")   {
-          if (SIZE == "small")   {
-            body.style.backgroundImage = 'url("img/bgBenSP.jpg")';
-          }
-          else   {
-            body.style.backgroundImage = 'url("img/bgBenBP.jpg")';
-          }
-        }
-        else   {
-          if (SIZE == "small")   {
-            body.style.backgroundImage = 'url("img/bgBenSL.jpg")';
-          }
-          else   {
-            body.style.backgroundImage = 'url("img/bgBenBL.jpg")';
-          }
-        }
-
-        D_setupButtonDiv.style.marginTop = "0px";
-        D_MyCanvas.style.display = "block";
-
-      }
-
-
-      function doOnOrientationChange()   {
-        loadGlobals();
-
-        if (localStorage["theme"] == "BigBen")   {
-          doBigBenTheme();
-        }
-        else   {
-          doLondonTheme();
-        }
-
-        displayStatusPanel();
-      }
 
       window.addEventListener('orientationchange', doOnOrientationChange);
 
@@ -841,6 +1100,7 @@
 //////////////////////////////////////////////////////
 
       function starter()   {
+        START_TIME = new Date().getTime();
 
         D_MyCanvas = document.getElementById("myCanvas");
         D_FPMuteButton = document.getElementById("FPMuteButton");
@@ -852,6 +1112,7 @@
 
 
         loadGlobals();
+//        doScreenSpecs();
 
         if (localStorage["theme"] == "BigBen")   {
           document.getElementById("big_ben_but").checked = true;
@@ -871,15 +1132,13 @@
         var ratio = window.devicePixelRatio || 1;
         var h = screen.height;
 
-        if (h / ratio > 780)   {
+        if (SIZE == "big")   {
           body.style.fontSize = "22px";
-          SIZE = "big";
           document.getElementById("myCanvas").style.width = "620px";
           document.getElementById("myCanvas").style.height = "642px";
         }
         else   {
           body.style.fontSize = "12px";
-          SIZE = "small";
         }
 
 
@@ -910,9 +1169,13 @@
           document.getElementById("big_ben_but").style.height = "35px";
           document.getElementById("london_but").style.width = "35px";
           document.getElementById("london_but").style.height = "35px";
-          document.getElementById("setup_butt").style.width = "80px";
-          document.getElementById("setup_butt").style.height = "80px";
-          document.getElementById("setup_butt").style.marginTop = "360px";
+          document.getElementById("setup_butt").style.width = "95px";
+          document.getElementById("setup_butt").style.height = "95px";
+
+//          document.getElementById("setup_butt").style.marginTop = "360px";
+          document.getElementById("setup_butt").style.marginTop = "0px";
+
+
           document.getElementById("bottomNavBar").style.height = "75px";
           document.getElementById("minimage").style.marginRight = "120px";
           document.getElementById("panel1Table").style.fontSize = "20px";
@@ -921,16 +1184,20 @@
           document.getElementById("FPMuteButton").style.width = "100px";
           document.getElementById("FPMuteButton").style.height = "100px";
           document.getElementById("FPMuteButton").style.marginLeft = "50px";
+          document.getElementById("setupButtonDiv").style.zIndex = "0";
 
-          if (screen.height <= screen.width) {
+//          if (screen.height <= screen.width) {
 //            body.style.backgroundImage = 'url(img/bg_lscape_lg.jpg)';
+          if (ORIENT == 'landscape')   {
             document.getElementById("setupButtonDiv").style.position = "relative";
-            document.getElementById("setupButtonDiv").style.marginTop = "400px";
+//            document.getElementById("setupButtonDiv").style.marginTop = "400px";
+            document.getElementById("setupButtonDiv").style.marginTop = "0px";
           }
           else   {
 //            body.style.backgroundImage = 'url(img/bg_pt_lg.jpg)';
             document.getElementById("setupButtonDiv").style.position = "relative";
-            document.getElementById("setupButtonDiv").style.marginTop = "600px";
+//            document.getElementById("setupButtonDiv").style.marginTop = "600px";
+            document.getElementById("setupButtonDiv").style.marginTop = "0px";
           }
         }
         else   {
@@ -946,7 +1213,7 @@
           document.getElementById("FPMuteButton").style.right = "2px";
           document.getElementById("FPMuteButton").style.top = "0";
 
-          if (screen.height <= screen.width) {
+          if (ORIENT == "landscape") {
 //            body.style.backgroundImage = 'url(img/bg_lscape_sm.jpg)';
             document.getElementById("setupButtonDiv").style.position = "fixed";
             document.getElementById("setupButtonDiv").style.top = "220px";
@@ -969,28 +1236,20 @@
 
         processSavedSettings();
 
-        doOnOrientationChange();
-
-        doQuietTimeOption();
-
-        document.getElementById("pendVol").value = parseFloat(localStorage["pend_vol"]);
-
-        document.getElementById("pend_but_on").disabled = false;
-        document.getElementById("pend_but_off").disabled = false;
-
-//       cordova.plugins.backgroundMode.setEnabled(true);
-
-//        alert("backgroundMode");
-//        alert("BGMode: " + cordova.plugins.backgroundMode);
-cordova.plugins.backgroundMode.disable();
+        window.plugins.insomnia.keepAwake();
 
         cordova.plugins.backgroundMode.on('activate', function() {
           cordova.plugins.backgroundMode.disableWebViewOptimizations();
         });
 
+        if (! cordova.plugins.backgroundMode.isEnabled())   {
+          cordova.plugins.backgroundMode.setEnabled(true);
+        }
+
+
         cordova.plugins.backgroundMode.setDefaults({
-          title: "Big Ben Bonger PLUS Background",
-          text: "[Tap the Big Ben Bonger PLUS icon to Restore]",
+          title: "Big Ben Bonger Background",
+          text: backgroundNotificationText,
           resume: false,
           hidden: false
         });
@@ -999,24 +1258,17 @@ cordova.plugins.backgroundMode.disable();
           switch (state) {
             case "RINGING":
                 MASTER_MUTE = true;
-                if (pendulumRunning)   {
-                  mutePendulum();
-                }
                 break;
             case "OFFHOOK":
                 MASTER_MUTE = true;
-                if (pendulumRunning)   {
-                  mutePendulum();
-                }
                 break;
             case "IDLE":
                 MASTER_MUTE = false;
-                unmutePendulum();
                 break;
           }
         });
 
-        document.addEventListener("backbutton", function (e) {
+        document.addEventListener("backbutton", function (e) {               // Disable Back Button
             e.preventDefault();
             var q = confirm(quitConfirmText);
             if (q == true)   {
@@ -1028,46 +1280,58 @@ cordova.plugins.backgroundMode.disable();
           },
         false );
 
-        if (SIZE == "big")   {
-          document.getElementById("sstart").style.fontSize = "22px";
-          document.getElementById("eend").style.fontSize = "22px";
-        }
-
-
-         displayStatusPanel();
 
       }
 
-  //    document.addEventListener("resume", onResume, false);
+      document.addEventListener("resume", onResume, false);
 
       function onResume()   {
-        cordova.plugins.backgroundMode.disable();
+//        var resumeTime = new Date().getTime();
+//        if ((START_TIME == 0) || (resumeTime - START_TIME < 1500))   {
+//          navigator.app.exitApp();
+//        }
 
-       navigator.app.exitApp();
+        cordova.plugins.backgroundMode.moveToForeground();
 
-//        cordova.plugins.backgroundMode.moveToForeground();
-//
-//        goToForeground();
-//        window.plugins.insomnia.keepAwake();
-//        clearTimeout(loopThread);
-//        init();
+        window.plugins.insomnia.keepAwake();
+        clearTimeout(loopThread);
+        init();
+      }
+
+      document.addEventListener("pause", onPause, false);
+
+      function onPause()   {
+//        var y = "";
+//        if (cordova.plugins.backgroundMode.isActive())   {
+//          y = " and IN BACKGROUND";
+//        }
+//        else   {
+//          y = " and in the FOREGROUND";
+//        }
+//        alert("I am PAUSED" + y);
+
+//        if (cordova.plugins.backgroundMode.isActive())   {
+//          navigator.app.exitApp();
+//        }
       }
 
       function doExit()   {
         clearTimeout(loopThread);
+        if (! DUP_EXIT)   {
+          localStorage["locker"] = 0;
+        }
         window.plugins.insomnia.allowSleepAgain();
         navigator.app.exitApp();
       }
 
       window.addEventListener("beforeunload", function (event) {
 //      event.preventDefault();
+        if (! DUP_EXIT)   {
+          localStorage["locker"] = 0;
+        }
       });
 
-
-
       function changeVolume(dir)   {
-        var dingerFile;
-
         if(my_media_WHICH != "NOT_RUNNING")   {
           clearTimeout(Timeouter);
           my_media_WHICH.stop();
@@ -1078,12 +1342,7 @@ cordova.plugins.backgroundMode.disable();
         var pBar = document.getElementById("prog");
 
         if(my_media_TEST == "NOT_RUNNING")   {
-          dingerFile = this.root + "audio/" + THREE_QUARTER_DING;
-
-          if (DING_SELECTION == "cc")   {
-            dingerFile = this.root + "audio/" + "cc_4.mp3";
-          }
-
+          var dingerFile = this.root + "audio/" + THREE_QUARTER_DING;
           my_media_TEST = new Media(dingerFile,
                 function () { console.log("playAudio():Audio Success"); },
                 ignoreError()
@@ -1094,15 +1353,6 @@ cordova.plugins.backgroundMode.disable();
           var delay;
           if (DING_SELECTION == "bb")   {
             delay = 20000;
-          }
-          else if (DING_SELECTION == "cc")   {
-            delay = 5000;
-          }
-          else if (DING_SELECTION == "tr")   {
-            delay = 11000;
-          }
-          else if (DING_SELECTION == "ec")   {
-            delay = 14000;
           }
           else   {
             delay = 20000;
@@ -1136,17 +1386,11 @@ cordova.plugins.backgroundMode.disable();
 
       function doGoToBG()   {
         window.plugins.insomnia.allowSleepAgain();
-        cordova.plugins.backgroundMode.enable();
-//FIXIT
-        cordova.plugins.backgroundMode.setDefaults({
-          title: "Big Ben Bonger PLUS Background",
-          text: "[Tap the Big Ben Bonger PLUS icon to Restore]",
-          resume: false,
-          hidden: false
-        });
+        cordova.plugins.backgroundMode.disableWebViewOptimizations();
 
+        firstTimeInBG = true;
+        cordova.plugins.backgroundMode.configure({ text: notificationPrefixText + backgroundNotificationText, resume: false  });
         cordova.plugins.backgroundMode.moveToBackground();
-
       }
 
       function doHelp()   {
@@ -1254,7 +1498,7 @@ cordova.plugins.backgroundMode.disable();
 //  Volume
 //
         if ((localStorage["volume"] == "undefined") || (localStorage["volume"] == "") || (localStorage["volume"] == null))   {
-          localStorage["volume"] = "0.3";
+          localStorage["volume"] = "0.4";
         }
 
         if (parseFloat(localStorage["volume"]) < 0.1)   {
@@ -1346,372 +1590,65 @@ cordova.plugins.backgroundMode.disable();
       }
 
 
+      function doQuietTimeOption()   {
+        if (document.getElementById("useQT").checked == true)   {
+          localStorage["useqt"] = "checked";
 
-      function doPhoneMute()   {
-        if (document.getElementById("no_phone_mute").checked == true)   {
-          localStorage["no_phone_mute"] = "checked";
-        }
-        else   {
-          localStorage["no_phone_mute"] = "no";
-        }
-      }
+          if (isQuietTime())   {
+            changeNotification("Quiet Time");
 
-      function makeTimeSelect(name, stylestr, preselect)   {
-        var outStr = "";
-        var tmp = "";
-        var displayMin = "";
-        var displayHr = "";
+            document.getElementById("pend_but_on").disabled = true;
+            document.getElementById("pend_but_off").disabled = true;
 
-        preselect = parseInt(preselect);
+            if (localStorage["pend_status"] == "checked")   {
+              if (pendulumRunning)   {
+                pendulumRunning = false;
 
-        outStr += '<select name="' + name + '" id="' + name + '"';
+                clearTimeout(pendulumID);
 
-        if (stylestr == "" || stylestr == null || stylestr == "undefined")   {
-          outStr += ' onChange="doQuietTimeOption()">\n';
-        }
-        else   {
-          outStr += ' style="' + stylestr + '" onChange="doQuietTimeOption()">\n';
-        }
-
-        for (var hr = 0; hr < 24; ++hr)   {
-          for (var min = 0; min < 60; min += 15)   {
-            tmp = (parseInt(hr) * 100) + parseInt(min);
-
-            if (min < 15)   {
-              displayMin = "0" + min;
-            }
-            else   {
-              displayMin = min;
-            }
-
-            if (do24Hr)   {
-              if (hr < 10)   {
-                displayHr = "0" + hr;
-              }
-              else   {
-                displayHr = hr;
-              }
-
-              if (name == "eend")   {
-                var xhr = hr;
-                if (min == 0)   {
-                  if (xhr == 0)   {
-                    xhr = 24;
-                  }
-
-                  --xhr;
-                  tmp = (parseInt(xhr) * 100) + 59;
+                if (typeof(media_PEND) == "object")   {
+                  media_PEND.stop();
+                  media_PEND.release();
                 }
-                else   {
-                  var xmins = mins;
-                  --xmins;
-                  tmp = (parseInt(xhr) * 100) + xmins;
-                }
+
+                media_PEND = null;
               }
-//              else   {
-//                var xmin = min;
-//                ++xmin;
-//                tmp = (hr * 100) + xmin;
-//              }
-
-              outStr += '<option value="' + tmp + '"';
-
-              if (preselect == tmp)   {
-                outStr += " selected";
-              }
-
-              outStr += ">" + displayHr + ":" + displayMin + "</option>\n";
             }
-            else   {
-              var ampm = "AM";
-
-              if (hr == 0)   {
-                displayHr = "12";
-              }
-              else if (hr < 12)   {
-                displayHr = hr;
-              }
-              else if (hr == 12)   {
-                displayHr = hr;
-                ampm = "PM";
-              }
-              else   {
-                displayHr = hr - 12;
-                ampm = "PM";
-              }
-
-              if (name == "eend")   {
-                var xhr = hr;
-
-                if (min == 0)   {
-                  if (xhr == 0)   {
-                    xhr = 24;
-                  }
-
-                  --xhr;
-                  tmp = (parseInt(xhr) * 100) + 59;
-                }
-                else   {
-                  var xmins = min;
-                  --xmins;
-                  tmp = (parseInt(xhr) * 100) + xmins;
-                }
-              }
-//              else   {
-//                var xmin = min;
-//                ++xmin;
-//                tmp = (hr * 100) + xmin;
-//              }
-
-              outStr += '<option value="' + tmp + '"';
-
-              if (preselect == tmp)   {
-                outStr += " selected";
-              }
-
-              outStr += ">" + displayHr + ":" + displayMin + ampm + "</option>\n";
-            }
-          }
-        }
-        outStr += "</select>\n";
-//        alert(outStr);
-        return outStr;
-      }
-
-
-      function timeToInt(time_char)   {
-        var temp = time_char.split(":");
-        var result = (parseInt(temp[0]) * 100) + parseInt(temp[1]);
-        return result;
-      }
-
-      function setLanguage()   {
-
-        localStorage["language"] = "";
-
-        navigator.globalization.getPreferredLanguage( function (language)   {
-          myLang = language.value.substring(0, 2);
-          localStorage["language"] = myLang;
-
-          if (localStorage["language"] == "pt")   {
-            do24Hr = true;
-            mantleClockText = "RELÓGIO MANTEL";
-            grandfatherClockText = "RELÓGIO AVÔ";
-            document.getElementById("bongDuringCall").innerHTML = "&nbsp;BONG DURANTE O CHAMADO DE TELEFONE";
-            document.getElementById("15_45_Label").innerHTML = "&nbsp;:15 e :45 CHIMES";
-            document.getElementById("Half_Label").innerHTML = "&nbsp;MEIA HORA";
-            document.getElementById("Hour_Label").innerHTML = "&nbsp;CHIMES HORAIS";
-            helpText = "Deixe o Big Ben V1.3 ajudá-lo quando você não quer perder o tempo - perfeito ao ler, trabalhar, estudar ou mesmo fazer compras - um lembrete sutil a cada 15 minutos.\n\n";
-            helpText += "Toque no botão [<OPÇÕES] para ajustar as configurações. Suas configurações são sempre salvas. Quando terminar, toque o botão [OPÇÕES>] novamente. Você pode deixar Ben assim e ele irá exibir o tempo e o bongo para você o dia todo.\n\n";
-            helpText += "Mas provavelmente você quer fazer outras coisas com seu telefone ou tablet. Você pode minimizar o Big Ben tocando no ícone Minimizar azul quadrado na parte inferior da tela. Big Ben continuará a bong até você sair do aplicativo.\n\n";
-            helpText += "Para voltar a maximizar o Bonger, toque o ícone Big Ben. Você pode então sair do aplicativo usando o ícone vermelho \"X\" no canto inferior direito. Obrigado por escolher o Big Ben Bonger.\n\n";
-            helpText += "Deus salve a rainha.\n\n\numikeapps@outlook.com";
-            helpTextTitle = "Bem-vindo ao Big Ben Bonger";
-            helpDismissText = "DISPENSAR";
-            quitConfirmText = "Você quer sair do Big Ben Bonger?";
-            backgroundNotificationText = "Toque no ícone Big Ben para restaurar";
-            optionsInText = "OPÇÕES >";
-            optionsOutText = "< OPÇÕES";
-          }
-          else if (localStorage["language"] == "fr")   {
-            do24Hr = true;
-            mantleClockText = "HORLOGE MANTELLE";
-            grandfatherClockText = "HORLOGE GRAND-PÈRE";
-            document.getElementById("bongDuringCall").innerHTML = " BONG DURANT LE TÉLÉPHONE";
-            document.getElementById("15_45_Label").innerHTML = "&nbsp;:15 &amp; :45 CHIMES";
-            document.getElementById("Half_Label").innerHTML = "&nbsp;DEMI-PASSÉ";
-            document.getElementById("Hour_Label").innerHTML = "&nbsp;CHIMES HORAIRES";
-            helpText = "Laissez Big Ben V1.3 vous aider lorsque vous ne voulez pas perdre la trace du temps -- parfait lors de la lecture, du travail, des études ou même des achats -- un rappel subtil toutes les 15 minutes.\n\n";
-            helpText += "Appuyez sur le bouton [< OPTIONS] pour ajuster les paramètres. Vos paramètres sont toujours sauvegardés. Une fois terminé, appuyez de nouveau sur le bouton [OPTIONS >]. Vous pouvez laisser Ben comme ça et il vous montrera le temps et le bong pour vous toute la journée.\n\n";
-            helpText += "Mais vous voudrez probablement faire d'autres choses avec votre téléphone ou votre tablette. Vous pouvez minimiser Big Ben en appuyant sur l'icône Minimiser bleu carré en bas de l'écran. Big Ben continuera à bong jusqu'à ce que vous quittez l'application.\n\n";
-            helpText += "Pour re-maximiser le Bonger, appuyez sur l'icône Big Ben. Vous pouvez ensuite quitter l'application à l'aide de l'icône rouge \"X\" dans le coin inférieur droit. Merci d'avoir choisi le Big Ben Bonger.\n\n";
-            helpText += "Dieu sauve la reine.\n\n\numikeapps@outlook.com";
-            helpTextTitle = "Bienvenue au Big Ben Bonger";
-            helpDismissText ="RENVOYER";
-            quitConfirmText = "Voulez-vous quitter Big Ben Bonger?";
-            backgroundNotificationText = "Appuyez sur l'icône Big Ben pour restaurer";
-            optionsInText = "OPTIONS >";
-            optionsOutText = "< OPTIONS";
-          }
-          else if (localStorage["language"] == "de")   {
-            do24Hr = true;
-            mantleClockText = "UHR MANTEL";
-            grandfatherClockText = "UHR GROßVATER";
-            document.getElementById("bongDuringCall").innerHTML = " BONG WÄHREND DER TELEFONATE";
-            document.getElementById("15_45_Label").innerHTML = "&nbsp;:15 &amp; :45 GLOCKENSPIEL";
-            document.getElementById("Half_Label").innerHTML = "&nbsp;HALBE STUNDE GLOCKENSPIEL";
-            document.getElementById("Hour_Label").innerHTML = "&nbsp;STÜNDLICH GLOCKENSPIEL";
-            helpText = "Lassen Sie Big Ben V1.3 Ihnen helfen, wenn Sie nicht wollen, Zeit zu verlieren - ideal zum Lesen, Arbeiten, Studieren oder sogar beim Einkaufen - Eine subtile Erinnerung alle 15 Minuten.\n\n";
-            helpText += "Tippen Sie auf die Schaltfläche [<OPTIONS], um die Einstellungen anzupassen. Ihre Einstellungen werden immer gespeichert. Wenn Sie fertig sind, tippen Sie erneut auf die Schaltfläche [OPTIONEN>]. Du kannst Ben so verlassen und er wird die Zeit und die Bong für dich den ganzen Tag zeigen.\n\n";
-            helpText += "Aber am ehesten wirst du andere Dinge mit deinem Handy oder Tablet machen wollen. Sie können Big Ben minimieren, indem Sie auf das quadratische blaue Minimize Icon am unteren Rand des Bildschirms klopfen. Big Ben wird weiter bong, bis du die App beendest.\n\n";
-            helpText += "Um den Bonger neu zu maximieren, tippe das Big Ben Symbol. Sie können dann die App mit dem roten \"X\" Icon in der rechten unteren Ecke verlassen. Vielen Dank für die Wahl der Big Ben Bonger.\n\n";
-            helpText += "Gott schütze die Königin.\n\n\numikeapps@outlook.com";
-            helpTextTitle = "Willkommen bei den Big Ben Bonger";
-            helpDismissText ="SCHLIEßEB";
-            quitConfirmText = "Willst du Big Ben Bonger verlassen?";
-            backgroundNotificationText = "Tippen Sie auf das Big Ben Icon, um es wiederherzustellen";
-            optionsInText = "OPTIONEN >";
-            optionsOutText = "< OPTIONEN";
-          }
-          else if (localStorage["language"] == "es")   {
-            do24Hr = false;
-            mantleClockText = "RELOJ ANTIGUO";
-            grandfatherClockText = "RELOJ DE ABUELO";
-            document.getElementById("bongDuringCall").innerHTML = " BONG DURANTE PHONECALLS";
-            document.getElementById("15_45_Label").innerHTML = "&nbsp;:15 &amp; :45 CHIMES";
-            document.getElementById("Half_Label").innerHTML = "&nbsp;CHIMES DE LA MEDIA HORA";
-            document.getElementById("Hour_Label").innerHTML = "&nbsp;CADA HORA CHIMES";
-            helpText = "Deje que Big Ben V1.3 le ayude cuando no quiera perder la noción del tiempo. Perfecto para leer, trabajar, estudiar o incluso ir de compras. Un sutil recordatorio cada 15 minutos.\n\n";
-            helpText += "Pulse el botón [< OPTIONS] para ajustar la configuración. Su configuración siempre se guarda. Cuando termine, vuelva a pulsar el botón [OPTIONS >]. Puede dejar a Ben así y mostrará el tiempo y el bong para usted todo el día.\n\n";
-            helpText += "Pero lo más probable es que usted desee hacer otras cosas con su teléfono o tableta. Usted puede minimizar Big Ben pulsando en el icono del cuadrado azul de minimizar en la parte inferior de la pantalla. Big Ben continuará haciendo bong hasta que usted salga de la aplicación.\n\n";
-            helpText += "Para volver a maximizar el Bonger, pulse en el icono Big Ben. Entonces usted puede salir de la aplicación usando la \"X\" del icono rojo en la esquina inferior derecha. Gracias por elegir Big Ben Bonger.\n\n";
-            helpText += "Dios salve a la reina.\n\n\numikeapps@outlook.com";
-            helpTextTitle = "Bienvenido al Big Ben Bonger";
-            helpDismissText ="DESPEDIR";
-            quitConfirmText = "¿Quieres salir de Big Ben Bonger?";
-            backgroundNotificationText = "Toque el icono de Big Ben para restaurar";
-            optionsInText = "OPCIONES >";
-            optionsOutText = "< OPCIONES";
           }
           else   {
-            mantleClockText = "MANTLE CLOCK";
-            grandfatherClockText = "GRANDFATHER CLOCK";
-            document.getElementById("bongDuringCall").innerHTML = "&nbsp;BONG DURING PHONECALLS";
-            document.getElementById("15_45_Label").innerHTML = "&nbsp;:15 &amp; :45 CHIMES";
-            document.getElementById("Half_Label").innerHTML = "&nbsp;HALF HOUR CHIMES";
-            document.getElementById("Hour_Label").innerHTML = "&nbsp;ON-THE-HOUR STRIKES";
-            helpText = "Let Big Ben V1.351 help you when you don't want to lose track of time -- perfect when reading, working, studying or even shopping -- a subtle reminder every 15 minutes.\n\n";
-            helpText += "Tap the [< OPTIONS] button to adjust settings. Your settings are always saved.  When finished, tap the [OPTIONS >] button again.  You can leave Ben like this and he'll display the time and bong for you all day.\n\n";
-            helpText += "But most likely you'll want to do other things with your phone or tablet. You can minimize Big Ben by tapping the square blue Minimize Icon at the bottom of the screen. Big Ben will continue to bong until you exit the app.\n\n";
-            helpText += "To re-maximize the Bonger, tap the Big Ben icon. You can then exit the app using the red \"X\" Icon in the bottom right corner. Thank you for choosing the Big Ben Bonger.\n\n";
-            helpText += "God Save The Queen.\n\n\numikeapps@outlook.com";
-            helpTextTitle = "Big Ben Bonger PLUS";
-            helpDismissText = "DISMISS";
-            quitConfirmText = "Do you want to exit Big Ben Bonger?";
-
-            backgroundNotificationText = "[Tap HERE to Restore]";
-//          backgroundNotificationText = "[Tap here to Restore]";
-
-            optionsInText = "OPTIONS >";
-            optionsOutText = "< OPTIONS";
-            quietTimeText1 = "QUIET TIME";
-            quietTimeText2 = "QUIET<br />TIME";
-            muteText1 = "MUTE ON";
-            muteText2 = "MUTE<br />ON";
-            noPendulumAdjustText = "You cannot turn the Pendulum on or off during Quiet Time.\n\nTo make adjustments to the Pendulum, simply turn off Quiet Time and try again.";
-            cuckooClockText = "CUCKOO CLOCK";
-            electronicClockText = "ELECTRONIC CLOCK";
-            shipBellsClockText = "SHIP BELLS";
-            trinityText = "TRINITY CHIMES";
-
-            document.getElementById("useQTLabel").innerHTML = "<span style=\"color: #0000aa; font-weight: bold\">&nbsp;Use QUIET TIME</span>";
-            document.getElementById("themeLabel").innerHTML = "<span style=\"color: #0000aa; font-weight: bold\">&nbsp;THEME:</span>";
-            document.getElementById("SstartLabel").innerHTML = "Last Bong";
-            document.getElementById("EendLabel").innerHTML = "First Bong";
-            document.getElementById("usePendulumLabel").innerHTML = "<span style=\"color: #0000aa; font-weight: bold\">&nbsp;PENDULUM:&nbsp;&nbsp;</span>";
-
-
-            if (SIZE == "big")   {
-              document.getElementById("startSelectDiv").innerHTML = makeTimeSelect("sstart", "margin-left: 55px; margin-top: 4px;", localStorage["sstart"]);
-            }
-            else   {
-              document.getElementById("startSelectDiv").innerHTML = makeTimeSelect("sstart", "margin-left: 32px; margin-top: 4px;", localStorage["sstart"]);
+            if (notificationPrefixText == quietTimeTextNotification)   {
+              changeNotification("Off");
             }
 
-            document.getElementById("endSelectDiv").innerHTML = makeTimeSelect("eend", "margin-left: 40px;", localStorage["eend"]);
-            document.getElementById("autoStartTextDiv").innerHTML = "AUTO-START WHEN PHONE STARTS";
+            document.getElementById("pend_but_on").disabled = false;
+            document.getElementById("pend_but_off").disabled = false;
+
+            if (localStorage["pend_status"] == "checked")   {
+              if (! pendulumRunning)   {
+                startPendulum();
+                pendulumRunning = true;
+              }
+            }
+          }
+        }
+        else   {
+          if (notificationPrefixText == quietTimeTextNotification)   {
+            changeNotification("Off");
           }
 
+          document.getElementById("pend_but_on").disabled = false;
+          document.getElementById("pend_but_off").disabled = false;
 
-//
-//  Add Select options
-//
-          var x = document.getElementById("clocker");
-
-          var b = document.createElement("option");
-          b.text = "BIG BEN";
-          b.value = "bb";
-
-          if ((localStorage["ding_selection"] != "bg") && (localStorage["ding_selection"] != "gf") && (localStorage["ding_selection"] != "cc") && (localStorage["ding_selection"] != "tr") && (localStorage["ding_selection"] != "ec"))  {
-            b.selected = true;
+          localStorage["useqt"] = "no";
+          if ((localStorage["pend_status"] == "checked") && (! isQuietTime()))   {
+            if (! pendulumRunning)   {
+              startPendulum();
+              pendulumRunning = true;
+            }
           }
+        }
 
-          x.options.add(b, 0);
-
-          var c = document.createElement("option");
-          c.text = mantleClockText;
-          c.value = "bg";
-
-          if (localStorage["ding_selection"] == "bg")   {
-            c.selected = true;
-          }
-
-          x.options.add(c, 1);
-
-          var d = document.createElement("option");
-          d.text = grandfatherClockText;
-          d.value = "gf";
-
-          if (localStorage["ding_selection"] == "gf")   {
-            d.selected = true;
-          }
-
-          x.options.add(d, 2);
-
-          var e = document.createElement("option");
-          e.text = "ELECTRONIC CLOCK";
-//          e.text = cuckooClockText;
-          e.value = "ec";
-
-          if (localStorage["ding_selection"] == "ec")   {
-            e.selected = true;
-          }
-
-          x.options.add(e, 3);
-
-          var f = document.createElement("option");
-          f.text = trinityText;
-          f.value = "tr";
-
-          if (localStorage["ding_selection"] == "tr")   {
-            f.selected = true;
-          }
-
-          x.options.add(f, 4);
-
-          var e = document.createElement("option");
-          e.text = cuckooClockText;
-          e.value = "cc";
-
-          if (localStorage["ding_selection"] == "cc")   {
-            e.selected = true;
-          }
-
-          x.options.add(e, 5);
-
-          initializeCanvas();
-          init();
-        },
-        ignoreError2() );
-
-      }
-
-      function changeClock()   {
-        var xx = document.getElementById("clocker");
-        var theValue = xx.options[xx.selectedIndex].value;
-        localStorage["ding_selection"] = theValue;
-
-//        alert("The value of your clock is " + theValue);
-
-        selectClock(theValue);
-
-        QUARTER_DING = localStorage["ding_selection"] + "_quarter.mp3";
-        HALF_DING  = localStorage["ding_selection"] + "_half.mp3";
-        THREE_QUARTER_DING = localStorage["ding_selection"] + "_three-quarter.mp3";
-        HOUR_DING = localStorage["ding_selection"] + "_hour.mp3";
-        DING_SELECTION = localStorage["ding_selection"];
-
-
+        displayStatusPanel();
       }
 
       function displayStatusPanel()   {
@@ -1803,225 +1740,573 @@ cordova.plugins.backgroundMode.disable();
         }
       }
 
-      function doFPMuteButton()   {
-//        alert ("Value is " + FRONT_PANEL_MUTE);
 
-        if (FRONT_PANEL_MUTE)   {
-          FRONT_PANEL_MUTE = false;
 
-          if (localStorage["pend_status"] == "checked")   {
-            unmutePendulum();
+      function setLanguage()   {
+
+        localStorage["language"] = "";
+
+        navigator.globalization.getPreferredLanguage( function (language)   {
+          myLang = language.value.substring(0, 2);
+          localStorage["language"] = myLang;
+//          alert(myLang);
+
+          if (localStorage["language"] == "pt")   {
+            do24Hr = true;
+            mantleClockText = "RELÓGIO MANTEL";
+            grandfatherClockText = "RELÓGIO AVÔ";
+            document.getElementById("bongDuringCall").innerHTML = "&nbsp;BONG DURANTE O CHAMADO DE TELEFONE";
+            document.getElementById("15_45_Label").innerHTML = "&nbsp;:15 e :45 CHIMES";
+            document.getElementById("Half_Label").innerHTML = "&nbsp;MEIA HORA";
+            document.getElementById("Hour_Label").innerHTML = "&nbsp;CHIMES HORAIS";
+            helpText = "Big Ben PLUS vai ajudar você a manter o controle de tempo..--um lembrete subtil a cada 15 minutos.\n\n";
+            helpText += "Tocando no ícone de ferramenta chave, aparecerá o Menu de configurações. Escolha de 6 relógios diferentes, com ou sem pêndulo. Todas as configurações são fáceis de compreender.\n\n";
+            helpText += "Embora ter o Big Ben no seu bolso seja divertido, você provavelmente desejará fazer outras coisas com seu telefone ou tablet. Você pode minimizar o Big Ben tocando no ícone quadrado Minimizar na parte inferior da tela. Big Ben continuará a bongar até sair do aplicativo.\n\n";
+            helpText += "Para voltar a maximizar o Bonger, toque no ícone do Big Ben. Você pode sair do aplicativo usando o ícone \"X \" vermelho no canto inferior direito. Nós apreciamos sua escolha do Big Ben Bonger PLUS.\n\n";
+            helpText += "Deus salve a rainha.\n\n\numikeapps@outlook.com";
+            helpTextTitle = "Bem-vindo ao Big Ben Bonger PLUS";
+            helpDismissText = "DISPENSAR";
+            quitConfirmText = "Você quer sair do Big Ben Bonger?";
+            backgroundNotificationText = "Toque no ícone Big Ben PLUS para restaurar";
+            optionsInText = "OPÇÕES >";
+            optionsOutText = "< OPÇÕES";
+
+            quietTimeText1 = "TEMPO QUIETO";
+            quietTimeText2 = "TEMPO<br /> QUIETO";
+            muteText1 = "MUTE ON";
+            muteText2 = "MUTE<br />ON";
+
+            cuckooClockText = "RELÓGIO DE CUCO";
+            electronicClockText = "RELÓGIO ELETRÔNICO";
+            trinityText = "TRINITY CHIMES";
+
+            document.getElementById("useQTLabel").innerHTML = "<span style=\"color: #0000aa; font-weight: bold\">&nbsp;Usar TEMPO QUIETO:</span>";
+            document.getElementById("themeLabel").innerHTML = "<span style=\"color: #0000aa; font-weight: bold\">&nbsp;TEMA:</span>";
+            document.getElementById("SstartLabel").innerHTML = "Último Bong";
+            document.getElementById("EendLabel").innerHTML = "Primeiro Bong";
+            document.getElementById("usePendulumLabel").innerHTML = "<span style=\"color: #0000aa; font-weight: bold\">&nbsp;PÊNDULO:&nbsp;&nbsp;</span>";
+            document.getElementById("autoStartTextDiv").innerHTML = "AUTO-START QUANDO O TELEFONE INICIA";
           }
-        }
-        else   {
-          FRONT_PANEL_MUTE = true;
+          else if (localStorage["language"] == "fr")   {
+            do24Hr = true;
+            mantleClockText = "HORLOGE MANTELLE";
+            grandfatherClockText = "HORLOGE GRAND-PÈRE";
+            document.getElementById("bongDuringCall").innerHTML = " BONG DURANT LE TÉLÉPHONE<br /><br />";
+            document.getElementById("15_45_Label").innerHTML = "&nbsp;:15 &amp; :45 CHIMES";
+            document.getElementById("Half_Label").innerHTML = "&nbsp;DEMI-PASSÉ";
+            document.getElementById("Hour_Label").innerHTML = "&nbsp;CHIMES HORAIRES";
+            helpText = "Laissez Big Ben PLUS vous aider à garder une trace du temps -- un rappel subtil toutes les 15 minutes.\n\n";
+            helpText += "Appuyez sur l'icône WRENCH pour afficher le  Réglages. Choisissez parmi 6 horloges différentes, avec ou sans pendule. Tous les paramètres sont faciles à comprendre.\n\n";
+            helpText += "Bien que l'utilisation de Big Ben soit cool, vous voudrez probablement faire autre chose avec votre téléphone ou votre tablette. Vous pouvez réduire Big Ben en appuyant sur l'icône de réduction bleu carré en bas de l'écran. Big Ben continuera à bonger jusqu'à ce que vous quittiez l'application.\n\n";
+            helpText += "Pour re-maximiser le Bonger, appuyez sur l'icône Big Ben. Vous pouvez ensuite quitter l'application à l'aide de l'icône \"X\" rouge située dans le coin inférieur droit. Merci d’avoir choisi Big Ben Bonger PLUS.\n\n";
+            helpText += "Dieu sauve la reine.\n\n\numikeapps@outlook.com";
+            helpTextTitle = "Bienvenue au Big Ben Bonger PLUS";
+            helpDismissText ="RENVOYER";
+            quitConfirmText = "Voulez-vous quitter Big Ben Bonger?";
+            backgroundNotificationText = "Appuyez sur l'icône Big Ben PLUS pour restaurer";
+            optionsInText = "OPTIONS >";
+            optionsOutText = "< OPTIONS";
 
-          if (localStorage["pend_status"] == "checked")   {
-            mutePendulum();
+            quietTimeText1 = "SILENCE";
+            quietTimeText2 = "MOMENTS<br />DE SILENCE";
+            muteText1 = "MUTE ON";
+            muteText2 = "MUTE<br />ON";
+
+            cuckooClockText = "HORLOGE COUCOU";
+            electronicClockText = "HORLOGE ÉLECTRONIQUE";
+            trinityText = "TRINITY CHIMES";
+
+            document.getElementById("useQTLabel").innerHTML = "<span style=\"color: #0000aa; font-weight: bold\">&nbsp;Utilisez SILENCE TEMPS</span>";
+            document.getElementById("themeLabel").innerHTML = "<span style=\"color: #0000aa; font-weight: bold\">&nbsp;THÈME:</span>";
+            document.getElementById("SstartLabel").innerHTML = "Dernier Bong";
+            document.getElementById("EendLabel").innerHTML = "Premier Bong";
+            document.getElementById("usePendulumLabel").innerHTML = "<span style=\"color: #0000aa; font-weight: bold\">&nbsp;PENDULE:&nbsp;&nbsp;</span>";
+            document.getElementById("autoStartTextDiv").innerHTML = "DÉMARRAGE AUTOMATIQUE AU<br />DÉMARRAGE DU TÉLÉPHONE";
+
+            document.getElementById("EendLabel").style.marginLeft = "40px";
+
           }
+          else if (localStorage["language"] == "de")   {
+            do24Hr = true;
+            mantleClockText = "UHR MANTEL";
+            grandfatherClockText = "UHR GROßVATER";
+            document.getElementById("bongDuringCall").innerHTML = " &nbsp;BONG WÄHREND DER TELEFONATE";
+            document.getElementById("15_45_Label").innerHTML = "&nbsp;:15 &amp; :45 GLOCKENSPIEL";
+            document.getElementById("Half_Label").innerHTML = "&nbsp;HALBE STUNDE GLOCKENSPIEL";
+            document.getElementById("Hour_Label").innerHTML = "&nbsp;STÜNDLICH GLOCKENSPIEL";
+            helpText = "Lassen Sie Big Ben PLUS helfen Ihnen Zeit-- alle 15 Minuten eine subtile Erinnerung.\n\n";
+            helpText += "Tippen Sie auf das WERKZEUG Symbol, Optionsmenü aufzurufen.Wählen Sie aus 6 verschiedenen Uhren mit oder ohne Pendel. Alle Einstellungen sind leicht verständlich.\n\n";
+            helpText += "Obwohl ein walking mit Big Ben kühl ist, sollten Sie wahrscheinlich andere Dinge mit Ihrem Smartphone oder Tablet zu tun. Sie können Big Ben minimieren, indem Sie auf das quadratische blaue Minimierungssymbol unten im Bildschirm tippen. Big Ben wird weiter bong, bis Sie die App beenden.\n\n";
+            helpText += "Um die Bonger neu zu maximieren, tippen Sie auf Big Ben Symbol. Sie können die App dann mit dem roten \"X\" Symbol in der rechten unteren Ecke beenden. Vielen Dank, dass Sie sich für Big Ben Bonger PLUS entschieden haben.\n\n";
+            helpText += "Gott schütze die Königin.\n\n\numikeapps@outlook.com";
+            helpTextTitle = "Willkommen bei den Big Ben Bonger PLUS";
+            helpDismissText ="SCHLIEßEB";
+            quitConfirmText = "Willst du Big Ben Bonger verlassen?";
+            backgroundNotificationText = "Tippen Sie auf das Big Ben Icon, um es wiederherzustellen";
+            optionsInText = "OPTIONEN >";
+            optionsOutText = "< OPTIONEN";
 
-          if (typeof(my_media2) == "object")   {
-            my_media2.stop();
-            my_media2.release();
+            quietTimeText1 = "RUHIGE ZEIT";
+            quietTimeText2 = "RUHIGE<br />ZEIT";
+            muteText1 = "MUTE ON";
+            muteText2 = "MUTE<br />ON";
+            noPendulumAdjustText = "You cannot turn the Pendulum on or off during Quiet Time.\n\nTo make adjustments to the Pendulum, simply turn off Quiet Time and try again.";
+
+            cuckooClockText = "KUCKUCKSUHR";
+            electronicClockText = "ELEKTRONISCHE UHR";
+            trinityText = "TRINITY CHIMES";
+
+            document.getElementById("useQTLabel").innerHTML = "<span style=\"color: #0000aa; font-weight: bold\">&nbsp;Verwenden Sie RUHIGE ZEIT</span>";
+            document.getElementById("themeLabel").innerHTML = "<span style=\"color: #0000aa; font-weight: bold\">&nbsp;THEMA:</span>";
+            document.getElementById("SstartLabel").innerHTML = "Zuletzt Bong";
+            document.getElementById("EendLabel").innerHTML = "Zuerst Bong";
+            document.getElementById("usePendulumLabel").innerHTML = "<span style=\"color: #0000aa; font-weight: bold\">&nbsp;PENDEL:&nbsp;&nbsp;</span>";
+            document.getElementById("autoStartTextDiv").innerHTML = "JEDER ZEIT AUTOMATISCH STARTEN";
+
+            document.getElementById("EendLabel").style.marginLeft = "40px";
           }
+          else if (localStorage["language"] == "es")   {
+            do24Hr = true;
+            mantleClockText = "RELOJ ANTIGUO";
+            grandfatherClockText = "RELOJ DE ABUELO";
+            document.getElementById("bongDuringCall").innerHTML = " &nbsp;BONG DURANTE PHONECALLS<br /><br />";
+            document.getElementById("15_45_Label").innerHTML = "&nbsp;:15 &amp; :45 CHIMES";
+            document.getElementById("Half_Label").innerHTML = "&nbsp;CHIMES DE LA MEDIA HORA";
+            document.getElementById("Hour_Label").innerHTML = "&nbsp;CADA HORA CHIMES";
+            helpText = "Big Ben Bonger PLUS te mantiene sabiendo el tiempo -- un recordatorio sutil cada 15 minutos.\n\n";
+            helpText += "Al tocar el ícono de HERRAMIENTA aparecerá el menú de configuración. Elija entre 6 relojes diferentes, con o sin péndulo. Todos los ajustes son fáciles de entender.\n\n";
+            helpText += "Pero lo más probable es que usted desee hacer otras cosas con su teléfono o tableta. Usted puede minimizar Big Ben pulsando en el icono del cuadrado azul de minimizar en la parte inferior de la pantalla. Big Ben continuará haciendo bong hasta que usted salga de la aplicación.\n\n";
+            helpText += "Para volver a maximizar el Bonger, pulse en el icono Big Ben. Entonces usted puede salir de la aplicación usando la \"X\" del icono rojo en la esquina inferior derecha. Gracias por elegir Big Ben Bonger PLUS.\n\n";
+            helpText += "Dios salve a la reina.\n\n\numikeapps@outlook.com";
+            helpTextTitle = "Bienvenido al Big Ben Bonger PLUS";
+            helpDismissText ="DESPEDIR";
+            quitConfirmText = "¿Quieres salir de Big Ben Bonger?";
+            backgroundNotificationText = "Toque el icono de Big Ben para restaurar";
+            optionsInText = "OPCIONES >";
+            optionsOutText = "< OPCIONES";
 
-          if (typeof(my_media) == "object")   {
-            my_media.stop();
-            my_media.release();
+            quietTimeText1 = "SILENCIO TIEMPO";
+            quietTimeText2 = "SILENCIO<br />TIEMPO";
+            muteText1 = "EN SILENCIO";
+            muteText2 = "EN<br />SILENCIO";
+            noPendulumAdjustText = "You cannot turn the Pendulum on or off during Quiet Time.\n\nTo make adjustments to the Pendulum, simply turn off Quiet Time and try again.";
+
+            cuckooClockText = "RELOJ CUCÚ";
+            electronicClockText = "RELOJ ELECTRONICO";
+            trinityText = "TRINITY CARILLONES";
+
+            document.getElementById("useQTLabel").innerHTML = "<span style=\"color: #0000aa; font-weight: bold\">&nbsp;Utilizar SILENCIO TIEMPO</span>";
+            document.getElementById("themeLabel").innerHTML = "<span style=\"color: #0000aa; font-weight: bold\">&nbsp;TEMA:</span>";
+            document.getElementById("SstartLabel").innerHTML = "Último Bong";
+            document.getElementById("EendLabel").innerHTML = "Primero Bong";
+            document.getElementById("usePendulumLabel").innerHTML = "<span style=\"color: #0000aa; font-weight: bold\">&nbsp;PÉNDULO:&nbsp;&nbsp;</span>";
+            document.getElementById("autoStartTextDiv").innerHTML = "ARRANQUE AUTOMÁTICO<br />CUANDO TELÉFONO COMIENZA";
+
+            document.getElementById("EendLabel").style.marginLeft = "40px";
           }
+          else if (localStorage["language"] == "it")   {
+            do24Hr = true;
+            mantleClockText = "MANTO OROLOGIO";
+            grandfatherClockText = "NONNO OROLOGIO";
+            document.getElementById("bongDuringCall").innerHTML = "&nbsp;BONG DURANTE LE CHIAMATE DI TELEFONO<br /><br />";
+            document.getElementById("15_45_Label").innerHTML = "&nbsp;:15 &amp; :45 CHIMES";
+            document.getElementById("Half_Label").innerHTML = "&nbsp;MEZZ'ORA CHIMES";
+            document.getElementById("Hour_Label").innerHTML = "&nbsp;ORARIA GLI SCIOPERI";
+            helpText = "Lasciare che Big Ben PLUS ti aiuta a tenere traccia del tempo -- un promemoria unico ogni 15 minuti.\n\n";
+            helpText += "Toccando l'icona gialla di strumento, si apre il Menu delle impostazioni. Scegli tra 6 diversi orologi, con o senza pendolo. Tutte le impostazioni sono facili da capire.\n\n";
+            helpText += "Sebbene essere un Big Ben a piedi sia divertimento, probabilmente vorrai fare altre cose con il tuo telefono o tablet. Se tu tocchi il riquadro blu quadrato Riduci a icona, il Big Ben si sposterà sullo sfondo.Il Big Ben lo  continua fino a quando esci dall'applicazione.\n\n";
+            helpText += "Per massimizzare il Bonger, tu tocchi l'icona del Big Ben PLUS. Esci dall'app utilizzando l'icona rossa \"X\" in basso vicino a destra. Grazie per aver scelto Big Ben Bonger PLUS.\n\n";
+            helpText += "Dio salvi la regina.\n\n\numikeapps@outlook.com";
+            helpTextTitle = "Big Ben Bonger PLUS";
+            helpDismissText = "CHIUDERE";
+            quitConfirmText = "Vuoi uscire dal Big Ben Bonger PLUS?";
 
-          if (my_media_TEST != "NOT_RUNNING")   {
-            my_media_TEST.stop();
-            my_media_TEST.release();
-          }
+            backgroundNotificationText = "[Toccare l'icona di Big Ben Bonger PLUS per ripristinare.]";
 
-          if (my_media_WHICH != "NOT_RUNNING")   {
-            my_media_WHICH.stop();
-            my_media_WHICH.release();
-          }
-        }
+            optionsInText = "OPTIONS >";
+            optionsOutText = "< OPTIONS";
 
-        displayStatusPanel();
-      }
+            quietTimeText1 = "SILENZIOSO";
+            quietTimeText2 = "TEMPO<br />SILENZIOSO";
+            muteText1 = " SILENZIOSO ";
+            muteText2 = "MANUALE<br />SILENZIOSO";
+            noPendulumAdjustText = "You cannot turn the Pendulum on or off during Quiet Time.\n\nTo make adjustments to the Pendulum, simply turn off Quiet Time and try again.";
 
-      function doPendulum()   {
-        ;
-      }
+            cuckooClockText = "OROLOGIO A CUCÙ";
+            electronicClockText = "OROLOGIO ELETTRONICO";
+            trinityText = "CARILLON DI TRINITY";
 
-      function doQuietTimeOption()   {
-
-// alert("Entry: Start doQuietTime()\nCheckboxChecked = " + document.getElementById("useQT").checked + "\nlocalStorage[useqt] = " + localStorage["useqt"] + "\nisQuietTime = " + isQuietTime() + "\nlocalStorage[pend_status] = " + localStorage["pend_status"] + "\npendulumRunning = " + pendulumRunning);
-
-        if (document.getElementById("useQT").checked == true)   {
-          localStorage["useqt"] = "checked";
-
-          if (isQuietTime())   {
-            document.getElementById("pend_but_on").disabled = true;
-            document.getElementById("pend_but_off").disabled = true;
-
-            if (localStorage["pend_status"] == "checked")   {
-              if (pendulumRunning)   {
-                pendulumRunning = false;
-
-                clearTimeout(pendulumID);
-
-                if (typeof(media_PEND) == "object")   {
-                  media_PEND.stop();
-                  media_PEND.release();
-                }
-
-                media_PEND = null;
-              }
-            }
+            document.getElementById("useQTLabel").innerHTML = "<span style=\"color: #0000aa; font-weight: bold\">&nbsp;Usare TEMPO SILENZIOSO</span>";
+            document.getElementById("themeLabel").innerHTML = "<span style=\"color: #0000aa; font-weight: bold\">&nbsp;TEMA:</span>";
+            document.getElementById("SstartLabel").innerHTML = "Ultimo Bong";
+            document.getElementById("EendLabel").innerHTML = "Primo Bong";
+            document.getElementById("usePendulumLabel").innerHTML = "<span style=\"color: #0000aa; font-weight: bold\">&nbsp;PENDOLO:&nbsp;&nbsp;</span>";
+            document.getElementById("autoStartTextDiv").innerHTML = "INIZIA AUTOMATICAMENTE QUANDO<br />IL TELEFONO INIZIA";
           }
           else   {
-            document.getElementById("pend_but_on").disabled = false;
-            document.getElementById("pend_but_off").disabled = false;
+            mantleClockText = "MANTLE CLOCK";
+            grandfatherClockText = "GRANDFATHER CLOCK";
+            document.getElementById("bongDuringCall").innerHTML = "&nbsp;BONG DURING PHONECALLS";
+            document.getElementById("15_45_Label").innerHTML = "&nbsp;:15 &amp; :45 CHIMES";
+            document.getElementById("Half_Label").innerHTML = "&nbsp;HALF HOUR CHIMES";
+            document.getElementById("Hour_Label").innerHTML = "&nbsp;ON-THE-HOUR STRIKES";
+            helpText = "Let Big Ben PLUS [2] help you keep track of time -- a subtle reminder every 15 minutes.\n\n";
+            helpText += "Tapping the WRENCH icon will bring up the Settings Menu. Choose from 6 different clocks, with or without pendulum. All settings are easy to understand.\n\n";
+            helpText += "Although being a walking Big Ben is cool, you'll probably want to do other things with your phone or tablet. You can minimize Big Ben by tapping the square blue Minimize Icon at the bottom of the screen. Big Ben will continue to bong until you exit the app.\n\n";
+            helpText += "To re-maximize the Bonger, tap the Big Ben icon. You can then exit the app using the red \"X\" Icon in the bottom right corner. Thank you for choosing Big Ben Bonger PLUS.\n\n";
+            helpText += "God Save The Queen.\n\n\numikeapps@outlook.com";
+            helpTextTitle = "Big Ben Bonger PLUS";
+            helpDismissText = "DISMISS";
+            quitConfirmText = "Do you want to exit Big Ben Bonger?";
 
-            if (localStorage["pend_status"] == "checked")   {
-              if (! pendulumRunning)   {
-                startPendulum();
-                pendulumRunning = true;
-              }
+            backgroundNotificationText = "[Tap the Big Ben PLUS icon to Restore]";
+//          backgroundNotificationText = "[Tap here to Restore]";
+
+            optionsInText = "OPTIONS >";
+            optionsOutText = "< OPTIONS";
+            quietTimeText1 = "QUIET TIME";
+            quietTimeText2 = "QUIET<br />TIME";
+            muteText1 = "MUTE ON";
+            muteText2 = "MUTE<br />ON";
+            noPendulumAdjustText = "You cannot turn the Pendulum on or off during Quiet Time.\n\nTo make adjustments to the Pendulum, simply turn off Quiet Time and try again.";
+            cuckooClockText = "CUCKOO CLOCK";
+            electronicClockText = "ELECTRONIC CLOCK";
+            trinityText = "TRINITY CHIMES";
+            muteTextNotification = "[Mute]  ";
+            quietTimeTextNotification = "[Quiet Time]  ";
+
+            document.getElementById("useQTLabel").innerHTML = "<span style=\"color: #0000aa; font-weight: bold\">&nbsp;Use QUIET TIME</span>";
+            document.getElementById("themeLabel").innerHTML = "<span style=\"color: #0000aa; font-weight: bold\">&nbsp;THEME:</span>";
+            document.getElementById("SstartLabel").innerHTML = "Last Bong";
+            document.getElementById("EendLabel").innerHTML = "First Bong";
+            document.getElementById("usePendulumLabel").innerHTML = "<span style=\"color: #0000aa; font-weight: bold\">&nbsp;PENDULUM:&nbsp;&nbsp;</span>";
+            document.getElementById("autoStartTextDiv").innerHTML = "AUTO-START WHEN PHONE STARTS";
+          }
+
+          if (SIZE == "big")   {
+            document.getElementById("setup_butt").style.zIndex = '0';
+            document.getElementById("statusPanel").style.zIndex = '0';
+            document.getElementById("clock").style.zIndex = '0';
+
+
+            document.getElementById("startSelectDiv").innerHTML = makeTimeSelect("sstart", "margin-left: 55px; margin-top: 4px;", localStorage["sstart"]);
+          }
+          else   {   // SIZE == small
+            if (localStorage["language"] == "pt")   {
+              document.getElementById("startSelectDiv").innerHTML = makeTimeSelect("sstart", "margin-left: 48px; margin-top: 4px;", localStorage["sstart"]);
+              document.getElementById("endSelectDiv").innerHTML = makeTimeSelect("eend", "margin-left: 74px;", localStorage["eend"]);
+            }
+            else if (localStorage["language"] == "fr")   {
+              document.getElementById("startSelectDiv").innerHTML = makeTimeSelect("sstart", "margin-left: 48px; margin-top: 4px;", localStorage["sstart"]);
+              document.getElementById("endSelectDiv").innerHTML = makeTimeSelect("eend", "margin-left: 55px;", localStorage["eend"]);
+            }
+            else if (localStorage["language"] == "de")   {
+              document.getElementById("startSelectDiv").innerHTML = makeTimeSelect("sstart", "margin-left: 48px; margin-top: 4px;", localStorage["sstart"]);
+              document.getElementById("endSelectDiv").innerHTML = makeTimeSelect("eend", "margin-left: 49px;", localStorage["eend"]);
+            }
+            else if (localStorage["language"] == "it")   {
+              document.getElementById("startSelectDiv").innerHTML = makeTimeSelect("sstart", "margin-left: 47px; margin-top: 4px;", localStorage["sstart"]);
+              document.getElementById("endSelectDiv").innerHTML = makeTimeSelect("eend", "margin-left: 65px;", localStorage["eend"]);
+            }
+
+            else   {
+              document.getElementById("startSelectDiv").innerHTML = makeTimeSelect("sstart", "margin-left: 32px; margin-top: 4px;", localStorage["sstart"]);
+              document.getElementById("endSelectDiv").innerHTML = makeTimeSelect("eend", "margin-left: 40px;", localStorage["eend"]);
             }
           }
+
+
+
+//
+//  Add Select options
+//
+          var x = document.getElementById("clocker");
+
+          var b = document.createElement("option");
+          b.text = "BIG BEN";
+          b.value = "bb";
+
+          if ((localStorage["ding_selection"] != "bg") && (localStorage["ding_selection"] != "gf") && (localStorage["ding_selection"] != "cc") && (localStorage["ding_selection"] != "tr") && (localStorage["ding_selection"] != "ec"))  {
+            b.selected = true;
+          }
+
+          x.options.add(b, 0);
+
+          var c = document.createElement("option");
+          c.text = mantleClockText;
+          c.value = "bg";
+
+          if (localStorage["ding_selection"] == "bg")   {
+            c.selected = true;
+          }
+
+          x.options.add(c, 1);
+
+          var d = document.createElement("option");
+          d.text = grandfatherClockText;
+          d.value = "gf";
+
+          if (localStorage["ding_selection"] == "gf")   {
+            d.selected = true;
+          }
+
+          x.options.add(d, 2);
+
+          var e = document.createElement("option");
+          e.text = electronicClockText;
+          e.value = "ec";
+
+          if (localStorage["ding_selection"] == "ec")   {
+            e.selected = true;
+          }
+
+          x.options.add(e, 3);
+
+          var f = document.createElement("option");
+          f.text = trinityText;
+          f.value = "tr";
+
+          if (localStorage["ding_selection"] == "tr")   {
+            f.selected = true;
+          }
+
+          x.options.add(f, 4);
+
+          var e = document.createElement("option");
+          e.text = cuckooClockText;
+          e.value = "cc";
+
+          if (localStorage["ding_selection"] == "cc")   {
+            e.selected = true;
+          }
+
+          x.options.add(e, 5);
+
+          initializeCanvas();
+          init();
+        },
+        ignoreError2() );
+
+      }
+
+      function changeNotification(what)   {
+        if (what == "Mute On")   {
+          notificationPrefixText = muteTextNotification;
+        }
+        else if (what == "Quiet Time")   {
+          notificationPrefixText = quietTimeTextNotification;
         }
         else   {
-          document.getElementById("pend_but_on").disabled = false;
-          document.getElementById("pend_but_off").disabled = false;
-
-          localStorage["useqt"] = "no";
-          if ((localStorage["pend_status"] == "checked") && (! isQuietTime()))   {
-            if (! pendulumRunning)   {
-              startPendulum();
-              pendulumRunning = true;
-            }
-          }
+          notificationPrefixText = "";
         }
 
-
-// alert("Entry: Leave doQuietTime()\nCheckboxChecked = " + document.getElementById("useQT").checked + "\nlocalStorage[useqt] = " + localStorage["useqt"] + "\nisQuietTime = " + isQuietTime() + "\nlocalStorage[pend_status] = " + localStorage["pend_status"] + "\npendulumRunning = " + pendulumRunning);
-
-        displayStatusPanel();
-
+        firstTimeInBG = true;
+        cordova.plugins.backgroundMode.configure({ text: notificationPrefixText + backgroundNotificationText, resume: false  });
       }
 
-      function isQuietTime()   {
-        if (document.getElementById("useQT").checked == false)   {
-          return false;
-        }
 
-        var start_int = parseInt(document.getElementById("sstart").value);
-        var end_int = parseInt(document.getElementById("eend").value);
+      function changeClock()   {
+        var xx = document.getElementById("clocker");
+        var theValue = xx.options[xx.selectedIndex].value;
+        localStorage["ding_selection"] = theValue;
 
-        localStorage["sstart"] = start_int;
-        localStorage["eend"] = end_int;
+//        alert("The value of your clock is " + theValue);
 
-//        alert ("Start Time: " + start_int + "\nEnd Time: " + end_int + "\n");
+        selectClock(theValue);
 
-        var today = new Date();
-        var h = today.getHours();
-        var m = today.getMinutes();
-        var current_int = (h * 100) + m;
-
-        if (start_int < end_int)   {
-          if ((current_int > start_int) && (current_int < end_int))   {
-            return true;
-          }
-        }
-        else   {
-          if ((current_int > start_int) || (current_int < end_int))   {
-            return true;
-          }
-        }
-
-        return false;
+        QUARTER_DING = localStorage["ding_selection"] + "_quarter.mp3";
+        HALF_DING  = localStorage["ding_selection"] + "_half.mp3";
+        THREE_QUARTER_DING = localStorage["ding_selection"] + "_three-quarter.mp3";
+        HOUR_DING = localStorage["ding_selection"] + "_hour.mp3";
+        DING_SELECTION = localStorage["ding_selection"];
       }
 
-      function startPendulum()   {
+      function selectClock(dinger)   {
+        var timeoutDelay;
 
-        if (pendulumRunning)   {
-          return;
+        DING_SELECTION     = dinger;
+        localStorage["ding_selection"] = dinger;
+        var dingerFile = this.root + "audio/" + dinger + "_quarter.mp3";
+
+        if(my_media_WHICH != "NOT_RUNNING")   {
+          clearTimeout(Timeouter);
+          my_media_WHICH.stop();
+          my_media_WHICH.release();
+          my_media_WHICH = "NOT_RUNNING";
         }
 
-        PEND_STATUS = "RUNNING";
-        localStorage["pend_status"] = "checked";
-        pendulumRunning = true;
-
-        pendSoundFile = this.root + "audio/" + "Pendulum5mins.mp3";
-        media_PEND = new Media(pendSoundFile,
-            function () { console.log("playAudio():Audio Success"); },
-            ignoreError()
-          );
-
-        pendulumLooper();
-      }
-
-      function pendulumLooper()   {
-        media_PEND.play();
-        media_PEND.setVolume(PEND_VOLUME);
-
-        pendulumID = setTimeout(pendulumLooper, 300000);
-      }
-
-      function stopPendulum()   {
-        PEND_STATUS = "STOPPED";
-        localStorage["pend_status"] = "no";
-        pendulumRunning = false;
-
-        clearTimeout(pendulumID);
-
-        if (typeof(media_PEND) == "object")   {
-          media_PEND.stop();
-          media_PEND.release();
+        if(my_media_TEST != "NOT_RUNNING")   {
+          clearTimeout(delayRelease);
+          my_media_TEST.stop();
+          my_media_TEST.release();
+          my_media_TEST = "NOT_RUNNING";
         }
 
-        media_PEND = null;
-      }
-
-      function mutePendulum()   {
-        if (typeof(media_PEND) == "object")   {
-          media_PEND.setVolume(0.0);
-        }
-      }
-
-      function unmutePendulum()   {
-        if (typeof(media_PEND) == "object")   {
-          media_PEND.setVolume(PEND_VOLUME);
-        }
-      }
-
-      function displayNoPendulumMessage()   {
-        navigator.notification.alert(
-          noPendulumAdjustText,
-          "",
-          "",
-          helpDismissText
+        my_media_WHICH = new Media(dingerFile,
+           function () { console.log("playAudio():Audio Success"); },
+           ignoreError()
         );
+
+        my_media_WHICH.play();
+        my_media_WHICH.setVolume(MASTER_VOLUME);
+
+        switch (dinger)   {
+          case "bb":  timeoutDelay = 15000;
+                      break;
+          case "cc":  timeoutDelay = 2500;
+                      break;
+          default:    timeoutDelay = 20000;
+        }
+
+        Timeouter = setTimeout(function()   {
+            my_media_WHICH.stop();
+            my_media_WHICH.release();
+            my_media_WHICH = "NOT_RUNNING";
+          }, timeoutDelay);
       }
 
-      function changePendVolume(dir)   {
-        unmutePendulum();
+      function loadGlobals()   {
+        var ratio = window.devicePixelRatio || 1;
 
-        if (dir == "+")   {
-          if (PEND_VOLUME < 1.0)   {
-            PEND_VOLUME += 0.1;
+// Displayable Objects
+
+        document.getElementById("t2id").style.display = "inline";
+        document.getElementById("useQT").style.marginTop = "0";
+
+// Device Size and Orientation
+        if (screen.height > screen.width)   {
+          ORIENT = "portrait";
+          ORIENTcode = "P";
+        }
+        else   {
+          ORIENT = "landscape";
+          ORIENTcode = "L";
+          document.getElementById("t2id").style.display = "none";
+          document.getElementById("useQT").style.marginTop = "15px";
+
+        }
+
+        if (screen.height / ratio > 780)   {
+          SIZE = "big";
+          SIZEcode = "B";
+          body.style.fontSize = "22px";
+
+          if (ORIENT == "portrait")   {
+            document.getElementById("setupButtonDiv").style.top = "200px";
+            document.getElementById("setupButtonDiv").style.right = "2px";
+            document.getElementById("panel2").style.top = "395px";
+            document.getElementById("panel2").style.left = "10px";
+          }
+          else   {
+
+            document.getElementById("panel2").style.top = "25px";
+            document.getElementById("panel1").style.top = "0";
+            var panel1w = document.getElementById("panel1").style.width + "px";
+            document.getElementById("panel2").style.left = "410px";
+
           }
         }
         else   {
-          if (PEND_VOLUME > 0.0)   {
-            PEND_VOLUME -= 0.1;
+          SIZE = "small";
+          SIZEcode = "S";
+          body.style.fontSize = "12px";
+
+          if (ORIENT == "portrait")   {
+            document.getElementById("setupButtonDiv").style.top = "280px";
+            document.getElementById("setupButtonDiv").style.right = "0";
+            document.getElementById("panel1").style.top = "10px";
+            document.getElementById("panel2").style.left =  "10px";
+            document.getElementById("panel2").style.top = "255px";
+          }
+          else   {
+            document.getElementById("panel2").style.left = "270px";
+            document.getElementById("panel2").style.top = "25px";
+            document.getElementById("panel1").style.top = "0";
+            document.getElementById("setupButtonDiv").style.top = "220px";
+            document.getElementById("setupButtonDiv").style.right = "0";
+          }
+
+        }
+
+      }
+
+
+      function doLondonTheme()   {
+        localStorage["theme"] = "London";
+
+        D_MyCanvas.style.display = "none";
+//        D_FPMuteButton.style.display = "none";
+//        D_helpIcon.style.display = "none";
+//        D_minimage.style.display = "none";
+//        D_ximage.style.display = "none";
+
+        D_clock.style.display = "block";
+
+        D_setupButtonDiv.style.marginTop = "-70px";
+
+        body.style.backgroundSize = "cover";
+
+        if (ORIENT == "portrait")   {
+          body.style.backgroundImage = 'url("img/bgLondonP.png")';
+
+          if (SIZE == "small")   {
+            D_setupButtonDiv.style.marginTop = "-70px";
+            D_clock.style.top = "340px";
+            D_clock.style.marginLeft = "0px";
+          }
+          else   {
+            D_setupButtonDiv.style.marginTop = "-70px";
+            D_clock.style.top = "251px";
+            D_clock.style.marginLeft = "0px";
+          }
+        }
+        else   {
+          body.style.backgroundImage = 'url("img/bgLondonL.png")';
+
+          if (SIZE == "small")   {
+            D_setupButtonDiv.style.marginTop = "-15px";
+            D_clock.style.top = "85px";
+            D_clock.style.marginLeft = "-100px";
+          }
+          else   {
+            D_setupButtonDiv.style.marginTop = "-15px";
+            D_clock.style.top = "250px";
+          }
+
+        }
+
+      }
+
+      function doBigBenTheme()   {
+        localStorage["theme"] = "BigBen";
+
+        D_clock.style.display = "none";
+        body.style.backgroundSize = "auto";
+
+        if (ORIENT == "portrait")   {
+          if (SIZE == "small")   {
+            body.style.backgroundImage = 'url("img/bgBenSP.jpg")';
+          }
+          else   {
+            body.style.backgroundImage = 'url("img/bgBenBP.jpg")';
+          }
+        }
+        else   {
+          if (SIZE == "small")   {
+            body.style.backgroundImage = 'url("img/bgBenSL.jpg")';
+          }
+          else   {
+            body.style.backgroundImage = 'url("img/bgBenBL.jpg")';
           }
         }
 
-        document.getElementById("pendVol").value = PEND_VOLUME;
-        media_PEND.setVolume(PEND_VOLUME);
+        D_setupButtonDiv.style.marginTop = "0px";
+        D_MyCanvas.style.display = "block";
 
-        localStorage["pend_vol"] = PEND_VOLUME.toString();
       }
 
       function doAutoStart()   {
-        if (document.getElementById("autostart").checked)   {
+        if (document.getElementById("autostart").checked == true)   {
           cordova.plugins.autoStart.enable();
           localStorage["autostart"] = "checked";
         }
@@ -2031,19 +2316,21 @@ cordova.plugins.backgroundMode.disable();
         }
       }
 
-      function goToBackground()   {
-        window.plugins.insomnia.allowSleepAgain();
-        cordova.plugins.backgroundMode.enable();
-        cordova.plugins.backgroundMode.moveToBackground();
-        cordova.plugins.backgroundMode.configure({ text: backgroundNotificationText, resume: false  });
+      function doPhoneMute()   {
+        if (document.getElementById("no_phone_mute").checked == true)   {
+          localStorage["no_phone_mute"] = "checked";
+        }
+        else   {
+          localStorage["no_phone_mute"] = "no";
+        }
       }
 
-      function goToForeground()   {
-        cordova.plugins.backgroundMode.moveToForeground();
-        cordova.plugins.backgroundMode.setEnabled(false);
-        window.plugins.insomnia.keepAwake()
+      function doScreenSpecs()  {
+        var ratio = window.devicePixelRatio || 1;
+        var oput = "SIZE: " + SIZE + "\rORIENTATION: " + ORIENT + "\rSCREEN WIDTH: " + screen.width;
+        oput += "\rSCREEN HEIGHT: " + screen.height + "\rPIXEL RATIO: " + ratio;
+        alert (oput);
       }
-
 
 
       function ignoreError(err){
