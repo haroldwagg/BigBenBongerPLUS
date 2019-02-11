@@ -169,6 +169,7 @@
       var OkToRestartPend = false;
       var START_TIME = 0;
       var firstTimeInBG = true;
+      var cordova_autostart = "";
 
       var ORIENT, ORIENTcode;
       var SIZE, SIZEcode;
@@ -1100,7 +1101,9 @@
 //////////////////////////////////////////////////////
 
       function starter()   {
-        START_TIME = new Date().getTime();
+        START_TIME = new Date().toString();
+
+alert("STARTER\r START_TIME = " + START_TIME + "\rcordova_autostart = " + cordova_autostart);
 
         D_MyCanvas = document.getElementById("myCanvas");
         D_FPMuteButton = document.getElementById("FPMuteButton");
@@ -1286,10 +1289,7 @@
       document.addEventListener("resume", onResume, false);
 
       function onResume()   {
-//        var resumeTime = new Date().getTime();
-//        if ((START_TIME == 0) || (resumeTime - START_TIME < 1500))   {
-//          navigator.app.exitApp();
-//        }
+
 
         cordova.plugins.backgroundMode.moveToForeground();
 
