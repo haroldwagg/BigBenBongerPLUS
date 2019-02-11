@@ -1112,7 +1112,8 @@
         START_TIME = new Date().toString().substring(0, 24);
         asProperties = getKeys(cordova.plugins.autoStart);
 
-alert("STARTER\r START_TIME = " + START_TIME + "\rautoStart Object = " + asProperties);
+alert("STARTER\r START_TIME = " + START_TIME + "\rMAGIC_NUMBER = " + MAGIC_NUMBER);
+++MAGIC_NUMBER;
 
         D_MyCanvas = document.getElementById("myCanvas");
         D_FPMuteButton = document.getElementById("FPMuteButton");
@@ -1415,8 +1416,6 @@ alert("STARTER\r START_TIME = " + START_TIME + "\rautoStart Object = " + asPrope
         var ratio = window.devicePixelRatio || 1;
         var h = screen.height;
         var w = screen.width;
-
-//        alert("SCREEN = " + w + " x " + h + "\n RATIO = " + ratio + "\n\nMAGIC_NUMBER =\n" + MAGIC_NUMBER + "  [" + localStorage["locker"] + "]");
       }
 
       function processSavedSettings()   {
