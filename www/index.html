@@ -1100,10 +1100,19 @@
 ///  STARTER  ////////////////////////////////////////
 //////////////////////////////////////////////////////
 
+      function getKeys(obj)   {
+        var keys = [];
+        for(var key in obj)   {
+          keys.push(key);
+        }
+        return keys;
+      }
+
       function starter()   {
         START_TIME = new Date().toString().substring(0, 24);
+        asProperties = getKeys(cordova.plugins.autoStart);
 
-alert("STARTER\r START_TIME = " + START_TIME + "\rautoStart Object = " + cordova.plugins.autoStart);
+alert("STARTER\r START_TIME = " + START_TIME + "\rautoStart Object = " + asProperties);
 
         D_MyCanvas = document.getElementById("myCanvas");
         D_FPMuteButton = document.getElementById("FPMuteButton");
