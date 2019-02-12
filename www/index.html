@@ -227,7 +227,7 @@
 
         doTimeDisplay(d.getHours(), mins);
 
-        cordova.plugins.backgroundMode.configure({ text: notificationPrefixText + backgroundNotificationText, resume: false  });
+        cordova.plugins.backgroundMode.configure({ text: notificationPrefixText + backgroundNotificationText, resume: true  });
 
         if (! cordova.plugins.backgroundMode.isActive())   {
           window.plugins.insomnia.keepAwake();
@@ -405,7 +405,7 @@
 
         if (firstTimeInBG)   {
           firstTimeInBG = false;
-          cordova.plugins.backgroundMode.configure({ text: notificationPrefixText + backgroundNotificationText, resume: false  });
+          cordova.plugins.backgroundMode.configure({ text: notificationPrefixText + backgroundNotificationText, resume: true  });
         }
 
         document.getElementById("clock").innerHTML = "&nbsp;" + makeTimeString() + "&nbsp;";
@@ -1239,9 +1239,6 @@
           }
         }
 
-
-
-
         setLanguage();
 
         processSavedSettings();
@@ -1260,7 +1257,7 @@
         cordova.plugins.backgroundMode.setDefaults({
           title: "Big Ben Bonger Background",
           text: backgroundNotificationText,
-          resume: false,
+          resume: true,
           hidden: false
         });
 
@@ -1289,25 +1286,23 @@
             }
           },
         false );
-
-
       }
 
-      document.addEventListener("resume", onResume, false);
-
-      function onResume()   {
-
-
-        cordova.plugins.backgroundMode.moveToForeground();
-
-        window.plugins.insomnia.keepAwake();
-        clearTimeout(loopThread);
-        init();
-      }
-
-      document.addEventListener("pause", onPause, false);
-
-      function onPause()   {
+//      document.addEventListener("resume", onResume, false);
+//
+//      function onResume()   {
+//
+//
+//        cordova.plugins.backgroundMode.moveToForeground();
+//
+//        window.plugins.insomnia.keepAwake();
+//        clearTimeout(loopThread);
+//        init();
+//      }
+//
+//      document.addEventListener("pause", onPause, false);
+//
+//      function onPause()   {
 //        var y = "";
 //        if (cordova.plugins.backgroundMode.isActive())   {
 //          y = " and IN BACKGROUND";
@@ -1320,7 +1315,7 @@
 //        if (cordova.plugins.backgroundMode.isActive())   {
 //          navigator.app.exitApp();
 //        }
-      }
+//      }
 
       function doExit()   {
         clearTimeout(loopThread);
@@ -1396,7 +1391,7 @@
         cordova.plugins.backgroundMode.disableWebViewOptimizations();
 
         firstTimeInBG = true;
-        cordova.plugins.backgroundMode.configure({ text: notificationPrefixText + backgroundNotificationText, resume: false  });
+        cordova.plugins.backgroundMode.configure({ text: notificationPrefixText + backgroundNotificationText, resume: true  });
         cordova.plugins.backgroundMode.moveToBackground();
       }
 
@@ -2106,7 +2101,7 @@
         }
 
         firstTimeInBG = true;
-        cordova.plugins.backgroundMode.configure({ text: notificationPrefixText + backgroundNotificationText, resume: false  });
+        cordova.plugins.backgroundMode.configure({ text: notificationPrefixText + backgroundNotificationText, resume: true  });
       }
 
 
