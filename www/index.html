@@ -1288,21 +1288,21 @@
         false );
       }
 
-//      document.addEventListener("resume", onResume, false);
-//
-//      function onResume()   {
-//
-//
+      document.addEventListener("resume", onResume, false);
+
+      function onResume()   {
+
+
 //        cordova.plugins.backgroundMode.moveToForeground();
-//
-//        window.plugins.insomnia.keepAwake();
-//        clearTimeout(loopThread);
-//        init();
-//      }
-//
-//      document.addEventListener("pause", onPause, false);
-//
-//      function onPause()   {
+
+        window.plugins.insomnia.keepAwake();
+        clearTimeout(loopThread);
+        init();
+      }
+
+      document.addEventListener("pause", onPause, false);
+
+      function onPause()   {
 //        var y = "";
 //        if (cordova.plugins.backgroundMode.isActive())   {
 //          y = " and IN BACKGROUND";
@@ -1313,9 +1313,9 @@
 //        alert("I am PAUSED" + y);
 
 //        if (cordova.plugins.backgroundMode.isActive())   {
-//          navigator.app.exitApp();
+          navigator.app.exitApp();
 //        }
-//      }
+      }
 
       function doExit()   {
         clearTimeout(loopThread);
