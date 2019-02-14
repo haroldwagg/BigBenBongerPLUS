@@ -19,9 +19,15 @@
       }
     }
 
+    function hider()   {
+      document.location.href = "#atTop";
+      parent.document.getElementById("helpDiv").style.height = "0";
+    }
+
   </script>
 </head>
 <body>
+  <a name="atTop" id="atTop"></a>
 <div id="topper">
   <table style="margin: 0; margin-top: -15px; width: 95%">
     <tr>
@@ -104,7 +110,7 @@
   document.getElementById("titler").innerHTML = helpTextTitle;
   document.body.style.padding = "20px";
   document.getElementById("para1").innerHTML = helpText.replace(/(?:\r\n|\r|\n)/g, '<br>');
-  document.getElementById("dismisser").innerHTML = '<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="index.html" style="text-decoration: none; color: #f20d0d;">' + helpDismissText + '<br /><br /></a>';
+  document.getElementById("dismisser").innerHTML = '<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a onClick="hider()" style="text-decoration: none; color: #f20d0d;">' + helpDismissText + '<br /><br /></a>';
 </script>
 
 </body>

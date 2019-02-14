@@ -12,6 +12,9 @@
 </head>
 
 <body>
+  <div id="helpDiv" style="width: 100vw; height: 100%;  z-index: 500;">
+    <iframe src="help.html" style="height: 100%; width: 100%; border: none;"></iframe>
+  </div>
 
   <div id="cvas" style="width: 310px; height: 321px; position: absolute; top: 0; left: 0;">
       <canvas id="myCanvas" width="310" height="321" style="border: none; position:absolute; left: 0; top: 0;">
@@ -125,9 +128,9 @@
 
                 <div id="bottomNavBar" style="background-color: black; margin: 0; padding: 0; height: 54px; position: fixed; bottom: 0%; width: 100%; overflow:visible;">
 
-                 <a href="help.html"><img src="img/help.png" width="30" height="30" id="helpIcon" style="margin-left: 8px; margin-top: 5px;" /></a>
+<!--                 <a href="help.html"><img src="img/help.png" width="30" height="30" id="helpIcon" style="margin-left: 8px; margin-top: 5px;" /></a>   -->
 
-<!--                  <img src="help.png" onClick="doHelp()" width="30" height="30" id="helpIcon" style="margin-left: 8px; margin-top: 5px;" />   -->
+                  <img src="help.png" onClick="doHelp()" width="30" height="30" id="helpIcon" style="margin-left: 8px; margin-top: 5px;" />
 
                   <img id="ximage" name="ximage" id="ximage" src="x.png" width="45" height="45" style="float: right; border: none;  padding: 0; margin-top: 5px; margin-right: 8px;" onClick="doExit()" />
                   <img id="minimage" name="minimage" id="minimage" src="img/min.png" width="45" height="45" style="float: right; border: none; margin-top: 5px;" onClick="doGoToBG()" />
@@ -1396,12 +1399,15 @@
       }
 
       function doHelp()   {
-        navigator.notification.alert(
-          helpText,
-          "",
-          helpTextTitle,
-          helpDismissText
-        );
+//        navigator.notification.alert(
+//          helpText,
+//          "",
+//          helpTextTitle,
+//          helpDismissText
+//        );
+
+        document.getElementById("helpDiv").style.height = "100%";
+//        document.getElementById("helpDiv").style.height = "100vh";
       }
 
       function showScreenSize()   {

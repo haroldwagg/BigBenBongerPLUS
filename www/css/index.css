@@ -193,6 +193,13 @@ h1 {
 }
 
 #helpDiv {
+  transition:           height 2000ms;
+  -webkit-transition:   height 2000ms;
+  transition-timing-function: linear;
+
+}
+
+#helpDiv {
   position: absolute;
   bottom: 0;
   left: 0;
