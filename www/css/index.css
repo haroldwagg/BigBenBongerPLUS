@@ -193,8 +193,8 @@ h1 {
 }
 
 #helpDiv {
-  transition:           height 2000ms;
-  -webkit-transition:   height 2000ms;
+  transition:           height 4000ms;
+  -webkit-transition:   height 4000ms;
   transition-timing-function: linear;
 
 }
