@@ -12,7 +12,7 @@
 </head>
 
 <body>
-  <div id="helpDiv" style="width: 100vw; height: 0;  z-index: 500;">
+  <div id="helpDiv" style="width: 100vw; height: 100vh; opacity: 0;">
     <iframe src="help.html" style="height: 100%; width: 100%; border: none;"></iframe>
   </div>
 
@@ -1405,9 +1405,12 @@
 //          helpTextTitle,
 //          helpDismissText
 //        );
+        D_MyCanvas.style.opacity = "0";
+        D_FPMuteButton.style.opacity = "0";
+        document.getElementById("bottomNavBar").style.opacity = "0";
+        document.getElementById("setup_butt").style.opacity = "0";
+        document.getElementById("helpDiv").style.opacity = "1";
 
-        document.getElementById("helpDiv").style.height = "100%";
-//        document.getElementById("helpDiv").style.height = "100vh";
       }
 
       function showScreenSize()   {

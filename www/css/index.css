@@ -192,17 +192,12 @@ h1 {
   white-space: nowrap;
 }
 
-#helpDiv {
-  transition:           height 4000ms;
-  -webkit-transition:   height 4000ms;
+#helpDiv, #myCanvas, #FPMuteButton, #bottomNavBar, #setup_butt {
+  -webkit-transition: opacity 1s ease-in-out;
+  -moz-transition: opacity 1s ease-in-out;
+  -ms-transition: opacity 1s ease-in-out;
+  -o-transition: opacity 1s ease-in-out;
   transition-timing-function: linear;
-
-}
-
-#helpDiv {
-  position: absolute;
-  bottom: 0;
-  left: 0;
 }
 
 #setup_but {
