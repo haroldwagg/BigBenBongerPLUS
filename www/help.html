@@ -48,7 +48,7 @@
 <div id="para1"></div>
 
 <footer id="backfooter" style="width: 90%; text-align:center; height: 50px;  position: relative; color: black">
-  <span id="dismisser" style="text-align:center; font-size: 130%; width: 100px"></span>
+  <span id="dismisser" style="width: 100%"></span>
 </footer>
 <!-- <h3><a href="index.html">BACK</a></h3> -->
 
@@ -105,7 +105,7 @@
     helpText += "Tapping the WRENCH icon will display the Settings Menu. Choose from 6 different clocks, with or without pendulum. All settings are easy to understand.\n\n";
     helpText += "Although being a walking Big Ben is cool, you'll probably want to do other things with your phone or tablet. You can minimize Big Ben by tapping the square blue Minimize Icon at the bottom of the screen. Big Ben will continue to bong in the background until you exit the app.\n\n";
     helpText += "To re-maximize the Bonger, tap the Big Ben PLUS icon. You can then exit the app using the red \"X\" Icon in the bottom right corner. Thank you for choosing Big Ben Bonger PLUS.\n\n";
-    helpText += "For more extensive help and to view a demo video, please visit our website:<center><a href=\"http://bigbenbonger.com\">BigBenBonger.com</a></center>\n";
+    helpText += "For more extensive help and to view a demo video, please visit our website:<center><a href=\"http://bigbenbonger.com\" style=\"font-size: 1.2em\">BigBenBonger.com</a></center>\n";
     helpText += "God Save The Queen.\n\numikeapps@outlook.com";
     helpTextTitle = "Welcome to Big Ben Bonger PLUS";
     helpDismissText = "DISMISS";
@@ -114,7 +114,7 @@
   document.getElementById("titler").innerHTML = helpTextTitle;
   document.body.style.padding = "20px";
   document.getElementById("para1").innerHTML = helpText.replace(/(?:\r\n|\r|\n)/g, '<br>');
-  document.getElementById("dismisser").innerHTML = '<br /><a onClick="hider()" style="text-decoration: none; color: #f20d0d; margin-left: 40px;">' + helpDismissText + '<br /><br /></a>';
+  document.getElementById("dismisser").innerHTML = '<br /><button type="button" onClick="hider()" style="color: #f20d0d; float: right; font-size: 120%; background-color: #ffdddd; margin-bottom: 500px; margin-right: -20px;">&nbsp;' + helpDismissText + '&nbsp;</button>';
 </script>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 </body>
