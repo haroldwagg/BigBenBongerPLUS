@@ -193,10 +193,8 @@ h1 {
 }
 
 #helpDiv, #myCanvas, #FPMuteButton, #bottomNavBar, #setup_butt {
-  -webkit-transition: opacity 1s ease-in-out;
-  -moz-transition: opacity 1s ease-in-out;
-  -ms-transition: opacity 1s ease-in-out;
-  -o-transition: opacity 1s ease-in-out;
+  transition-duration: 1000ms;
+  transition-property: opacity;
   transition-timing-function: linear;
 }
 

@@ -20,8 +20,12 @@
     }
 
     function hider()   {
-      alert("HIDER");
-
+      document.location.href = "#atTop";
+      parent.document.getElementById("helpDiv").style.opacity = "0";
+      parent.document.getElementById("myCanvas").style.opacity = "1";
+      parent.document.getElementById("FPMuteButton").style.opacity = "1";
+      parent.document.getElementById("bottomNavBar").style.opacity = "1";
+      parent.document.getElementById("setup_butt").style.opacity = "1";
     }
 
   </script>
@@ -110,8 +114,8 @@
   document.getElementById("titler").innerHTML = helpTextTitle;
   document.body.style.padding = "20px";
   document.getElementById("para1").innerHTML = helpText.replace(/(?:\r\n|\r|\n)/g, '<br>');
-  document.getElementById("dismisser").innerHTML = '<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a onClick="hider()" style="text-decoration: none; color: #f20d0d;">' + helpDismissText + '<br /><br /></a>';
+  document.getElementById("dismisser").innerHTML = '<br /><a onClick="hider()" style="text-decoration: none; color: #f20d0d; margin-left: 40px;">' + helpDismissText + '<br /><br /></a>';
 </script>
-
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 </body>
 </html>
