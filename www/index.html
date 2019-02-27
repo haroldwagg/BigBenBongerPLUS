@@ -12,9 +12,14 @@
 </head>
 
 <body>
+
+<!--
   <div id="helpDiv" style="width: 100%; height: 100vh; opacity: 0;">
-    <iframe src="help.html" style="height: 92%; width: 92%; margin: 4%; border-radius: 15px; "></iframe>
+    <iframe src="help.html" scrolling="auto" style="height: 92%; width: 92%; margin: 4%; border-radius: 15px;"></iframe>
   </div>
+-->
+
+  <iframe id="helpDiv" src="help.html" style="height: 92vh; width: 92%; margin: 4%; border-radius: 15px; opacity: 0; overflow: visible;"></iframe>
 
   <div id="cvas" style="width: 310px; height: 321px; position: absolute; top: 0; left: 0;">
       <canvas id="myCanvas" width="310" height="321" style="border: none; position:absolute; left: 0; top: 0;">
@@ -67,9 +72,10 @@
 
                       <span style="color: #0000bb"><hr /></span>
                       <input type="checkbox" class="checkers" name="no_phone_mute" id="no_phone_mute" onClick="doPhoneMute()"><div id="bongDuringCall" style="margin: 0; padding: 0; display: inline-block"></div>
-                      <br />
-
+                      <br /><br />
+<!--
                       <input type="checkbox" class="checkers" name="autostart" id="autostart" onClick="doAutoStart()">&nbsp;<div id="autoStartTextDiv" style="margin: 0; padding: 0; display: inline-block"></div>
+-->
                       <span style="color: #0000bb"><hr /></span>
                       <div id="themeLabel" style="margin: 0; padding: 0; display: inline-block; margin-bottom: 3px;"></div><br><input type="radio" name="themebuttons" onClick="doBigBenTheme()" id="big_ben_but" style="margin-left: 35px; vertical-align: text-bottom">BIG BEN&nbsp;&nbsp;&nbsp;<input type="radio" name="themebuttons" id="london_but" onClick="doLondonTheme()" style="vertical-align: text-bottom">LONDON<br />
                       <div style="height: 20px; width: 100%"><span style="float: right;"><a onClick="doSetUp()">
@@ -1170,8 +1176,8 @@
           document.getElementById("Half").style.height = "35px";
           document.getElementById("Hour-strikes").style.width = "35px";
           document.getElementById("Hour-strikes").style.height = "35px";
-          document.getElementById("autostart").style.width = "35px";
-          document.getElementById("autostart").style.height = "35px";
+//          document.getElementById("autostart").style.width = "35px";
+//          document.getElementById("autostart").style.height = "35px";
           document.getElementById("useQT").style.width = "35px";
           document.getElementById("useQT").style.height = "35px";
           document.getElementById("pend_but_on").style.width = "35px";
@@ -1245,7 +1251,7 @@
         setLanguage();
 
         processSavedSettings();
-
+alert("After Insomnia");
         window.plugins.insomnia.keepAwake();
 
         cordova.plugins.backgroundMode.on('activate', function() {
@@ -1263,6 +1269,9 @@
           resume: false,
           hidden: false
         });
+
+
+
 
         PhoneCallTrap.onCall(function(state) {
           switch (state) {
@@ -1289,6 +1298,7 @@
             }
           },
         false );
+
       }
 
       document.addEventListener("resume", onResume, false);
@@ -1420,6 +1430,7 @@
       }
 
       function processSavedSettings()   {
+
 //
 //  Clock Selection
 //
@@ -1576,18 +1587,18 @@
 //
 //  AutoStart
 //
-        if ((localStorage["autostart"] != "checked") && (localStorage["autostart"] != "no"))   {
-          localStorage["autostart"] = "no";
-        }
-
-        if (localStorage["autostart"] == "checked")   {
-          document.getElementById("autostart").checked = true;
-          cordova.plugins.autoStart.enable();
-        }
-        else   {
-          document.getElementById("autostart").checked = false;
-          cordova.plugins.autoStart.disable();
-        }
+//        if ((localStorage["autostart"] != "checked") && (localStorage["autostart"] != "no"))   {
+//          localStorage["autostart"] = "no";
+//        }
+//
+//        if (localStorage["autostart"] == "checked")   {
+//          document.getElementById("autostart").checked = true;
+//          cordova.plugins.autoStart.enable();
+//        }
+//        else   {
+//          document.getElementById("autostart").checked = false;
+//          cordova.plugins.autoStart.disable();
+//        }
 
 //
 //  Theme
@@ -2314,16 +2325,16 @@
 
       }
 
-      function doAutoStart()   {
-        if (document.getElementById("autostart").checked == true)   {
-          cordova.plugins.autoStart.enable();
-          localStorage["autostart"] = "checked";
-        }
-        else   {
-          cordova.plugins.autoStart.disable();
-          localStorage["autostart"] = "no";
-        }
-      }
+//      function doAutoStart()   {
+//        if (document.getElementById("autostart").checked == true)   {
+//          cordova.plugins.autoStart.enable();
+//          localStorage["autostart"] = "checked";
+//        }
+//        else   {
+//          cordova.plugins.autoStart.disable();
+//          localStorage["autostart"] = "no";
+//        }
+//      }
 
       function doPhoneMute()   {
         if (document.getElementById("no_phone_mute").checked == true)   {
