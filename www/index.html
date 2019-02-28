@@ -72,10 +72,11 @@
 
                       <span style="color: #0000bb"><hr /></span>
                       <input type="checkbox" class="checkers" name="no_phone_mute" id="no_phone_mute" onClick="doPhoneMute()"><div id="bongDuringCall" style="margin: 0; padding: 0; display: inline-block"></div>
-                      <br /><br />
-<!--
-                      <input type="checkbox" class="checkers" name="autostart" id="autostart" onClick="doAutoStart()">&nbsp;<div id="autoStartTextDiv" style="margin: 0; padding: 0; display: inline-block"></div>
--->
+                      <br />
+
+
+                      <input type="checkbox" class="checkers" name="autostart" id="autostart" onClick="doAutoStart()" style="display: none;">&nbsp;<div id="autoStartTextDiv" style="margin: 0; padding: 0; display: none;"></div>
+
                       <span style="color: #0000bb"><hr /></span>
                       <div id="themeLabel" style="margin: 0; padding: 0; display: inline-block; margin-bottom: 3px;"></div><br><input type="radio" name="themebuttons" onClick="doBigBenTheme()" id="big_ben_but" style="margin-left: 35px; vertical-align: text-bottom">BIG BEN&nbsp;&nbsp;&nbsp;<input type="radio" name="themebuttons" id="london_but" onClick="doLondonTheme()" style="vertical-align: text-bottom">LONDON<br />
                       <div style="height: 20px; width: 100%"><span style="float: right;"><a onClick="doSetUp()">
@@ -1270,9 +1271,6 @@
           hidden: false
         });
 
-
-
-
         PhoneCallTrap.onCall(function(state) {
           switch (state) {
             case "RINGING":
@@ -1298,7 +1296,6 @@
             }
           },
         false );
-
       }
 
       document.addEventListener("resume", onResume, false);
@@ -1430,7 +1427,6 @@
       }
 
       function processSavedSettings()   {
-
 //
 //  Clock Selection
 //
