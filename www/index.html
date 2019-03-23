@@ -1119,8 +1119,7 @@
 //      }
 
       function starter()   {
-//        START_TIME = new Date().toString().substring(0, 24);
-//        asProperties = getKeys(cordova.plugins.autoStart);
+        setLanguage();
 
         D_MyCanvas = document.getElementById("myCanvas");
         D_FPMuteButton = document.getElementById("FPMuteButton");
@@ -1133,6 +1132,7 @@
 
         loadGlobals();
 //        doScreenSpecs();
+
 
         if (localStorage["theme"] == "BigBen")   {
           document.getElementById("big_ben_but").checked = true;
@@ -1147,6 +1147,8 @@
           document.getElementById("big_ben_but").checked = true;
           doBigBenTheme();
         }
+
+        cordova.plugins.backgroundMode.configure({ text: notificationPrefixText + backgroundNotificationText, resume: false  });
 
         var body = document.getElementsByTagName('body')[0];
         var ratio = window.devicePixelRatio || 1;
@@ -1249,7 +1251,7 @@
           }
         }
 
-        setLanguage();
+
 
         processSavedSettings();
 
@@ -1259,9 +1261,9 @@
           cordova.plugins.backgroundMode.disableWebViewOptimizations();
         });
 
-        if (! cordova.plugins.backgroundMode.isEnabled())   {
-          cordova.plugins.backgroundMode.setEnabled(true);
-        }
+//        if (! cordova.plugins.backgroundMode.isEnabled())   {
+//          cordova.plugins.backgroundMode.setEnabled(true);
+//        }
 
 
         cordova.plugins.backgroundMode.setDefaults({
@@ -1304,6 +1306,9 @@
 
 
 //        cordova.plugins.backgroundMode.moveToForeground();
+        if (cordova.plugins.backgroundMode.isEnabled())   {
+         cordova.plugins.backgroundMode.setEnabled(false);
+        }
 
         window.plugins.insomnia.keepAwake();
         clearTimeout(loopThread);
@@ -1398,6 +1403,11 @@
 
       function doGoToBG()   {
         window.plugins.insomnia.allowSleepAgain();
+
+        if (! cordova.plugins.backgroundMode.isEnabled())   {
+         cordova.plugins.backgroundMode.setEnabled(true);
+        }
+
         cordova.plugins.backgroundMode.disableWebViewOptimizations();
 
         firstTimeInBG = true;
