@@ -182,11 +182,7 @@ h1 {
 
 #panel1, #panel2 {
   text-align: right;
-
-
-  width: 400px;
-
-
+  width: 0px;
   border-radius: 15px;
   transition:           width 1500ms;
   -webkit-transition:   width 1500ms;
