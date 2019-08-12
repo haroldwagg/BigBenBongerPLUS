@@ -700,7 +700,7 @@
           document.getElementById("eend").style.fontSize = "22px";
           panelStyle.position = "absolute";
           panelStyle.left = "5px";
-          panelStyle.top = "5px";
+          panelStyle.top = "-995px";
         }
 
 
@@ -711,6 +711,9 @@
           var h = screen.height;
 
           if (SIZE == "big")   {
+            panelStyle.height = '375px';
+            panel2Style.height = '375px';
+
             if (localStorage["language"] == "fr")   {
               panelStyle.width = '405px';
               panel2Style.width = '405px';
@@ -732,8 +735,6 @@
               panel2Style.width = '410px';
             }
 
-            panelStyle.height = '375px';
-            panel2Style.height = '375px';
             document.getElementById("Quarter").style.marginTop = "10px";
             document.getElementById("Half").style.marginTop = "8px";
             document.getElementById("Hour-strikes").style.marginTop = "8px";
@@ -742,6 +743,9 @@
             document.getElementById("sprk").style.marginBottom = "-8px";
           }
           else   {
+            panelStyle.height = '230px';
+            panel2Style.height = '230px';
+
             if (localStorage["language"] == "fr")   {
               panelStyle.width = '260px';
               panel2Style.width = '260px';
@@ -762,9 +766,6 @@
               panelStyle.width = '265px';
               panel2Style.width = '265px';
             }
-
-            panelStyle.height = '230px';
-            panel2Style.height = '230px';
 
             document.getElementById("spkr").style.width = "22px";
             document.getElementById("spkr").style.height = "22px";
