@@ -15,7 +15,7 @@
     <preference name="AndroidLaunchMode" value="singleInstance" />
 -->
 <preference name="AndroidLaunchMode" value="singleTask" />
-<!--
+
     <preference name="android-minSdkVersion" value="14" />
     <plugin name="cordova-plugin-dialogs" source="npm" spec="~1.2.0" />
     <plugin name="cordova-plugin-media" source="npm" spec="~2.2.0" />
@@ -24,8 +24,9 @@
     <plugin name="io.gvox.plugin.phonecalltrap" source="npm" />
     <plugin name="cordova-plugin-globalization" source="npm" spec="~1.0.3" />
     <gap:plugin platform="android" name="cordova-plugin-autostart" version="2.1.0" source="npm"/>
--->
 
+
+<!--
 
 <preference name="android-minSdkVersion" value="14" />
 <plugin name="cordova-plugin-dialogs" source="npm" />
@@ -34,8 +35,7 @@
 <plugin name="cordova-plugin-background-mode" source="npm" />
 <plugin name="io.gvox.plugin.phonecalltrap" source="npm" />
 <plugin name="cordova-plugin-globalization" source="npm"  />
-<gap:plugin platform="android" name="cordova-plugin-autostart" source="npm"/>
-
+<gap:plugin platform="android" name="cordova-plugin-autostart" source="npm"/>-->
 
     <platform name="browser">
 <!--
