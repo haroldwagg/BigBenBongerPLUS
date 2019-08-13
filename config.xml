@@ -23,7 +23,7 @@
 -->
 
 <preference name="android-minSdkVersion" value="14" />
-<preference name="android-targetSdkVersion" value="26" />
+<preference name="android-targetSdkVersion" value="28" />
 
 
     <plugin name="cordova-plugin-dialogs" source="npm" spec="~1.2.0" />
