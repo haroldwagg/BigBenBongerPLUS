@@ -23,8 +23,12 @@
 -->
 <preference name="AndroidLaunchMode" value="singleTask" />
 <preference name="android-targetSdkVersion" value="28" />
+<preference name="phonegap-version" value="cli-7.1.0" />
+<preference name='pgb-builder-version' value='1' />
+<preference name="android-minSdkVersion" value="14" />
+<preference name="android-targetSdkVersion" value="26" />
+<preference name="android-build-tool" value="gradle" />
 
-    <preference name="android-minSdkVersion" value="14" />
     <plugin name="cordova-plugin-dialogs" source="npm" spec="~1.2.0" />
     <plugin name="cordova-plugin-media" source="npm" spec="~2.2.0" />
     <plugin name="cordova-plugin-insomnia" version="4.1.0" source="npm" />
