@@ -1,3 +1,4 @@
+@ECHO OFF
 git status
 pause
 git add .
