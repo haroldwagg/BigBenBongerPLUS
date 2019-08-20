@@ -695,9 +695,9 @@
         if (SIZE == "big")   {
           document.getElementById("sstart").style.fontSize = "22px";
           document.getElementById("eend").style.fontSize = "22px";
-          panelStyle.position = "absolute";
+          panelStyle.position = "relative";
           panelStyle.left = "5px";
-          panelStyle.top = "1095px";
+          panelStyle.top = "0px";
 //          panelStyle.top = "200px";
         }
 
@@ -2232,8 +2232,7 @@
           else   {
 
             document.getElementById("panel2").style.top = "25px";
-            document.getElementById("panel1").style.top = "1200px";
-            var panel1w = document.getElementById("panel1").style.width + "px";
+//            document.getElementById("panel1").style.top = "1200px";
             document.getElementById("panel2").style.left = "410px";
 
           }
@@ -2377,7 +2376,17 @@
         ;
       }
 
+///////////////////////////////////////
+///////////////////////////////////////
 
+//  Should be called only once in starter(). Size of the device will not change.
+//
+      function getScreenSize()   {
+        var ratio = window.devicePixelRatio || 1;
+
+        SIZE = (screen.height / ratio > 780) ? "big" : "small";
+        alert("SIZE is " + SIZE);
+      }
 
 
     </script>
