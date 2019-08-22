@@ -142,8 +142,8 @@
 
                   <img src="help.png" onClick="doHelp()" width="30" height="30" id="helpIcon" style="margin-left: 8px; margin-top: 5px;" />
 
-                  <img id="ximage" name="ximage" id="ximage" src="x.png" width="45" height="45" style="float: right; border: none;  padding: 0; margin-top: 5px; margin-right: 8px;" onClick="doExit()" />
-                  <img id="minimage" name="minimage" id="minimage" src="img/min.png" width="45" height="45" style="float: right; border: none; margin-top: 5px;" onClick="doGoToBG()" />
+                  <img id="ximage" name="ximage" src="x.png" width="45" height="45" style="float: right; border: none;  padding: 0; margin-top: 5px; margin-right: 8px;" onClick="doExit()" />
+                  <img id="minimage" name="minimage" src="img/min.png" width="45" height="45" style="float: right; border: none; margin-top: 5px;" onClick="doGoToBG()" />
                   <div id="clearr" style=" clear: both;"></div>
                 </div>
 
@@ -184,8 +184,9 @@
       var firstTimeInBG = true;
       var cordova_autostart = "";
 
-      var ORIENT, ORIENTcode;
-      var SIZE, SIZEcode;
+      var ORIENT;
+      var SIZE;
+      var DEVICE_TYPE;
       var D_MyCanvas, D_FPMuteButton, D_setupButtonDiv, D_helpIcon, D_minimage, D_ximage, D_clock;
 
       var QUARTER_DING       = "bb_quarter.mp3";
@@ -227,7 +228,7 @@
       function init()   {
         var d = new Date();
         var mins = d.getMinutes();
-        document.getElementById("clock").innerHTML = "&nbsp;" + makeTimeString() + "&nbsp;";
+        D_clock.innerHTML = "&nbsp;" + makeTimeString() + "&nbsp;";
 
         var secs = d.getSeconds();
         loopDelay = (60 - secs) * 1000;
@@ -418,7 +419,7 @@
           cordova.plugins.backgroundMode.configure({ text: notificationPrefixText + backgroundNotificationText, resume: false  });
         }
 
-        document.getElementById("clock").innerHTML = "&nbsp;" + makeTimeString() + "&nbsp;";
+        D_clock.innerHTML = "&nbsp;" + makeTimeString() + "&nbsp;";
 
         doQuietTimeOption();
 
@@ -1158,8 +1159,8 @@
 
         if (SIZE == "big")   {
           body.style.fontSize = "22px";
-          document.getElementById("myCanvas").style.width = "620px";
-          document.getElementById("myCanvas").style.height = "642px";
+          D_MyCanvas.style.width = "620px";
+          D_MyCanvas.style.height = "642px";
         }
         else   {
           body.style.fontSize = "12px";
@@ -1167,12 +1168,12 @@
 
 
         if (SIZE == "big")   {
-          document.getElementById("ximage").style.width = "70px";
-          document.getElementById("ximage").style.height = "70px";
-          document.getElementById("minimage").style.width = "70px";
-          document.getElementById("minimage").style.height = "70px";
-          document.getElementById("helpIcon").style.width = "70px";
-          document.getElementById("helpIcon").style.height = "70px";
+          D_ximage.style.width = "70px";
+          D_ximage.style.height = "70px";
+          D_minimage.style.width = "70px";
+          D_minimage.style.height = "70px";
+          D_helpIcon.style.width = "70px";
+          D_helpIcon.style.height = "70px";
           document.getElementById("no_phone_mute").style.width = "35px";
           document.getElementById("no_phone_mute").style.height = "35px";
           document.getElementById("Quarter").style.width = "35px";
@@ -1200,56 +1201,56 @@
 //          document.getElementById("setup_butt").style.marginTop = "0px";
 
           document.getElementById("bottomNavBar").style.height = "75px";
-          document.getElementById("minimage").style.marginRight = "120px";
+          D_minimage.style.marginRight = "120px";
           document.getElementById("panel1Table").style.fontSize = "20px";
           document.getElementById("panel2Table").style.fontSize = "20px";
 
 //          document.getElementById("panel1Table").style.marginTop = "800px";
 
           document.getElementById("SstartLabel").style.marginLeft = "70px";
-          document.getElementById("FPMuteButton").style.width = "100px";
-          document.getElementById("FPMuteButton").style.height = "100px";
-          document.getElementById("FPMuteButton").style.marginLeft = "50px";
-          document.getElementById("setupButtonDiv").style.zIndex = "0";
+          D_FPMuteButton.style.width = "100px";
+          D_FPMuteButton.style.height = "100px";
+          D_FPMuteButton.style.marginLeft = "50px";
+          D_setupButtonDiv.style.zIndex = "0";
 
           if (ORIENT == 'landscape')   {
-            document.getElementById("setupButtonDiv").style.position = "relative";
-            document.getElementById("setupButtonDiv").style.marginTop = "0px";
-            document.getElementById("setupButtonDiv").style.marginRight = "10px";
+            D_setupButtonDiv.style.position = "relative";
+            D_setupButtonDiv.style.marginTop = "0px";
+            D_setupButtonDiv.style.marginRight = "10px";
 
           }
           else   {
-            document.getElementById("setupButtonDiv").style.position = "relative";
-            document.getElementById("setupButtonDiv").style.marginTop = "0px";
-            document.getElementById("setupButtonDiv").style.marginRight = "10px";
+            D_setupButtonDiv.style.position = "relative";
+            D_setupButtonDiv.style.marginTop = "0px";
+            D_setupButtonDiv.style.marginRight = "10px";
           }
         }
         else   {
-          document.getElementById("ximage").style.width = "45px";
-          document.getElementById("ximage").style.height = "45px";
-          document.getElementById("minimage").style.width = "42px";
-          document.getElementById("minimage").style.height = "42px";
-          document.getElementById("minimage").style.marginTop = "5px";
-          document.getElementById("minimage").style.marginRight = "100px";
-          document.getElementById("helpIcon").style.width = "45px";
-          document.getElementById("helpIcon").style.height = "45px";
+          D_ximage.style.width = "45px";
+          D_ximage.style.height = "45px";
+          D_minimage.style.width = "42px";
+          D_minimage.style.height = "42px";
+          D_minimage.style.marginTop = "5px";
+          D_minimage.style.marginRight = "100px";
+          D_helpIcon.style.width = "45px";
+          D_helpIcon.style.height = "45px";
 
-          document.getElementById("FPMuteButton").style.right = "2px";
-          document.getElementById("FPMuteButton").style.top = "0";
+          D_FPMuteButton.style.right = "2px";
+          D_FPMuteButton.style.top = "0";
 
           if (ORIENT == "landscape") {
 //            body.style.backgroundImage = 'url(img/bg_lscape_sm.jpg)';
-            document.getElementById("setupButtonDiv").style.position = "fixed";
-            document.getElementById("setupButtonDiv").style.top = "220px";
-            document.getElementById("setupButtonDiv").style.right = "0px";
+            D_setupButtonDiv.style.position = "fixed";
+            D_setupButtonDiv.style.top = "220px";
+            D_setupButtonDiv.style.right = "0px";
           }
           else   {
 //            body.style.backgroundImage = 'url(img/bg_pt_sm.jpg)';
 //            document.getElementById("setupButtonDiv").style.position = "relative";
 //            document.getElementById("setupButtonDiv").style.marginTop = "368px";
-            document.getElementById("setupButtonDiv").style.position = "fixed";
-            document.getElementById("setupButtonDiv").style.top = "286px";
-            document.getElementById("setupButtonDiv").style.right = "0px";
+            D_setupButtonDiv.style.position = "fixed";
+            D_setupButtonDiv.style.top = "286px";
+            D_setupButtonDiv.style.right = "0px";
           }
         }
 
@@ -1424,12 +1425,6 @@
           helpTextTitle,
           helpDismissText
         );
-//        D_MyCanvas.style.opacity = "0";
-//        D_FPMuteButton.style.opacity = "0";
-//        document.getElementById("bottomNavBar").style.opacity = "0";
-//        document.getElementById("setup_butt").style.opacity = "0";
-//        document.getElementById("helpDiv").style.opacity = "1";
-
       }
 
       function showScreenSize()   {
@@ -2014,7 +2009,7 @@
           if (SIZE == "big")   {
             document.getElementById("setup_butt").style.zIndex = '0';
             document.getElementById("statusPanel").style.zIndex = '0';
-            document.getElementById("clock").style.zIndex = '0';
+            D_clock.style.zIndex = '0';
 
 
             document.getElementById("startSelectDiv").innerHTML = makeTimeSelect("sstart", "margin-left: 55px; margin-top: 4px;", localStorage["sstart"]);
@@ -2204,11 +2199,9 @@
 // Device Size and Orientation
         if (screen.height > screen.width)   {
           ORIENT = "portrait";
-          ORIENTcode = "P";
         }
         else   {
           ORIENT = "landscape";
-          ORIENTcode = "L";
           document.getElementById("t2id").style.display = "none";
           document.getElementById("useQT").style.marginTop = "15px";
 
@@ -2216,12 +2209,11 @@
 
         if (screen.height / ratio > 780)   {
           SIZE = "big";
-          SIZEcode = "B";
           body.style.fontSize = "22px";
 
           if (ORIENT == "portrait")   {
-           document.getElementById("setupButtonDiv").style.top = "0px";
-            document.getElementById("setupButtonDiv").style.right = "2px";
+            D_setupButtonDiv.style.top = "0px";
+            D_setupButtonDiv.style.right = "2px";
             document.getElementById("panel2").style.top = "395px";
             document.getElementById("panel2").style.left = "10px";
             document.getElementById("panel1").style.top = "-600px";
@@ -2236,12 +2228,11 @@
         }
         else   {
           SIZE = "small";
-          SIZEcode = "S";
           body.style.fontSize = "12px";
 
           if (ORIENT == "portrait")   {
-            document.getElementById("setupButtonDiv").style.top = "280px";
-            document.getElementById("setupButtonDiv").style.right = "0";
+            D_setupButtonDiv.style.top = "280px";
+            D_setupButtonDiv.style.right = "0";
             document.getElementById("panel1").style.top = "10px";
             document.getElementById("panel2").style.left =  "10px";
             document.getElementById("panel2").style.top = "255px";
@@ -2250,8 +2241,8 @@
             document.getElementById("panel2").style.left = "270px";
             document.getElementById("panel2").style.top = "25px";
             document.getElementById("panel1").style.top = "0";
-            document.getElementById("setupButtonDiv").style.top = "220px";
-            document.getElementById("setupButtonDiv").style.right = "0";
+            D_setupButtonDiv.style.top = "220px";
+            D_setupButtonDiv.style.right = "0";
           }
 
         }
@@ -2380,9 +2371,28 @@
 //
       function getScreenSize()   {
         var ratio = window.devicePixelRatio || 1;
-
         SIZE = (screen.height / ratio > 780) ? "big" : "small";
-        alert("SIZE is " + SIZE);
+//        alert("SIZE is " + SIZE);
+      }
+
+//  Called every time orientation changes
+//
+      function onOChange()   {
+        ORIENT = (screen.height > screen.width) ? "portrait" : "landscape";
+        DEVICE_TYPE = SIZE + "-" + ORIENT;
+//        alert("DEVICE_TYPE is " + DEVICE_TYPE);
+
+        switch(DEVICE_TYPE)   {
+          case 'small-landscape':
+            break;
+          case 'big-landscape':
+            break;
+          case 'small-portrait':
+            break;
+          case 'big-portrait':
+            break;
+        }
+
       }
 
 
