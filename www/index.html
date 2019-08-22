@@ -1249,7 +1249,7 @@
 //            document.getElementById("setupButtonDiv").style.position = "relative";
 //            document.getElementById("setupButtonDiv").style.marginTop = "368px";
             D_setupButtonDiv.style.position = "fixed";
-            D_setupButtonDiv.style.top = "286px";
+            D_setupButtonDiv.style.top = "216px";
             D_setupButtonDiv.style.right = "0px";
           }
         }
@@ -2384,18 +2384,26 @@
         DEVICE_TYPE = SIZE + "-" + ORIENT;
 //        alert("DEVICE_TYPE is " + DEVICE_TYPE);
 
-        switch(DEVICE_TYPE)   {
-          case 'small-landscape':
-            break;
-          case 'big-landscape':
-            break;
-          case 'small-portrait':
-            break;
-          case 'big-portrait':
-            break;
+        if (localStorage["theme"] == "BigBen")   {
+          doBigBenTheme();
         }
-
+        else   {
+          doLondonTheme();
+        }
       }
+
+//        switch(DEVICE_TYPE)   {
+//          case 'small-landscape':
+//            break;
+//          case 'big-landscape':
+//            break;
+//          case 'small-portrait':
+//            break;
+//          case 'big-portrait':
+//            break;
+//        }
+
+
 
 
     </script>
