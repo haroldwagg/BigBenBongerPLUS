@@ -238,7 +238,7 @@
 
         doTimeDisplay(d.getHours(), mins);
 
-        cordova.plugins.backgroundMode.configure({ text: notificationPrefixText + backgroundNotificationText, resume: false  });
+        cordova.plugins.backgroundMode.configure({ text: notificationPrefixText + backgroundNotificationText, resume: true  });
 
         if (! cordova.plugins.backgroundMode.isActive())   {
           window.plugins.insomnia.keepAwake();
@@ -416,7 +416,7 @@
 
         if (firstTimeInBG)   {
           firstTimeInBG = false;
-          cordova.plugins.backgroundMode.configure({ text: notificationPrefixText + backgroundNotificationText, resume: false  });
+          cordova.plugins.backgroundMode.configure({ text: notificationPrefixText + backgroundNotificationText, resume: true  });
         }
 
         D_clock.innerHTML = "&nbsp;" + makeTimeString() + "&nbsp;";
@@ -1151,7 +1151,7 @@
           doBigBenTheme();
         }
 
-        cordova.plugins.backgroundMode.configure({ text: notificationPrefixText + backgroundNotificationText, resume: false  });
+        cordova.plugins.backgroundMode.configure({ text: notificationPrefixText + backgroundNotificationText, resume: true  });
 
         var body = document.getElementsByTagName('body')[0];
         var ratio = window.devicePixelRatio || 1;
@@ -1414,7 +1414,7 @@
         cordova.plugins.backgroundMode.disableWebViewOptimizations();
 
         firstTimeInBG = true;
-        cordova.plugins.backgroundMode.configure({ text: notificationPrefixText + backgroundNotificationText,   });
+        cordova.plugins.backgroundMode.configure({ text: notificationPrefixText + backgroundNotificationText, resume: true  });
         cordova.plugins.backgroundMode.moveToBackground();
       }
 
@@ -2124,7 +2124,7 @@
         }
 
         firstTimeInBG = true;
-        cordova.plugins.backgroundMode.configure({ text: notificationPrefixText + backgroundNotificationText, resume: false  });
+        cordova.plugins.backgroundMode.configure({ text: notificationPrefixText + backgroundNotificationText, resume: true  });
       }
 
 
