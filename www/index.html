@@ -687,8 +687,8 @@
 
         if (SIZE == "big")   {
           alert("...and in BIG");
-//          document.getElementById("sstart").style.fontSize = "22px";
-//          document.getElementById("eend").style.fontSize = "22px";
+          document.getElementById("sstart").style.fontSize = "22px";
+          document.getElementById("eend").style.fontSize = "22px";
 //          panelStyle.position = "relative";
 //          panelStyle.left = "5px";
 //          panelStyle.top = "0px";
@@ -1985,7 +1985,7 @@ alert("In ! setupIsDisplayed");
             document.getElementById("statusPanel").style.zIndex = '0';
             D_clock.style.zIndex = '0';
 
-
+            document.getElementById("endSelectDiv").innerHTML = makeTimeSelect("eend", "margin-left: 65px;", localStorage["eend"]);
             document.getElementById("startSelectDiv").innerHTML = makeTimeSelect("sstart", "margin-left: 55px; margin-top: 4px;", localStorage["sstart"]);
           }
           else   {   // SIZE == small
