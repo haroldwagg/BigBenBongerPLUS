@@ -679,32 +679,26 @@
       }
 
       function doSetUp()   {
-//        alert("doingSetup ... setupIsDisplayed is " + setupIsDisplayed);
         var panelStyle = document.getElementById("panel1").style;
         var panel2Style = document.getElementById("panel2").style;
 
         var theCheckboxes = document.getElementsByClassName("checkers");
 
         if (SIZE == "big")   {
-          alert("...and in BIG");
           document.getElementById("sstart").style.fontSize = "22px";
           document.getElementById("eend").style.fontSize = "22px";
 //          panelStyle.position = "relative";
 //          panelStyle.left = "5px";
 //          panelStyle.top = "0px";
 //          panelStyle.top = "200px";
-          alert("...out of in BIG");
         }
 
-alert("Just before if (! setup) ... setupIsDisplayed = " + setupIsDisplayed);
         if (! setupIsDisplayed)   {
           setupIsDisplayed = true;
-alert("In ! setupIsDisplayed");
           var ratio = window.devicePixelRatio || 1;
           var h = screen.height;
 
           if (SIZE == "big")   {
-            alert("...and in BIG2");
             panelStyle.height = '375px';
             panel2Style.height = '375px';
 
@@ -737,7 +731,6 @@ alert("In ! setupIsDisplayed");
             document.getElementById("sprk").style.marginBottom = "-8px";
           }
           else   {
-            alert("...and in SMALL2");
             panelStyle.height = '230px';
             panel2Style.height = '230px';
 
@@ -767,7 +760,6 @@ alert("In ! setupIsDisplayed");
           }
         }
         else   {
-          alert("SETUP is displayed; close it");
           setupIsDisplayed = false;
           panelStyle.width = '0px';
           panel2Style.width = '0px';
@@ -1305,18 +1297,7 @@ alert("In ! setupIsDisplayed");
       document.addEventListener("pause", onPause, false);
 
       function onPause()   {
-//        var y = "";
-//        if (cordova.plugins.backgroundMode.isActive())   {
-//          y = " and IN BACKGROUND";
-//        }
-//        else   {
-//          y = " and in the FOREGROUND";
-//        }
-//        alert("I am PAUSED" + y);
 
-//        if (cordova.plugins.backgroundMode.isActive())   {
-//          navigator.app.exitApp();
-//        }
       }
 
       function doExit()   {
@@ -1394,6 +1375,13 @@ alert("In ! setupIsDisplayed");
         if (! cordova.plugins.backgroundMode.isEnabled())   {
          cordova.plugins.backgroundMode.setEnabled(true);
         }
+
+        cordova.plugins.backgroundMode.setDefaults({
+          title: "Big Ben Bonger Background",
+          text: backgroundNotificationText,
+          resume: true,
+          hidden: false
+        });
 
         cordova.plugins.backgroundMode.disableWebViewOptimizations();
 
