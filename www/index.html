@@ -679,12 +679,14 @@
       }
 
       function doSetUp()   {
+        alert("doingSetup");
         var panelStyle = document.getElementById("panel1").style;
         var panel2Style = document.getElementById("panel2").style;
 
         var theCheckboxes = document.getElementsByClassName("checkers");
 
         if (SIZE == "big")   {
+          alert("...and in BIG");
           document.getElementById("sstart").style.fontSize = "22px";
           document.getElementById("eend").style.fontSize = "22px";
 //          panelStyle.position = "relative";
@@ -1105,6 +1107,13 @@
         getScreenSize();
         setLanguage();
 
+        cordova.plugins.backgroundMode.setDefaults({
+          title: "Big Ben Bonger Background",
+          text: backgroundNotificationText,
+          resume: true,
+          hidden: false
+        });
+
         D_MyCanvas = document.getElementById("myCanvas");
         D_FPMuteButton = document.getElementById("FPMuteButton");
         D_setupButtonDiv = document.getElementById("setupButtonDiv");
@@ -1246,12 +1255,6 @@
 //        }
 
 
-        cordova.plugins.backgroundMode.setDefaults({
-          title: "Big Ben Bonger Background",
-          text: backgroundNotificationText,
-          resume: true,
-          hidden: false
-        });
 
         PhoneCallTrap.onCall(function(state) {
           switch (state) {
@@ -2174,8 +2177,7 @@
 
         }
 
-        if (screen.height / ratio > 780)   {
-          SIZE = "big";
+        if (SIZE == "big")   {
           body.style.fontSize = "22px";
 
           if (ORIENT == "portrait")   {
@@ -2192,7 +2194,6 @@
           }
         }
         else   {
-          SIZE = "small";
           body.style.fontSize = "12px";
 
           if (ORIENT == "portrait")   {
@@ -2338,7 +2339,12 @@
 //
       function getScreenSize()   {
         var ratio = window.devicePixelRatio || 1;
-        SIZE = (screen.height / ratio > 780) ? "big" : "small";
+        if ((screen.height / ratio > 780) || (screen.width / ratio > 780))   {
+          SIZE = "big";
+        }
+        else   {
+          SIZE = "small";
+        }
 //        alert("SIZE is " + SIZE);
       }
 
