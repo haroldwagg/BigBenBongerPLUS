@@ -13,14 +13,6 @@
 
 <body>
 
-<!--
-  <div id="helpDiv" style="width: 100%; height: 100vh; opacity: 0;">
-    <iframe src="help.html" scrolling="auto" style="height: 92%; width: 92%; margin: 4%; border-radius: 15px;"></iframe>
-  </div>
-
-
-  <iframe id="helpDiv" src="help.html" style="height: 92vh; width: 92%; margin: 4%; border-radius: 15px; opacity: 0; overflow: visible;"></iframe>
--->
   <div id="cvas" style="width: 310px; height: 321px; position: absolute; top: 0; left: 0;">
       <canvas id="myCanvas" width="310" height="321" style="border: none; position:absolute; left: 0; top: 0;">
       </canvas>
@@ -1109,15 +1101,8 @@
 ///  STARTER  ////////////////////////////////////////
 //////////////////////////////////////////////////////
 
-//      function getKeys(obj)   {
-//        var keys = [];
-//        for(var key in obj)   {
-//          keys.push(key);
-//        }
-//        return keys;
-//      }
-
       function starter()   {
+        getScreenSize();
         setLanguage();
 
         D_MyCanvas = document.getElementById("myCanvas");
@@ -1130,8 +1115,6 @@
 
 
         loadGlobals();
-//        doScreenSpecs();
-
 
         if (localStorage["theme"] == "BigBen")   {
           document.getElementById("big_ben_but").checked = true;
@@ -1200,8 +1183,6 @@
           D_minimage.style.marginRight = "120px";
           document.getElementById("panel1Table").style.fontSize = "20px";
           document.getElementById("panel2Table").style.fontSize = "20px";
-
-//          document.getElementById("panel1Table").style.marginTop = "800px";
 
           document.getElementById("SstartLabel").style.marginLeft = "70px";
           D_FPMuteButton.style.width = "100px";
@@ -1776,7 +1757,7 @@
             helpTextTitle = "Bem-vindo ao Big Ben Bonger PLUS";
             helpDismissText = "DISPENSAR";
             quitConfirmText = "Você quer sair do Big Ben Bonger?";
-            backgroundNotificationText = "Toque no ícone Big Ben PLUS para restaurar";
+            backgroundNotificationText = "[Toque aqui para restaurar]";
             optionsInText = "OPÇÕES >";
             optionsOutText = "< OPÇÕES";
 
@@ -1812,7 +1793,7 @@
             helpTextTitle = "Bienvenue au Big Ben Bonger PLUS";
             helpDismissText ="RENVOYER";
             quitConfirmText = "Voulez-vous quitter Big Ben Bonger?";
-            backgroundNotificationText = "Appuyez sur l'icône Big Ben PLUS pour restaurer";
+            backgroundNotificationText = "[Tapez ici pour restaurer]";
             optionsInText = "OPTIONS >";
             optionsOutText = "< OPTIONS";
 
@@ -1851,7 +1832,7 @@
             helpTextTitle = "Willkommen bei den Big Ben Bonger PLUS";
             helpDismissText ="SCHLIEßEB";
             quitConfirmText = "Willst du Big Ben Bonger verlassen?";
-            backgroundNotificationText = "Tippen Sie auf das Big Ben Icon, um es wiederherzustellen";
+            backgroundNotificationText = "[Zum Wiederherstellen hier tippen]";
             optionsInText = "OPTIONEN >";
             optionsOutText = "< OPTIONEN";
 
@@ -1890,7 +1871,7 @@
             helpTextTitle = "Bienvenido al Big Ben Bonger PLUS";
             helpDismissText ="DESPEDIR";
             quitConfirmText = "¿Quieres salir de Big Ben Bonger?";
-            backgroundNotificationText = "Toque el icono de Big Ben para restaurar";
+            backgroundNotificationText = "[Toque aquí para restaurar]";
             optionsInText = "OPCIONES >";
             optionsOutText = "< OPCIONES";
 
@@ -1930,7 +1911,7 @@
             helpDismissText = "CHIUDERE";
             quitConfirmText = "Vuoi uscire dal Big Ben Bonger PLUS?";
 
-            backgroundNotificationText = "[Toccare l'icona di Big Ben Bonger PLUS per ripristinare.]";
+            backgroundNotificationText = "[Tocca qui per ripristinare]";
 
             optionsInText = "OPTIONS >";
             optionsOutText = "< OPTIONS";
@@ -2202,12 +2183,10 @@
             D_setupButtonDiv.style.right = "2px";
             document.getElementById("panel2").style.top = "395px";
             document.getElementById("panel2").style.left = "10px";
-//            document.getElementById("panel1").style.top = "-600px";
           }
           else   {
 
             document.getElementById("panel2").style.top = "25px";
-//            document.getElementById("panel1").style.top = "-600px";
             document.getElementById("panel2").style.left = "410px";
 
           }
