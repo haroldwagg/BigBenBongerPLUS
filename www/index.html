@@ -1722,11 +1722,20 @@
 //   Large Landscape
 //
           else   {
-            sPanel.style.left = "650px";
-            sPanel.style.top = "260px";
-            sPanel.style.width = "267px";
-            sPanel.style.height = "103px";
-            sPanel.style.fontSize = "46px";
+            if (localStorage["theme"] == "London")   {
+              sPanel.style.left = "100px";
+              sPanel.style.top = "260px";
+              sPanel.style.width = "267px";
+              sPanel.style.height = "103px";
+              sPanel.style.fontSize = "46px";
+            }
+            else   {
+              sPanel.style.left = "650px";
+              sPanel.style.top = "260px";
+              sPanel.style.width = "267px";
+              sPanel.style.height = "103px";
+              sPanel.style.fontSize = "46px";
+            }
           }
         }
       }
