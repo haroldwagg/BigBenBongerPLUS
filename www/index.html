@@ -822,11 +822,16 @@
           }
         }
 
-        pendSoundFile = this.root + "audio/" + "Pendulum5mins.mp3";
-        media_PEND = new Media(pendSoundFile,
-            function () { console.log("playAudio():Audio Success"); },
-            ignoreError()
-          );
+        if (pendSoundFile == "")   {
+          pendSoundFile = this.root + "audio/" + "Pendulum5mins.mp3";
+          media_PEND = new Media(pendSoundFile,
+              function () { console.log("playAudio():Audio Success"); },
+              ignoreError()
+            );
+        }
+        else   {
+          media_PEND.seekTo(0);
+        }
 
         media_PEND.play();
         media_PEND.setVolume(PEND_VOLUME);
