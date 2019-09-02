@@ -169,7 +169,7 @@
       var PEND_VOLUME = 0.4;
       var PEND_STATUS = "RUNNING";
       var pendulumID;
-      var pendSoundFile;
+      var pendSoundFile = "";
       var pendulumRunning = false;
       var OkToRestartPend = false;
       var START_TIME = 0;
@@ -822,11 +822,13 @@
           }
         }
 
-        pendSoundFile = this.root + "audio/" + "Pendulum5mins.mp3";
-        media_PEND = new Media(pendSoundFile,
-            function () { console.log("playAudio():Audio Success"); },
-            ignoreError()
-          );
+        if (pendSoundFile == "")   {
+          pendSoundFile = this.root + "audio/" + "Pendulum5mins.mp3";
+          media_PEND = new Media(pendSoundFile,
+              function () { console.log("playAudio():Audio Success"); },
+              ignoreError()
+            );
+        }
 
         media_PEND.play();
         media_PEND.setVolume(PEND_VOLUME);
@@ -838,6 +840,7 @@
         PEND_STATUS = "STOPPED";
         localStorage["pend_status"] = "no";
         pendulumRunning = false;
+        pendSoundFile = "";
 
 
         clearTimeout(pendulumID);
