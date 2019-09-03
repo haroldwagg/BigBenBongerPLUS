@@ -130,8 +130,6 @@
 
                 <div id="bottomNavBar" style="background-color: black; margin: 0; padding: 0; height: 54px; position: fixed; bottom: 0%; width: 100%; overflow:visible;">
 
-<!--                 <a href="help.html"><img src="img/help.png" width="30" height="30" id="helpIcon" style="margin-left: 8px; margin-top: 5px;" /></a>   -->
-
                   <img src="help.png" onClick="doHelp()" width="30" height="30" id="helpIcon" style="margin-left: 8px; margin-top: 5px;" />
 
                   <img id="ximage" name="ximage" src="x.png" width="45" height="45" style="float: right; border: none;  padding: 0; margin-top: 5px; margin-right: 8px;" onClick="doExit()" />
@@ -174,7 +172,6 @@
       var OkToRestartPend = false;
       var START_TIME = 0;
       var firstTimeInBG = true;
-      var cordova_autostart = "";
 
       var ORIENT;
       var SIZE;
@@ -188,7 +185,6 @@
       var DING_SELECTION;
       var do24Hr = false;
       var myLang;
-      var IGNOREquietTimeOption = false;
 
       var Timeouter;
       var delayRelease;
@@ -237,15 +233,9 @@
           window.plugins.insomnia.keepAwake();
         }
 
-        if (IGNOREquietTimeOption)   {
-          IGNOREquietTimeOption = false;
-        }
-        else   {
-          doQuietTimeOption();
-        }
+        doQuietTimeOption();
 
         clearTimeout(loopThread);
-
         loopThread = setTimeout(doMainLoop, loopDelay);
       }
 
@@ -863,9 +853,7 @@
       }
 
       function mutePendulum()   {
-  //        alert("In mutePendulum() Pend is Object? " + (typeof(media_PEND) == "object"));
         if (typeof(media_PEND) == "object")   {
-  //          alert("Setting Pend Volume to 0");
           media_PEND.setVolume(0.0);
         }
       }
@@ -896,107 +884,6 @@
         localStorage["pend_vol"] = PEND_VOLUME.toString();
       }
 
-
-
-        function selectBB()   {
-        DING_SELECTION     = "bb";
-        localStorage["ding_selection"] = "bb";
-        var dingerFile = this.root + "audio/" + "bb_quarter.mp3";
-
-        if(my_media_WHICH != "NOT_RUNNING")   {
-          clearTimeout(Timeouter);
-          my_media_WHICH.stop();
-          my_media_WHICH.release();
-          my_media_WHICH = "NOT_RUNNING";
-        }
-
-        if(my_media_TEST != "NOT_RUNNING")   {
-          clearTimeout(delayRelease);
-          my_media_TEST.stop();
-          my_media_TEST.release();
-          my_media_TEST = "NOT_RUNNING";
-        }
-
-        my_media_WHICH = new Media(dingerFile,
-           function () { console.log("playAudio():Audio Success"); },
-           ignoreError()
-        );
-
-        my_media_WHICH.play();
-        my_media_WHICH.setVolume(MASTER_VOLUME);
-
-        Timeouter = setTimeout(function()   {
-            my_media_WHICH.stop();
-            my_media_WHICH.release();
-            my_media_WHICH = "NOT_RUNNING";
-          }, 15000);
-      }
-
-      function selectBG()   {
-        DING_SELECTION     = "bg";
-        localStorage["ding_selection"] = "bg";
-        var dingerFile = this.root + "audio/" + "bg_quarter.mp3";
-
-        if(my_media_WHICH != "NOT_RUNNING")   {
-          clearTimeout(Timeouter);
-          my_media_WHICH.stop();
-          my_media_WHICH.release();
-          my_media_WHICH = "NOT_RUNNING";
-        }
-
-        if(my_media_TEST != "NOT_RUNNING")   {
-          clearTimeout(delayRelease);
-          my_media_TEST.stop();
-          my_media_TEST.release();
-          my_media_TEST = "NOT_RUNNING";
-        }
-
-        my_media_WHICH = new Media(dingerFile,
-           function () { console.log("playAudio():Audio Success"); },
-           ignoreError()
-        );
-
-        my_media_WHICH.play();
-        my_media_WHICH.setVolume(MASTER_VOLUME);
-
-        Timeouter = setTimeout(function()   {
-            my_media_WHICH.release();
-            my_media_WHICH = "NOT_RUNNING";
-          }, 20000);
-      }
-
-      function selectGF()   {
-        DING_SELECTION     = "gf";
-        localStorage["ding_selection"] = "gf";
-        var dingerFile = this.root + "audio/" + "gf_quarter.mp3";
-
-        if(my_media_WHICH != "NOT_RUNNING")   {
-          clearTimeout(Timeouter);
-          my_media_WHICH.stop();
-          my_media_WHICH.release();
-          my_media_WHICH = "NOT_RUNNING";
-        }
-
-        if(my_media_TEST != "NOT_RUNNING")   {
-          clearTimeout(delayRelease);
-          my_media_TEST.stop();
-          my_media_TEST.release();
-          my_media_TEST = "NOT_RUNNING";
-        }
-
-        my_media_WHICH = new Media(dingerFile,
-           function () { console.log("playAudio():Audio Success"); },
-           ignoreError()
-        );
-
-        my_media_WHICH.play();
-        my_media_WHICH.setVolume(MASTER_VOLUME);
-
-        Timeouter = setTimeout(function()   {
-            my_media_WHICH.release();
-            my_media_WHICH = "NOT_RUNNING";
-          }, 20000);
-      }
 
       function doFPMuteButton()   {
 //        alert ("Value is " + FRONT_PANEL_MUTE);
@@ -2108,9 +1995,7 @@
 
         firstTimeInBG = true;
         cordova.plugins.backgroundMode.configure({ text: notificationPrefixText + backgroundNotificationText, resume: true  });
-        clearTimeout(loopThread);
-        IGNOREquietTimeOption = true;
-        init();
+
       }
 
 
