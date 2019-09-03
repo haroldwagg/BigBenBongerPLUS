@@ -1593,11 +1593,18 @@
 //   Small Landscape
 //
           else   {
-            sPanel.style.left = "320px";
-            sPanel.style.top = "130px";
             sPanel.style.width = "135px";
             sPanel.style.height = "56px";
             sPanel.style.fontSize = "24px";
+
+            if (localStorage["theme"] == "London")   {
+              sPanel.style.left = "75px";
+              sPanel.style.top = "180px";
+            }
+            else   {
+              sPanel.style.left = "320px";
+              sPanel.style.top = "130px";
+            }
           }
         }
         else   {
