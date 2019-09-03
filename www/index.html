@@ -188,6 +188,7 @@
       var DING_SELECTION;
       var do24Hr = false;
       var myLang;
+      var IGNOREquietTimeOption = false;
 
       var Timeouter;
       var delayRelease;
@@ -236,7 +237,12 @@
           window.plugins.insomnia.keepAwake();
         }
 
-        doQuietTimeOption();
+        if (IGNOREquietTimeOption)   {
+          IGNOREquietTimeOption = false;
+        }
+        else   {
+          doQuietTimeOption();
+        }
 
         clearTimeout(loopThread);
 
@@ -1582,9 +1588,6 @@
 
 
       function doQuietTimeOption()   {
-
-alert("HERE");
-        
         if (document.getElementById("useQT").checked == true)   {
           localStorage["useqt"] = "checked";
 
@@ -2106,6 +2109,7 @@ alert("HERE");
         firstTimeInBG = true;
         cordova.plugins.backgroundMode.configure({ text: notificationPrefixText + backgroundNotificationText, resume: true  });
         clearTimeout(loopThread);
+        IGNOREquietTimeOption = true;
         init();
       }
 
