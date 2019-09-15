@@ -215,6 +215,7 @@
       var HOUR_HAND_CORRECTION_FACTOR = 0;
 
       function init()   {
+// alert("Start init()");
         var d = new Date();
         var mins = d.getMinutes();
         D_clock.innerHTML = "&nbsp;" + makeTimeString() + "&nbsp;";
@@ -237,7 +238,7 @@
 
         clearTimeout(loopThread);
         loopThread = setTimeout(doMainLoop, loopDelay);
-
+// alert("End init()");
       }
 
       function makeTimeString()   {
@@ -767,9 +768,7 @@
       }
 
       function isQuietTime()   {
-alert("begin isQuietTime");
         if (document.getElementById("useQT").checked == false)   {
-alert("isQuietTime returns false -- no check");
           return false;
         }
 
@@ -788,17 +787,14 @@ alert("isQuietTime returns false -- no check");
 
         if (start_int < end_int)   {
           if ((current_int > start_int) && (current_int < end_int))   {
-alert("isQuietTime returns true");
             return true;
           }
         }
         else   {
           if ((current_int > start_int) || (current_int < end_int))   {
-alert("isQuietTime returns true");
             return true;
           }
         }
-alert("isQuietTime returns false at the end of the function");
         return false;
       }
 
