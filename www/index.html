@@ -1000,8 +1000,9 @@
 
       function starter()   {
         getScreenSize();
+alert("Hello1");
         setLanguage();
-
+alert("Hello2");
         cordova.plugins.backgroundMode.setDefaults({
           title: "Big Ben Bonger Background",
           text: backgroundNotificationText,
@@ -1019,7 +1020,7 @@
 
 
         loadGlobals();
-
+alert("Hello3");
         if (localStorage["theme"] == "BigBen")   {
           document.getElementById("big_ben_but").checked = true;
           doBigBenTheme();
@@ -1138,7 +1139,7 @@
 
 
         processSavedSettings();
-
+alert("Hello4");
         window.plugins.insomnia.keepAwake();
 
         cordova.plugins.backgroundMode.on('activate', function() {
