@@ -1179,7 +1179,6 @@ alert("After Quiet Time");
             }
           },
         false );
-alert("End starter");
       }
 
       document.addEventListener("resume", onResume, false);
@@ -1480,6 +1479,7 @@ alert("End starter");
 
       function doQuietTimeOption()   {
         if (document.getElementById("useQT").checked == true)   {
+alert("Use Quiet Time is true");
           localStorage["useqt"] = "checked";
 
           if (isQuietTime())   {
@@ -1520,6 +1520,7 @@ alert("End starter");
           }
         }
         else   {
+alert("Use Quiet Time is false");
           if (notificationPrefixText == quietTimeTextNotification)   {
             changeNotification("Off");
           }
@@ -1535,7 +1536,7 @@ alert("End starter");
             }
           }
         }
-
+alert("End Quiet Time");
         displayStatusPanel();
       }
 
