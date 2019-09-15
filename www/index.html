@@ -215,6 +215,7 @@
       var HOUR_HAND_CORRECTION_FACTOR = 0;
 
       function init()   {
+alert("Start init");
         var d = new Date();
         var mins = d.getMinutes();
         D_clock.innerHTML = "&nbsp;" + makeTimeString() + "&nbsp;";
@@ -237,6 +238,7 @@
 
         clearTimeout(loopThread);
         loopThread = setTimeout(doMainLoop, loopDelay);
+alert("End init");        
       }
 
       function makeTimeString()   {
@@ -1000,9 +1002,9 @@
 
       function starter()   {
         getScreenSize();
-alert("Hello1");
+
         setLanguage();
-alert("Hello2");
+
         cordova.plugins.backgroundMode.setDefaults({
           title: "Big Ben Bonger Background",
           text: backgroundNotificationText,
@@ -1020,7 +1022,7 @@ alert("Hello2");
 
 
         loadGlobals();
-alert("Hello3");
+
         if (localStorage["theme"] == "BigBen")   {
           document.getElementById("big_ben_but").checked = true;
           doBigBenTheme();
@@ -1139,7 +1141,7 @@ alert("Hello3");
 
 
         processSavedSettings();
-alert("Hello4");
+
         window.plugins.insomnia.keepAwake();
 
         cordova.plugins.backgroundMode.on('activate', function() {
@@ -1177,6 +1179,7 @@ alert("Hello4");
             }
           },
         false );
+alert("End starter");
       }
 
       document.addEventListener("resume", onResume, false);
