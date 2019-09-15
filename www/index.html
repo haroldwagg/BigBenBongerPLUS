@@ -215,7 +215,6 @@
       var HOUR_HAND_CORRECTION_FACTOR = 0;
 
       function init()   {
-alert("Start init");
         var d = new Date();
         var mins = d.getMinutes();
         D_clock.innerHTML = "&nbsp;" + makeTimeString() + "&nbsp;";
@@ -233,9 +232,9 @@ alert("Start init");
         if (! cordova.plugins.backgroundMode.isActive())   {
           window.plugins.insomnia.keepAwake();
         }
-alert("Before Quiet Time");
+
         doQuietTimeOption();
-alert("After Quiet Time");
+
         clearTimeout(loopThread);
         loopThread = setTimeout(doMainLoop, loopDelay);
 
@@ -768,7 +767,9 @@ alert("After Quiet Time");
       }
 
       function isQuietTime()   {
+alert("begin isQuietTime");
         if (document.getElementById("useQT").checked == false)   {
+alert("isQuietTime returns false -- no check");
           return false;
         }
 
@@ -787,15 +788,17 @@ alert("After Quiet Time");
 
         if (start_int < end_int)   {
           if ((current_int > start_int) && (current_int < end_int))   {
+alert("isQuietTime returns true");
             return true;
           }
         }
         else   {
           if ((current_int > start_int) || (current_int < end_int))   {
+alert("isQuietTime returns true");
             return true;
           }
         }
-
+alert("isQuietTime returns false at the end of the function");
         return false;
       }
 
@@ -1479,7 +1482,6 @@ alert("After Quiet Time");
 
       function doQuietTimeOption()   {
         if (document.getElementById("useQT").checked == true)   {
-alert("Use Quiet Time is true");
           localStorage["useqt"] = "checked";
 
           if (isQuietTime())   {
@@ -1520,7 +1522,6 @@ alert("Use Quiet Time is true");
           }
         }
         else   {
-alert("Use Quiet Time is false");
           if (notificationPrefixText == quietTimeTextNotification)   {
             changeNotification("Off");
           }
@@ -1536,7 +1537,7 @@ alert("Use Quiet Time is false");
             }
           }
         }
-alert("End Quiet Time");
+
         displayStatusPanel();
       }
 
