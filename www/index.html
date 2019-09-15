@@ -233,12 +233,12 @@ alert("Start init");
         if (! cordova.plugins.backgroundMode.isActive())   {
           window.plugins.insomnia.keepAwake();
         }
-
+alert("Before Quiet Time");
         doQuietTimeOption();
-
+alert("After Quiet Time");
         clearTimeout(loopThread);
         loopThread = setTimeout(doMainLoop, loopDelay);
-alert("End init");        
+
       }
 
       function makeTimeString()   {
