@@ -215,7 +215,6 @@
       var HOUR_HAND_CORRECTION_FACTOR = 0;
 
       function init()   {
-// alert("Start init()");
         var d = new Date();
         var mins = d.getMinutes();
         D_clock.innerHTML = "&nbsp;" + makeTimeString() + "&nbsp;";
@@ -233,9 +232,9 @@
         if (! cordova.plugins.backgroundMode.isActive())   {
           window.plugins.insomnia.keepAwake();
         }
-alert("Before doQuietTimeOption");
+alert("Before doQuietTimeOption in init");
         doQuietTimeOption();
-alert("After doQuietTimeOption");
+alert("After doQuietTimeOption in init");
         clearTimeout(loopThread);
         loopThread = setTimeout(doMainLoop, loopDelay);
 // alert("End init()");
@@ -1478,6 +1477,7 @@ alert("After doQuietTimeOption");
 
       function doQuietTimeOption()   {
         if (document.getElementById("useQT").checked == true)   {
+alert("doQuietTimeOption - Quiet Time is Checked");
           localStorage["useqt"] = "checked";
 
           if (isQuietTime())   {
@@ -1485,7 +1485,7 @@ alert("After doQuietTimeOption");
 
             document.getElementById("pend_but_on").disabled = true;
             document.getElementById("pend_but_off").disabled = true;
-
+alert("Before Pendulum stuff from checked IS Quiet Time");
             if (localStorage["pend_status"] == "checked")   {
               if (pendulumRunning)   {
                 pendulumRunning = false;
@@ -1508,7 +1508,7 @@ alert("After doQuietTimeOption");
 
             document.getElementById("pend_but_on").disabled = false;
             document.getElementById("pend_but_off").disabled = false;
-
+alert("Before Pendulum stuff from checked NOT Quiet Time");
             if (localStorage["pend_status"] == "checked")   {
               if (! pendulumRunning)   {
                 startPendulum();
@@ -1518,13 +1518,14 @@ alert("After doQuietTimeOption");
           }
         }
         else   {
+alert("doQuietTimeOption - Quiet Time is NOT Checked");
           if (notificationPrefixText == quietTimeTextNotification)   {
             changeNotification("Off");
           }
 
           document.getElementById("pend_but_on").disabled = false;
           document.getElementById("pend_but_off").disabled = false;
-
+alert("Before Pendulum stuff from NOT checked");
           localStorage["useqt"] = "no";
           if ((localStorage["pend_status"] == "checked") && (! isQuietTime()))   {
             if (! pendulumRunning)   {
