@@ -197,7 +197,7 @@
       var XStr;
       var setupIsDisplayed = false;
       var helpText, helpTextTitle, mantleClockText, grandfatherClockText, helpDismissText, quitConfirmText, backgroundNotificationText, optionsInText, optionsOutText;
-      var quietTimeText1, quietTimeText2, muteText1, muteText2, noPendulumAdjustText;
+      var quietTimeText1, quietTimeText2, muteText1, muteText2, noPendulumAdjustText, quietTimeTextNotification;
       var notificationPrefixText = "";
       var mySavedStates = false;
 
@@ -232,9 +232,9 @@
         if (! cordova.plugins.backgroundMode.isActive())   {
           window.plugins.insomnia.keepAwake();
         }
-alert("Before doQuietTimeOption in init");
+
         doQuietTimeOption();
-alert("After doQuietTimeOption in init");
+
         clearTimeout(loopThread);
         loopThread = setTimeout(doMainLoop, loopDelay);
 // alert("End init()");
@@ -1477,7 +1477,6 @@ alert("After doQuietTimeOption in init");
 
       function doQuietTimeOption()   {
         if (document.getElementById("useQT").checked == true)   {
-alert("doQuietTimeOption - Quiet Time is Checked");
           localStorage["useqt"] = "checked";
 
           if (isQuietTime())   {
@@ -1485,7 +1484,7 @@ alert("doQuietTimeOption - Quiet Time is Checked");
 
             document.getElementById("pend_but_on").disabled = true;
             document.getElementById("pend_but_off").disabled = true;
-alert("Before Pendulum stuff from checked IS Quiet Time");
+
             if (localStorage["pend_status"] == "checked")   {
               if (pendulumRunning)   {
                 pendulumRunning = false;
@@ -1508,7 +1507,7 @@ alert("Before Pendulum stuff from checked IS Quiet Time");
 
             document.getElementById("pend_but_on").disabled = false;
             document.getElementById("pend_but_off").disabled = false;
-alert("Before Pendulum stuff from checked NOT Quiet Time");
+
             if (localStorage["pend_status"] == "checked")   {
               if (! pendulumRunning)   {
                 startPendulum();
@@ -1518,18 +1517,13 @@ alert("Before Pendulum stuff from checked NOT Quiet Time");
           }
         }
         else   {
-alert("doQuietTimeOption - Quiet Time is NOT Checked");
-// alert("notificationPrefixText = " + notificationPrefixText + " quietTimeTextNotification = " + quietTimeTextNotification);
-alert("notificationPrefixText = " + notificationPrefixText);
-alert(" quietTimeTextNotification = " + quietTimeTextNotification);
           if (notificationPrefixText == quietTimeTextNotification)   {
             changeNotification("Off");
           }
 
-alert("Im here");
           document.getElementById("pend_but_on").disabled = false;
           document.getElementById("pend_but_off").disabled = false;
-alert("Before Pendulum stuff from NOT checked");
+
           localStorage["useqt"] = "no";
           if ((localStorage["pend_status"] == "checked") && (! isQuietTime()))   {
             if (! pendulumRunning)   {
@@ -1538,7 +1532,7 @@ alert("Before Pendulum stuff from NOT checked");
             }
           }
         }
-alert ("Exit doQuietTimeOption() -> displayStatusPanel");
+
         displayStatusPanel();
       }
 
@@ -1677,7 +1671,7 @@ alert ("Exit doQuietTimeOption() -> displayStatusPanel");
             backgroundNotificationText = "[Toque aqui para restaurar]";
             optionsInText = "OPÇÕES >";
             optionsOutText = "< OPÇÕES";
-
+            quietTimeTextNotification = "[Tempo Quieto]  ";
             quietTimeText1 = "TEMPO QUIETO";
             quietTimeText2 = "TEMPO<br /> QUIETO";
             muteText1 = "MUTE ON";
@@ -1713,7 +1707,7 @@ alert ("Exit doQuietTimeOption() -> displayStatusPanel");
             backgroundNotificationText = "[Tapez ici pour restaurer]";
             optionsInText = "OPTIONS >";
             optionsOutText = "< OPTIONS";
-
+            quietTimeTextNotification = "[Moments de Silence]  ";
             quietTimeText1 = "SILENCE";
             quietTimeText2 = "MOMENTS<br />DE SILENCE";
             muteText1 = "MUTE ON";
@@ -1752,7 +1746,7 @@ alert ("Exit doQuietTimeOption() -> displayStatusPanel");
             backgroundNotificationText = "[Zum Wiederherstellen hier tippen]";
             optionsInText = "OPTIONEN >";
             optionsOutText = "< OPTIONEN";
-
+            quietTimeTextNotification = "[Ruhige Zeit]  ";
             quietTimeText1 = "RUHIGE ZEIT";
             quietTimeText2 = "RUHIGE<br />ZEIT";
             muteText1 = "MUTE ON";
@@ -1791,7 +1785,7 @@ alert ("Exit doQuietTimeOption() -> displayStatusPanel");
             backgroundNotificationText = "[Toque aquí para restaurar]";
             optionsInText = "OPCIONES >";
             optionsOutText = "< OPCIONES";
-
+            quietTimeTextNotification = "[Silencio Tiempo]  ";
             quietTimeText1 = "SILENCIO TIEMPO";
             quietTimeText2 = "SILENCIO<br />TIEMPO";
             muteText1 = "EN SILENCIO";
@@ -1832,7 +1826,7 @@ alert ("Exit doQuietTimeOption() -> displayStatusPanel");
 
             optionsInText = "OPTIONS >";
             optionsOutText = "< OPTIONS";
-
+            quietTimeTextNotification = "[Tempo Silenzioso]  ";
             quietTimeText1 = "SILENZIOSO";
             quietTimeText2 = "TEMPO<br />SILENZIOSO";
             muteText1 = " SILENZIOSO ";
