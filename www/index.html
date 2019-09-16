@@ -233,9 +233,9 @@
         if (! cordova.plugins.backgroundMode.isActive())   {
           window.plugins.insomnia.keepAwake();
         }
-
+alert("Before doQuietTimeOption");
         doQuietTimeOption();
-
+alert("After doQuietTimeOption");
         clearTimeout(loopThread);
         loopThread = setTimeout(doMainLoop, loopDelay);
 // alert("End init()");
