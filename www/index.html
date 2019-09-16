@@ -197,7 +197,7 @@
       var XStr;
       var setupIsDisplayed = false;
       var helpText, helpTextTitle, mantleClockText, grandfatherClockText, helpDismissText, quitConfirmText, backgroundNotificationText, optionsInText, optionsOutText;
-      var quietTimeText1, quietTimeText2, muteText1, muteText2, noPendulumAdjustText, quietTimeTextNotification;
+      var quietTimeText1, quietTimeText2, muteText1, muteText2, noPendulumAdjustText, quietTimeTextNotification, muteTextNotification;
       var notificationPrefixText = "";
       var mySavedStates = false;
 
@@ -1676,6 +1676,7 @@
             quietTimeText2 = "TEMPO<br /> QUIETO";
             muteText1 = "MUTE ON";
             muteText2 = "MUTE<br />ON";
+            muteTextNotification = "[Mute]  ";
 
             cuckooClockText = "RELÓGIO DE CUCO";
             electronicClockText = "RELÓGIO ELETRÔNICO";
@@ -1712,6 +1713,7 @@
             quietTimeText2 = "MOMENTS<br />DE SILENCE";
             muteText1 = "MUTE ON";
             muteText2 = "MUTE<br />ON";
+            muteTextNotification = "[Mute]  ";
 
             cuckooClockText = "HORLOGE COUCOU";
             electronicClockText = "HORLOGE ÉLECTRONIQUE";
@@ -1751,6 +1753,7 @@
             quietTimeText2 = "RUHIGE<br />ZEIT";
             muteText1 = "MUTE ON";
             muteText2 = "MUTE<br />ON";
+            muteTextNotification = "[Mute]  ";
             noPendulumAdjustText = "You cannot turn the Pendulum on or off during Quiet Time.\n\nTo make adjustments to the Pendulum, simply turn off Quiet Time and try again.";
 
             cuckooClockText = "KUCKUCKSUHR";
@@ -1790,6 +1793,7 @@
             quietTimeText2 = "SILENCIO<br />TIEMPO";
             muteText1 = "EN SILENCIO";
             muteText2 = "EN<br />SILENCIO";
+            muteTextNotification = "[En Silencio]  ";
             noPendulumAdjustText = "You cannot turn the Pendulum on or off during Quiet Time.\n\nTo make adjustments to the Pendulum, simply turn off Quiet Time and try again.";
 
             cuckooClockText = "RELOJ CUCÚ";
@@ -1831,6 +1835,7 @@
             quietTimeText2 = "TEMPO<br />SILENZIOSO";
             muteText1 = " SILENZIOSO ";
             muteText2 = "MANUALE<br />SILENZIOSO";
+            muteTextNotification = "[Silenzioso]  ";
             noPendulumAdjustText = "You cannot turn the Pendulum on or off during Quiet Time.\n\nTo make adjustments to the Pendulum, simply turn off Quiet Time and try again.";
 
             cuckooClockText = "OROLOGIO A CUCÙ";
