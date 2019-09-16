@@ -1674,9 +1674,9 @@
             quietTimeTextNotification = "[Tempo Quieto]  ";
             quietTimeText1 = "TEMPO QUIETO";
             quietTimeText2 = "TEMPO<br /> QUIETO";
-            muteText1 = "MUTE ON";
-            muteText2 = "MUTE<br />ON";
-            muteTextNotification = "[Mute]  ";
+            muteText1 = "SEM SON";
+            muteText2 = "SEM<br />SON";
+            muteTextNotification = "[Sem Som]  ";
 
             cuckooClockText = "RELÓGIO DE CUCO";
             electronicClockText = "RELÓGIO ELETRÔNICO";
@@ -1711,9 +1711,9 @@
             quietTimeTextNotification = "[Moments de Silence]  ";
             quietTimeText1 = "SILENCE";
             quietTimeText2 = "MOMENTS<br />DE SILENCE";
-            muteText1 = "MUTE ON";
-            muteText2 = "MUTE<br />ON";
-            muteTextNotification = "[Mute]  ";
+            muteText1 = "MUET SUR";
+            muteText2 = "MUET<br />SUR";
+            muteTextNotification = "[Muet]  ";
 
             cuckooClockText = "HORLOGE COUCOU";
             electronicClockText = "HORLOGE ÉLECTRONIQUE";
@@ -1751,9 +1751,9 @@
             quietTimeTextNotification = "[Ruhige Zeit]  ";
             quietTimeText1 = "RUHIGE ZEIT";
             quietTimeText2 = "RUHIGE<br />ZEIT";
-            muteText1 = "MUTE ON";
-            muteText2 = "MUTE<br />ON";
-            muteTextNotification = "[Mute]  ";
+            muteText1 = "STUMM";
+            muteText2 = "STUMM<br />EIN";
+            muteTextNotification = "[Stumm]  ";
             noPendulumAdjustText = "You cannot turn the Pendulum on or off during Quiet Time.\n\nTo make adjustments to the Pendulum, simply turn off Quiet Time and try again.";
 
             cuckooClockText = "KUCKUCKSUHR";
@@ -1890,10 +1890,6 @@
           }
 
           if (SIZE == "big")   {
-//            document.getElementById("setup_butt").style.zIndex = '0';
-//            document.getElementById("statusPanel").style.zIndex = '0';
-//            D_clock.style.zIndex = '0';
-
             document.getElementById("endSelectDiv").innerHTML = makeTimeSelect("eend", "margin-left: 55px;", localStorage["eend"]);
             document.getElementById("startSelectDiv").innerHTML = makeTimeSelect("sstart", "margin-left: 55px; margin-top: 4px;", localStorage["sstart"]);
           }
