@@ -1905,6 +1905,10 @@
               document.getElementById("startSelectDiv").innerHTML = makeTimeSelect("sstart", "margin-left: 48px; margin-top: 4px;", localStorage["sstart"]);
               document.getElementById("endSelectDiv").innerHTML = makeTimeSelect("eend", "margin-left: 49px;", localStorage["eend"]);
             }
+            else if (localStorage["language"] == "es")   {
+              document.getElementById("startSelectDiv").innerHTML = makeTimeSelect("sstart", "margin-left: 48px; margin-top: 4px;", localStorage["sstart"]);
+              document.getElementById("endSelectDiv").innerHTML = makeTimeSelect("eend", "margin-left: 49px;", localStorage["eend"]);
+            }
             else if (localStorage["language"] == "it")   {
               document.getElementById("startSelectDiv").innerHTML = makeTimeSelect("sstart", "margin-left: 47px; margin-top: 4px;", localStorage["sstart"]);
               document.getElementById("endSelectDiv").innerHTML = makeTimeSelect("eend", "margin-left: 65px;", localStorage["eend"]);
