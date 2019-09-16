@@ -1480,6 +1480,10 @@ alert("After doQuietTimeOption");
         if (document.getElementById("useQT").checked == true)   {
           localStorage["useqt"] = "checked";
 
+alert("Before TESTER");
+  var testVar = isQuietTime();
+alert("After TESTER");
+
           if (isQuietTime())   {
             changeNotification("Quiet Time");
 
