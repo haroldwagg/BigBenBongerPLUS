@@ -334,11 +334,6 @@
                   tmp = (parseInt(xhr) * 100) + xmins;
                 }
               }
-//              else   {
-//                var xmin = min;
-//                ++xmin;
-//                tmp = (hr * 100) + xmin;
-//              }
 
               outStr += '<option value="' + tmp + '"';
 
@@ -593,12 +588,6 @@
 
       function initializeCanvas()   {
         canvas = document.getElementById("myCanvas");
-
-//        if (! canvas.getContext)   {
-//          alert ('Put in static pic');
-//          return;
-//        }
-
         ctx = canvas.getContext('2d');
 
         if (SIZE == "small")   {
@@ -1890,8 +1879,14 @@
           }
 
           if (SIZE == "big")   {
-            document.getElementById("endSelectDiv").innerHTML = makeTimeSelect("eend", "margin-left: 55px;", localStorage["eend"]);
-            document.getElementById("startSelectDiv").innerHTML = makeTimeSelect("sstart", "margin-left: 55px; margin-top: 4px;", localStorage["sstart"]);
+            if (localStorage["language"] == "es")   {
+              document.getElementById("startSelectDiv").innerHTML = makeTimeSelect("sstart", "margin-left: 73px; margin-top: 4px;", localStorage["sstart"]);
+              document.getElementById("endSelectDiv").innerHTML = makeTimeSelect("eend", "margin-left: 100px;", localStorage["eend"]);
+            }
+            else {
+              document.getElementById("endSelectDiv").innerHTML = makeTimeSelect("eend", "margin-left: 55px;", localStorage["eend"]);
+              document.getElementById("startSelectDiv").innerHTML = makeTimeSelect("sstart", "margin-left: 55px; margin-top: 4px;", localStorage["sstart"]);
+            }
           }
           else   {   // SIZE == small
             if (localStorage["language"] == "pt")   {
