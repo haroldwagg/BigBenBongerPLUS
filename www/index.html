@@ -1082,12 +1082,11 @@
           D_FPMuteButton.style.width = "100px";
           D_FPMuteButton.style.height = "100px";
           D_FPMuteButton.style.marginLeft = "50px";
-//          D_setupButtonDiv.style.zIndex = "0";
 
           if (ORIENT == 'landscape')   {
             D_setupButtonDiv.style.position = "relative";
             D_setupButtonDiv.style.marginTop = "0px";
-            D_setupButtonDiv.style.marginRight = "10px";
+            D_                                  .style.marginRight = "10px";
 
           }
           else   {
@@ -1661,7 +1660,7 @@
             optionsInText = "OPÇÕES >";
             optionsOutText = "< OPÇÕES";
             quietTimeTextNotification = "[Tempo Quieto]  ";
-            quietTimeText1 = "TEMPO QUIETO";
+            quietTimeText1 = "TEMPO QU.TO";
             quietTimeText2 = "TEMPO<br /> QUIETO";
             muteText1 = "SEM SON";
             muteText2 = "SEM<br />SON";
@@ -1778,7 +1777,7 @@
             optionsInText = "OPCIONES >";
             optionsOutText = "< OPCIONES";
             quietTimeTextNotification = "[Silencio Tiempo]  ";
-            quietTimeText1 = "SILENCIO TIEMPO";
+            quietTimeText1 = "SILENCIO TMP.";
             quietTimeText2 = "SILENCIO<br />TIEMPO";
             muteText1 = "EN SILENCIO";
             muteText2 = "EN<br />SILENCIO";
@@ -1884,8 +1883,8 @@
               document.getElementById("endSelectDiv").innerHTML = makeTimeSelect("eend", "margin-left: 96px;", localStorage["eend"]);
             }
             else if (localStorage["language"] == "es")   {
-              document.getElementById("startSelectDiv").innerHTML = makeTimeSelect("sstart", "margin-left: 56px; margin-top: 4px;", localStorage["sstart"]);
-              document.getElementById("endSelectDiv").innerHTML = makeTimeSelect("eend", "margin-left: 37px;", localStorage["eend"]);
+              document.getElementById("startSelectDiv").innerHTML = makeTimeSelect("sstart", "margin-left: 83px; margin-top: 4px;", localStorage["sstart"]);
+              document.getElementById("endSelectDiv").innerHTML = makeTimeSelect("eend", "margin-left: 96px;", localStorage["eend"]);
             }
             else {
               document.getElementById("startSelectDiv").innerHTML = makeTimeSelect("sstart", "margin-left: 83px; margin-top: 4px;", localStorage["sstart"]);
