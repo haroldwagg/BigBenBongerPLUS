@@ -21,7 +21,7 @@
 
                 <div id="setupButtonDiv" style="position: absolute;  right: 2px; height: 70px;">
 
-                <img src="img/options.png" height="55" width="55" id="setup_butt" onClick="doSetUp()" style="border: none; position: absolute; top: 0px; right: 2px;" />
+                <img src="img/options.png" height="55" width="55" id="setup_butt" onClick="doSetUp()" style="border: none; position: absolute; top: 0px; right: 2px; visibility: hidden;" />
 
 <img src="img/bb_minute_hand.png" id="mh" style="display:none" />
 <img src="img/bb_hour_hand.png" id="hh" style="display:none" />
@@ -1074,6 +1074,7 @@
 
 //          document.getElementById("setup_butt").style.marginTop = "550px";
           document.getElementById("setup_butt").style.marginTop = "350px";
+          document.getElementById("setup_butt").style.visibility = "visible";
 
           document.getElementById("bottomNavBar").style.height = "75px";
           D_minimage.style.marginRight = "120px";
