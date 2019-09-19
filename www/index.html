@@ -341,7 +341,7 @@
                 outStr += " selected";
               }
 
-              outStr += ">" + displayHr + ":" + displayMin + "</option>\n";
+              outStr += "> " + displayHr + ":" + displayMin + " </option>\n";
             }
             else   {
               var ampm = "AM";
@@ -1886,7 +1886,7 @@
             }
             else if (localStorage["language"] == "es")   {
               document.getElementById("startSelectDiv").innerHTML = makeTimeSelect("sstart", "margin-left: 91px; margin-top: 4px;", localStorage["sstart"]);
-              document.getElementById("endSelectDiv").innerHTML = makeTimeSelect("eend", "margin-left: 85px;", localStorage["eend"]);
+              document.getElementById("endSelectDiv").innerHTML = makeTimeSelect("eend", "margin-left: 77px;", localStorage["eend"]);
             }
             else {
               document.getElementById("startSelectDiv").innerHTML = makeTimeSelect("sstart", "margin-left: 83px; margin-top: 4px;", localStorage["sstart"]);
