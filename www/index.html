@@ -2133,10 +2133,6 @@
         localStorage["theme"] = "London";
 
         D_MyCanvas.style.display = "none";
-//        D_FPMuteButton.style.display = "none";
-//        D_helpIcon.style.display = "none";
-//        D_minimage.style.display = "none";
-//        D_ximage.style.display = "none";
 
         D_clock.style.display = "block";
 
@@ -2154,6 +2150,7 @@
             D_clock.style.fontSize = "75px";
           }
           else   {
+            document.getElementById("setup_butt").style.marginTop = "525px";
             D_setupButtonDiv.style.marginTop = "-70px";
             D_clock.style.top = "251px";
             D_clock.style.marginLeft = "0px";
@@ -2170,6 +2167,7 @@
             D_clock.style.fontSize = "120px";
           }
           else   {
+            document.getElementById("setup_butt").style.marginTop = "425px";
             D_setupButtonDiv.style.marginTop = "-15px";
             D_clock.style.top = "175px";
             D_clock.style.fontSize = "240px";
