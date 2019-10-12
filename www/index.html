@@ -988,6 +988,14 @@
 //////////////////////////////////////////////////////
 
       function starter()   {
+
+        cordova.plugins.backgroundMode.setDefaults({
+          title: "Big Ben Bonger Background",
+          text: "[Tap HERE to Restore]",
+          resume: true,
+          hidden: false
+        });
+
         getScreenSize();
 
         setLanguage();
