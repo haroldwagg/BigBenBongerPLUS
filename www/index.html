@@ -1003,11 +1003,19 @@
 
       function starter()   {
 
-        var permissions = cordova.plugins.permissions;
-        permissions.requestPermission(permissions.FOREGROUND_SERVICE, success, error);
+        var Permission = window.plugins.Permission;
+        var permission = 'android.permission.FOREGROUND_SERVICE';
 
+        Permission.request(permission, function(results) {
+            if (results[permission]) {
+              alert("Permission GRANTED");
+            }
+            else   {
+              alert("OOPS");
+            }
+          };
 
-        cordova.plugins.backgroundMode.setDefaults({
+          cordova.plugins.backgroundMode.setDefaults({
           title: "Big Ben Bonger Background",
           text: "[Tap HERE to Restore]",
           resume: true,
