@@ -983,11 +983,29 @@
 //     window.onload = setTimeout(function() {starter();}, 2000);
 
 
+      function error() {
+        alert("FOREGROUND_SERVICE not granted");
+      }
+
+      function success( status ) {
+        if( ! status.hasPermission )   {
+          error();
+        }
+        else   {
+          alert(FOREGROUND_SERVICE granted);
+        }
+      }
+
+
 //////////////////////////////////////////////////////
 ///  STARTER  ////////////////////////////////////////
 //////////////////////////////////////////////////////
 
       function starter()   {
+
+        var permissions = cordova.plugins.permissions;
+        permissions.requestPermission(permissions.FOREGROUND_SERVICE, success, error);
+
 
         cordova.plugins.backgroundMode.setDefaults({
           title: "Big Ben Bonger Background",

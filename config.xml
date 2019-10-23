@@ -24,8 +24,7 @@
     <preference name="AndroidLaunchMode" value="singleInstance" />
 -->
 <gap:config-file platform="android" parent="/manifest/application">
-    <activity android:launchMode="singleInstance" />
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <activity android:launchMode="singleInstance" /
 </gap:config-file>
 
 <preference name="android-minSdkVersion" value="14" />
@@ -36,6 +35,7 @@
     <plugin name="cordova-plugin-media" source="npm" spec="~2.2.0" />
     <plugin name="cordova-plugin-insomnia" version="4.1.0" source="npm" />
     <plugin name="cordova-plugin-background-mode" version="0.7.2" source="npm" />
+    <plugin name="cordova-plugin-android-permissions" source="npm" />
     <plugin name="io.gvox.plugin.phonecalltrap" source="npm" />
     <plugin name="cordova-plugin-globalization" source="npm" spec="~1.0.3" />
     <gap:plugin platform="android" name="cordova-plugin-autostart" version="2.1.0" source="npm"/>
