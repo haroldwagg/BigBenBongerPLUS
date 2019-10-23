@@ -1003,17 +1003,17 @@
 
       function starter()   {
 
-        var Permission = window.plugins.Permission;
-        var permission = 'android.permission.FOREGROUND_SERVICE';
-
-        Permission.request(permission, function(results) {
-            if (results[permission]) {
-              alert("Permission GRANTED");
-            }
-            else   {
-              alert("OOPS");
-            }
-          };
+//        var Permission = window.plugins.Permission;
+//        var permission = 'android.permission.FOREGROUND_SERVICE';
+//
+//        Permission.request(permission, function(results) {
+//            if (results[permission]) {
+//              alert("Permission GRANTED");
+//            }
+//            else   {
+//              alert("OOPS");
+//            }
+//          };
 
           cordova.plugins.backgroundMode.setDefaults({
           title: "Big Ben Bonger Background",

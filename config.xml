@@ -35,11 +35,15 @@
     <plugin name="cordova-plugin-media" source="npm" spec="~2.2.0" />
     <plugin name="cordova-plugin-insomnia" version="4.1.0" source="npm" />
     <plugin name="cordova-plugin-background-mode" version="0.7.2" source="npm" />
+<!--
     <plugin name="cordova-plugin-permission" source="npm" />
+-->
     <plugin name="io.gvox.plugin.phonecalltrap" source="npm" />
     <plugin name="cordova-plugin-globalization" source="npm" spec="~1.0.3" />
     <gap:plugin platform="android" name="cordova-plugin-autostart" version="2.1.0" source="npm"/>
-
+<!--
+<uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+-->
 
 <!--
 
