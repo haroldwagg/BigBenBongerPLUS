@@ -25,6 +25,7 @@
 -->
 <gap:config-file platform="android" parent="/manifest/application">
     <activity android:launchMode="singleInstance" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 </gap:config-file>
 
 <preference name="android-minSdkVersion" value="14" />
