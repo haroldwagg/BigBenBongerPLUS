@@ -983,19 +983,6 @@
 //     window.onload = setTimeout(function() {starter();}, 2000);
 
 
-      function error() {
-        alert("FOREGROUND_SERVICE not granted");
-      }
-
-      function success( status ) {
-        if( ! status.hasPermission )   {
-          error();
-        }
-        else   {
-          alert(FOREGROUND_SERVICE granted);
-        }
-      }
-
 
 //////////////////////////////////////////////////////
 ///  STARTER  ////////////////////////////////////////
@@ -1003,25 +990,12 @@
 
       function starter()   {
 
-//        var Permission = window.plugins.Permission;
-//        var permission = 'android.permission.FOREGROUND_SERVICE';
-//
-//        Permission.request(permission, function(results) {
-//            if (results[permission]) {
-//              alert("Permission GRANTED");
-//            }
-//            else   {
-//              alert("OOPS");
-//            }
-//          };
-
           cordova.plugins.backgroundMode.setDefaults({
           title: "Big Ben Bonger Background",
           text: "[Tap HERE to Restore]",
           resume: true,
           hidden: false
         });
-        
 
         getScreenSize();
 
