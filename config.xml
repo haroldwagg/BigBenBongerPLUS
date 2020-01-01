@@ -23,7 +23,7 @@
     <preference name='pgb-builder-version' value='1' />
 
 <gap:config-file platform="android" parent="/manifest/application">
-    <activity android:launchMode="singleTask" /
+    <activity android:launchMode="singleTask" />
 </gap:config-file>
 
 <gap:config-file platform="android" parent="/manifest">
