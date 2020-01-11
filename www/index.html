@@ -689,24 +689,24 @@
             panel2Style.height = '375px';
 
             if (localStorage["language"] == "fr")   {
-              panelStyle.width = '425px';
-              panel2Style.width = '405px';
+              panelStyle.width = '420px';
+              panel2Style.width = '420px';
             }
             else if (localStorage["language"] == "pt")   {
-              panelStyle.width = '510px';
-              panel2Style.width = '490px';
+              panelStyle.width = '505px';
+              panel2Style.width = '405px';
             }
             else if (localStorage["language"] == "de")   {
-              panelStyle.width = '490px';
-              panel2Style.width = '470px';
+              panelStyle.width = '485px';
+              panel2Style.width = '485px';
             }
             else if (localStorage["language"] == "it")   {
-              panelStyle.width = '490px';
-              panel2Style.width = '470px';
+              panelStyle.width = '485px';
+              panel2Style.width = '485px';
             }
             else   {
-              panelStyle.width = '430px';
-              panel2Style.width = '410px';
+              panelStyle.width = '425px';
+              panel2Style.width = '425px';
             }
 
             document.getElementById("Quarter").style.marginTop = "10px";
@@ -721,24 +721,24 @@
             panel2Style.height = '230px';
 
             if (localStorage["language"] == "fr")   {
-              panelStyle.width = '280px';
-              panel2Style.width = '260px';
+              panelStyle.width = '275px';
+              panel2Style.width = '275px';
             }
             else if (localStorage["language"] == "pt")   {
-              panelStyle.width = '320px';
-              panel2Style.width = '300px';
+              panelStyle.width = '315px';
+              panel2Style.width = '315px';
             }
             else if (localStorage["language"] == "de")   {
-              panelStyle.width = '287px';
-              panel2Style.width = '267px';
+              panelStyle.width = '282px';
+              panel2Style.width = '282px';
             }
             else if (localStorage["language"] == "it")   {
-              panelStyle.width = '320px';
-              panel2Style.width = '300px';
+              panelStyle.width = '315px';
+              panel2Style.width = '315px';
             }
             else   {
-              panelStyle.width = '285px';
-              panel2Style.width = '265px';
+              panelStyle.width = '280px';
+              panel2Style.width = '280px';
             }
 
             document.getElementById("spkr").style.width = "22px";
@@ -1195,19 +1195,9 @@
 
       function doExit()   {
         clearTimeout(loopThread);
-        if (! DUP_EXIT)   {
-          localStorage["locker"] = 0;
-        }
         window.plugins.insomnia.allowSleepAgain();
         navigator.app.exitApp();
       }
-
-      window.addEventListener("beforeunload", function (event) {
-//      event.preventDefault();
-        if (! DUP_EXIT)   {
-          localStorage["locker"] = 0;
-        }
-      });
 
       function changeVolume(dir)   {
         if(my_media_WHICH != "NOT_RUNNING")   {
