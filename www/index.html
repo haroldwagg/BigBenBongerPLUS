@@ -1001,12 +1001,7 @@
 
         setLanguage();
 
-        cordova.plugins.backgroundMode.setDefaults({
-          title: "Big Ben Bonger Background",
-          text: backgroundNotificationText,
-          resume: true,
-          hidden: false
-        });
+        cordova.plugins.backgroundMode.configure({ text: "[Tap HERE to Restore]", resume: true  });
 
         cordova.plugins.backgroundMode.setEnabled(true);
 
