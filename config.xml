@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 
-<widget id="com.phonegap.bigbenplus" version="1.2.5" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
+<widget id="com.phonegap.bigbenplus" version="1.2.6" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
 
 
 
@@ -31,28 +31,19 @@
 </gap:config-file>
 
 
-<preference name="android-minSdkVersion" value="14" />
-<preference name="android-targetSdkVersion" value="24" />
+<preference name="android-minSdkVersion" value="19" />
+<preference name="android-targetSdkVersion" value="28" />
 
 
     <plugin name="cordova-plugin-dialogs" source="npm" spec="~1.2.0" />
     <plugin name="cordova-plugin-media" source="npm" spec="~2.2.0" />
     <plugin name="cordova-plugin-insomnia" version="4.1.0" source="npm" />
-    <plugin name="cordova-plugin-background-mode" version="0.7.2" source="npm" />
+    <plugin name="cordova-plugin-background-mode" source="npm" />
     <plugin name="io.gvox.plugin.phonecalltrap" source="npm" />
     <plugin name="cordova-plugin-globalization" source="npm" spec="~1.0.3" />
     <gap:plugin platform="android" name="cordova-plugin-autostart" version="2.1.0" source="npm"/>
 
-<!--
 
-<preference name="android-minSdkVersion" value="14" />
-<plugin name="cordova-plugin-dialogs" source="npm" />
-<plugin name="cordova-plugin-media" source="npm" />
-<plugin name="cordova-plugin-insomnia" source="npm" />
-<plugin name="cordova-plugin-background-mode" source="npm" />
-<plugin name="io.gvox.plugin.phonecalltrap" source="npm" />
-<plugin name="cordova-plugin-globalization" source="npm"  />
-<gap:plugin platform="android" name="cordova-plugin-autostart" source="npm"/>-->
 
     <platform name="browser">
 <!--
