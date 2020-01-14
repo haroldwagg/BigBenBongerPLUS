@@ -786,10 +786,7 @@
       }
 
       function startPendulum()   {
-
-        if (pendulumRunning)   {
-          return;
-        }
+        clearTimeout(pendulumID);
 
         PEND_STATUS = "RUNNING";
         localStorage["pend_status"] = "checked";
@@ -826,7 +823,6 @@
         localStorage["pend_status"] = "no";
         pendulumRunning = false;
         pendSoundFile = "";
-
 
         clearTimeout(pendulumID);
 
