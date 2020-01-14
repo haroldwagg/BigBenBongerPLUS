@@ -882,7 +882,7 @@
 
           changeNotification("Off");
 
-          if (OkToRestartPend)   {
+          if ((localStorage["pend_status"] == "checked") && (! isQuietTime()))   {
             startPendulum();
           }
         }
@@ -890,10 +890,7 @@
           FRONT_PANEL_MUTE = true;
 
           changeNotification("Mute On");
-
-          if (OkToRestartPend)   {
-            stopPendulum();
-          }
+          stopPendulum();
 
           if (typeof(my_media2) == "object")   {
             my_media2.stop();
