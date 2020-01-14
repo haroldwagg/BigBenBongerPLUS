@@ -877,17 +877,19 @@ alert("stopPendulum -- begin");
 //        alert ("Value is " + FRONT_PANEL_MUTE);
 
         if (FRONT_PANEL_MUTE)   {
+alert("Do UnMute");          
           FRONT_PANEL_MUTE = false;
 
           changeNotification("Off");
 
-alert("localStorage[pend_status] = " + localStorage["pend_status"] + " and isQuietTime is " + isQuietTime());          
+alert("localStorage[pend_status] = " + localStorage["pend_status"] + " and isQuietTime is " + isQuietTime());
 
           if ((localStorage["pend_status"] == "checked") && (! isQuietTime()))   {
             startPendulum();
           }
         }
         else   {
+alert("Do Mute");
           FRONT_PANEL_MUTE = true;
 
           changeNotification("Mute On");
