@@ -786,6 +786,7 @@
       }
 
       function startPendulum()   {
+alert("startPendulum -- begin");
         clearTimeout(pendulumID);
 
         PEND_STATUS = "RUNNING";
@@ -796,12 +797,15 @@
       }
 
       function pendulumLooper()   {
+alert("pendulumLooper -- begin");
         if (FRONT_PANEL_MUTE || isQuietTime())   {
           stopPendulum();
           return;
         }
+alert("pendulumLooper -- continue");
 
         if (pendSoundFile == "")   {
+alert("pendulumLooper -- needs pendSoundFile");
           pendSoundFile = this.root + "audio/" + "ticker.mp3";
           media_PEND = new Media(pendSoundFile,
               function () { console.log("playAudio():Audio Success"); },
@@ -809,6 +813,7 @@
             );
         }
         else   {
+alert("pendulumLooper -- has pendSoundFile");
           media_PEND.seekTo(0);
         }
 
@@ -819,6 +824,7 @@
       }
 
       function stopPendulum()   {
+alert("stopPendulum -- begin");         
         PEND_STATUS = "STOPPED";
         localStorage["pend_status"] = "no";
         pendulumRunning = false;
