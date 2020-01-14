@@ -824,7 +824,7 @@ alert("pendulumLooper -- has pendSoundFile");
       }
 
       function stopPendulum()   {
-alert("stopPendulum -- begin");         
+alert("stopPendulum -- begin");
         PEND_STATUS = "STOPPED";
         localStorage["pend_status"] = "no";
         pendulumRunning = false;
@@ -880,6 +880,8 @@ alert("stopPendulum -- begin");
           FRONT_PANEL_MUTE = false;
 
           changeNotification("Off");
+
+alert("localStorage[pend_status] = " + localStorage["pend_status"] + " and isQuietTime is " + isQuietTime());          
 
           if ((localStorage["pend_status"] == "checked") && (! isQuietTime()))   {
             startPendulum();
