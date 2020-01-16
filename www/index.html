@@ -1403,11 +1403,13 @@
           document.getElementById("pend_but_on").checked = true;
           document.getElementById("pend_but_off").checked = false;
           PEND_STATUS = "RUNNING";
+          pendulumRunning = true;
         }
         else   {
           document.getElementById("pend_but_off").checked = true;
           document.getElementById("pend_but_on").checked = false;
           PEND_STATUS = "STOPPED";
+          pendulumRunning = false;
         }
 
         if ((localStorage["pend_vol"] == "undefined") || (localStorage["pend_vol"] == "") || (localStorage["pend_vol"] == null))   {
