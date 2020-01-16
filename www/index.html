@@ -805,20 +805,22 @@ alert("pendulumLooper");
           stopPendulum();
           return;
         }
-alert("pendulumLooper2 - pendSoundFile = " + pendSoundFile);
-        if (pendSoundFile == "")   {
+alert("pendulumLooper2 - pendSoundFile = " + pendSoundFile + " media_PEND = " + typeof(media_PEND));
+        if (typeof(media_PEND) == "object")   {
+          media_PEND.seekTo(0);
+          media_PEND.play();
+          media_PEND.setVolume(PEND_VOLUME);
+        }
+        else   {
           pendSoundFile = this.root + "audio/" + "ticker.mp3";
           media_PEND = new Media(pendSoundFile,
-              function () { console.log("playAudio():Audio Success"); },
+              function () { media_PEND.play();
+                            media_PEND.setVolume(PEND_VOLUME);
+                          },
               ignoreError()
             );
         }
-        else   {
-          media_PEND.seekTo(0);
-        }
-alert("pendulumLooper2a Ready to Play - pendSoundFile = " + pendSoundFile);
-        media_PEND.play();
-        media_PEND.setVolume(PEND_VOLUME);
+
 alert("pendulumLooper3");
         pendulumID = setTimeout(pendulumLooper, 3600000);
       }
