@@ -774,24 +774,24 @@
 
         if (start_int < end_int)   {
           if ((current_int > start_int) && (current_int < end_int))   {
-alert("isQuietTime returns true");
+// alert("isQuietTime returns true");
             return true;
           }
         }
         else   {
           if ((current_int > start_int) || (current_int < end_int))   {
-alert("isQuietTime returns true");
+// alert("isQuietTime returns true");
             return true;
           }
         }
-alert("isQuietTime returns false");
+// alert("isQuietTime returns false");
         return false;
       }
 
       function startPendulum()   {
-
+alert("startPendulum");
         clearTimeout(pendulumID);
-
+alert("startPendulum -- clearTimeout");
         PEND_STATUS = "RUNNING";
         localStorage["pend_status"] = "checked";
         pendulumRunning = true;
@@ -800,11 +800,12 @@ alert("isQuietTime returns false");
       }
 
       function pendulumLooper()   {
+alert("pendulumLooper");
         if (FRONT_PANEL_MUTE || isQuietTime())   {
           stopPendulum();
           return;
         }
-
+alert("pendulumLooper2");
         if (pendSoundFile == "")   {
           pendSoundFile = this.root + "audio/" + "ticker.mp3";
           media_PEND = new Media(pendSoundFile,
@@ -818,7 +819,7 @@ alert("isQuietTime returns false");
 
         media_PEND.play();
         media_PEND.setVolume(PEND_VOLUME);
-
+alert("pendulumLooper3");
         pendulumID = setTimeout(pendulumLooper, 3600000);
       }
 
