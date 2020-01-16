@@ -1459,18 +1459,16 @@
             document.getElementById("pend_but_off").disabled = true;
 
             if (localStorage["pend_status"] == "checked")   {
-              if (pendulumRunning)   {
-                pendulumRunning = false;
+              pendulumRunning = false;
 
-                clearTimeout(pendulumID);
+              clearTimeout(pendulumID);
 
-                if (typeof(media_PEND) == "object")   {
-                  media_PEND.stop();
-                  media_PEND.release();
-                }
-
-                media_PEND = null;
+              if (typeof(media_PEND) == "object")   {
+                media_PEND.stop();
+                media_PEND.release();
               }
+
+              media_PEND = null;
             }
           }
           else   {
@@ -1482,10 +1480,8 @@
             document.getElementById("pend_but_off").disabled = false;
 
             if (localStorage["pend_status"] == "checked")   {
-              if (! pendulumRunning)   {
-                startPendulum();
-                pendulumRunning = true;
-              }
+              startPendulum();
+              pendulumRunning = true;
             }
           }
         }
@@ -1498,11 +1494,10 @@
           document.getElementById("pend_but_off").disabled = false;
 
           localStorage["useqt"] = "no";
-          if ((localStorage["pend_status"] == "checked") && (! isQuietTime()))   {
-            if (! pendulumRunning)   {
-              startPendulum();
-              pendulumRunning = true;
-            }
+          
+          if (localStorage["pend_status"] == "checked")    {
+            startPendulum();
+            pendulumRunning = true;
           }
         }
 
