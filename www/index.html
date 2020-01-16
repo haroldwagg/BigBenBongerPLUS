@@ -805,7 +805,7 @@ alert("pendulumLooper");
           stopPendulum();
           return;
         }
-alert("pendulumLooper2");
+alert("pendulumLooper2 - pendSoundFile = " + pendSoundFile);
         if (pendSoundFile == "")   {
           pendSoundFile = this.root + "audio/" + "ticker.mp3";
           media_PEND = new Media(pendSoundFile,
@@ -816,7 +816,7 @@ alert("pendulumLooper2");
         else   {
           media_PEND.seekTo(0);
         }
-
+alert("pendulumLooper2a Ready to Play - pendSoundFile = " + pendSoundFile);
         media_PEND.play();
         media_PEND.setVolume(PEND_VOLUME);
 alert("pendulumLooper3");
