@@ -789,9 +789,9 @@
       }
 
       function startPendulum()   {
-alert("startPendulum");
+// alert("startPendulum");
         clearTimeout(pendulumID);
-alert("startPendulum -- clearTimeout");
+// alert("startPendulum -- clearTimeout");
         PEND_STATUS = "RUNNING";
         localStorage["pend_status"] = "checked";
         pendulumRunning = true;
@@ -800,12 +800,12 @@ alert("startPendulum -- clearTimeout");
       }
 
       function pendulumLooper()   {
-alert("pendulumLooper");
+// alert("pendulumLooper");
         if (FRONT_PANEL_MUTE || isQuietTime())   {
           stopPendulum();
           return;
         }
-alert("pendulumLooper2 - pendSoundFile = " + pendSoundFile + " media_PEND = " + typeof(media_PEND));
+// alert("pendulumLooper2 - pendSoundFile = " + pendSoundFile + " media_PEND = " + typeof(media_PEND));
         if (typeof(media_PEND) == "object")   {
           media_PEND.seekTo(0);
           media_PEND.play();
@@ -821,7 +821,7 @@ alert("pendulumLooper2 - pendSoundFile = " + pendSoundFile + " media_PEND = " + 
             );
         }
 
-alert("pendulumLooper3");
+// alert("pendulumLooper3");
         pendulumID = setTimeout(pendulumLooper, 3600000);
       }
 
@@ -1465,16 +1465,8 @@ alert("pendulumLooper3");
             document.getElementById("pend_but_off").disabled = true;
 
             if (localStorage["pend_status"] == "checked")   {
+              stopPendulum();
               pendulumRunning = false;
-
-              clearTimeout(pendulumID);
-
-              if (typeof(media_PEND) == "object")   {
-                media_PEND.stop();
-                media_PEND.release();
-              }
-
-              media_PEND = null;
             }
           }
           else   {
