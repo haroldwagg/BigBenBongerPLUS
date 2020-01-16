@@ -774,14 +774,17 @@
 
         if (start_int < end_int)   {
           if ((current_int > start_int) && (current_int < end_int))   {
+alert("isQuietTime returns true");
             return true;
           }
         }
         else   {
           if ((current_int > start_int) || (current_int < end_int))   {
+alert("isQuietTime returns true");
             return true;
           }
         }
+alert("isQuietTime returns false");
         return false;
       }
 
@@ -1494,7 +1497,7 @@
           document.getElementById("pend_but_off").disabled = false;
 
           localStorage["useqt"] = "no";
-          
+
           if (localStorage["pend_status"] == "checked")    {
             startPendulum();
             pendulumRunning = true;
