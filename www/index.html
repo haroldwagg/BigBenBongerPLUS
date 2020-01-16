@@ -774,17 +774,14 @@
 
         if (start_int < end_int)   {
           if ((current_int > start_int) && (current_int < end_int))   {
-// alert("isQuietTime returns true");
             return true;
           }
         }
         else   {
           if ((current_int > start_int) || (current_int < end_int))   {
-// alert("isQuietTime returns true");
             return true;
           }
         }
-// alert("isQuietTime returns false");
         return false;
       }
 
@@ -801,11 +798,11 @@
 
       function pendulumLooper()   {
 // alert("pendulumLooper");
-        if (FRONT_PANEL_MUTE || isQuietTime())   {
+        if (isQuietTime())   {
           stopPendulum();
           return;
         }
-// alert("pendulumLooper2 - pendSoundFile = " + pendSoundFile + " media_PEND = " + typeof(media_PEND));
+// alert("pendulumLooper2 - media_PEND = " + typeof(media_PEND));
         if (typeof(media_PEND) == "object")   {
           media_PEND.seekTo(0);
           media_PEND.play();
@@ -1432,7 +1429,7 @@
         PEND_VOLUME = parseFloat(localStorage["pend_vol"]);
         document.getElementById("pendVol").value = PEND_VOLUME;
 
-        if ((PEND_STATUS == "RUNNING") && (! isQuietTime()))   {
+        if ((localStorage["pend_status"] == "checked") && (! isQuietTime()))   {
           startPendulum();
         }
 
