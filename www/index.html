@@ -802,7 +802,7 @@ alert("Looper3: media_PEND = " +  media_PEND);
         media_PEND.play();
         media_PEND.setVolume(PEND_VOLUME);
 
-alert("Looper4: media_PEND = " +  media_PEND);        
+alert("Looper4: media_PEND = " +  media_PEND);
 
         pendulumID = setTimeout(pendulumLooper, 3600000);
       }
@@ -1440,6 +1440,7 @@ alert("Looper4: media_PEND = " +  media_PEND);
           localStorage["useqt"] = "checked";
 
           if (isQuietTime())   {
+alert("isQuietTime and isQuietTime");
             changeNotification("Quiet Time");
 
             document.getElementById("pend_but_on").disabled = true;
@@ -1452,6 +1453,7 @@ alert("Looper4: media_PEND = " +  media_PEND);
             }
           }
           else   {
+alert("isQuietTime and NOT isQuietTime");
             if (notificationPrefixText == quietTimeTextNotification)   {
               changeNotification("Off");
             }
@@ -1467,6 +1469,7 @@ alert("Looper4: media_PEND = " +  media_PEND);
           }
         }
         else   {
+alert("NOT isQuietTime");          
           if (notificationPrefixText == quietTimeTextNotification)   {
             changeNotification("Off");
           }
