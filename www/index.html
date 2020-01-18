@@ -237,7 +237,6 @@
 
         clearTimeout(loopThread);
         loopThread = setTimeout(doMainLoop, loopDelay);
-// alert("End init()");
       }
 
       function makeTimeString()   {
@@ -773,7 +772,6 @@
       }
 
       function startPendulum()   {
-alert("startPendulum");
         clearTimeout(pendulumID);
 
         PEND_STATUS = "RUNNING";
@@ -785,24 +783,17 @@ alert("startPendulum");
 
       function pendulumLooper()   {
         if (media_PEND != null)   {
-alert("Looper1: media_PEND = " + media_PEND);
-
           media_PEND.seekTo(0);
         }
         else   {
-alert("Looper2: media_PEND = " +  media_PEND);
           media_PEND = new Media(pendSoundFile,
               function () { console.log("playAudio():Audio Success"); },
               ignoreError()
             );
         }
 
-alert("Looper3: media_PEND = " +  media_PEND);
-
         media_PEND.play();
         media_PEND.setVolume(PEND_VOLUME);
-
-alert("Looper4: media_PEND = " +  media_PEND);
 
         pendulumID = setTimeout(pendulumLooper, 3600000);
       }
@@ -856,12 +847,8 @@ alert("Looper4: media_PEND = " +  media_PEND);
 
 
       function doFPMuteButton()   {
-//        alert ("Value is " + FRONT_PANEL_MUTE);
-
         if (FRONT_PANEL_MUTE)   {
-
           FRONT_PANEL_MUTE = false;
-
           changeNotification("Off");
 
 // alert("localStorage[pend_status] = " + localStorage["pend_status"] + " and isQuietTime is " + isQuietTime());
@@ -1227,7 +1214,6 @@ alert("Looper4: media_PEND = " +  media_PEND);
         my_media_TEST.setVolume(MASTER_VOLUME);
 
         localStorage["volume"] = MASTER_VOLUME.toString();
-//        alert (MASTER_VOLUME);
         CURRENT_VOLUME = MASTER_VOLUME;
       }
 
@@ -1440,7 +1426,6 @@ alert("Looper4: media_PEND = " +  media_PEND);
           localStorage["useqt"] = "checked";
 
           if (isQuietTime())   {
-alert("isQuietTime and isQuietTime; pendulumRunning is " + pendulumRunning);
             changeNotification("Quiet Time");
 
             document.getElementById("pend_but_on").disabled = false;
@@ -1451,13 +1436,11 @@ alert("isQuietTime and isQuietTime; pendulumRunning is " + pendulumRunning);
 
             if (checkStatus)   {
               if (pendulumRunning)   {
-alert("Stopping Pendulum");
                 stopPendulum();
               }
             }
           }
           else   {
-alert("isQuietTime and NOT isQuietTime; pendulumRunning is " + pendulumRunning);
             if (notificationPrefixText == quietTimeTextNotification)   {
               changeNotification("Off");
             }
@@ -1467,14 +1450,12 @@ alert("isQuietTime and NOT isQuietTime; pendulumRunning is " + pendulumRunning);
 
             if (document.getElementById("pend_but_on").checked == true)   {
               if (! pendulumRunning)   {
-alert("Starting1 Pendulum");
                 startPendulum();
               }
             }
           }
         }
         else   {
-alert("NOT isQuietTime; pendulumRunning is " + pendulumRunning);
           if (notificationPrefixText == quietTimeTextNotification)   {
             changeNotification("Off");
           }
@@ -1486,7 +1467,6 @@ alert("NOT isQuietTime; pendulumRunning is " + pendulumRunning);
 
           if (document.getElementById("pend_but_on").checked == true)   {
             if (! pendulumRunning)   {
-alert("Starting2 Pendulum");
               startPendulum();
             }
           }
