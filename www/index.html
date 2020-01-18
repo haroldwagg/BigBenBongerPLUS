@@ -167,7 +167,6 @@
       var PEND_VOLUME = 0.4;
       var PEND_STATUS = "RUNNING";
       var pendulumID;
-      var pendSoundFile = "";
       var pendulumRunning = false;
       var START_TIME = 0;
       var firstTimeInBG = true;
@@ -202,6 +201,8 @@
 
       var p = window.location.pathname;
       this.root = p.substring(0, p.lastIndexOf('/')) + "/";
+      var pendSoundFile = this.root + "audio/" + "ticker.mp3";
+
 
       var body = document.getElementsByTagName('body')[0];
 
@@ -805,18 +806,16 @@ alert("startPendulum");
  alert("pendulumLooper2 - media_PEND = " + typeof(media_PEND));
         if (typeof(media_PEND) == "object")   {
           media_PEND.seekTo(0);
-          media_PEND.play();
-          media_PEND.setVolume(PEND_VOLUME);
         }
-        else   {
-          pendSoundFile = this.root + "audio/" + "ticker.mp3";
+        else   {        
           media_PEND = new Media(pendSoundFile,
-              function () { media_PEND.play();
-                            media_PEND.setVolume(PEND_VOLUME);
-                          },
+              function () { console.log("playAudio():Audio Success"); },
               ignoreError()
             );
         }
+
+        media_PEND.play();
+        media_PEND.setVolume(PEND_VOLUME);
 
  alert("pendulumLooper3");
         pendulumID = setTimeout(pendulumLooper, 3600000);
