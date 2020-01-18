@@ -1440,7 +1440,7 @@ alert("Looper4: media_PEND = " +  media_PEND);
           localStorage["useqt"] = "checked";
 
           if (isQuietTime())   {
-alert("isQuietTime and isQuietTime");
+alert("isQuietTime and isQuietTime; pendulumRunning is " + pendulumRunning);
             changeNotification("Quiet Time");
 
             document.getElementById("pend_but_on").disabled = true;
@@ -1453,7 +1453,7 @@ alert("isQuietTime and isQuietTime");
             }
           }
           else   {
-alert("isQuietTime and NOT isQuietTime");
+alert("isQuietTime and NOT isQuietTime; pendulumRunning is " + pendulumRunning);
             if (notificationPrefixText == quietTimeTextNotification)   {
               changeNotification("Off");
             }
@@ -1469,7 +1469,7 @@ alert("isQuietTime and NOT isQuietTime");
           }
         }
         else   {
-alert("NOT isQuietTime");          
+alert("NOT isQuietTime; pendulumRunning is " + pendulumRunning);          
           if (notificationPrefixText == quietTimeTextNotification)   {
             changeNotification("Off");
           }
