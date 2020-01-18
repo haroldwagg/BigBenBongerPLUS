@@ -787,9 +787,9 @@
       }
 
       function startPendulum()   {
-alert("startPendulum");
+// alert("startPendulum");
         clearTimeout(pendulumID);
- alert("startPendulum -- clearTimeout");
+ // alert("startPendulum -- clearTimeout");
         PEND_STATUS = "RUNNING";
         localStorage["pend_status"] = "checked";
         pendulumRunning = true;
@@ -798,16 +798,16 @@ alert("startPendulum");
       }
 
       function pendulumLooper()   {
- alert("pendulumLooper");
+ // alert("pendulumLooper");
         if (isQuietTime())   {
           stopPendulum();
           return;
         }
- alert("pendulumLooper2 - media_PEND = " + typeof(media_PEND));
+ // alert("pendulumLooper2 - media_PEND = " + typeof(media_PEND));
         if (typeof(media_PEND) == "object")   {
           media_PEND.seekTo(0);
         }
-        else   {        
+        else   {
           media_PEND = new Media(pendSoundFile,
               function () { console.log("playAudio():Audio Success"); },
               ignoreError()
@@ -817,7 +817,7 @@ alert("startPendulum");
         media_PEND.play();
         media_PEND.setVolume(PEND_VOLUME);
 
- alert("pendulumLooper3");
+ // alert("pendulumLooper3");
         pendulumID = setTimeout(pendulumLooper, 3600000);
       }
 
@@ -1460,8 +1460,9 @@ alert("startPendulum");
             document.getElementById("pend_but_off").disabled = true;
 
             if (localStorage["pend_status"] == "checked")   {
-              stopPendulum();
-              pendulumRunning = false;
+              if (pendulumRunning)   {
+                stopPendulum();
+              }
             }
           }
           else   {
@@ -1473,8 +1474,9 @@ alert("startPendulum");
             document.getElementById("pend_but_off").disabled = false;
 
             if (localStorage["pend_status"] == "checked")   {
-              startPendulum();
-              pendulumRunning = true;
+              if (! pendulumRunning)   {
+                startPendulum();
+              }
             }
           }
         }
@@ -1489,8 +1491,9 @@ alert("startPendulum");
           localStorage["useqt"] = "no";
 
           if (localStorage["pend_status"] == "checked")    {
-            startPendulum();
-            pendulumRunning = true;
+            if (! pendulumRunning)   {
+              startPendulum();
+            }
           }
         }
 
