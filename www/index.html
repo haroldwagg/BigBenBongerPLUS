@@ -1443,10 +1443,12 @@ alert("Looper4: media_PEND = " +  media_PEND);
 alert("isQuietTime and isQuietTime; pendulumRunning is " + pendulumRunning);
             changeNotification("Quiet Time");
 
+            var checkStatus = document.getElementById("pend_but_on").checked;
+
             document.getElementById("pend_but_on").disabled = true;
             document.getElementById("pend_but_off").disabled = true;
 
-            if (localStorage["pend_status"] == "checked")   {
+            if (checkStatus)   {
               if (pendulumRunning)   {
 alert("Stopping Pendulum");
                 stopPendulum();
@@ -1461,8 +1463,8 @@ alert("isQuietTime and NOT isQuietTime; pendulumRunning is " + pendulumRunning);
 
             document.getElementById("pend_but_on").disabled = false;
             document.getElementById("pend_but_off").disabled = false;
-// alert(localStorage['pend_status'] + " / " + pendulumRunning);
-            if (localStorage["pend_status"] == "checked")   {
+
+            if (document.getElementById("pend_but_on").checked == true)   {
               if (! pendulumRunning)   {
 alert("Starting1 Pendulum");
                 startPendulum();
@@ -1480,8 +1482,8 @@ alert("NOT isQuietTime; pendulumRunning is " + pendulumRunning);
           document.getElementById("pend_but_off").disabled = false;
 
           localStorage["useqt"] = "no";
-// alert(localStorage['pend_status'] + " / " + pendulumRunning);
-          if (localStorage["pend_status"] == "checked")    {
+
+          if (document.getElementById("pend_but_on").checked == true)   {
             if (! pendulumRunning)   {
 alert("Starting2 Pendulum");
               startPendulum();
