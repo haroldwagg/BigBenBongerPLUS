@@ -1448,6 +1448,7 @@ alert("isQuietTime and isQuietTime; pendulumRunning is " + pendulumRunning);
 
             if (localStorage["pend_status"] == "checked")   {
               if (pendulumRunning)   {
+alert("Stopping Pendulum");
                 stopPendulum();
               }
             }
@@ -1463,13 +1464,14 @@ alert("isQuietTime and NOT isQuietTime; pendulumRunning is " + pendulumRunning);
 
             if (localStorage["pend_status"] == "checked")   {
               if (! pendulumRunning)   {
+alert("Starting1 Pendulum");
                 startPendulum();
               }
             }
           }
         }
         else   {
-alert("NOT isQuietTime; pendulumRunning is " + pendulumRunning);          
+alert("NOT isQuietTime; pendulumRunning is " + pendulumRunning);
           if (notificationPrefixText == quietTimeTextNotification)   {
             changeNotification("Off");
           }
@@ -1481,6 +1483,7 @@ alert("NOT isQuietTime; pendulumRunning is " + pendulumRunning);
 
           if (localStorage["pend_status"] == "checked")    {
             if (! pendulumRunning)   {
+alert("Starting2 Pendulum");              
               startPendulum();
             }
           }
