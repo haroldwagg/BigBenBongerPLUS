@@ -773,6 +773,7 @@
       }
 
       function startPendulum()   {
+alert("startPendulum");
         clearTimeout(pendulumID);
 
         PEND_STATUS = "RUNNING";
@@ -784,17 +785,24 @@
 
       function pendulumLooper()   {
         if (media_PEND != null)   {
+alert("Looper1: media_PEND = "  media_PEND);
+
           media_PEND.seekTo(0);
         }
         else   {
+alert("Looper2: media_PEND = "  media_PEND);
           media_PEND = new Media(pendSoundFile,
               function () { console.log("playAudio():Audio Success"); },
               ignoreError()
             );
         }
 
+alert("Looper3: media_PEND = "  media_PEND);
+
         media_PEND.play();
         media_PEND.setVolume(PEND_VOLUME);
+
+alert("Looper4: media_PEND = "  media_PEND);        
 
         pendulumID = setTimeout(pendulumLooper, 3600000);
       }
