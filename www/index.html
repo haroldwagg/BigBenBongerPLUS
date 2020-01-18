@@ -1461,7 +1461,7 @@ alert("isQuietTime and NOT isQuietTime; pendulumRunning is " + pendulumRunning);
 
             document.getElementById("pend_but_on").disabled = false;
             document.getElementById("pend_but_off").disabled = false;
-
+alert(localStorage["pend_status"] + " / " + pendulumRunning);
             if (localStorage["pend_status"] == "checked")   {
               if (! pendulumRunning)   {
 alert("Starting1 Pendulum");
@@ -1480,10 +1480,10 @@ alert("NOT isQuietTime; pendulumRunning is " + pendulumRunning);
           document.getElementById("pend_but_off").disabled = false;
 
           localStorage["useqt"] = "no";
-
+alert(localStorage["pend_status"] + " / " + pendulumRunning);
           if (localStorage["pend_status"] == "checked")    {
             if (! pendulumRunning)   {
-alert("Starting2 Pendulum");              
+alert("Starting2 Pendulum");
               startPendulum();
             }
           }
