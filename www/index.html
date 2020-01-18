@@ -454,20 +454,6 @@
           my_media.release();
         }
 
-
-//        if (pendulumRunning)   {
-//          pendulumRunning = false;
-//
-//          clearTimeout(pendulumID);
-//
-//          if (typeof(media_PEND) == "object")   {
-//            media_PEND.stop();
-//            media_PEND.release();
-//          }
-//
-//          media_PEND = null;
-//        }
-
         if (MASTER_MUTE)   {
           if (document.getElementById("no_phone_mute").checked == true)   {
             MASTER_MUTE = false;
@@ -787,9 +773,8 @@
       }
 
       function startPendulum()   {
-// alert("startPendulum");
         clearTimeout(pendulumID);
- // alert("startPendulum -- clearTimeout");
+
         PEND_STATUS = "RUNNING";
         localStorage["pend_status"] = "checked";
         pendulumRunning = true;
@@ -798,13 +783,7 @@
       }
 
       function pendulumLooper()   {
- // alert("pendulumLooper");
-//        if (isQuietTime())   {
-//          stopPendulum();
-//          return;
-//        }
- // alert("pendulumLooper2 - media_PEND = " + typeof(media_PEND));
-        if (typeof(media_PEND) == "object")   {
+        if (media_PEND != null)   {
           media_PEND.seekTo(0);
         }
         else   {
@@ -817,7 +796,6 @@
         media_PEND.play();
         media_PEND.setVolume(PEND_VOLUME);
 
- // alert("pendulumLooper3");
         pendulumID = setTimeout(pendulumLooper, 3600000);
       }
 
@@ -828,21 +806,22 @@
 
         clearTimeout(pendulumID);
 
-        if (typeof(media_PEND) == "object")   {
+        if (media_PEND != null)   {
           media_PEND.stop();
           media_PEND.release();
-          media_PEND = null;
         }
+
+        media_PEND = null;
       }
 
       function mutePendulum()   {
-        if (typeof(media_PEND) == "object")   {
+        if (media_PEND != null)   {
           media_PEND.setVolume(0.0);
         }
       }
 
       function unmutePendulum()   {
-        if (typeof(media_PEND) == "object")   {
+        if (media_PEND != null)   {
           media_PEND.setVolume(PEND_VOLUME);
         }
       }
