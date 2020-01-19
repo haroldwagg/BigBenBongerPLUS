@@ -1401,6 +1401,8 @@
 
         if ((localStorage["pend_status"] == "checked") && (! isQuietTime()))   {
           startPendulum();
+          stopPendulum();
+          startPendulum();
         }
 
 //
