@@ -1420,6 +1420,25 @@
           document.getElementById("autostart").checked = false;
           cordova.plugins.autoStart.disable();
         }
+
+//
+//  Kick the Bonger
+//
+        let xsrc = this.root + "audio/cc_hour.mp3";      // 1-second silence
+        my_media = null;
+        my_media = new Media(xsrc,
+          function () { console.log("playAudio():Audio Success"); },
+          ignoreError()
+        );
+
+        if (my_media != null)   {
+          my_media.play({ playAudioWhenScreenIsLocked : true });
+          my_media.setVolume(CURRENT_VOLUME);
+
+          my_media.stop();
+          my_media.release();
+        }
+
       }
 
 
