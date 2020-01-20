@@ -406,6 +406,10 @@
 
         doQuietTimeOption();
 
+        if ((mins == 14) || (mins == 29) || (mins == 44) || (mins == 58))   {
+          kickTheBonger();
+        }
+
         if ((mins == 15) || (mins == 30) || (mins == 45))   {
           playBen(mins);
           init();
@@ -1132,6 +1136,8 @@
             }
           },
         false );
+
+        kickTheBonger();
       }
 
       function confirmExit()   {
@@ -1420,10 +1426,9 @@
           document.getElementById("autostart").checked = false;
           cordova.plugins.autoStart.disable();
         }
+      }
 
-//
-//  Kick the Bonger
-//
+      function kickTheBonger()   {
         let xsrc = this.root + "audio/cc_hour.mp3";      // 1-second silence
         my_media = null;
         my_media = new Media(xsrc,
@@ -1432,7 +1437,7 @@
         );
 
         if (my_media != null)   {
-// alert("Kicked");
+//        alert("Kicked");
           setTimeout(function() {
               my_media.stop();
               my_media.release();
