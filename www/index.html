@@ -1432,13 +1432,15 @@
         );
 
         if (my_media != null)   {
+// alert("Kicked");
+          setTimeout(function() {
+              my_media.stop();
+              my_media.release();
+            }, 1000);
+
           my_media.play({ playAudioWhenScreenIsLocked : true });
           my_media.setVolume(CURRENT_VOLUME);
-
-          my_media.stop();
-          my_media.release();
         }
-
       }
 
 
