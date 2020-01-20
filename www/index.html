@@ -678,20 +678,20 @@
             panel2Style.height = '375px';
 
             if (localStorage["language"] == "fr")   {
-              panelStyle.width = '420px';
-              panel2Style.width = '420px';
+              panelStyle.width = '430px';
+              panel2Style.width = '430px';
             }
             else if (localStorage["language"] == "pt")   {
-              panelStyle.width = '505px';
-              panel2Style.width = '405px';
+              panelStyle.width = '515px';
+              panel2Style.width = '515px';
             }
             else if (localStorage["language"] == "de")   {
-              panelStyle.width = '485px';
-              panel2Style.width = '485px';
+              panelStyle.width = '495px';
+              panel2Style.width = '495px';
             }
             else if (localStorage["language"] == "it")   {
-              panelStyle.width = '485px';
-              panel2Style.width = '485px';
+              panelStyle.width = '495px';
+              panel2Style.width = '495px';
             }
             else   {
               panelStyle.width = '425px';
@@ -710,20 +710,20 @@
             panel2Style.height = '230px';
 
             if (localStorage["language"] == "fr")   {
-              panelStyle.width = '275px';
-              panel2Style.width = '275px';
+              panelStyle.width = '280px';
+              panel2Style.width = '280px';
             }
             else if (localStorage["language"] == "pt")   {
-              panelStyle.width = '315px';
-              panel2Style.width = '315px';
+              panelStyle.width = '325px';
+              panel2Style.width = '325px';
             }
             else if (localStorage["language"] == "de")   {
-              panelStyle.width = '282px';
-              panel2Style.width = '282px';
+              panelStyle.width = '290px';
+              panel2Style.width = '290px';
             }
             else if (localStorage["language"] == "it")   {
-              panelStyle.width = '315px';
-              panel2Style.width = '315px';
+              panelStyle.width = '320px';
+              panel2Style.width = '320px';
             }
             else   {
               panelStyle.width = '280px';
@@ -1654,7 +1654,7 @@
             document.getElementById("SstartLabel").innerHTML = "Último Bong";
             document.getElementById("EendLabel").innerHTML = "Primeiro Bong";
             document.getElementById("usePendulumLabel").innerHTML = "<span style=\"color: #0000aa; font-weight: bold\">&nbsp;PÊNDULO:&nbsp;&nbsp;</span>";
-            document.getElementById("autoStartTextDiv").innerHTML = "AUTO-START QUANDO O TELEFONE INICIA";
+            document.getElementById("autoStartTextDiv").innerHTML = "AUTO-START QUANDO O TELEFONE INICIA<br /><span style=\"text-transform: none;\">(Pode não funcionar em alguns dispositivos)</span>";
           }
           else if (localStorage["language"] == "fr")   {
             do24Hr = true;
@@ -1691,7 +1691,7 @@
             document.getElementById("SstartLabel").innerHTML = "Dernier Bong";
             document.getElementById("EendLabel").innerHTML = "Premier Bong";
             document.getElementById("usePendulumLabel").innerHTML = "<span style=\"color: #0000aa; font-weight: bold\">&nbsp;PENDULE:&nbsp;&nbsp;</span>";
-            document.getElementById("autoStartTextDiv").innerHTML = "DÉMARRAGE AUTOMATIQUE AU<br />DÉMARRAGE DU TÉLÉPHONE";
+            document.getElementById("autoStartTextDiv").innerHTML = "DÉMARRAGE AUTOMATIQUE AU<br />DÉMARRAGE DU TÉLÉPHONE<br /><span style=\"text-transform: none;\">(Peut ne pas fonctionner sur certains appareils)</span>";
 
             document.getElementById("EendLabel").style.marginLeft = "40px";
 
@@ -1732,7 +1732,7 @@
             document.getElementById("SstartLabel").innerHTML = "Zuletzt Bong";
             document.getElementById("EendLabel").innerHTML = "Zuerst Bong";
             document.getElementById("usePendulumLabel").innerHTML = "<span style=\"color: #0000aa; font-weight: bold\">&nbsp;PENDEL:&nbsp;&nbsp;</span>";
-            document.getElementById("autoStartTextDiv").innerHTML = "JEDER ZEIT AUTOMATISCH STARTEN";
+            document.getElementById("autoStartTextDiv").innerHTML = "JEDER ZEIT AUTOMATISCH STARTEN<br /><span style=\"text-transform: none;\">(Funktioniert möglicherweise nicht auf allen Geräten)</span>";
 
             document.getElementById("EendLabel").style.marginLeft = "40px";
           }
@@ -1772,7 +1772,7 @@
             document.getElementById("SstartLabel").innerHTML = "Último Bong";
             document.getElementById("EendLabel").innerHTML = "Primero Bong";
             document.getElementById("usePendulumLabel").innerHTML = "<span style=\"color: #0000aa; font-weight: bold\">&nbsp;PÉNDULO:&nbsp;&nbsp;</span>";
-            document.getElementById("autoStartTextDiv").innerHTML = "ARRANQUE AUTOMÁTICO<br />CUANDO TELÉFONO COMIENZA";
+            document.getElementById("autoStartTextDiv").innerHTML = "ARRANQUE AUTOMÁTICO<br />CUANDO TELÉFONO COMIENZA<br /><span style=\"text-transform: none;\">(Puede no funcionar en algunos dispositivos)</span>";
 
             document.getElementById("EendLabel").style.marginLeft = "40px";
           }
@@ -1814,7 +1814,7 @@
             document.getElementById("SstartLabel").innerHTML = "Ultimo Bong";
             document.getElementById("EendLabel").innerHTML = "Primo Bong";
             document.getElementById("usePendulumLabel").innerHTML = "<span style=\"color: #0000aa; font-weight: bold\">&nbsp;PENDOLO:&nbsp;&nbsp;</span>";
-            document.getElementById("autoStartTextDiv").innerHTML = "INIZIA AUTOMATICAMENTE QUANDO<br />IL TELEFONO INIZIA";
+            document.getElementById("autoStartTextDiv").innerHTML = "INIZIA AUTOMATICAMENTE QUANDO<br />IL TELEFONO INIZIA<br /><span style=\"text-transform: none;\">(Potrebbe non funzionare su alcuni dispositivi)</span>";
           }
           else   {
             mantleClockText = "MANTLE CLOCK";
@@ -1853,7 +1853,7 @@
             document.getElementById("SstartLabel").innerHTML = "Last Bong";
             document.getElementById("EendLabel").innerHTML = "First Bong";
             document.getElementById("usePendulumLabel").innerHTML = "<span style=\"color: #0000aa; font-weight: bold\">&nbsp;PENDULUM:&nbsp;&nbsp;</span>";
-            document.getElementById("autoStartTextDiv").innerHTML = "AUTO-START WHEN PHONE STARTS<br /><span style=\"text-transform: none;\">(May not work on all devices)</span>";
+            document.getElementById("autoStartTextDiv").innerHTML = "AUTO-START WHEN PHONE STARTS<br /><span style=\"text-transform: none;\">(May not work on some devices)</span>";
           }
 
           if (SIZE == "big")   {
