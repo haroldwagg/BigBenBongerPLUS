@@ -175,7 +175,7 @@
       var SIZE;
       var DEVICE_TYPE;
       var D_MyCanvas, D_FPMuteButton, D_setupButtonDiv, D_helpIcon, D_minimage, D_ximage, D_clock, D_pend_off, D_pend_on;
-      var D_bb_but, D_lon_but, D_setup_but, D_no_phone_mute, D_quarter, D_half, D_hour;
+      var D_bb_but, D_lon_but, D_setup_but, D_no_phone_mute, D_quarter, D_half, D_hour, D_autostart, D_useqt;
 
       var QUARTER_DING       = "bb_quarter.mp3";
       var HALF_DING          = "bb_half.mp3";
@@ -750,7 +750,7 @@
       }
 
       function isQuietTime()   {
-        if (document.getElementById("useQT").checked == false)   {
+        if (D_useqt.checked == false)   {
           return false;
         }
 
@@ -996,6 +996,8 @@
         D_quarter = document.getElementById("Quarter");
         D_half = document.getElementById("Half");
         D_hour = document.getElementById("Hour-strikes");
+        D_autostart = document.getElementById("autostart");
+        D_useqt = document.getElementById("useQT");
 
         loadGlobals();
 
@@ -1044,10 +1046,10 @@
           D_half.style.height = "35px";
           D_hour.style.width = "35px";
           D_hour.style.height = "35px";
-          document.getElementById("autostart").style.width = "35px";
-          document.getElementById("autostart").style.height = "35px";
-          document.getElementById("useQT").style.width = "35px";
-          document.getElementById("useQT").style.height = "35px";
+          D_autostart.style.width = "35px";
+          D_autostart.style.height = "35px";
+          D_useqt.style.width = "35px";
+          D_useqt.style.height = "35px";
           D_pend_on.style.width = "35px";
           D_pend_on.style.height = "35px";
           D_pend_off.style.width = "35px";
@@ -1378,10 +1380,10 @@
         }
 
         if (localStorage["useqt"] == "checked")   {
-          document.getElementById("useQT").checked = true;
+          D_useqt.checked = true;
         }
         else   {
-          document.getElementById("useQT").checked = false;
+          D_useqt.checked = false;
         }
 
 //
@@ -1432,11 +1434,11 @@
         }
 
         if (localStorage["autostart"] == "checked")   {
-          document.getElementById("autostart").checked = true;
+          D_autostart.checked = true;
           cordova.plugins.autoStart.enable();
         }
         else   {
-          document.getElementById("autostart").checked = false;
+          D_autostart.checked = false;
           cordova.plugins.autoStart.disable();
         }
       }
@@ -1463,7 +1465,7 @@
 
 
       function doQuietTimeOption()   {
-        if (document.getElementById("useQT").checked == true)   {
+        if (D_useqt.checked == true)   {
           localStorage["useqt"] = "checked";
 
           if (isQuietTime())   {
@@ -2080,7 +2082,7 @@
 // Displayable Objects
 
         document.getElementById("t2id").style.display = "inline";
-        document.getElementById("useQT").style.marginTop = "0";
+        D_useqt.style.marginTop = "0";
 
 // Device Size and Orientation
         if (screen.height > screen.width)   {
@@ -2089,7 +2091,7 @@
         else   {
           ORIENT = "landscape";
           document.getElementById("t2id").style.display = "none";
-          document.getElementById("useQT").style.marginTop = "15px";
+          D_useqt.style.marginTop = "15px";
 
         }
 
@@ -2214,7 +2216,7 @@
       }
 
       function doAutoStart()   {
-        if (document.getElementById("autostart").checked == true)   {
+        if (D_autostart.checked == true)   {
           cordova.plugins.autoStart.enable();
           localStorage["autostart"] = "checked";
         }
