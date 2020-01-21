@@ -175,6 +175,7 @@
       var SIZE;
       var DEVICE_TYPE;
       var D_MyCanvas, D_FPMuteButton, D_setupButtonDiv, D_helpIcon, D_minimage, D_ximage, D_clock, D_pend_off, D_pend_on;
+      var D_bb_but, D_lon_but, D_setup_but;
 
       var QUARTER_DING       = "bb_quarter.mp3";
       var HALF_DING          = "bb_half.mp3";
@@ -988,21 +989,23 @@
         D_clock = document.getElementById("clock");
         D_pend_off = document.getElementById("pend_but_off");
         D_pend_on = document.getElementById("pend_but_on");
-
+        D_bb_but = document.getElementById("big_ben_but");
+        D_lon_but = document.getElementById("london_but");
+        D_setup_but = document.getElementById("setup_butt");
 
         loadGlobals();
 
         if (localStorage["theme"] == "BigBen")   {
-          document.getElementById("big_ben_but").checked = true;
+          D_bb_but.checked = true;
           doBigBenTheme();
         }
         else if (localStorage["theme"] == "London")   {
-          document.getElementById("london_but").checked = true;
+          D_lon_but.checked = true;
           doLondonTheme();
         }
         else   {
           localStorage["theme"] = "BigBen";
-          document.getElementById("big_ben_but").checked = true;
+          D_bb_but.checked = true;
           doBigBenTheme();
         }
 
@@ -1047,15 +1050,15 @@
           D_pend_off.style.height = "35px";
           D_pend_off.style.marginBottom = "10px";
           D_pend_on.style.marginBottom = "10px";
-          document.getElementById("big_ben_but").style.width = "35px";
-          document.getElementById("big_ben_but").style.height = "35px";
-          document.getElementById("london_but").style.width = "35px";
-          document.getElementById("london_but").style.height = "35px";
-          document.getElementById("setup_butt").style.width = "95px";
-          document.getElementById("setup_butt").style.height = "95px";
+          D_bb_but.style.width = "35px";
+          D_bb_but.style.height = "35px";
+          D_lon_but.style.width = "35px";
+          D_lon_but.style.height = "35px";
+          D_setup_but.style.width = "95px";
+          D_setup_but.style.height = "95px";
 
-          document.getElementById("setup_butt").style.marginTop = "425px";
-          document.getElementById("setup_butt").style.visibility = "visible";
+          D_setup_but.style.marginTop = "425px";
+          D_setup_but.style.visibility = "visible";
           D_FPMuteButton.style.visibility = "visible";
           document.getElementById("bottomNavBar").style.height = "75px";
           D_minimage.style.marginRight = "120px";
@@ -1103,7 +1106,7 @@
             D_setupButtonDiv.style.right = "0px";
           }
 
-          document.getElementById("setup_butt").style.visibility = "visible";
+          D_setup_but.style.visibility = "visible";
           D_FPMuteButton.style.visibility = "visible";
         }
 
@@ -2146,7 +2149,7 @@
             D_clock.style.fontSize = "75px";
           }
           else   {
-            document.getElementById("setup_butt").style.marginTop = "525px";
+            D_setup_but.style.marginTop = "525px";
             D_setupButtonDiv.style.marginTop = "-70px";
             D_clock.style.top = "251px";
             D_clock.style.marginLeft = "0px";
@@ -2163,7 +2166,7 @@
             D_clock.style.fontSize = "120px";
           }
           else   {
-            document.getElementById("setup_butt").style.marginTop = "425px";
+            D_setup_but.style.marginTop = "425px";
             D_setupButtonDiv.style.marginTop = "-15px";
             D_clock.style.top = "175px";
             D_clock.style.fontSize = "240px";
