@@ -2266,7 +2266,8 @@
         else   {
           SIZE = "small";
         }
-//        alert("SIZE is " + SIZE);
+        alert("SIZE is " + SIZE);
+        doScreenSpecs();
       }
 
 //  Called every time orientation changes
@@ -2274,7 +2275,7 @@
       function onOChange()   {
         ORIENT = (screen.height > screen.width) ? "portrait" : "landscape";
         DEVICE_TYPE = SIZE + "-" + ORIENT;
-        alert("DEVICE_TYPE is " + DEVICE_TYPE);
+//        alert("DEVICE_TYPE is " + DEVICE_TYPE);
 
         if (localStorage["theme"] == "BigBen")   {
           doBigBenTheme();
