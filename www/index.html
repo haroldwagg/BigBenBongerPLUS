@@ -2260,7 +2260,7 @@
 //
       function getScreenSize()   {
         var ratio = window.devicePixelRatio || 1;
-        if ((screen.height > 780) || (screen.width > 780))   {
+        if ((screen.height / ratio > 780) || (screen.width / ratio > 780))   {
           SIZE = "big";
         }
         else   {
