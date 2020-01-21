@@ -175,7 +175,7 @@
       var SIZE;
       var DEVICE_TYPE;
       var D_MyCanvas, D_FPMuteButton, D_setupButtonDiv, D_helpIcon, D_minimage, D_ximage, D_clock, D_pend_off, D_pend_on;
-      var D_bb_but, D_lon_but, D_setup_but;
+      var D_bb_but, D_lon_but, D_setup_but, D_no_phone_mute, D_quarter, D_half, D_hour;
 
       var QUARTER_DING       = "bb_quarter.mp3";
       var HALF_DING          = "bb_half.mp3";
@@ -459,7 +459,7 @@
         }
 
         if (MASTER_MUTE)   {
-          if (document.getElementById("no_phone_mute").checked == true)   {
+          if (D_no_phone_mute.checked == true)   {
             MASTER_MUTE = false;
             CURRENT_VOLUME = 0.1;
             phoneAdjustmentsHaveBeenMade = true;
@@ -703,9 +703,9 @@
               panel2Style.width = '425px';
             }
 
-            document.getElementById("Quarter").style.marginTop = "10px";
-            document.getElementById("Half").style.marginTop = "8px";
-            document.getElementById("Hour-strikes").style.marginTop = "8px";
+            D_quarter.style.marginTop = "10px";
+            D_half.style.marginTop = "8px";
+            D_hour.style.marginTop = "8px";
             document.getElementById("spkr").style.width = "40px";
             document.getElementById("spkr").style.height = "40px";
             document.getElementById("sprk").style.marginBottom = "-8px";
@@ -898,12 +898,12 @@
       function doHourStrikeOption()   {
         if (DO_STRIKES)   {
           DO_STRIKES = false;
-          document.getElementById("Hour-strikes").checked = false;
+          D_hour.checked = false;
           localStorage["hour-strikes"] = "no";
         }
         else   {
           DO_STRIKES = true;
-          document.getElementById("Hour-strikes").checked = true;
+          D_hour.checked = true;
           localStorage["hour-strikes"] = "checked";
         }
       }
@@ -912,13 +912,13 @@
         if (QUARTER_MUTE)   {
           QUARTER_MUTE = false;
           THREE_QUARTER_MUTE = false;
-          document.getElementById("Quarter").checked = true;
+          D_quarter.checked = true;
           localStorage["quarter"] = "checked";
         }
         else   {
           QUARTER_MUTE = true;
           THREE_QUARTER_MUTE = true;
-          document.getElementById("Quarter").checked = false;
+          D_quarter.checked = false;
           localStorage["quarter"] = "no";
         }
       }
@@ -926,12 +926,12 @@
       function doHalfHourOption()   {
         if (HALF_MUTE)   {
           HALF_MUTE = false;
-          document.getElementById("Half").checked = true;
+          D_half.checked = true;
           localStorage["half"] = "checked";
         }
         else   {
           HALF_MUTE = true;
-          document.getElementById("Half").checked = false;
+          D_half.checked = false;
           localStorage["half"] = "no";
         }
       }
@@ -992,6 +992,10 @@
         D_bb_but = document.getElementById("big_ben_but");
         D_lon_but = document.getElementById("london_but");
         D_setup_but = document.getElementById("setup_butt");
+        D_no_phone_mute = document.getElementById("no_phone_mute");
+        D_quarter = document.getElementById("Quarter");
+        D_half = document.getElementById("Half");
+        D_hour = document.getElementById("Hour-strikes");
 
         loadGlobals();
 
@@ -1032,14 +1036,14 @@
           D_minimage.style.height = "70px";
           D_helpIcon.style.width = "70px";
           D_helpIcon.style.height = "70px";
-          document.getElementById("no_phone_mute").style.width = "35px";
-          document.getElementById("no_phone_mute").style.height = "35px";
-          document.getElementById("Quarter").style.width = "35px";
-          document.getElementById("Quarter").style.height = "35px";
-          document.getElementById("Half").style.width = "35px";
-          document.getElementById("Half").style.height = "35px";
-          document.getElementById("Hour-strikes").style.width = "35px";
-          document.getElementById("Hour-strikes").style.height = "35px";
+          D_no_phone_mute.style.width = "35px";
+          D_no_phone_mute.style.height = "35px";
+          D_quarter.style.width = "35px";
+          D_quarter.style.height = "35px";
+          D_half.style.width = "35px";
+          D_half.style.height = "35px";
+          D_hour.style.width = "35px";
+          D_hour.style.height = "35px";
           document.getElementById("autostart").style.width = "35px";
           document.getElementById("autostart").style.height = "35px";
           document.getElementById("useQT").style.width = "35px";
@@ -1290,10 +1294,10 @@
         }
 
         if (localStorage["no_phone_mute"] == "checked")   {
-          document.getElementById("no_phone_mute").checked = true;
+          D_no_phone_mute.checked = true;
         }
         else   {
-          document.getElementById("no_phone_mute").checked = false;
+          D_no_phone_mute.checked = false;
         }
 
 //        alert ("DING: " + localStorage["ding_selection"] + "\n\nMUTE: " + localStorage["no_phone_mute"]);
@@ -1308,12 +1312,12 @@
         if (localStorage["quarter"] == "checked")   {
           QUARTER_MUTE = false;
           THREE_QUARTER_MUTE = false;
-          document.getElementById("Quarter").checked = true;
+          D_quarter.checked = true;
         }
         else   {
           QUARTER_MUTE = true;
           THREE_QUARTER_MUTE = true;
-          document.getElementById("Quarter").checked = false;
+          D_quarter.checked = false;
         }
 
 //
@@ -1325,11 +1329,11 @@
 
         if (localStorage["half"] == "checked")   {
           HALF_MUTE = false;
-          document.getElementById("Half").checked = true;
+          D_half.checked = true;
        }
         else   {
           HALF_MUTE = true;
-          document.getElementById("Half").checked = false;
+          D_half.checked = false;
         }
 
 //
@@ -1341,11 +1345,11 @@
 
         if (localStorage["hour-strikes"] == "checked")   {
           DO_STRIKES = true;
-          document.getElementById("Hour-strikes").checked = true;
+          D_hour.checked = true;
        }
         else   {
           DO_STRIKES = false;
-          document.getElementById("Hour-strikes").checked = false;
+          D_hour.checked = false;
         }
 
 //
@@ -2221,7 +2225,7 @@
       }
 
       function doPhoneMute()   {
-        if (document.getElementById("no_phone_mute").checked == true)   {
+        if (D_no_phone_mute.checked == true)   {
           localStorage["no_phone_mute"] = "checked";
         }
         else   {
