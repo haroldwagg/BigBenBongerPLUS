@@ -174,7 +174,7 @@
       var ORIENT;
       var SIZE;
       var DEVICE_TYPE;
-      var D_MyCanvas, D_FPMuteButton, D_setupButtonDiv, D_helpIcon, D_minimage, D_ximage, D_clock;
+      var D_MyCanvas, D_FPMuteButton, D_setupButtonDiv, D_helpIcon, D_minimage, D_ximage, D_clock, D_pend_off, D_pend_on;
 
       var QUARTER_DING       = "bb_quarter.mp3";
       var HALF_DING          = "bb_half.mp3";
@@ -576,7 +576,7 @@
       }
 
       function initializeCanvas()   {
-        canvas = document.getElementById("myCanvas");
+        canvas = D_MyCanvas;
         ctx = canvas.getContext('2d');
 
         if (SIZE == "small")   {
@@ -986,6 +986,8 @@
         D_minimage = document.getElementById("minimage");
         D_ximage = document.getElementById("ximage");
         D_clock = document.getElementById("clock");
+        D_pend_off = document.getElementById("pend_but_off");
+        D_pend_on = document.getElementById("pend_but_on");
 
 
         loadGlobals();
@@ -1039,12 +1041,12 @@
           document.getElementById("autostart").style.height = "35px";
           document.getElementById("useQT").style.width = "35px";
           document.getElementById("useQT").style.height = "35px";
-          document.getElementById("pend_but_on").style.width = "35px";
-          document.getElementById("pend_but_on").style.height = "35px";
-          document.getElementById("pend_but_off").style.width = "35px";
-          document.getElementById("pend_but_off").style.height = "35px";
-          document.getElementById("pend_but_off").style.marginBottom = "10px";
-          document.getElementById("pend_but_on").style.marginBottom = "10px";
+          D_pend_on.style.width = "35px";
+          D_pend_on.style.height = "35px";
+          D_pend_off.style.width = "35px";
+          D_pend_off.style.height = "35px";
+          D_pend_off.style.marginBottom = "10px";
+          D_pend_on.style.marginBottom = "10px";
           document.getElementById("big_ben_but").style.width = "35px";
           document.getElementById("big_ben_but").style.height = "35px";
           document.getElementById("london_but").style.width = "35px";
@@ -1054,7 +1056,7 @@
 
           document.getElementById("setup_butt").style.marginTop = "425px";
           document.getElementById("setup_butt").style.visibility = "visible";
-          document.getElementById("FPMuteButton").style.visibility = "visible";
+          D_FPMuteButton.style.visibility = "visible";
           document.getElementById("bottomNavBar").style.height = "75px";
           D_minimage.style.marginRight = "120px";
           document.getElementById("panel1Table").style.fontSize = "20px";
@@ -1102,7 +1104,7 @@
           }
 
           document.getElementById("setup_butt").style.visibility = "visible";
-          document.getElementById("FPMuteButton").style.visibility = "visible";
+          D_FPMuteButton.style.visibility = "visible";
         }
 
 
@@ -1383,14 +1385,14 @@
         }
 
         if (localStorage["pend_status"] == "checked")   {
-          document.getElementById("pend_but_on").checked = true;
-          document.getElementById("pend_but_off").checked = false;
+          D_pend_on.checked = true;
+          D_pend_off.checked = false;
           PEND_STATUS = "RUNNING";
           pendulumRunning = true;
         }
         else   {
-          document.getElementById("pend_but_off").checked = true;
-          document.getElementById("pend_but_on").checked = false;
+          D_pend_off.checked = true;
+          D_pend_on.checked = false;
           PEND_STATUS = "STOPPED";
           pendulumRunning = false;
         }
@@ -1460,11 +1462,11 @@
           if (isQuietTime())   {
             changeNotification("Quiet Time");
 
-            document.getElementById("pend_but_on").disabled = false;
-            var checkStatus = document.getElementById("pend_but_on").checked;
+            D_pend_on.disabled = false;
+            var checkStatus = D_pend_on.checked;
 
-            document.getElementById("pend_but_on").disabled = true;
-            document.getElementById("pend_but_off").disabled = true;
+            D_pend_on.disabled = true;
+            D_pend_off.disabled = true;
 
             if (checkStatus)   {
               if (pendulumRunning)   {
@@ -1477,10 +1479,10 @@
               changeNotification("Off");
             }
 
-            document.getElementById("pend_but_on").disabled = false;
-            document.getElementById("pend_but_off").disabled = false;
+            D_pend_on.disabled = false;
+            D_pend_off.disabled = false;
 
-            if (document.getElementById("pend_but_on").checked == true)   {
+            if (D_pend_on.checked == true)   {
               if (! pendulumRunning)   {
                 startPendulum();
               }
@@ -1492,12 +1494,12 @@
             changeNotification("Off");
           }
 
-          document.getElementById("pend_but_on").disabled = false;
-          document.getElementById("pend_but_off").disabled = false;
+          D_pend_on.disabled = false;
+          D_pend_off.disabled = false;
 
           localStorage["useqt"] = "no";
 
-          if (document.getElementById("pend_but_on").checked == true)   {
+          if (D_pend_on.checked == true)   {
             if (! pendulumRunning)   {
               startPendulum();
             }
