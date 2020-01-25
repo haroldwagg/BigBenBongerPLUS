@@ -569,11 +569,6 @@
           CURRENT_VOLUME = MASTER_VOLUME;
           MASTER_MUTE = true;
         }
-
-//        if (pendulumRunning)   {
-//          unmutePendulum();
-//        }
-
       }
 
       function initializeCanvas()   {
@@ -835,7 +830,7 @@
       }
 
       function changePendVolume(dir)   {
-        unmutePendulum();
+//        unmutePendulum();
 
         if (dir == "+")   {
           if (PEND_VOLUME < 1.0)   {
