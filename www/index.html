@@ -1665,6 +1665,7 @@
             document.getElementById("EendLabel").innerHTML = "Primeiro Bong";
             document.getElementById("usePendulumLabel").innerHTML = "<span style=\"color: #0000aa; font-weight: bold\">&nbsp;PÊNDULO:&nbsp;&nbsp;</span>";
             document.getElementById("autoStartTextDiv").innerHTML = "AUTO-START QUANDO O TELEFONE INICIA<br /><span style=\"text-transform: none;\">(Pode não funcionar em alguns dispositivos)</span>";
+            notificationTitle = "Big Ben Bonger Background";
           }
           else if (localStorage["language"] == "fr")   {
             do24Hr = true;
@@ -1704,7 +1705,7 @@
             document.getElementById("autoStartTextDiv").innerHTML = "DÉMARRAGE AUTOMATIQUE AU<br />DÉMARRAGE DU TÉLÉPHONE<br /><span style=\"text-transform: none;\">(Peut ne pas fonctionner sur certains appareils)</span>";
 
             document.getElementById("EendLabel").style.marginLeft = "40px";
-
+            notificationTitle = "Big Ben Bonger Background";
           }
           else if (localStorage["language"] == "de")   {
             do24Hr = true;
@@ -1745,6 +1746,7 @@
             document.getElementById("autoStartTextDiv").innerHTML = "JEDER ZEIT AUTOMATISCH STARTEN<br /><span style=\"text-transform: none;\">(Funktioniert möglicherweise nicht auf allen Geräten)</span>";
 
             document.getElementById("EendLabel").style.marginLeft = "40px";
+            notificationTitle = "Big Ben Bonger Background";
           }
           else if (localStorage["language"] == "es")   {
             do24Hr = true;
@@ -1785,6 +1787,7 @@
             document.getElementById("autoStartTextDiv").innerHTML = "ARRANQUE AUTOMÁTICO<br />CUANDO TELÉFONO COMIENZA<br /><span style=\"text-transform: none;\">(Puede no funcionar en algunos dispositivos)</span>";
 
             document.getElementById("EendLabel").style.marginLeft = "40px";
+            notificationTitle = "Big Ben Bonger Background";
           }
           else if (localStorage["language"] == "it")   {
             do24Hr = true;
@@ -1825,6 +1828,7 @@
             document.getElementById("EendLabel").innerHTML = "Primo Bong";
             document.getElementById("usePendulumLabel").innerHTML = "<span style=\"color: #0000aa; font-weight: bold\">&nbsp;PENDOLO:&nbsp;&nbsp;</span>";
             document.getElementById("autoStartTextDiv").innerHTML = "INIZIA AUTOMATICAMENTE QUANDO<br />IL TELEFONO INIZIA<br /><span style=\"text-transform: none;\">(Potrebbe non funzionare su alcuni dispositivi)</span>";
+            notificationTitle = "Big Ben Bonger Background";
           }
           else if (localStorage["language"] == "ru")   {
             do24Hr = true;
@@ -1864,24 +1868,24 @@
 
             optionsInText = "ОПЦИИ >";
             optionsOutText = "< ОПЦИИ";
-            quietTimeText1 = "QUIET TIME";
-            quietTimeText2 = "QUIET<br />TIME";
-            muteText1 = "MUTE ON";
-            muteText2 = "MUTE<br />ON";
+            quietTimeText1 = "ТИХОЕ ВРЕМЯ";
+            quietTimeText2 = "ТИХОЕ<br />ВРЕМЯ";
+            muteText1 = "МОЛЧАНИЕ";
+            muteText2 = "МОЛЧАНИЕ";
             noPendulumAdjustText = "You cannot turn the Pendulum on or off during Quiet Time.\n\nTo make adjustments to the Pendulum, simply turn off Quiet Time and try again.";
-            cuckooClockText = "CUCKOO CLOCK";
-            electronicClockText = "ELECTRONIC CLOCK";
-            trinityText = "TRINITY CHIMES";
-            muteTextNotification = "[Mute]  ";
-            quietTimeTextNotification = "[Quiet Time]  ";
+            cuckooClockText = "ЧАСЫ С КУКУШКОЙ";
+            electronicClockText = "ЭЛЕКТРОННЫЕ ЧАСЫ";
+            trinityText = "ТРОИЦКИЙ ЗВОН";
+            muteTextNotification = "[Молчание]  ";
+            quietTimeTextNotification = "[Тихое Время]  ";
 
-            document.getElementById("useQTLabel").innerHTML = "<span style=\"color: #0000aa; font-weight: bold\">&nbsp;Use QUIET TIME</span>";
-            document.getElementById("themeLabel").innerHTML = "<span style=\"color: #0000aa; font-weight: bold\">&nbsp;THEME:</span>";
-            document.getElementById("SstartLabel").innerHTML = "Last Bong";
-            document.getElementById("EendLabel").innerHTML = "First Bong";
-            document.getElementById("usePendulumLabel").innerHTML = "<span style=\"color: #0000aa; font-weight: bold\">&nbsp;PENDULUM:&nbsp;&nbsp;</span>";
-            document.getElementById("autoStartTextDiv").innerHTML = "AUTO-START WHEN PHONE STARTS<br /><span style=\"text-transform: none;\">(May not work on some devices)</span>";
-
+            document.getElementById("useQTLabel").innerHTML = "<span style=\"color: #0000aa; font-weight: bold\">&nbsp;Используйте ТИХОЕ ВРЕМЯ</span>";
+            document.getElementById("themeLabel").innerHTML = "<span style=\"color: #0000aa; font-weight: bold\">&nbsp;ТЕМЫ:</span>";
+            document.getElementById("SstartLabel").innerHTML = "Последний бонг";
+            document.getElementById("EendLabel").innerHTML = "Первый бонг";
+            document.getElementById("usePendulumLabel").innerHTML = "<span style=\"color: #0000aa; font-weight: bold\">&nbsp;МАЯТНИК:&nbsp;&nbsp;</span>";
+            document.getElementById("autoStartTextDiv").innerHTML = "АВТОСТАРТ, КОГДА НАЧИНАЕТСЯ ТЕЛЕФОН<br /><span style=\"text-transform: none;\">(Может не работать на некоторых устройствах)</span>";
+            notificationTitle = "Big Ben Bonger Background";
           }
           else   {
             mantleClockText = "MANTLE CLOCK";
@@ -1921,6 +1925,7 @@
             document.getElementById("EendLabel").innerHTML = "First Bong";
             document.getElementById("usePendulumLabel").innerHTML = "<span style=\"color: #0000aa; font-weight: bold\">&nbsp;PENDULUM:&nbsp;&nbsp;</span>";
             document.getElementById("autoStartTextDiv").innerHTML = "AUTO-START WHEN PHONE STARTS<br /><span style=\"text-transform: none;\">(May not work on some devices)</span>";
+            notificationTitle = "Big Ben Bonger Background";
           }
 
           if (SIZE == "big")   {
