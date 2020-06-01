@@ -2250,21 +2250,41 @@
 
         if (ORIENT == "portrait")   {
           if (SIZE == "small")   {
-            body.style.backgroundImage = 'url("img/bgBenSP.jpg")';
+            if (localStorage["language"] == "ru")   {
+              body.style.backgroundImage = 'url("img/bg_ru_pt_sm.jpg")';
+            }
+            else   {
+              body.style.backgroundImage = 'url("img/bgBenSP.jpg")';
+            }
             D_setupButtonDiv.style.marginTop = "0px";
           }
           else   {
-            body.style.backgroundImage = 'url("img/bgBenBP.jpg")';
+            if (localStorage["language"] == "ru")   {
+              body.style.backgroundImage = 'url("img/bg_ru_pt_lg.jpg")';
+            }
+            else   {
+              body.style.backgroundImage = 'url("img/bgBenBP.jpg")';
+            }
             D_setupButtonDiv.style.marginTop = "0px";
           }
         }
         else   {
           if (SIZE == "small")   {
-            body.style.backgroundImage = 'url("img/bgBenSL.jpg")';
+            if (localStorage["language"] == "ru")   {
+              body.style.backgroundImage = 'url("img/bg_ru_lscape_sm.jpg")';
+            }
+            else   {
+              body.style.backgroundImage = 'url("img/bgBenSL.jpg")';
+            }
             D_setupButtonDiv.style.marginTop = "0px";
           }
           else   {
-            body.style.backgroundImage = 'url("img/bgBenBL.jpg")';
+            if (localStorage["language"] == "ru")   {
+              body.style.backgroundImage = 'url("img/bg_ru_lscape_lg.jpg")';
+            }
+            else   {
+              body.style.backgroundImage = 'url("img/bgBenBL.jpg")';
+            }
             D_setupButtonDiv.style.marginTop = "0px";
             D_setupButtonDiv.style.marginRight = "10px";
           }
