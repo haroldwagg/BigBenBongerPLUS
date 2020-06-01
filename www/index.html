@@ -1881,11 +1881,13 @@
 
             document.getElementById("useQTLabel").innerHTML = "<span style=\"color: #0000aa; font-weight: bold\">&nbsp;Используйте ТИХОЕ ВРЕМЯ</span>";
             document.getElementById("themeLabel").innerHTML = "<span style=\"color: #0000aa; font-weight: bold\">&nbsp;ТЕМЫ:</span>";
-            document.getElementById("SstartLabel").innerHTML = "Последний<br />бонг";
-            document.getElementById("EendLabel").innerHTML = "Первый<br />бонг";
+            document.getElementById("SstartLabel").innerHTML = "Последний бонг";
+            document.getElementById("EendLabel").innerHTML = "Первый бонг";
             document.getElementById("usePendulumLabel").innerHTML = "<span style=\"color: #0000aa; font-weight: bold\">&nbsp;МАЯТНИК:&nbsp;&nbsp;</span>";
             document.getElementById("autoStartTextDiv").innerHTML = "АВТОСТАРТ, КОГДА НАЧИНАЕТСЯ ТЕЛЕФОН<br /><span style=\"text-transform: none;\">(Может не работать на некоторых устройствах)</span>";
             notificationTitle = "Биг Бен Бонгер Фон";
+
+            document.getElementById("SstartLabel").style.marginLeft = "0px";
           }
           else   {
             mantleClockText = "MANTLE CLOCK";
