@@ -681,9 +681,13 @@
               panelStyle.width = '515px';
               panel2Style.width = '515px';
             }
-            else if ((localStorage["language"] == "de") || (localStorage["language"] == "ru"))  {
+            else if (localStorage["language"] == "de")  {
               panelStyle.width = '535px';
               panel2Style.width = '535px';
+            }
+            else if (localStorage["language"] == "ru")   {
+              panelStyle.width = '545px';
+              panel2Style.width = '545px';
             }
             else if (localStorage["language"] == "it")   {
               panelStyle.width = '515px';
@@ -717,9 +721,13 @@
               panelStyle.width = '325px';
               panel2Style.width = '325px';
             }
-            else if ((localStorage["language"] == "de") || (localStorage["language"] == "ru"))   {
+            else if (localStorage["language"] == "de")   {
               panelStyle.width = '333px';
               panel2Style.width = '333px';
+            }
+            else if (localStorage["language"] == "ru")   {
+              panelStyle.width = '343px';
+              panel2Style.width = '343px';
             }
             else if (localStorage["language"] == "it")   {
               panelStyle.width = '320px';
@@ -1926,7 +1934,6 @@
             resume: true,
             hidden: false
           });
-alert('setLanguage3');
 
           if (SIZE == "big")   {
             if (localStorage["language"] == "pt")   {
