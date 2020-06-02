@@ -1589,7 +1589,14 @@
 //
           if (ORIENT == "portrait")   {
             sPanel.style.left = "15px";
-            sPanel.style.top = "878px";
+
+            if (localStorage["language"] == "ru")   {
+              sPanel.style.top = "900px";
+            }
+            else   {
+              sPanel.style.top = "878px";
+            }
+            
             sPanel.style.width = "372px";
             sPanel.style.height = "52px";
             sPanel.style.fontSize = "46px";
