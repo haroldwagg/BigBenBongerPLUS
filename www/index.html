@@ -1990,7 +1990,14 @@ alert('setLanguage3');
           var x = document.getElementById("clocker");
 
           var b = document.createElement("option");
-          b.text = "BIG BEN";
+
+          if (localStorage["language"] == "ru")   {
+            b.text = "БИГ БЕН";
+          }
+          else   {
+            b.text = "BIG BEN";
+          }
+
           b.value = "bb";
 
           if ((localStorage["ding_selection"] != "bg") && (localStorage["ding_selection"] != "gf") && (localStorage["ding_selection"] != "cc") && (localStorage["ding_selection"] != "tr") && (localStorage["ding_selection"] != "ec"))  {
