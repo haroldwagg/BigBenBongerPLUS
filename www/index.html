@@ -1611,7 +1611,6 @@
 
 
       function setLanguage()   {
-alert('setLanguage');
         localStorage["language"] = "";
 
         navigator.globalization.getPreferredLanguage( function (language)   {
@@ -1920,21 +1919,6 @@ alert('setLanguage');
             document.getElementById("autoStartTextDiv").innerHTML = "AUTO-START WHEN PHONE STARTS<br /><span style=\"text-transform: none;\">(May not work on some devices)</span>";
             notificationTitle = "Big Ben Bonger Background";
           }
-
-alert('setLanguage2');
-
-          if (FRONT_PANEL_MUTE)   {
-            changeNotification("Mute On");
-          }
-          else if (isQuietTime())   {
-            changeNotification("Quiet Time");
-          }
-          else   {
-            changeNotification("Off");
-          }
-
-alert('setLanguage2a');
-
 
           cordova.plugins.backgroundMode.setDefaults({
             title: notificationTitle,
