@@ -1611,7 +1611,7 @@
 
 
       function setLanguage()   {
-
+alert('setLanguage');
         localStorage["language"] = "";
 
         navigator.globalization.getPreferredLanguage( function (language)   {
@@ -1921,6 +1921,8 @@
             notificationTitle = "Big Ben Bonger Background";
           }
 
+alert('setLanguage2');
+
           if (FRONT_PANEL_MUTE)   {
             notificationPrefixText = muteTextNotification;
           }
@@ -1937,7 +1939,7 @@
             resume: true,
             hidden: false
           });
-
+alert('setLanguage3');
 
           if (SIZE == "big")   {
             if (localStorage["language"] == "pt")   {
