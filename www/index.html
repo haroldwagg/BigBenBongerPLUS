@@ -960,12 +960,12 @@
 
       function starter()   {
 
-          cordova.plugins.backgroundMode.setDefaults({
-          title: notificationTitle,
-          text: backgroundNotificationText,
-          resume: true,
-          hidden: false
-        });
+//          cordova.plugins.backgroundMode.setDefaults({
+//          title: notificationTitle,
+//          text: backgroundNotificationText,
+//          resume: true,
+//          hidden: false
+//        });
 
         getScreenSize();
 
@@ -1237,7 +1237,6 @@
         window.plugins.insomnia.allowSleepAgain();
 
         firstTimeInBG = true;
-//        cordova.plugins.backgroundMode.configure({ text: notificationPrefixText + backgroundNotificationText, resume: true  });
         cordova.plugins.backgroundMode.moveToBackground();
       }
 
@@ -1921,6 +1920,14 @@
             document.getElementById("autoStartTextDiv").innerHTML = "AUTO-START WHEN PHONE STARTS<br /><span style=\"text-transform: none;\">(May not work on some devices)</span>";
             notificationTitle = "Big Ben Bonger Background";
           }
+
+          cordova.plugins.backgroundMode.setDefaults({
+            title: notificationTitle,
+            text: notificationPrefixText + backgroundNotificationText,
+            resume: true,
+            hidden: false
+          });
+
 
           if (SIZE == "big")   {
             if (localStorage["language"] == "pt")   {
