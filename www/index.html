@@ -195,7 +195,7 @@
       var lang;
       var XStr;
       var setupIsDisplayed = false;
-      var helpText, helpTextTitle, mantleClockText, grandfatherClockText, helpDismissText, quitConfirmText, backgroundNotificationText, optionsInText, optionsOutText;
+      var helpText, helpTextTitle, mantleClockText, grandfatherClockText, helpDismissText, quitConfirmText, backgroundNotificationText, optionsInText, optionsOutText, notificationTitle;
       var quietTimeText1, quietTimeText2, muteText1, muteText2, noPendulumAdjustText, quietTimeTextNotification, muteTextNotification;
       var notificationPrefixText = "";
       var mySavedStates = false;
@@ -961,8 +961,8 @@
       function starter()   {
 
           cordova.plugins.backgroundMode.setDefaults({
-          title: "Big Ben Bonger Background",
-          text: "[Tap HERE to Restore]",
+          title: notificationTitle,
+          text: backgroundNotificationText,
           resume: true,
           hidden: false
         });
@@ -971,7 +971,7 @@
 
         setLanguage();
 
-        cordova.plugins.backgroundMode.configure({ text: "[Tap HERE to Restore]", resume: true  });
+//        cordova.plugins.backgroundMode.configure({ text: "[Tap HERE to Restore]", resume: true  });
 
         cordova.plugins.backgroundMode.setEnabled(true);
 
@@ -1236,15 +1236,6 @@
       function doGoToBG()   {
         window.plugins.insomnia.allowSleepAgain();
 
-//        cordova.plugins.backgroundMode.setDefaults({
-//          title: "Big Ben Bonger Background",
-//          text: backgroundNotificationText,
-//          resume: true,
-//          hidden: false
-//        });
-//
-//        cordova.plugins.backgroundMode.disableWebViewOptimizations();
-//
         firstTimeInBG = true;
 //        cordova.plugins.backgroundMode.configure({ text: notificationPrefixText + backgroundNotificationText, resume: true  });
         cordova.plugins.backgroundMode.moveToBackground();
@@ -1705,7 +1696,7 @@
             document.getElementById("autoStartTextDiv").innerHTML = "DÉMARRAGE AUTOMATIQUE AU<br />DÉMARRAGE DU TÉLÉPHONE<br /><span style=\"text-transform: none;\">(Peut ne pas fonctionner sur certains appareils)</span>";
 
             document.getElementById("EendLabel").style.marginLeft = "40px";
-            notificationTitle = "Big Ben Bonger Background";
+            notificationTitle = "Fond de Big Ben Bonger";
           }
           else if (localStorage["language"] == "de")   {
             do24Hr = true;
@@ -1746,7 +1737,7 @@
             document.getElementById("autoStartTextDiv").innerHTML = "JEDER ZEIT AUTOMATISCH STARTEN<br /><span style=\"text-transform: none;\">(Funktioniert möglicherweise nicht auf allen Geräten)</span>";
 
             document.getElementById("EendLabel").style.marginLeft = "40px";
-            notificationTitle = "Big Ben Bonger Background";
+            notificationTitle = "Big Ben Bonger Hintergrund";
           }
           else if (localStorage["language"] == "es")   {
             do24Hr = true;
@@ -1787,7 +1778,7 @@
             document.getElementById("autoStartTextDiv").innerHTML = "ARRANQUE AUTOMÁTICO<br />CUANDO TELÉFONO COMIENZA<br /><span style=\"text-transform: none;\">(Puede no funcionar en algunos dispositivos)</span>";
 
             document.getElementById("EendLabel").style.marginLeft = "40px";
-            notificationTitle = "Big Ben Bonger Background";
+            notificationTitle = "Fondo Big Ben Bonger";
           }
           else if (localStorage["language"] == "it")   {
             do24Hr = true;
@@ -1828,7 +1819,7 @@
             document.getElementById("EendLabel").innerHTML = "Primo Bong";
             document.getElementById("usePendulumLabel").innerHTML = "<span style=\"color: #0000aa; font-weight: bold\">&nbsp;PENDOLO:&nbsp;&nbsp;</span>";
             document.getElementById("autoStartTextDiv").innerHTML = "INIZIA AUTOMATICAMENTE QUANDO<br />IL TELEFONO INIZIA<br /><span style=\"text-transform: none;\">(Potrebbe non funzionare su alcuni dispositivi)</span>";
-            notificationTitle = "Big Ben Bonger Background";
+            notificationTitle = "Sfondo di Big Ben Bonger";
           }
           else if (localStorage["language"] == "ru")   {
             do24Hr = true;
