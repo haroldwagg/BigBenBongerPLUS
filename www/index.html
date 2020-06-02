@@ -1923,15 +1923,15 @@ alert('setLanguage');
 
 alert('setLanguage2');
 
-//          if (FRONT_PANEL_MUTE)   {
-//            notificationPrefixText = muteTextNotification;
-//          }
-//          else if (isQuietTime())   {
-//            notificationPrefixText = quietTimeTextNotification;
-//          }
-//          else   {
-//            notificationPrefixText = "";
-//          }
+          if (FRONT_PANEL_MUTE)   {
+            changeNotification("Mute On")
+          }
+          else if (isQuietTime())   {
+            changeNotification("Quiet Time")
+          }
+          else   {
+            changeNotification("Off")
+          }
 
 alert('setLanguage2a');
 
