@@ -1670,7 +1670,7 @@
             document.getElementById("usePendulumLabel").innerHTML = "<span style=\"color: #0000aa; font-weight: bold\">&nbsp;PÊNDULO:&nbsp;&nbsp;</span>";
             document.getElementById("autoStartTextDiv").innerHTML = "AUTO-START QUANDO O TELEFONE INICIA<br /><span style=\"text-transform: none;\">(Pode não funcionar em alguns dispositivos)</span>";
             notificationTitle = "Big Ben Bonger Background";
-            document.getElementById("LONDONspan").textContent = "LONDRES"; 
+            document.getElementById("LONDONspan").textContent = "LONDRES";
           }
           else if (localStorage["language"] == "fr")   {
             do24Hr = true;
@@ -1840,20 +1840,22 @@
           }
           else if (localStorage["language"] == "ru")   {
             do24Hr = true;
-            if (screen.height <= screen.width)   {
-              if (SIZE == "big")   {
-                body.style.backgroundImage = 'url(img/bg_ru_lscape_lg.jpg)';
+            if (localStorage["theme"] != "London")   {
+              if (screen.height <= screen.width)   {
+                if (SIZE == "big")   {
+                  body.style.backgroundImage = 'url(img/bg_ru_lscape_lg.jpg)';
+                }
+                else   {
+                  body.style.backgroundImage = 'url(img/bg_ru_lscape_sm.jpg)';
+                }
               }
               else   {
-                body.style.backgroundImage = 'url(img/bg_ru_lscape_sm.jpg)';
-              }
-            }
-            else   {
-              if (SIZE == "big")   {
-                body.style.backgroundImage = 'url(img/bg_ru_pt_lg.jpg)';
-              }
-              else   {
-                body.style.backgroundImage = 'url(img/bg_ru_pt_sm.jpg)';
+                if (SIZE == "big")   {
+                  body.style.backgroundImage = 'url(img/bg_ru_pt_lg.jpg)';
+                }
+                else   {
+                  body.style.backgroundImage = 'url(img/bg_ru_pt_sm.jpg)';
+                }
               }
             }
 
