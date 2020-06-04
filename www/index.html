@@ -1568,7 +1568,12 @@
             sPanel.style.left = "6px";
             sPanel.style.top = "437px";
             sPanel.style.width = "218px";
-            sPanel.style.height = "27px";
+            if (localStorage["language"] == "vi")   {
+              sPanel.style.height = "55px";
+            }
+            else   {
+              sPanel.style.height = "27px";
+            }
             sPanel.style.fontSize = "24px";
           }
 //
@@ -1604,7 +1609,14 @@
             }
 
             sPanel.style.width = "372px";
-            sPanel.style.height = "52px";
+
+            if (localStorage["language"] == "vi")   {
+              sPanel.style.height = "105px";
+            }
+            else   {
+              sPanel.style.height = "52px";
+            }
+
             sPanel.style.fontSize = "46px";
           }
 //
