@@ -1581,7 +1581,13 @@
 //
           else   {
             sPanel.style.width = "135px";
-            sPanel.style.height = "56px";
+            if (localStorage["language"] == "vi")   {
+              sPanel.style.height = "85px";
+            }
+            else   {
+              sPanel.style.height = "56px";
+            }
+
             sPanel.style.fontSize = "24px";
 
             if (localStorage["theme"] == "London")   {
@@ -1623,18 +1629,23 @@
 //   Large Landscape
 //
           else   {
+            if (localStorage["language"] == "vi")   {
+              sPanel.style.height = "165px";
+            }
+            else   {
+              sPanel.style.height = "103px";
+            }
+
             if (localStorage["theme"] == "London")   {
               sPanel.style.left = "100px";
               sPanel.style.top = "460px";
               sPanel.style.width = "267px";
-              sPanel.style.height = "103px";
               sPanel.style.fontSize = "46px";
             }
             else   {
               sPanel.style.left = "650px";
               sPanel.style.top = "260px";
               sPanel.style.width = "267px";
-              sPanel.style.height = "103px";
               sPanel.style.fontSize = "46px";
             }
           }
