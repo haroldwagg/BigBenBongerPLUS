@@ -1580,7 +1580,13 @@
 //   Small Landscape
 //
           else   {
-            sPanel.style.width = "135px";
+            if (localStorage["language"] == "ru")   {
+              sPanel.style.width = "90px";
+            }
+            else   {
+              sPanel.style.width = "150px";
+            }
+                      
             if (localStorage["language"] == "vi")   {
               sPanel.style.height = "90px";
             }
@@ -1934,16 +1940,16 @@
           else if (localStorage["language"] == "vi")   {
             mantleClockText = "ĐỒNG HỒ ĐEO TAY";
             grandfatherClockText = "ĐỒNG HỒ GRANDFATHER";
-            document.getElementById("bongDuringCall").innerHTML = "&nbsp;BONG DURING PHONECALLS";
-            document.getElementById("15_45_Label").innerHTML = "&nbsp;:15 &amp; :45 VÒI";
-            document.getElementById("Half_Label").innerHTML = "&nbsp;:30 VÒI";
+            document.getElementById("bongDuringCall").innerHTML = "&nbsp;BONG TRONG PHONECALLS";
+            document.getElementById("15_45_Label").innerHTML = "&nbsp;:15 &amp; :45 CHIMES";
+            document.getElementById("Half_Label").innerHTML = "&nbsp;:30 CHIMES";
             document.getElementById("Hour_Label").innerHTML = "&nbsp;CHIMES TRÊN GIỜ";
             helpText = "Hãy để Big Ben PLUS v3 giúp bạn theo dõi thời gian - một lời nhắc nhở tinh tế cứ sau 15 phút.\n\n";
             helpText += "Nhấn vào biểu tượng CÔNG CỤ sẽ hiển thị Menu Cài đặt. Chọn từ 6 đồng hồ khác nhau, có hoặc không có con lắc. Tất cả các cài đặt rất dễ hiểu.\n\n";
             helpText += "Mặc dù xem Big Ben cả ngày rất tuyệt, nhưng có lẽ bạn sẽ muốn làm những việc khác với điện thoại hoặc máy tính bảng của mình. Bạn có thể thu nhỏ Big Ben bằng cách nhấn vào Biểu tượng thu nhỏ màu xanh hình vuông ở cuối màn hình. Big Ben sẽ tiếp tục hoạt động ở chế độ nền cho đến khi bạn thoát khỏi ứng dụng.\n\n";
             helpText += "Để tối đa hóa lại Bonger, hãy nhấn vào Thông báo thông báo hoặc biểu tượng Big Ben PLUS. Sau đó, bạn có thể thoát ứng dụng bằng Biểu tượng \"X\" màu đỏ ở góc dưới bên phải.\n\nCảm ơn bạn đã chọn Big Ben Bonger PLUS. Xem \"BigBenBonger.com\" để được trợ giúp và biết thêm thông tin.\n\n";
             helpText += "Chúa cứu nữ hoàng...\n" + localStorage["language"] + "\n\numikeapps@outlook.com";
-            helpTextTitle = "Big Ben Bonger PLUS";
+            helpTextTitle = "Chào mừng đến với Big Ben Bonger PLUS";
             helpDismissText = "ĐÓNG";
             quitConfirmText = "Bạn có muốn thoát khỏi Big Ben Bonger?";
 
