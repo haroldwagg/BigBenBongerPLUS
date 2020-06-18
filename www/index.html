@@ -547,7 +547,7 @@
               );
 
               my_media2.play({ playAudioWhenScreenIsLocked : true });
-              my_media2.setVolume(CURRENT_VOLUME);
+              my_media2.setVolume(volumes[CURRENT_VOLUME]);
 
               if (phoneAdjustmentsHaveBeenMade)   {
                 phoneAdjustmentsHaveBeenMade = false;
@@ -565,7 +565,7 @@
           );
 
           my_media.play({ playAudioWhenScreenIsLocked : true });
-          my_media.setVolume(CURRENT_VOLUME);
+          my_media.setVolume(volumes[CURRENT_VOLUME]);
         }
 
         if ((phoneAdjustmentsHaveBeenMade && x != "00") || (phoneAdjustmentsHaveBeenMade && ! DO_STRIKES && x == "00"))   {
@@ -1218,7 +1218,7 @@
 
           var delay;
           if (DING_SELECTION == "bb")   {
-            delay = 20000;
+            delay = 15500;
           }
           else   {
             delay = 20000;
@@ -1232,18 +1232,18 @@
         }
 
         if (dir == "+")   {
-          if (MASTER_VOLUME < 1.0)   {
-            MASTER_VOLUME =  MASTER_VOLUME + 0.1;
+          if (MASTER_VOLUME < 13)   {
+            MASTER_VOLUME++;
           }
         }
         else   {
-          if (MASTER_VOLUME > 0.0)   {
-            MASTER_VOLUME = MASTER_VOLUME - 0.1;
+          if (MASTER_VOLUME > 0)   {
+            MASTER_VOLUME--;
           }
         }
 
         pBar.value = MASTER_VOLUME;
-        my_media_TEST.setVolume(MASTER_VOLUME);
+        my_media_TEST.setVolume(volumes[MASTER_VOLUME]);
 
         localStorage["volume"] = MASTER_VOLUME.toString();
         CURRENT_VOLUME = MASTER_VOLUME;
@@ -1359,14 +1359,14 @@
 //  Volume
 //
         if ((localStorage["volume"] == "undefined") || (localStorage["volume"] == "") || (localStorage["volume"] == null))   {
-          localStorage["volume"] = "0.4";
+          localStorage["volume"] = "6";
         }
 
-        if (parseFloat(localStorage["volume"]) < 0.1)   {
-          localStorage["volume"] = "0.1";
+        if (parseFloat(localStorage["volume"]) < 1.0)   {
+          localStorage["volume"] = "6";
         }
-        else if (parseFloat(localStorage["volume"]) > 1.0)   {
-          localStorage["volume"] = "1.0";
+        else if (parseFloat(localStorage["volume"]) > 13)   {
+          localStorage["volume"] = "13";
         }
 
         MASTER_VOLUME = parseFloat(localStorage["volume"]);
@@ -1460,7 +1460,7 @@
             }, 1000);
 
           my_media.play({ playAudioWhenScreenIsLocked : true });
-          my_media.setVolume(CURRENT_VOLUME);
+          my_media.setVolume(volumes[CURRENT_VOLUME]);
         }
       }
 
@@ -1574,7 +1574,7 @@
               sPanel.style.height = "60px";
             }
             else   {
-              sPanel.style.height = "27px";
+              sPanel.style.height = "30px";
             }
             sPanel.style.fontSize = "24px";
           }
@@ -1593,7 +1593,7 @@
               sPanel.style.height = "90px";
             }
             else   {
-              sPanel.style.height = "56px";
+              sPanel.style.height = "60px";
             }
 
             sPanel.style.fontSize = "24px";
@@ -2221,7 +2221,7 @@
         );
 
         my_media_WHICH.play();
-        my_media_WHICH.setVolume(MASTER_VOLUME);
+        my_media_WHICH.setVolume(volumes[MASTER_VOLUME]);
 
         switch (dinger)   {
           case "bb":  timeoutDelay = 15000;
