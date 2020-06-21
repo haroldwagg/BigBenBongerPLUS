@@ -1978,6 +1978,68 @@
             document.getElementById("autoStartTextDiv").innerHTML = "TỰ ĐỘNG-BẮT ĐẦU KHI ĐIỆN THOẠI<br /><span style=\"text-transform: none;\">(Có thể không hoạt động trên một số thiết bị)</span>";
             notificationTitle = "Lý lịch Big Ben Bonger";
           }
+          else if (localStorage["language"] == "ar")   {
+            if (screen.height <= screen.width)   {
+              if (SIZE == "big")   {
+                body.style.backgroundImage = 'url(img/bg_ar_lscape_lg.jpg)';
+              }
+              else   {
+                body.style.backgroundImage = 'url(img/bg_ar_lscape_sm.jpg)';
+              }
+            }
+            else   {
+              if (SIZE == "big")   {
+                body.style.backgroundImage = 'url(img/bg_ar_pt_lg.jpg)';
+              }
+              else   {
+                body.style.backgroundImage = 'url(img/bg_ar_pt_sm.jpg)';
+              }
+            }
+
+//  "Big Ben" = بج بن
+//  "Big Ben Bonger" = بج بن بونغر
+//  "Plus" = بلس
+//  "Big Ben Bonger Plus" = بج بن بونغر بلس
+//  "Welcome to the Big Ben Bonger" = مرحبًا بك في بج بن بونغر
+
+            mantleClockText = "MANTLE CLOCK";
+            grandfatherClockText = "GRANDFATHER CLOCK";
+            document.getElementById("bongDuringCall").innerHTML = "&nbsp;BONG DURING PHONECALLS";
+            document.getElementById("15_45_Label").innerHTML = "&nbsp;:15 &amp; :45 CHIMES";
+            document.getElementById("Half_Label").innerHTML = "&nbsp;HALF HOUR CHIMES";
+            document.getElementById("Hour_Label").innerHTML = "&nbsp;ON-THE-HOUR STRIKES";
+            helpText = "Let Big Ben PLUS v3 help you keep track of time -- a subtle reminder every 15 minutes.\n\n";
+            helpText += "Tapping the WRENCH icon will bring up the Settings Menu. Choose from 6 different clocks, with or without pendulum. All settings are easy to understand.\n\n";
+            helpText += "Although being a walking Big Ben is cool, you'll probably want to do other things with your phone or tablet. You can minimize Big Ben by tapping the square blue Minimize Icon at the bottom of the screen. Big Ben will continue to bong until you exit the app.\n\n";
+            helpText += "To re-maximize the Bonger, tap the Notification Message or the Big Ben PLUS icon. You can then exit the app using the red \"X\" Icon in the bottom right corner.\n\nThank you for choosing Big Ben Bonger PLUS. See \"BigBenBonger.com\" for Help and additional information.\n\n";
+            helpText += "God Save the Queen...\n" + localStorage["language"] + "\n\numikeapps@outlook.com";
+            helpTextTitle = "Big Ben Bonger PLUS";
+            helpDismissText = "DISMISS";
+            quitConfirmText = "Do you want to exit Big Ben Bonger?";
+
+            backgroundNotificationText = "[Tap here to Restore]";
+
+            optionsInText = "OPTIONS >";
+            optionsOutText = "< OPTIONS";
+            quietTimeText1 = "QUIET TIME";
+            quietTimeText2 = "QUIET<br />TIME";
+            muteText1 = "MUTE ON";
+            muteText2 = "MUTE<br />ON";
+            noPendulumAdjustText = "You cannot turn the Pendulum on or off during Quiet Time.\n\nTo make adjustments to the Pendulum, simply turn off Quiet Time and try again.";
+            cuckooClockText = "CUCKOO CLOCK";
+            electronicClockText = "ELECTRONIC CLOCK";
+            trinityText = "TRINITY CHIMES";
+            muteTextNotification = "[Mute]  ";
+            quietTimeTextNotification = "[Quiet Time]  ";
+
+            document.getElementById("useQTLabel").innerHTML = "<span style=\"color: #0000aa; font-weight: bold\">&nbsp;Use QUIET TIME</span>";
+            document.getElementById("themeLabel").innerHTML = "<span style=\"color: #0000aa; font-weight: bold\">&nbsp;THEME:</span>";
+            document.getElementById("SstartLabel").innerHTML = "Last Bong";
+            document.getElementById("EendLabel").innerHTML = "First Bong";
+            document.getElementById("usePendulumLabel").innerHTML = "<span style=\"color: #0000aa; font-weight: bold\">&nbsp;PENDULUM:&nbsp;&nbsp;</span>";
+            document.getElementById("autoStartTextDiv").innerHTML = "AUTO-START WHEN PHONE STARTS<br /><span style=\"text-transform: none;\">(May not work on some devices)</span>";
+            notificationTitle = "Big Ben Bonger Background";
+          }
           else   {
             mantleClockText = "MANTLE CLOCK";
             grandfatherClockText = "GRANDFATHER CLOCK";
