@@ -1574,7 +1574,14 @@
 //
           if (ORIENT == "portrait")   {
             sPanel.style.left = "6px";
-            sPanel.style.top = "437px";
+
+            if (localStorage["language"] == "ar")   {
+              sPanel.style.top = "444px";
+            }
+            else   {
+              sPanel.style.top = "437px";
+            }
+
             sPanel.style.width = "218px";
 
             if (localStorage["language"] == "vi")   {
