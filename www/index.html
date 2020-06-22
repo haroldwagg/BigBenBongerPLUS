@@ -715,8 +715,8 @@
           }
           else   {
             if (localStorage["language"] == "ar")   {
-              panelStyle.height = '270px';
-              panel2Style.height = '270px';
+              panelStyle.height = '275px';
+              panel2Style.height = '275px';
             }
             else   {
               panelStyle.height = '245px';
@@ -2353,7 +2353,13 @@
             D_setupButtonDiv.style.right = "0";
             document.getElementById("panel1").style.top = "10px";
             document.getElementById("panel2").style.left =  "10px";
-            document.getElementById("panel2").style.top = "260px";
+
+            if (localStorage["language"] == "ar")   {
+              document.getElementById("panel2").style.top = "280px";
+            }
+            else   {
+              document.getElementById("panel2").style.top = "260px";
+            }
           }
           else   {
             document.getElementById("panel2").style.left = "270px";
