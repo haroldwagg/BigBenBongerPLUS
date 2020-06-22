@@ -1088,12 +1088,12 @@
           document.getElementById("panel1Table").style.fontSize = "20px";
           document.getElementById("panel2Table").style.fontSize = "20px";
 
-          if (localStorage["language"] == "ar")   {
-            document.getElementById("SstartLabel").style.marginLeft = "47px";
-          }
-          else   {
-            document.getElementById("SstartLabel").style.marginLeft = "70px";
-          }
+//          if (localStorage["language"] == "ar")   {
+//            document.getElementById("SstartLabel").style.marginLeft = "47px";
+//          }
+//          else   {
+//            document.getElementById("SstartLabel").style.marginLeft = "70px";
+//          }
 
           D_FPMuteButton.style.width = "100px";
           D_FPMuteButton.style.height = "100px";
@@ -2010,6 +2010,7 @@
             notificationTitle = "Lý lịch Big Ben Bonger";
           }
           else if (localStorage["language"] == "ar")   {
+            do24Hr = true;
             if (localStorage["theme"] != "London")   {
               if (screen.height <= screen.width)   {
                 if (SIZE == "big")   {
