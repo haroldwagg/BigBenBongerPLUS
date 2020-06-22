@@ -2000,20 +2000,22 @@
             notificationTitle = "Lý lịch Big Ben Bonger";
           }
           else if (localStorage["language"] == "ar")   {
-            if (screen.height <= screen.width)   {
-              if (SIZE == "big")   {
-                body.style.backgroundImage = 'url(img/bg_ar_lscape_lg.jpg)';
+            if (localStorage["theme"] != "London")   {
+              if (screen.height <= screen.width)   {
+                if (SIZE == "big")   {
+                  body.style.backgroundImage = 'url(img/bg_ar_lscape_lg.jpg)';
+                }
+                else   {
+                  body.style.backgroundImage = 'url(img/bg_ar_lscape_sm.jpg)';
+                }
               }
               else   {
-                body.style.backgroundImage = 'url(img/bg_ar_lscape_sm.jpg)';
-              }
-            }
-            else   {
-              if (SIZE == "big")   {
-                body.style.backgroundImage = 'url(img/bg_ar_pt_lg.jpg)';
-              }
-              else   {
-                body.style.backgroundImage = 'url(img/bg_ar_pt_sm.jpg)';
+                if (SIZE == "big")   {
+                  body.style.backgroundImage = 'url(img/bg_ar_pt_lg.jpg)';
+                }
+                else   {
+                  body.style.backgroundImage = 'url(img/bg_ar_pt_sm.jpg)';
+                }
               }
             }
 
