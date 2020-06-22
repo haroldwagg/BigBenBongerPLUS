@@ -714,8 +714,14 @@
             document.getElementById("sprk").style.marginBottom = "-8px";
           }
           else   {
-            panelStyle.height = '245px';
-            panel2Style.height = '245px';
+            if (localStorage["language"] == "ar")   {
+              panelStyle.height = '257px';
+              panel2Style.height = '257px';
+            }
+            else   {
+              panelStyle.height = '245px';
+              panel2Style.height = '245px';
+            }
 
             if (localStorage["language"] == "fr")   {
               panelStyle.width = '330px';
