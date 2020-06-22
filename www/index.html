@@ -1016,7 +1016,7 @@
         D_autostart = document.getElementById("autostart");
         D_useqt = document.getElementById("useQT");
 
-        loadGlobals();
+        doOnOrientationChange();
 
         if (localStorage["theme"] == "BigBen")   {
           D_bb_but.checked = true;
@@ -2133,10 +2133,10 @@
               document.getElementById("startSelectDiv").innerHTML = makeTimeSelect("sstart", "margin-left: 83px; margin-top: 4px;", localStorage["sstart"]);
               document.getElementById("endSelectDiv").innerHTML = makeTimeSelect("eend", "margin-left: 69px;", localStorage["eend"]);
             }
-            else if (localStorage["language"] == "ar")   {
-              document.getElementById("startSelectDiv").innerHTML = makeTimeSelect("sstart", "margin-left: 45px; margin-top: 4px;", localStorage["sstart"]);
-              document.getElementById("endSelectDiv").innerHTML = makeTimeSelect("eend", "margin-left: 69px;", localStorage["eend"]);
-            }
+//            else if (localStorage["language"] == "ar")   {
+//              document.getElementById("startSelectDiv").innerHTML = makeTimeSelect("sstart", "margin-left: 45px; margin-top: 4px;", localStorage["sstart"]);
+//              document.getElementById("endSelectDiv").innerHTML = makeTimeSelect("eend", "margin-left: 69px;", localStorage["eend"]);
+//            }
             else {
               document.getElementById("startSelectDiv").innerHTML = makeTimeSelect("sstart", "margin-left: 61px; margin-top: 4px;", localStorage["sstart"]);
               document.getElementById("endSelectDiv").innerHTML = makeTimeSelect("eend", "margin-left: 44px;", localStorage["eend"]);
