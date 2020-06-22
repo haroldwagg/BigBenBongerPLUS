@@ -1576,12 +1576,17 @@
             sPanel.style.left = "6px";
             sPanel.style.top = "437px";
             sPanel.style.width = "218px";
+
             if (localStorage["language"] == "vi")   {
               sPanel.style.height = "60px";
+            }
+            else if (localStorage["language"] == "ar")   {
+              sPanel.style.height = "72px";
             }
             else   {
               sPanel.style.height = "30px";
             }
+
             sPanel.style.fontSize = "24px";
           }
 //
@@ -1598,6 +1603,9 @@
             if (localStorage["language"] == "vi")   {
               sPanel.style.height = "90px";
             }
+            else if (localStorage["language"] == "ar")   {
+              sPanel.style.height = "85px";
+            }            
             else   {
               sPanel.style.height = "60px";
             }
