@@ -1088,12 +1088,7 @@
           document.getElementById("panel1Table").style.fontSize = "20px";
           document.getElementById("panel2Table").style.fontSize = "20px";
 
-//          if (localStorage["language"] == "ar")   {
-//            document.getElementById("SstartLabel").style.marginLeft = "47px";
-//          }
-//          else   {
-//            document.getElementById("SstartLabel").style.marginLeft = "70px";
-//          }
+
 
           D_FPMuteButton.style.width = "100px";
           D_FPMuteButton.style.height = "100px";
@@ -1120,10 +1115,6 @@
           D_minimage.style.marginRight = "100px";
           D_helpIcon.style.width = "45px";
           D_helpIcon.style.height = "45px";
-
-          if (localStorage["language"] == "ar")   {
-            document.getElementById("SstartLabel").style.marginLeft = "50px";
-          }
 
           D_FPMuteButton.style.right = "2px";
           D_FPMuteButton.style.top = "0";
@@ -2166,6 +2157,7 @@
             }
             else if (localStorage["language"] == "ar")   {
               document.getElementById("startSelectDiv").innerHTML = makeTimeSelect("sstart", "margin-left: 25px; margin-top: 4px;", localStorage["sstart"]);
+              document.getElementById("SstartLabel").style.marginLeft = "30px";
               document.getElementById("endSelectDiv").innerHTML = makeTimeSelect("eend", "margin-left: 63px;", localStorage["eend"]);
             }
             else if (localStorage["language"] == "de")   {
