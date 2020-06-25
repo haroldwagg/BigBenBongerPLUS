@@ -2388,7 +2388,12 @@
           if (ORIENT == "portrait")   {
             D_setupButtonDiv.style.top = "0px";
             D_setupButtonDiv.style.right = "2px";
-            document.getElementById("panel2").style.top = "395px";
+            if (localStorage["language"] == "ar")   {
+              document.getElementById("panel2").style.top = "380px";
+            }
+            else   {
+              document.getElementById("panel2").style.top = "395px";
+            }
             document.getElementById("panel2").style.left = "10px";
           }
           else   {
