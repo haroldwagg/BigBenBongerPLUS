@@ -2128,6 +2128,9 @@
             else if (localStorage["language"] == "fr")   {
               document.getElementById("startSelectDiv").innerHTML = makeTimeSelect("sstart", "margin-left: 83px; margin-top: 4px;", localStorage["sstart"]);
               document.getElementById("endSelectDiv").innerHTML = makeTimeSelect("eend", "margin-left: 70px;", localStorage["eend"]);
+              document.getElementById("EendLabel").style.marginLeft = "49px";
+              document.getElementById("SstartLabel").style.marginLeft = "91px";
+
             }
             else if (localStorage["language"] == "de")   {
               document.getElementById("startSelectDiv").innerHTML = makeTimeSelect("sstart", "margin-left: 83px; margin-top: 4px;", localStorage["sstart"]);
