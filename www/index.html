@@ -2157,6 +2157,12 @@
 //              document.getElementById("startSelectDiv").innerHTML = makeTimeSelect("sstart", "margin-left: 45px; margin-top: 4px;", localStorage["sstart"]);
 //              document.getElementById("endSelectDiv").innerHTML = makeTimeSelect("eend", "margin-left: 69px;", localStorage["eend"]);
 //            }
+            else if (localStorage["language"] == "vi")   {
+              document.getElementById("startSelectDiv").innerHTML = makeTimeSelect("sstart", "margin-left: 61px; margin-top: 4px;", localStorage["sstart"]);
+              document.getElementById("endSelectDiv").innerHTML = makeTimeSelect("eend", "margin-left: 44px;", localStorage["eend"]);
+              document.getElementById("EendLabel").style.marginLeft = "33px";
+        //      document.getElementById("SstartLabel").style.marginLeft = "82px";
+            }
             else {
               document.getElementById("startSelectDiv").innerHTML = makeTimeSelect("sstart", "margin-left: 61px; margin-top: 4px;", localStorage["sstart"]);
               document.getElementById("endSelectDiv").innerHTML = makeTimeSelect("eend", "margin-left: 44px;", localStorage["eend"]);
