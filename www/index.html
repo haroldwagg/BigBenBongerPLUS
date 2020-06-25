@@ -2497,12 +2497,13 @@
             }
             D_setupButtonDiv.style.marginTop = "0px";
           }
-          else   {
+          else   {  // big
             if (localStorage["language"] == "ru")   {
               body.style.backgroundImage = 'url("img/bg_ru_pt_lg.jpg")';
             }
             else if (localStorage["language"] == "ar")   {
               body.style.backgroundImage = 'url(img/bg_ar_pt_lg.jpg)';
+              document.getElementById("panel2").style.top = "413px";
             }
             else   {
               body.style.backgroundImage = 'url("img/bgBenBP.jpg")';
