@@ -656,7 +656,7 @@
       function doSetUp()   {
         var panelStyle = document.getElementById("panel1").style;
         var panel2Style = document.getElementById("panel2").style;
-alert("HEREstart");
+
 
         var theCheckboxes = document.getElementsByClassName("checkers");
 
@@ -670,13 +670,13 @@ alert("HEREstart");
         }
 
         if (! setupIsDisplayed)   {
-alert("HEREopensetup");
+
           setupIsDisplayed = true;
           var ratio = window.devicePixelRatio || 1;
           var h = screen.height;
 
           if (SIZE == "big")   {
-alert("HEREbig");
+
             panelStyle.height = '399px';
             panel2Style.height = '399px';
 
@@ -708,20 +708,18 @@ alert("HEREbig");
               panelStyle.width = '425px';
               panel2Style.width = '425px';
             }
-alert("HEREtop");
-//            D_quarter.style.marginTop = "10px";
-//            D_half.style.marginTop = "8px";
-//            D_hour.style.marginTop = "8px";
-//            document.getElementById("spkr").style.width = "40px";
-//            document.getElementById("spkr").style.height = "40px";
-//            document.getElementById("sprk").style.marginBottom = "-8px";
-alert("HEREbottom");
+
+            D_quarter.style.marginTop = "10px";
+            D_half.style.marginTop = "8px";
+            D_hour.style.marginTop = "8px";
+            document.getElementById("spkr").style.width = "40px";
+            document.getElementById("spkr").style.height = "40px";
+            document.getElementById("spkr").style.marginBottom = "-8px";
+
             if (localStorage["language"] == "ar")   {
-              alert("HERE");
-              document.getElementById("panel2").style.top = "440px";  //415
-              panelStyle.height = '422px';
-              panel2Style.height = '422px';
-              alert("HERE2");
+              document.getElementById("panel2").style.top = "420px";  //415
+              panelStyle.height = '415px';
+              panel2Style.height = '415px';
             }
           }
           else   {
