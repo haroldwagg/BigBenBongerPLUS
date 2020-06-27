@@ -2202,7 +2202,11 @@
               document.getElementById("startSelectDiv").innerHTML = makeTimeSelect("sstart", "margin-left: 43px; margin-top: 4px;", localStorage["sstart"]);
               document.getElementById("endSelectDiv").innerHTML = makeTimeSelect("eend", "margin-left: 59px;", localStorage["eend"]);
             }
-
+            else if (localStorage["language"] == "vi")   {
+              document.getElementById("startSelectDiv").innerHTML = makeTimeSelect("sstart", "margin-left: 32px; margin-top: 4px;", localStorage["sstart"]);
+              document.getElementById("endSelectDiv").innerHTML = makeTimeSelect("eend", "margin-left: 40px;", localStorage["eend"]);
+              document.getElementById("SstartLabel").style.marginLeft = "22px";
+            }
             else   {
               document.getElementById("startSelectDiv").innerHTML = makeTimeSelect("sstart", "margin-left: 32px; margin-top: 4px;", localStorage["sstart"]);
               document.getElementById("endSelectDiv").innerHTML = makeTimeSelect("eend", "margin-left: 40px;", localStorage["eend"]);
