@@ -656,6 +656,7 @@
       function doSetUp()   {
         var panelStyle = document.getElementById("panel1").style;
         var panel2Style = document.getElementById("panel2").style;
+alert("HEREstart");
 
         var theCheckboxes = document.getElementsByClassName("checkers");
 
@@ -669,11 +670,13 @@
         }
 
         if (! setupIsDisplayed)   {
+alert("HEREopensetup");
           setupIsDisplayed = true;
           var ratio = window.devicePixelRatio || 1;
           var h = screen.height;
 
           if (SIZE == "big")   {
+alert("HEREbig");
             panelStyle.height = '399px';
             panel2Style.height = '399px';
 
