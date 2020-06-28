@@ -1235,7 +1235,15 @@
         var pBar = document.getElementById("prog");
 
         if(my_media_TEST == "NOT_RUNNING")   {
-          var dingerFile = this.root + "audio/" + THREE_QUARTER_DING;
+          var dingerFile;
+
+          if (dinger == "cc")   {
+            dingerFile = this.root + "audio/cc_5.mp3";
+          }
+          else   {
+            dingerFile = this.root + "audio/" + THREE_QUARTER_DING;
+          }
+
           my_media_TEST = new Media(dingerFile,
                 function () { console.log("playAudio():Audio Success"); },
                 ignoreError()
@@ -2358,7 +2366,7 @@
         localStorage["ding_selection"] = dinger;
 
         if (dinger == "cc")   {
-          dingerFile = this.root + "audio/cc_5.mp3";
+          dingerFile = this.root + "audio/cc_2.mp3";
         }
         else   {
           dingerFile = this.root + "audio/" + dinger + "_quarter.mp3";
@@ -2389,7 +2397,7 @@
         switch (dinger)   {
           case "bb":  timeoutDelay = 15000;
                       break;
-          case "cc":  timeoutDelay = 2500;
+          case "cc":  timeoutDelay = 3000;
                       break;
           default:    timeoutDelay = 20000;
         }
