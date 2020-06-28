@@ -2352,10 +2352,17 @@
 
       function selectClock(dinger)   {
         var timeoutDelay;
+        var dingerFile;
 
         DING_SELECTION     = dinger;
         localStorage["ding_selection"] = dinger;
-        var dingerFile = this.root + "audio/" + dinger + "_quarter.mp3";
+
+        if (dinger == "cc")   {
+          dingerFile = this.root + "audio/cc_5.mp3";
+        }
+        else   {
+          dingerFile = this.root + "audio/" + dinger + "_quarter.mp3";
+        }
 
         if(my_media_WHICH != "NOT_RUNNING")   {
           clearTimeout(Timeouter);
