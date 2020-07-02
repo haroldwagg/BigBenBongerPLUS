@@ -33,7 +33,7 @@
 
                 <div id="panel1" style="background-color: rgba(230, 230, 255, 0.95);  margin-left: 8px; position:absolute; left: 10px; top: 0px;">
                   <table id="panel1Table" style="border: none; float: left; font-size: 12px; margin: 8px;">
-                    <tr><td align="left" nowrap="nowrap">
+                    <tr><td class="p1td" align="left" nowrap="nowrap">
                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000aa; font-weight: bold">BONG:</span>&nbsp;&nbsp;<select name="clocker" id="clocker" onChange="changeClock()" style="font-size: 1.1em; margin-bottom: 5px;"></select>
 
                       <br />
@@ -54,7 +54,7 @@
 
                 <div id="panel2" style="background-color: rgba(230, 230, 255, 0.95);  margin-top:0; padding-top:0; margin-left: 8px; position:absolute; left: 10px; top: 246px;">
                   <table id="panel2Table" style="border: none; float: left; font-size: 12px; margin: 8px; margin-top: 0;">
-                    <tr><td align="left" nowrap="nowrap">
+                    <tr><td class="p2td" align="left" nowrap="nowrap">
 
                       <span style="color: #0000bb" id="t2id"><hr /></span>
 
@@ -2106,9 +2106,9 @@
             notificationTitle = " بج بن بونغرخلفية";
 
             document.getElementById("panel1").style.direction = "rtl";
-            document.getElementById("panel1").style.textAlign = "center";
+            document.getElementById("p1td").style.textAlign = "right";
             document.getElementById("panel2").style.direction = "rtl";
-            document.getElementById("panel2").style.textAlign = "center";
+            document.getElementById("p2td").style.textAlign = "right";
             document.getElementById("minusVolume").style.marginRight = "8px";
 
           }
