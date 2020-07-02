@@ -225,3 +225,7 @@ div.clear {
   position: absolute;
   text-align: center;
 }
+
+#panel1, #panel2 {
+  text-align: right;
+}
