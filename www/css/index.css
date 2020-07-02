@@ -225,8 +225,3 @@ div.clear {
   position: absolute;
   text-align: center;
 }
-
-#panel1 {
-  direction: rtl;
-  text-align: right;
-}
