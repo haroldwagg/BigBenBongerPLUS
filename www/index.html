@@ -173,7 +173,7 @@
       var START_TIME = 0;
       var firstTimeInBG = true;
 
-      var volumes = [0.0, 0.02, 0.03, 0.05, 0.07, 0.10, 0.15, 0.23, 0.33, 0.44, 0.55, 0.70, 0.85, 1.0];
+      var volumes = [0.0, 0.01, 0.02, 0.04, 0.06, 0.08, 0.12, 0.20, 0.30, 0.40, 0.55, 0.70, 0.85, 1.0];
 
       var ORIENT;
       var SIZE;
@@ -199,7 +199,7 @@
       var lang;
       var XStr;
       var setupIsDisplayed = false;
-      var helpText, helpTextTitle, mantleClockText, grandfatherClockText, helpDismissText, quitConfirmText, backgroundNotificationText, optionsInText, optionsOutText, notificationTitle;
+      var helpText, helpTextTitle, mantleClockText, grandfatherClockText, magdaleneClockText, helpDismissText, quitConfirmText, backgroundNotificationText, optionsInText, optionsOutText, notificationTitle;
       var quietTimeText1, quietTimeText2, muteText1, muteText2, noPendulumAdjustText, quietTimeTextNotification, muteTextNotification;
       var notificationPrefixText = "";
       var mySavedStates = false;
@@ -1733,6 +1733,7 @@
             do24Hr = true;
             mantleClockText = "RELÓGIO MANTEL";
             grandfatherClockText = "RELÓGIO AVÔ";
+            magdaleneClockText = "CHIMES DE MAGDALEN";
             document.getElementById("bongDuringCall").innerHTML = "&nbsp;BONG DURANTE O CHAMADO DE TELEFONE";
             document.getElementById("15_45_Label").innerHTML = "&nbsp;:15 e :45 CHIMES";
             document.getElementById("Half_Label").innerHTML = "&nbsp;MEIA HORA";
@@ -1772,6 +1773,7 @@
             do24Hr = true;
             mantleClockText = "HORLOGE MANTELLE";
             grandfatherClockText = "HORLOGE GRAND-PÈRE";
+            magdaleneClockText = "CARILLONS MAGDALEN";
             document.getElementById("bongDuringCall").innerHTML = " BONG DURANT LE TÉLÉPHONE<br /><br />";
             document.getElementById("15_45_Label").innerHTML = "&nbsp;:15 &amp; :45 CHIMES";
             document.getElementById("Half_Label").innerHTML = "&nbsp;DEMI-PASSÉ";
@@ -1813,6 +1815,7 @@
             do24Hr = true;
             mantleClockText = "UHR MANTEL";
             grandfatherClockText = "UHR GROßVATER";
+            magdaleneClockText = "MAGDALEN CHIMES";
             document.getElementById("bongDuringCall").innerHTML = " &nbsp;BONG WÄHREND DER TELEFONATE";
             document.getElementById("15_45_Label").innerHTML = "&nbsp;:15 &amp; :45 GLOCKENSPIEL";
             document.getElementById("Half_Label").innerHTML = "&nbsp;HALBE STUNDE GLOCKENSPIEL";
@@ -1854,6 +1857,7 @@
             do24Hr = true;
             mantleClockText = "RELOJ ANTIGUO";
             grandfatherClockText = "RELOJ DE ABUELO";
+            magdaleneClockText = "CAMPANAS DE MAGDALEN";
             document.getElementById("bongDuringCall").innerHTML = " &nbsp;BONG DURANTE PHONECALLS<br /><br />";
             document.getElementById("15_45_Label").innerHTML = "&nbsp;:15 &amp; :45 CHIMES";
             document.getElementById("Half_Label").innerHTML = "&nbsp;CHIMES DE LA MEDIA HORA";
@@ -1896,6 +1900,7 @@
             do24Hr = true;
             mantleClockText = "MANTO OROLOGIO";
             grandfatherClockText = "NONNO OROLOGIO";
+            magdaleneClockText = "CAMPANE DI MAGDALEN";
             document.getElementById("bongDuringCall").innerHTML = "&nbsp;BONG DURANTE LE CHIAMATE DI TELEFONO<br /><br />";
             document.getElementById("15_45_Label").innerHTML = "&nbsp;:15 &amp; :45 CHIMES";
             document.getElementById("Half_Label").innerHTML = "&nbsp;MEZZ'ORA CHIMES";
@@ -1957,6 +1962,7 @@
 
             mantleClockText = "МАНТИЙНЫЕ ЧАСЫ";
             grandfatherClockText = "ДЕДУШКИНЫ ЧАСЫ";
+            magdaleneClockText = "МАГДАЛИНА КУРАНТЫ";
             document.getElementById("bongDuringCall").innerHTML = "&nbsp;БОНГ ВО ВРЕМЯ ТЕЛЕФОНОВ";
             document.getElementById("15_45_Label").innerHTML = "&nbsp;:15 &amp; :45 ЗВОНКИ";
             document.getElementById("Half_Label").innerHTML = "&nbsp;ПОЛОВИНА ЧАСОВ КУРАНТЫ";
@@ -2001,6 +2007,7 @@
           else if (localStorage["language"] == "vi")   {
             mantleClockText = "ĐỒNG HỒ ĐEO TAY";
             grandfatherClockText = "ĐỒNG HỒ GRANDFATHER";
+            magdaleneClockText = "MAGDALIN CHIMES";
             document.getElementById("bongDuringCall").innerHTML = "&nbsp;BONG TRONG PHONECALLS";
             document.getElementById("15_45_Label").innerHTML = "&nbsp;:15 &amp; :45 CHIMES";
             document.getElementById("Half_Label").innerHTML = "&nbsp;:30 CHIMES";
@@ -2069,6 +2076,7 @@
             document.getElementById("LONDONspan").textContent = "لندن";
             mantleClockText = "ساعة الطاولة";
             grandfatherClockText = "ساعة الجد الأكبر";
+            magdaleneClockText = "ماجدالين الدقات";
             document.getElementById("bongDuringCall").innerHTML = "&nbsp;بونج خلال المكالمات الهاتفية";
             document.getElementById("15_45_Label").innerHTML = "&nbsp;:15 & :45 ناقوس";
             document.getElementById("Half_Label").innerHTML = "&nbsp;:30 ناقوس";
@@ -2115,6 +2123,7 @@
           else   {
             mantleClockText = "MANTLE CLOCK";
             grandfatherClockText = "GRANDFATHER CLOCK";
+            magdaleneClockText = "MAGDALEN CHIMES";
             document.getElementById("bongDuringCall").innerHTML = "&nbsp;BONG DURING PHONECALLS";
             document.getElementById("15_45_Label").innerHTML = "&nbsp;:15 &amp; :45 CHIMES";
             document.getElementById("Half_Label").innerHTML = "&nbsp;HALF HOUR CHIMES";
