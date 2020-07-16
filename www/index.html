@@ -1313,11 +1313,7 @@
 //
 //  Clock Selection
 //
-        if ((localStorage["ding_selection"] == "") || (localStorage["ding_selection"] == null) || (localStorage["ding_selection"] == "undefined"))   {
-          localStorage["ding_selection"] = "bb";
-        }
-
-        if ((localStorage["ding_selection"] != "bb") && (localStorage["ding_selection"] != "bg") && (localStorage["ding_selection"] != "tr") && (localStorage["ding_selection"] != "cc") && (localStorage["ding_selection"] != "gf") && (localStorage["ding_selection"] != "ec"))   {
+        if ((localStorage["ding_selection"] != "bb") && (localStorage["ding_selection"] != "mg") && (localStorage["ding_selection"] != "bg") && (localStorage["ding_selection"] != "tr") && (localStorage["ding_selection"] != "cc") && (localStorage["ding_selection"] != "gf") && (localStorage["ding_selection"] != "ec"))   {
           localStorage["ding_selection"] = "bb";
         }
 
@@ -2404,6 +2400,9 @@
         if (dinger == "cc")   {
           dingerFile = this.root + "audio/cc_2.mp3";
         }
+        else if (clk == "mg")   {
+          var dingerFile = this.root + "audio/mg_half.mp3";
+        }
         else   {
           dingerFile = this.root + "audio/" + dinger + "_quarter.mp3";
         }
@@ -2431,11 +2430,18 @@
         my_media_WHICH.setVolume(volumes[MASTER_VOLUME]);
 
         switch (dinger)   {
-          case "bb":  timeoutDelay = 15000;
+          case "bb":  timeoutDelay = 9300;
                       break;
-          case "cc":  timeoutDelay = 3000;
+          case "cc":
+          case "mg":  timeoutDelay = 3000;
                       break;
-          default:    timeoutDelay = 20000;
+          case "bg":  timeoutDelay = 11000;
+                      break;
+          case "gf":  timeoutDelay = 10000;
+                      break;
+          case "tr":  timeoutDelay = 5000;
+                      break;
+          default:    timeoutDelay = 5000;  // ec
         }
 
         Timeouter = setTimeout(function()   {
