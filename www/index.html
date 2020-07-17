@@ -1253,13 +1253,25 @@
 
           var delay;
           if (DING_SELECTION == "bb")   {
-            delay = 15500;
+            delay = 14300;
           }
           else if (DING_SELECTION == "cc")   {
-            delay = 5500;
+            delay = 3100;
           }
-          else   {
-            delay = 20000;
+          else if (DING_SELECTION == "bg")   {
+            delay = 18000;
+          }
+          else if (DING_SELECTION == "ec")   {
+            delay = 13000;
+          }
+          else if (DING_SELECTION == "gf")   {
+            delay = 17000;
+          }
+          else if (DING_SELECTION == "mg")   {
+            delay = 5000;
+          }
+          else   {   // tr
+            delay = 11000;
           }
 
           delayRelease = setTimeout(function()   {
@@ -2330,25 +2342,25 @@
 
           x.options.add(f, 4);
 
-          var e = document.createElement("option");
-          e.text = magdaleneClockText;
-          e.value = "mg";
+          var g = document.createElement("option");
+          g.text = magdaleneClockText;
+          g.value = "mg";
 
           if (localStorage["ding_selection"] == "mg")   {
-            e.selected = true;
+            g.selected = true;
           }
 
-          x.options.add(e, 5);
+          x.options.add(g, 5);
 
-          var f = document.createElement("option");
-          f.text = cuckooClockText;
-          f.value = "cc";
+          var h = document.createElement("option");
+          h.text = cuckooClockText;
+          h.value = "cc";
 
           if (localStorage["ding_selection"] == "cc")   {
-            f.selected = true;
+            h.selected = true;
           }
 
-          x.options.add(f, 6);
+          x.options.add(h, 6);
 
           initializeCanvas();
           init();
