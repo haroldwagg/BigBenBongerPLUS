@@ -1601,7 +1601,12 @@
               sPanel.style.top = "437px";
             }
 
-            sPanel.style.width = "218px";
+            if (localStorage["language"] == "ja")   {
+              sPanel.style.width = "150px";
+            }
+            else   {
+              sPanel.style.width = "218px";
+            }
 
             if (localStorage["language"] == "vi")   {
               sPanel.style.height = "60px";
