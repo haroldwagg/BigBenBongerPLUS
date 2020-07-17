@@ -2391,15 +2391,16 @@
         var theValue = xx.options[xx.selectedIndex].value;
         localStorage["ding_selection"] = theValue;
 
-//        alert("The value of your clock is " + theValue);
-
-        selectClock(theValue);
-
         QUARTER_DING = localStorage["ding_selection"] + "_quarter.mp3";
         HALF_DING  = localStorage["ding_selection"] + "_half.mp3";
         THREE_QUARTER_DING = localStorage["ding_selection"] + "_three-quarter.mp3";
         HOUR_DING = localStorage["ding_selection"] + "_hour.mp3";
         DING_SELECTION = localStorage["ding_selection"];
+
+        alert("The value of your clock is " + theValue);
+
+        selectClock(theValue);
+
       }
 
       function selectClock(dinger)   {
@@ -2444,7 +2445,8 @@
         switch (dinger)   {
           case "bb":  timeoutDelay = 9300;
                       break;
-          case "cc":
+          case "cc":  timeoutDelay = 3000;
+                      break;
           case "mg":  timeoutDelay = 3000;
                       break;
           case "bg":  timeoutDelay = 11000;
