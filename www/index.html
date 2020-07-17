@@ -748,7 +748,7 @@
               panelStyle.width = '353px';
               panel2Style.width = '353px';
             }
-            else if (localStorage["language"] == "es")   {
+            else if ((localStorage["language"] == "es") || (localStorage["language"] == "ja"))   {
               panelStyle.width = '315px';
               panel2Style.width = '315px';
             }
@@ -2151,6 +2151,9 @@
             document.getElementById("usePendulumLabel").innerHTML = "<span style=\"color: #0000aa; font-weight: bold\">&nbsp;振り子:&nbsp;&nbsp;</span>";
             document.getElementById("autoStartTextDiv").innerHTML = "電話が起動したときの自動起動<br /><span style=\"text-transform: none;\">(一部のデバイスでは動作しない場合があります)</span>";
             notificationTitle = "ビッグベンボンジャーの背景";
+
+            document.getElementById("BBspan").textContent = "ビッグベン";
+            document.getElementById("LONDONspan").textContent = "ロンドン";
           }
 
           else   {
