@@ -2397,7 +2397,7 @@
         HOUR_DING = localStorage["ding_selection"] + "_hour.mp3";
         DING_SELECTION = localStorage["ding_selection"];
 
-        alert("The value of your clock is " + theValue);
+//        alert("The value of your clock is " + theValue);
 
         selectClock(theValue);
 
@@ -2406,6 +2406,8 @@
       function selectClock(dinger)   {
         var timeoutDelay;
         var dingerFile;
+
+alert ("Starting selectClock with " + dinger);
 
         DING_SELECTION     = dinger;
         localStorage["ding_selection"] = dinger;
@@ -2463,6 +2465,8 @@
             my_media_WHICH.release();
             my_media_WHICH = "NOT_RUNNING";
           }, timeoutDelay);
+
+alert ("Exiting selectClock");
       }
 
       function loadGlobals()   {
