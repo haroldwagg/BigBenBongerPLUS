@@ -2405,7 +2405,7 @@
 
       function selectClock(dinger)   {
         var timeoutDelay;
-        var dingerFile;
+        var dingerFile2;
 
 alert ("Starting selectClock with " + dinger);
 
@@ -2413,14 +2413,16 @@ alert ("Starting selectClock with " + dinger);
         localStorage["ding_selection"] = dinger;
 
         if (dinger == "cc")   {
-          dingerFile = this.root + "audio/cc_2.mp3";
+          dingerFile2 = this.root + "audio/cc_2.mp3";
         }
         else if (clk == "mg")   {
-          var dingerFile = this.root + "audio/mg_half.mp3";
+          dingerFile2 = this.root + "audio/mg_half.mp3";
         }
         else   {
-          dingerFile = this.root + "audio/" + dinger + "_quarter.mp3";
+          dingerFile2 = this.root + "audio/" + dinger + "_quarter.mp3";
         }
+
+alert (dingerFile2);
 
         if(my_media_WHICH != "NOT_RUNNING")   {
           clearTimeout(Timeouter);
@@ -2436,7 +2438,7 @@ alert ("Starting selectClock with " + dinger);
           my_media_TEST = "NOT_RUNNING";
         }
 
-        my_media_WHICH = new Media(dingerFile,
+        my_media_WHICH = new Media(dingerFile2,
            function () { console.log("playAudio():Audio Success"); },
            ignoreError()
         );
