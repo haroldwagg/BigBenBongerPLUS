@@ -199,7 +199,7 @@
       var lang;
       var XStr;
       var setupIsDisplayed = false;
-      var helpText, helpTextTitle, mantleClockText, grandfatherClockText, magdaleneClockText, helpDismissText, quitConfirmText, backgroundNotificationText, optionsInText, optionsOutText, notificationTitle;
+      var helpText, helpTextTitle, mantleClockText, grandfatherClockText, magdaleneClockText, helpDismissText, quitConfirmText, backgroundNotificationText, notificationTitle;
       var quietTimeText1, quietTimeText2, muteText1, muteText2, noPendulumAdjustText, quietTimeTextNotification, muteTextNotification;
       var notificationPrefixText = "";
       var mySavedStates = false;
@@ -1190,7 +1190,6 @@
           },
         false );
 
-        cordova.plugins.backgroundMode.disableWebViewOptimizations();
       }
 
       function confirmExit()   {
@@ -1735,8 +1734,6 @@
             helpDismissText = "DISPENSAR";
             quitConfirmText = "Você quer sair do Big Ben Bonger?";
             backgroundNotificationText = "[Toque aqui para restaurar]";
-            optionsInText = "OPÇÕES >";
-            optionsOutText = "< OPÇÕES";
             quietTimeTextNotification = "[Tempo Quieto]  ";
             quietTimeText1 = "TEMPO QU.TO";
             quietTimeText2 = "TEMPO<br /> QUIETO";
@@ -1775,8 +1772,6 @@
             helpDismissText ="RENVOYER";
             quitConfirmText = "Voulez-vous quitter Big Ben Bonger?";
             backgroundNotificationText = "[Tapez ici pour restaurer]";
-            optionsInText = "OPTIONS >";
-            optionsOutText = "< OPTIONS";
             quietTimeTextNotification = "[Moments de Silence]  ";
             quietTimeText1 = "SILENCE";
             quietTimeText2 = "MOMENTS<br />DE SILENCE";
@@ -1817,8 +1812,6 @@
             helpDismissText ="SCHLIEßEB";
             quitConfirmText = "Willst du Big Ben Bonger verlassen?";
             backgroundNotificationText = "[Zum Wiederherstellen hier tippen]";
-            optionsInText = "OPTIONEN >";
-            optionsOutText = "< OPTIONEN";
             quietTimeTextNotification = "[Ruhige Zeit]  ";
             quietTimeText1 = "RUHIGE ZEIT";
             quietTimeText2 = "RUHIGE<br />ZEIT";
@@ -1859,8 +1852,6 @@
             helpDismissText ="DESPEDIR";
             quitConfirmText = "¿Quieres salir de Big Ben Bonger?";
             backgroundNotificationText = "[Toque aquí para restaurar]";
-            optionsInText = "OPCIONES >";
-            optionsOutText = "< OPCIONES";
             quietTimeTextNotification = "[Silencio Tiempo]  ";
             quietTimeText1 = "SILENCIO TMP.";
             quietTimeText2 = "SILENCIO<br />TIEMPO";
@@ -1904,8 +1895,6 @@
 
             backgroundNotificationText = "[Tocca qui per ripristinare]";
 
-            optionsInText = "OPTIONS >";
-            optionsOutText = "< OPTIONS";
             quietTimeTextNotification = "[Tempo Silenzioso]  ";
             quietTimeText1 = "SILENZIOSO";
             quietTimeText2 = "TEMPO<br />SILENZIOSO";
@@ -1966,8 +1955,6 @@
 
             backgroundNotificationText = "[Нажмите ЗДЕСЬ, чтобы восстановить]";
 
-            optionsInText = "ОПЦИИ >";
-            optionsOutText = "< ОПЦИИ";
             quietTimeText1 = "ТИХОЕ ВРЕМЯ";
             quietTimeText2 = "ТИХОЕ<br />ВРЕМЯ";
             muteText1 = "МОЛЧАНИЕ";
@@ -2011,8 +1998,6 @@
 
             backgroundNotificationText = "[Nhấn vào đây để khôi phục]";
 
-            optionsInText = "LỰA CHỌN >";
-            optionsOutText = "< LỰA CHỌN";
             quietTimeText1 = "THỜI GIAN TĨNH LẶNG";
             quietTimeText2 = "THỜI GIAN<br />TĨNH LẶNG";
             muteText1 = "MUTE TRÊN";
@@ -2080,8 +2065,6 @@
 
             backgroundNotificationText = "[انقر هنا للاستعادة]";
 
-            optionsInText = "خيارات >";
-            optionsOutText = "< خيارات";
             quietTimeText1 = "وقت هادئ";
             quietTimeText2 = "هادئ<br />وقت";
             muteText1 = "كتم الصوت قيد التشغيل";
@@ -2108,6 +2091,68 @@
             document.getElementById("minusVolume").style.marginRight = "8px";
 
           }
+          else if (localStorage["language"] == "ja")   {
+            do24Hr = true;
+            if (screen.height <= screen.width)   {
+              if (SIZE == "big")   {
+                body.style.backgroundImage = 'url(img/bg_ja_lscape_lg.jpg)';
+              }
+              else   {
+                body.style.backgroundImage = 'url(img/bg_ja_lscape_sm.jpg)';
+              }
+            }
+            else   {
+              if (SIZE == "big")   {
+                body.style.backgroundImage = 'url(img/bg_ja_pt_lg.jpg)';
+              }
+              else   {
+                body.style.backgroundImage = 'url(img/bg_ja_pt_sm.jpg)';
+              }
+            }
+
+//  "Big Ben" = ビッグベン
+//  "Big Ben Bonger" = ビッグベンボンガー
+//  "Plus" = プラス
+//  "Big Ben Bonger Plus" = ビッグベンボンガープラス
+//  "Welcome to the Big Ben Bonger" = ビッグベンボンガーへようこそ
+
+            mantleClockText = "デスククロック";
+            grandfatherClockText = "祖父の時計";
+            magdaleneClockText = "マグダリン・チャイムズ";
+            document.getElementById("bongDuringCall").innerHTML = "&nbsp;通話中に呼び出し音が鳴る";
+            document.getElementById("15_45_Label").innerHTML = "&nbsp;:15 &amp; :45 チャイム";
+            document.getElementById("Half_Label").innerHTML = "&nbsp;:30 チャイム";
+            document.getElementById("Hour_Label").innerHTML = "&nbsp;:00 チャイム";
+            helpText = "Let Big Ben PLUS V4 help you keep track of time -- a subtle reminder every 15 minutes.\n\n";
+            helpText += "Tapping the WRENCH icon will bring up the Settings Menu. Choose from 6 different clocks, with or without pendulum. All settings are easy to understand.\n\n";
+            helpText += "Although being a walking Big Ben is cool, you'll probably want to do other things with your phone or tablet. You can minimize Big Ben by tapping the square blue Minimize Icon at the bottom of the screen. Big Ben will continue to bong until you exit the app.\n\n";
+            helpText += "To re-maximize the Bonger, tap the Notification Message or the Big Ben PLUS icon. You can then exit the app using the red \"X\" Icon in the bottom right corner.\n\nThank you for choosing Big Ben Bonger PLUS. See \"BigBenBonger.com\" for Help and additional information.\n\n";
+            helpText += "God Save the Queen...\n" + localStorage["language"] + "\n\numikeapps@outlook.com";
+            helpTextTitle = "ビッグベンボンガーへようこそ";
+            helpDismissText = "ヘルプを閉じる";
+            quitConfirmText = "ビッグベンボンガーを終了しますか？";
+            backgroundNotificationText = "[復元するにはここをタップしてください]";
+
+            quietTimeText1 = "QUIET TIME";
+            quietTimeText2 = "QUIET<br />TIME";
+            muteText1 = "MUTE ON";
+            muteText2 = "MUTE<br />ON";
+            noPendulumAdjustText = "You cannot turn the Pendulum on or off during Quiet Time.\n\nTo make adjustments to the Pendulum, simply turn off Quiet Time and try again.";
+            cuckooClockText = "CUCKOO CLOCK";
+            electronicClockText = "ELECTRONIC CLOCK";
+            trinityText = "TRINITY CHIMES";
+            muteTextNotification = "[Mute]  ";
+            quietTimeTextNotification = "[Quiet Time]  ";
+
+            document.getElementById("useQTLabel").innerHTML = "<span style=\"color: #0000aa; font-weight: bold\">&nbsp;Use QUIET TIME</span>";
+            document.getElementById("themeLabel").innerHTML = "<span style=\"color: #0000aa; font-weight: bold\">&nbsp;THEME:</span>";
+            document.getElementById("SstartLabel").innerHTML = "Last Bong";
+            document.getElementById("EendLabel").innerHTML = "First Bong";
+            document.getElementById("usePendulumLabel").innerHTML = "<span style=\"color: #0000aa; font-weight: bold\">&nbsp;PENDULUM:&nbsp;&nbsp;</span>";
+            document.getElementById("autoStartTextDiv").innerHTML = "AUTO-START WHEN PHONE STARTS<br /><span style=\"text-transform: none;\">(May not work on some devices)</span>";
+            notificationTitle = "Big Ben Bonger Background";
+          }
+
           else   {
             mantleClockText = "MANTLE CLOCK";
             grandfatherClockText = "GRANDFATHER CLOCK";
@@ -2128,8 +2173,6 @@
 //            backgroundNotificationText = "[Tap the Big Ben PLUS icon to Restore]";
             backgroundNotificationText = "[Tap here to Restore]";
 
-            optionsInText = "OPTIONS >";
-            optionsOutText = "< OPTIONS";
             quietTimeText1 = "QUIET TIME";
             quietTimeText2 = "QUIET<br />TIME";
             muteText1 = "MUTE ON";
