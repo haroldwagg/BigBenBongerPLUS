@@ -1650,8 +1650,14 @@
             sPanel.style.fontSize = "24px";
 
             if (localStorage["theme"] == "London")   {
-              sPanel.style.left = "35px";
-              sPanel.style.top = "180px";
+              if (localStorage["language"] == "ja")   {
+                sPanel.style.left = "35px";
+                sPanel.style.top = "80px";
+              }
+              else   {
+                sPanel.style.left = "35px";
+                sPanel.style.top = "180px";
+              }
             }
             else   {
               if (localStorage["language"] == "ja")   {
