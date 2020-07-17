@@ -2150,7 +2150,7 @@
             document.getElementById("EendLabel").innerHTML = "First Bong";
             document.getElementById("usePendulumLabel").innerHTML = "<span style=\"color: #0000aa; font-weight: bold\">&nbsp;PENDULUM:&nbsp;&nbsp;</span>";
             document.getElementById("autoStartTextDiv").innerHTML = "AUTO-START WHEN PHONE STARTS<br /><span style=\"text-transform: none;\">(May not work on some devices)</span>";
-            notificationTitle = "Big Ben Bonger Background";
+            notificationTitle = "ビッグベンボンジャーの背景";
           }
 
           else   {
@@ -2623,6 +2623,12 @@
             else if (localStorage["language"] == "ar")   {
               body.style.backgroundImage = 'url(img/bg_ar_pt_sm.jpg)';
             }
+            else if (localStorage["language"] == "ja")   {
+              body.style.backgroundImage = 'url(img/bg_ja_pt_sm.jpg)';
+            }
+            else if (localStorage["language"] == "hi")   {
+              body.style.backgroundImage = 'url(img/bg_hi_pt_sm.jpg)';
+            }
             else   {
               body.style.backgroundImage = 'url("img/bgBenSP.jpg")';
             }
@@ -2634,7 +2640,13 @@
             }
             else if (localStorage["language"] == "ar")   {
               body.style.backgroundImage = 'url(img/bg_ar_pt_lg.jpg)';
-              document.getElementById("panel2").style.top = "398px";      ///413
+              document.getElementById("panel2").style.top = "398px";
+            }
+            else if (localStorage["language"] == "ja")   {
+              body.style.backgroundImage = 'url("img/bg_ja_pt_lg.jpg")';
+            }
+            else if (localStorage["language"] == "hi")   {
+              body.style.backgroundImage = 'url(img/bg_hi_pt_lg.jpg)';
             }
             else   {
               body.style.backgroundImage = 'url("img/bgBenBP.jpg")';
@@ -2650,6 +2662,12 @@
             else if (localStorage["language"] == "ar")   {
               body.style.backgroundImage = 'url(img/bg_ar_lscape_sm.jpg)';
             }
+            else if (localStorage["language"] == "ja")   {
+              body.style.backgroundImage = 'url(img/bg_ja_lscape_sm.jpg)';
+            }
+            else if (localStorage["language"] == "hi")   {
+              body.style.backgroundImage = 'url(img/bg_hi_lscape_sm.jpg)';
+            }
             else   {
               body.style.backgroundImage = 'url("img/bgBenSL.jpg")';
             }
@@ -2661,6 +2679,12 @@
             }
             else if (localStorage["language"] == "ar")   {
               body.style.backgroundImage = 'url(img/bg_ar_lscape_lg.jpg)';
+            }
+            else if (localStorage["language"] == "ja")   {
+              body.style.backgroundImage = 'url(img/bg_ja_lscape_lg.jpg)';
+            }
+            else if (localStorage["language"] == "hi")   {
+              body.style.backgroundImage = 'url(img/bg_hi_lscape_lg.jpg)';
             }
             else   {
               body.style.backgroundImage = 'url("img/bgBenBL.jpg")';
