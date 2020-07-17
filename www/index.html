@@ -2110,20 +2110,22 @@
           }
           else if (localStorage["language"] == "ja")   {
             do24Hr = true;
-            if (screen.height <= screen.width)   {
-              if (SIZE == "big")   {
-                body.style.backgroundImage = 'url(img/bg_ja_lscape_lg.jpg)';
+            if (localStorage["theme"] != "London")   {
+              if (screen.height <= screen.width)   {
+                if (SIZE == "big")   {
+                  body.style.backgroundImage = 'url(img/bg_ja_lscape_lg.jpg)';
+                }
+                else   {
+                  body.style.backgroundImage = 'url(img/bg_ja_lscape_sm.jpg)';
+                }
               }
               else   {
-                body.style.backgroundImage = 'url(img/bg_ja_lscape_sm.jpg)';
-              }
-            }
-            else   {
-              if (SIZE == "big")   {
-                body.style.backgroundImage = 'url(img/bg_ja_pt_lg.jpg)';
-              }
-              else   {
-                body.style.backgroundImage = 'url(img/bg_ja_pt_sm.jpg)';
+                if (SIZE == "big")   {
+                  body.style.backgroundImage = 'url(img/bg_ja_pt_lg.jpg)';
+                }
+                else   {
+                  body.style.backgroundImage = 'url(img/bg_ja_pt_sm.jpg)';
+                }
               }
             }
 
