@@ -1681,11 +1681,19 @@
             if (localStorage["language"] == "ru")   {
               sPanel.style.top = "910px";
             }
+            else if (localStorage["language"] == "ja")   {
+              sPanel.style.top = "928px";
+            }
             else   {
               sPanel.style.top = "878px";
             }
 
-            sPanel.style.width = "372px";
+            if (localStorage["language"] == "ja")   {
+              sPanel.style.width = "360px";
+            }
+            else   {
+              sPanel.style.width = "372px";
+            }
 
             if (localStorage["language"] == "vi")   {
               sPanel.style.height = "105px";
@@ -1709,6 +1717,9 @@
             else if (localStorage["language"] == "ar")   {
               sPanel.style.height = "140px";
             }
+            else if (localStorage["language"] == "ja")   {
+              sPanel.style.height = "400px";
+            }
             else   {
               sPanel.style.height = "103px";
             }
@@ -1720,9 +1731,9 @@
               sPanel.style.fontSize = "46px";
             }
             else   {
-              sPanel.style.left = "650px";
-              sPanel.style.top = "260px";
-              sPanel.style.width = "267px";
+              sPanel.style.left = "750px";
+              sPanel.style.top = "250px";
+              sPanel.style.width = "55px";
               sPanel.style.fontSize = "46px";
             }
           }
