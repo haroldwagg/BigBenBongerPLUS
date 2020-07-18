@@ -1736,9 +1736,17 @@
               sPanel.style.fontSize = "46px";
             }
             else   {
-              sPanel.style.left = "820px";
-              sPanel.style.top = "250px";
-              sPanel.style.width = "55px";
+              if (localStorage["language"] == "ja")   {
+                sPanel.style.left = "820px";
+                sPanel.style.top = "250px";
+                sPanel.style.width = "55px";
+              }
+              else   {
+                sPanel.style.left = "650px";
+                sPanel.style.top = "260px";
+                sPanel.style.width = "267px";
+              }
+              
               sPanel.style.fontSize = "46px";
             }
           }
