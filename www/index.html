@@ -731,7 +731,7 @@
               panelStyle.height = '275px';
               panel2Style.height = '275px';
             }
-            else if ((localStorage["language"] == "fr") || (localStorage["language"] == "es") || (localStorage["language"] == "it"))   {
+            else if ((localStorage["language"] == "fr") || (localStorage["language"] == "hi") || (localStorage["language"] == "hi") || (localStorage["language"] == "es") || (localStorage["language"] == "it"))   {
               panelStyle.height = '257px';
               panel2Style.height = '257px';
             }
@@ -1755,8 +1755,8 @@
                 sPanel.style.width = "55px";
               }
               else if (localStorage["language"] == "hi")   {
-                sPanel.style.left = "685px";
-                sPanel.style.top = "330px";
+                sPanel.style.left = "675px";
+                sPanel.style.top = "342px";
                 sPanel.style.width = "267px";
               }
               else   {
@@ -2256,10 +2256,10 @@
             document.getElementById("15_45_Label").innerHTML = "&nbsp;:15 &amp; :45 घंटी";
             document.getElementById("Half_Label").innerHTML = "&nbsp;:30 घंटी";
             document.getElementById("Hour_Label").innerHTML = "&nbsp;:00 घंटी";
-            helpText = "Let Big Ben PLUS V4 help you keep track of time -- a subtle reminder every 15 minutes.\n\n";
-            helpText += "Tapping the WRENCH icon will bring up the Settings Menu. Choose from 7 different clocks, with or without pendulum. All settings are easy to understand.\n\n";
-            helpText += "Although being a walking Big Ben is cool, you'll probably want to do other things with your phone or tablet. You can minimize Big Ben by tapping the square blue Minimize Icon at the bottom of the screen. Big Ben will continue to bong until you exit the app.\n\n";
-            helpText += "To re-maximize the Bonger, tap the Notification Message or the Big Ben PLUS icon. You can then exit the app using the red \"X\" Icon in the bottom right corner.\n\nThank you for choosing Big Ben Bonger PLUS. See \"BigBenBonger.com\" for Help and additional information.\n\n";
+            helpText = "चलो बिग बेन प्लस V4 आप समय का ट्रैक खोने से रहता है -- हर 15 मिनट में एक सूक्ष्म अनुस्मारक।\n\n";
+            helpText += "टूल आइकन को टैप करने से सेटिंग मेन्यू सामने आएगा। पेंडुलम के साथ या बिना 7 अलग-अलग घड़ियों में से चुनें। सभी सेटिंग्स को समझना आसान है।\n\n";
+            helpText += "आप पूरे दिन बिग बेन को समय रहते देख सकते हैं। लेकिन शायद आप अपने फोन या टैबलेट के साथ अन्य काम करना चाहते हैं। आप स्क्रीन के निचले भाग में स्क्वायर ब्लू न्यूनतम आइकन टैप करके बिग बेन को कम कर सकते हैं। जब तक आप ऐप से बाहर नहीं निकलते हैं तब तक बिग बेन बजते रहेंगे।\n\n";
+            helpText += "बोंगर को फिर से अधिकतम करने के लिए, अधिसूचना संदेश या बिग बेन प्लस आइकन पर टैप करें। फिर आप निचले दाएं कोने में लाल &quot;X&quot; आइकन का उपयोग करके ऐप से बाहर निकल सकते हैं।\n\nबिग बेन बोंगर प्लस चुनने के लिए धन्यवाद। मदद और अतिरिक्त जानकारी के लिए &quot;BigBenBonger.com&quot; देखें।\n\n";
             helpText += "ईश्वर ने रानी को बचाया...\n" + localStorage["language"] + "\n\numikeapps@outlook.com";
             helpTextTitle = "बिग बेन बोंगर प्लस";
             helpDismissText = "खारिज";
@@ -2284,6 +2284,9 @@
             document.getElementById("usePendulumLabel").innerHTML = "<span style=\"color: #0000aa; font-weight: bold\">&nbsp;पेंडुलम:&nbsp;&nbsp;</span>";
             document.getElementById("autoStartTextDiv").innerHTML = "ऑटो-स्टार्ट जब फोन शुरू होता है<br /><span style=\"text-transform: none;\">(कुछ उपकरणों पर काम नहीं हो सकता है)</span>";
             notificationTitle = "बिग बेन बोंगर बैकग्राउंड";
+
+            document.getElementById("BBspan").textContent = "बिग बेन";
+            document.getElementById("LONDONspan").textContent = "लंडन";
           }
           else   {
             mantleClockText = "MANTLE CLOCK";
@@ -2378,6 +2381,18 @@
               document.getElementById("endSelectDiv").innerHTML = makeTimeSelect("eend", "margin-left: 44px;", localStorage["eend"]);
               document.getElementById("EendLabel").style.marginLeft = "33px";
         //      document.getElementById("SstartLabel").style.marginLeft = "82px";
+            }
+            else if (localStorage["language"] == "ja")   {
+              document.getElementById("startSelectDiv").innerHTML = makeTimeSelect("sstart", "margin-left: 61px; margin-top: 4px;", localStorage["sstart"]);
+              document.getElementById("endSelectDiv").innerHTML = makeTimeSelect("eend", "margin-left: 44px;", localStorage["eend"]);
+              document.getElementById("EendLabel").style.marginLeft = "23px";
+              document.getElementById("SstartLabel").style.marginLeft = "82px";
+            }
+            else if (localStorage["language"] == "hi")   {
+              document.getElementById("startSelectDiv").innerHTML = makeTimeSelect("sstart", "margin-left: 61px; margin-top: 4px;", localStorage["sstart"]);
+              document.getElementById("endSelectDiv").innerHTML = makeTimeSelect("eend", "margin-left: 44px;", localStorage["eend"]);
+              document.getElementById("EendLabel").style.marginLeft = "33px";
+              document.getElementById("SstartLabel").style.marginLeft = "100px";
             }
             else {
               document.getElementById("startSelectDiv").innerHTML = makeTimeSelect("sstart", "margin-left: 61px; margin-top: 4px;", localStorage["sstart"]);
