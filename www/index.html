@@ -1601,12 +1601,18 @@
             if ((localStorage["language"] == "ar") || (localStorage["language"] == "ja"))   {
               sPanel.style.top = "444px";
             }
+            else if ((localStorage["language"] == "hi"))   {
+              sPanel.style.top = "444px";
+            }
             else   {
-              sPanel.style.top = "437px";
+              sPanel.style.top = "429px";
             }
 
             if (localStorage["language"] == "ja")   {
               sPanel.style.width = "160px";
+            }
+            else if (localStorage["language"] == "hi")   {
+              sPanel.style.width = "148px";
             }
             else   {
               sPanel.style.width = "218px";
@@ -1617,6 +1623,9 @@
             }
             else if (localStorage["language"] == "ar")   {
               sPanel.style.height = "80px";
+            }
+            else if (localStorage["language"] == "ja")   {
+              sPanel.style.height = "42px";
             }
             else   {
               sPanel.style.height = "30px";
@@ -1667,6 +1676,10 @@
               if (localStorage["language"] == "ja")   {
                 sPanel.style.left = "408px";
                 sPanel.style.top = "116px";
+              }
+              else if (localStorage["language"] == "hi")   {
+                sPanel.style.left = "408px";
+                sPanel.style.top = "156px";
               }
               else   {
                 sPanel.style.left = "320px";
