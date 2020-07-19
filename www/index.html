@@ -1596,13 +1596,21 @@
 //   Small Portrait
 //
           if (ORIENT == "portrait")   {
-            sPanel.style.left = "6px";
+            if (localStorage["language"] == "hi")   {
+              sPanel.style.left = "60px";
+            }
+            else   {
+              sPanel.style.left = "6px";
+            }
 
             if ((localStorage["language"] == "ar") || (localStorage["language"] == "ja"))   {
               sPanel.style.top = "444px";
             }
-            else if ((localStorage["language"] == "hi") || (localStorage["language"] == "en"))   {
+            else if (localStorage["language"] == "en")   {
               sPanel.style.top = "444px";
+            }
+            else if (localStorage["language"] == "hi")   {
+              sPanel.style.top = "434px";
             }
             else   {
               sPanel.style.top = "429px";
