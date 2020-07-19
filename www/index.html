@@ -1601,10 +1601,9 @@
             if ((localStorage["language"] == "ar") || (localStorage["language"] == "ja"))   {
               sPanel.style.top = "444px";
             }
-            else if ((localStorage["language"] == "hi"))   {
+            else if ((localStorage["language"] == "hi") || (localStorage["language"] == "en"))   {
               sPanel.style.top = "444px";
             }
-            else   {
               sPanel.style.top = "429px";
             }
 
@@ -2222,7 +2221,69 @@
             document.getElementById("BBspan").textContent = "ビッグベン";
             document.getElementById("LONDONspan").textContent = "ロンドン";
           }
+          else if (localStorage["language"] == "hi")   {
+            do24Hr = true;
+            if (localStorage["theme"] != "London")   {
+              if (screen.height <= screen.width)   {
+                if (SIZE == "big")   {
+                  body.style.backgroundImage = 'url(img/bg_hi_lscape_lg.jpg)';
+                }
+                else   {
+                  body.style.backgroundImage = 'url(img/bg_hi_lscape_sm.jpg)';
+                }
+              }
+              else   {
+                if (SIZE == "big")   {
+                  body.style.backgroundImage = 'url(img/bg_hi_pt_lg.jpg)';
+                }
+                else   {
+                  body.style.backgroundImage = 'url(img/bg_hi_pt_sm.jpg)';
+                }
+              }
+            }
 
+  //  "Big Ben" = बिग बेन
+  //  "Big Ben Bonger" = बिग बेन बोंगर
+  //  "Plus" = प्लस
+  //  "Big Ben Bonger Plus" = बिग बेन बोंगर प्लस
+  //  "Welcome to the Big Ben Bonger" = बिग बेन बोंगर के लिए आपका स्वागत है
+
+            mantleClockText = "मेज घड़ी";
+            grandfatherClockText = "दादा की घड़ी";
+            magdaleneClockText = "मैगडालिन झंकार";
+            document.getElementById("bongDuringCall").innerHTML = "&nbsp;फोनकॉल्स के दौरान अंगूठी";
+            document.getElementById("15_45_Label").innerHTML = "&nbsp;:15 &amp; :45 घंटी";
+            document.getElementById("Half_Label").innerHTML = "&nbsp;:30 घंटी";
+            document.getElementById("Hour_Label").innerHTML = "&nbsp;:00 घंटी";
+            helpText = "Let Big Ben PLUS V4 help you keep track of time -- a subtle reminder every 15 minutes.\n\n";
+            helpText += "Tapping the WRENCH icon will bring up the Settings Menu. Choose from 7 different clocks, with or without pendulum. All settings are easy to understand.\n\n";
+            helpText += "Although being a walking Big Ben is cool, you'll probably want to do other things with your phone or tablet. You can minimize Big Ben by tapping the square blue Minimize Icon at the bottom of the screen. Big Ben will continue to bong until you exit the app.\n\n";
+            helpText += "To re-maximize the Bonger, tap the Notification Message or the Big Ben PLUS icon. You can then exit the app using the red \"X\" Icon in the bottom right corner.\n\nThank you for choosing Big Ben Bonger PLUS. See \"BigBenBonger.com\" for Help and additional information.\n\n";
+            helpText += "God Save the Queen...\n" + localStorage["language"] + "\n\numikeapps@outlook.com";
+            helpTextTitle = "Big Ben Bonger PLUS";
+            helpDismissText = "खारिज";
+            quitConfirmText = "क्या आप बिग बेन बोंगर से बाहर निकलना चाहते हैं?";
+            backgroundNotificationText = "[पुनर्स्थापित करने के लिए यहां टैप करें]";
+
+            quietTimeText1 = "शांत समय";
+            quietTimeText2 = "शांत<br />समय";
+            muteText1 = "मूक";
+            muteText2 = "मूक";
+            noPendulumAdjustText = "You cannot turn the Pendulum on or off during Quiet Time.\n\nTo make adjustments to the Pendulum, simply turn off Quiet Time and try again.";
+            cuckooClockText = "कोयल घड़ी";
+            electronicClockText = "इलेक्ट्रॉनिक क्लॉक";
+            trinityText = "ट्रिनिटी झंकार";
+            muteTextNotification = "[मूक]  ";
+            quietTimeTextNotification = "[शांत समय]  ";
+
+            document.getElementById("useQTLabel").innerHTML = "<span style=\"color: #0000aa; font-weight: bold\">&nbsp;सक्षम करें</span>";
+            document.getElementById("themeLabel").innerHTML = "<span style=\"color: #0000aa; font-weight: bold\">&nbsp;थीम:</span>";
+            document.getElementById("SstartLabel").innerHTML = "अंतिम बोंग";
+            document.getElementById("EendLabel").innerHTML = "पहला बोंग";
+            document.getElementById("usePendulumLabel").innerHTML = "<span style=\"color: #0000aa; font-weight: bold\">&nbsp;पेंडुलम:&nbsp;&nbsp;</span>";
+            document.getElementById("autoStartTextDiv").innerHTML = "ऑटो-स्टार्ट जब फोन शुरू होता है<br /><span style=\"text-transform: none;\">(कुछ उपकरणों पर काम नहीं हो सकता है)</span>";
+            notificationTitle = "बिग बेन बोंगर बैकग्राउंड";
+          }
           else   {
             mantleClockText = "MANTLE CLOCK";
             grandfatherClockText = "GRANDFATHER CLOCK";
