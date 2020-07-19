@@ -731,7 +731,7 @@
               panelStyle.height = '275px';
               panel2Style.height = '275px';
             }
-            else if ((localStorage["language"] == "fr") || (localStorage["language"] == "hi") || (localStorage["language"] == "hi") || (localStorage["language"] == "es") || (localStorage["language"] == "it"))   {
+            else if ((localStorage["language"] == "fr") || (localStorage["language"] == "hi") || (localStorage["language"] == "es") || (localStorage["language"] == "it"))   {
               panelStyle.height = '257px';
               panel2Style.height = '257px';
             }
@@ -1686,8 +1686,8 @@
                 sPanel.style.top = "116px";
               }
               else if (localStorage["language"] == "hi")   {
-                sPanel.style.left = "348px";
-                sPanel.style.top = "178px";
+                sPanel.style.left = "308px";
+                sPanel.style.top = "168px";
               }
               else   {
                 sPanel.style.left = "320px";
@@ -2091,7 +2091,6 @@
             notificationTitle = "Lý lịch Big Ben Bonger";
           }
           else if (localStorage["language"] == "ar")   {
-            do24Hr = true;
             if (localStorage["theme"] != "London")   {
               if (screen.height <= screen.width)   {
                 if (SIZE == "big")   {
@@ -2158,9 +2157,11 @@
             notificationTitle = " بج بن بونغرخلفية";
 
             document.getElementById("panel1").style.direction = "rtl";
-            document.getElementById("p1td").style.align = "right";
+            document.getElementById("p1td").style.textAlign = "right";
+            document.getElementById("panel1").style.textAlign = "right";
             document.getElementById("panel2").style.direction = "rtl";
-            document.getElementById("p2td").style.align = "right";
+            document.getElementById("p2td").style.textAlign = "right";
+            document.getElementById("panel2").style.textAlign = "right";
             document.getElementById("minusVolume").style.marginRight = "8px";
 
           }
@@ -2231,7 +2232,6 @@
             document.getElementById("LONDONspan").textContent = "ロンドン";
           }
           else if (localStorage["language"] == "hi")   {
-            do24Hr = true;
             if (localStorage["theme"] != "London")   {
               if (screen.height <= screen.width)   {
                 if (SIZE == "big")   {
@@ -2267,7 +2267,7 @@
             helpText = "चलो बिग बेन प्लस V4 आप समय का ट्रैक खोने से रहता है -- हर 15 मिनट में एक सूक्ष्म अनुस्मारक।\n\n";
             helpText += "टूल आइकन को टैप करने से सेटिंग मेन्यू सामने आएगा। पेंडुलम के साथ या बिना 7 अलग-अलग घड़ियों में से चुनें। सभी सेटिंग्स को समझना आसान है।\n\n";
             helpText += "आप पूरे दिन बिग बेन को समय रहते देख सकते हैं। लेकिन शायद आप अपने फोन या टैबलेट के साथ अन्य काम करना चाहते हैं। आप स्क्रीन के निचले भाग में स्क्वायर ब्लू न्यूनतम आइकन टैप करके बिग बेन को कम कर सकते हैं। जब तक आप ऐप से बाहर नहीं निकलते हैं तब तक बिग बेन बजते रहेंगे।\n\n";
-            helpText += "बोंगर को फिर से अधिकतम करने के लिए, अधिसूचना संदेश या बिग बेन प्लस आइकन पर टैप करें। फिर आप निचले दाएं कोने में लाल &quot;X&quot; आइकन का उपयोग करके ऐप से बाहर निकल सकते हैं।\n\nबिग बेन बोंगर प्लस चुनने के लिए धन्यवाद। मदद और अतिरिक्त जानकारी के लिए &quot;BigBenBonger.com&quot; देखें।\n\n";
+            helpText += "बोंगर को फिर से अधिकतम करने के लिए, अधिसूचना संदेश या बिग बेन प्लस आइकन पर टैप करें। फिर आप निचले दाएं कोने में लाल 'X' आइकन का उपयोग करके ऐप से बाहर निकल सकते हैं।\n\nबिग बेन बोंगर प्लस चुनने के लिए धन्यवाद। मदद और अतिरिक्त जानकारी के लिए 'BigBenBonger.com' देखें।\n\n";
             helpText += "ईश्वर ने रानी को बचाया...\n" + localStorage["language"] + "\n\numikeapps@outlook.com";
             helpTextTitle = "बिग बेन बोंगर प्लस";
             helpDismissText = "खारिज";
@@ -2380,10 +2380,6 @@
               document.getElementById("EendLabel").style.marginLeft = "48px";
               document.getElementById("SstartLabel").style.marginLeft = "82px";
             }
-//            else if (localStorage["language"] == "ar")   {
-//              document.getElementById("startSelectDiv").innerHTML = makeTimeSelect("sstart", "margin-left: 45px; margin-top: 4px;", localStorage["sstart"]);
-//              document.getElementById("endSelectDiv").innerHTML = makeTimeSelect("eend", "margin-left: 69px;", localStorage["eend"]);
-//            }
             else if (localStorage["language"] == "vi")   {
               document.getElementById("startSelectDiv").innerHTML = makeTimeSelect("sstart", "margin-left: 61px; margin-top: 4px;", localStorage["sstart"]);
               document.getElementById("endSelectDiv").innerHTML = makeTimeSelect("eend", "margin-left: 44px;", localStorage["eend"]);
@@ -2674,7 +2670,7 @@
           if (ORIENT == "portrait")   {
             D_setupButtonDiv.style.top = "0px";
             D_setupButtonDiv.style.right = "2px";
-            if (localStorage["language"] == "ar")   {
+            if ((localStorage["language"] == "ar") || (localStorage["language"] == "hi"))  {
               document.getElementById("panel2").style.top = "415px";
             }
             else   {
