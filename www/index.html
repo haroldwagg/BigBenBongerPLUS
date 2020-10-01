@@ -2668,6 +2668,48 @@
 
           x.options.add(h, 6);
 
+          var dd = new Date();
+          var mmonthh = dd.getMonth();
+          var ddayy = dd.getDate();
+
+          if (typeof localStorage["lastYear"] == 'undefined')   {
+            localStorage["lastYear"] = "2019";
+          }
+
+          if (typeof localStorage["firstTime"] == 'undefined')   {
+            localStorage["firstTime"] = "didIt";
+            localStorage["lastYear"] = "2019";
+
+            if ((mmonthh == 11 && ddayy == 31) || (mmonthh == 0 && ddayy == 1))   {
+              introText += "\n\n" + newYearText;
+              localStorage["lastYear"] = new Date().getFullYear();
+              minerva = true;
+            }
+
+            navigator.notification.alert(
+              introText,
+              "",
+              helpTextTitle,
+              helpDismissText
+            );
+          }
+
+          if (mmonthh == 11 && ddayy == 31)   {
+            if (parseInt(localStorage["lastYear"]) < new Date().getFullYear())   {
+              if (minerva == false)   {
+                localStorage["lastYear"] = new Date().getFullYear();
+                minerva = true;
+
+                navigator.notification.alert(
+                  newYearText,
+                  "",
+                  newYearTextTitle,
+                  helpDismissText
+                );
+              }
+            }
+          }
+
           initializeCanvas();
           init();
         },
