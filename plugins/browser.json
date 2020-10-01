@@ -7,30 +7,30 @@
         "files": {}
     },
     "installed_plugins": {
+        "cordova-plugin-background-mode": {
+            "PACKAGE_NAME": "com.phonegap.bigbenplus"
+        },
         "cordova-plugin-dialogs": {
+            "PACKAGE_NAME": "com.phonegap.bigbenplus"
+        },
+        "cordova-plugin-globalization": {
             "PACKAGE_NAME": "com.phonegap.bigbenplus"
         },
         "cordova-plugin-media": {
             "PACKAGE_NAME": "com.phonegap.bigbenplus"
         },
-        "nl.x-services.plugins.insomnia": {
-            "PACKAGE_NAME": "com.phonegap.bigbenplus"
-        },
-        "cordova-plugin-background-mode": {
-            "PACKAGE_NAME": "com.phonegap.bigbenplus"
-        },
         "io.gvox.plugin.phonecalltrap": {
             "PACKAGE_NAME": "com.phonegap.bigbenplus"
         },
-        "cordova-plugin-globalization": {
+        "nl.x-services.plugins.insomnia": {
             "PACKAGE_NAME": "com.phonegap.bigbenplus"
         }
     },
     "dependent_plugins": {
-        "cordova-plugin-file": {
+        "cordova-plugin-device": {
             "PACKAGE_NAME": "com.phonegap.bigbenplus"
         },
-        "cordova-plugin-device": {
+        "cordova-plugin-file": {
             "PACKAGE_NAME": "com.phonegap.bigbenplus"
         }
     }
