@@ -224,6 +224,7 @@ div.clear {
 #statusPanel {
   position: absolute;
   text-align: center;
+  border-radius:12px;
 }
 
 #panel1, #panel2 {
