@@ -2695,10 +2695,14 @@
           }
 
           if (mmonthh == 11 && ddayy == 31)   {
+            alert("After mon = 11 and day = 31");
             if (parseInt(localStorage["lastYear"]) < new Date().getFullYear())   {
+              alert("After parseInt");
               if (minerva == false)   {
                 localStorage["lastYear"] = new Date().getFullYear();
                 minerva = true;
+
+                alert("minerva is false -- " + localStorage["lastYear"]);
 
                 navigator.notification.alert(
                   newYearText,
@@ -2710,6 +2714,7 @@
             }
           }
 
+          alert("Before initializeCanvas");
           initializeCanvas();
           init();
         },
