@@ -2448,7 +2448,7 @@
             newYearText += "On all our clocks, the Westminster Chimes will begin exactly at :15, :30, :45 and on-the-hour. However there is one exception -- Big Ben. ";
             newYearText += "At the beginning of each hour, Big Ben's Westminster Chimes (the 16-note tune played before the hour strikes) will start about 15 seconds early. ";
             newYearText += "Each hour actually begins not when Big Ben starts chiming, but when he starts bonging the hours. That's how the specifications for the clock were written in the 1840's, and it's been bonging that way in London ever since.\n\n ";
-            newYearText += "So if Big Ben is your clock of choice, at midnight you should expect to hear the chimes early, and the first strike of midnight will be the beginning of the new year. All other clocks will begin chiming at exactly midnight. Happy New Year!";
+            newYearText += "So if Big Ben is your clock of choice, at midnight you should expect to hear the chimes early, and the first strike of midnight will be the actual beginning of the new year. All other clocks will begin chiming at exactly midnight. Happy New Year!";
             newYearTextTitle = "The Year is Ending";
 
             introText = "PLEASE READ THIS. It will only be displayed once.\n\nThank you for trying Big Ben Bonger. ";
@@ -2697,14 +2697,10 @@
             }
 
             if (mmonthh == 11 && ddayy == 31)   {
-              alert("After mon = 11 and day = 31");
               if (parseInt(localStorage["lastYear"]) < new Date().getFullYear())   {
-                alert("After parseInt");
                 if (minerva == false)   {
                   localStorage["lastYear"] = new Date().getFullYear();
                   minerva = true;
-
-                  alert("minerva is false -- " + localStorage["lastYear"]);
 
                   navigator.notification.alert(
                     newYearText,
@@ -2717,7 +2713,6 @@
             }
           }
 
-          alert("Before initializeCanvas");
           initializeCanvas();
           init();
         },
